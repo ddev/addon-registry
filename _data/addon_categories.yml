@@ -1,0 +1,10 @@
+---
+# Add-on categories
+
+official:
+  label: Official
+  description: Official add-on supported by DDEV.
+
+community:
+  label: Community
+  description: Community contributed add-on.

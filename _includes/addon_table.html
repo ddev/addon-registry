@@ -1,0 +1,57 @@
+<div id="addon-search-wrapper">
+    <input id="addon-search" type="text" placeholder="Search among {{ site.addons | size }} add-ons..."/>
+</div>
+
+<div id="addon-table-wrapper">
+    <table id="addon-table">
+        <thead>
+            <tr>
+                <th>Add-on</th>
+                <th>Description</th>
+                <th>Categories</th>
+                <th>Stars</th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            {% for addon in site.addons %}
+            <tr>
+                <td class="name"><a href="{{ addon.url }}" class="addon-name">{{ addon.title }}</a></td>
+                <td class="description">{{ addon.description }}</td>
+                <td class="categories">{% include category_list.html addon=addon %}</td>
+                <td class="stars" data-order="{{ addon.stars | to_integer }}">
+                    <a class="github-button" href="https://github.com/{{ addon.title }}" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star {{ addon.title }} on GitHub">
+                        Star <span class="star-count">{{ addon.stars | to_integer }}</span>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var table = $('#addon-table').DataTable({
+            layout: {
+                topEnd: null
+            },
+            ordering: true,
+            paging: true,
+            info: true,
+            lengthChange: true,
+            pageLength: 10,
+            columnDefs: [
+                { orderable: false, targets: 2 }, // Disable sorting on Categories column
+                { searchable: false, targets: [2, 3] } // Disable search on Categories and Stars column
+            ]
+        });
+
+        $('#addon-search').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+    });
+</script>

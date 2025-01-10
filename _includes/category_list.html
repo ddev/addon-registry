@@ -1,0 +1,8 @@
+<ul class="category-list">
+    {% for category_pair in site.data.addon_categories %}
+    {% assign category_id = category_pair[0] %}
+    {% assign category = category_pair[1] %}
+    {% unless include.addon.categories contains category_id %}{% continue %}{% endunless %}
+    <li><span class="addon-category" data-title="{{ category.description | replace: '\n', ' ' }}">{{ category.label }}</span></li>
+    {% endfor %}
+</ul>

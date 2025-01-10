@@ -1,0 +1,190 @@
+---
+---
+
+$accent: #2a3e58;
+$lighter: #d8e3f1;
+$marked: #a9bcd7;
+$hover: #1d3245;
+
+$column-width: 1000px;
+$grace-space: 200px;
+$layout-break: "(min-width: #{$column-width + $grace-space})";
+
+@media #{$layout-break} {
+    body {
+        width: $column-width;
+        margin: 40px auto;
+    }
+
+    p {
+        text-align: justify;
+    }
+}
+
+@media not all and #{$layout-break} {
+    .github-corner {
+        display: none;
+    }
+}
+
+body {
+    font-family: sans, sans-serif;
+}
+
+code {
+    padding: 0.15em 0.25em;
+    border-radius: 0.25em;
+    color: $accent;
+    background: $lighter;
+}
+
+pre {
+    background: $lighter;
+    padding: 1em;
+    overflow-x: auto;
+
+    code {
+        padding: 0;
+        border-radius: 0;
+    }
+}
+
+a:link, a:visited {
+    color: $accent;
+}
+
+a:hover {
+    color: $hover;
+}
+
+h2, h3, h4, h5, h5 {
+    .permalink {
+        margin-left: 5px;
+        text-decoration: none;
+        visibility: hidden;
+
+        &::before {
+            content: "#";
+        }
+    }
+
+    &:target {
+        border-left: 5px solid $accent;
+        padding-left: 5px;
+    }
+
+    &:hover {
+        .permalink {
+            visibility: visible;
+        }
+    }
+}
+
+#addon-search-wrapper {
+    margin: 50px 0;
+    padding: 10px 0;
+    position: relative;
+
+    #addon-search {
+        margin-top: 25px;
+        padding: 1em;
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid $accent;
+        outline-color: $accent;
+    }
+}
+
+#addon-table {
+    width: 100%;
+
+    th, td {
+        padding: 0.2em 1em;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    tbody tr:hover {
+        background: $lighter;
+    }
+}
+
+.category-list {
+    font-size: 0.8rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: inline-block;
+
+        a {
+            display: inline-block;
+            padding: 0.25em 0.5em;
+            margin: 0.2em 0;
+            border: 1px solid $accent;
+        }
+
+        a:link, a:visited {
+            color: $accent;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: $hover;
+            border-color: $hover;
+        }
+
+        &.match a {
+            background: $marked;
+        }
+    }
+}
+
+.addon-category {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    margin: 0.2em 0;
+    border: 1px solid $accent;
+    position: relative;
+}
+
+.addon-category[data-title]::before {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    font-size: 12px;
+    z-index: 1;
+}
+
+.addon-category:hover[data-title]::before {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.logo {
+    $margin: 20px;
+    float: right;
+    width: 100px;
+    height: 100px;
+    margin-left: $margin;
+    margin-bottom: $margin;
+}
+
+.addon-name {
+    font-family: monospace;
+    font-size: 1.2rem;
+}

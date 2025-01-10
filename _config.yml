@@ -1,0 +1,56 @@
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: DDEV Add-on Registry
+description: >-
+  A registry for DDEV add-ons where users can discover,
+  explore, and leave comments on available add-ons.
+
+repository: stasadev/ddev-addon-registry
+
+logo: /assets/logo.png
+markdown: kramdown
+
+include:
+  - _pages
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .ddev
+  - .git
+  - README.md
+  - .github
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+  - jemoji
+
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+  - jemoji
+
+defaults:
+  # _addons
+  - scope:
+      path: '_addons'
+    values:
+      layout: addon
+
+collections:
+  addons:
+    output: true
+    permalink: /addons/:path

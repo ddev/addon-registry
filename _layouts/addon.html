@@ -1,0 +1,25 @@
+---
+layout: index
+---
+
+<h1>
+    <a href="/">{{ site.title }}</a>
+</h1>
+<h1>
+    {{ page.title }}
+    <a class="github-button" href="https://github.com/{{ page.title }}" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star {{ page.title }} on GitHub">
+        Star <span class="star-count">{{ page.stars | to_integer }}</span>
+    </a>
+</h1>
+
+{{ content | markdownify }}
+
+<hr>
+
+<script src="https://utteranc.es/client.js"
+        repo="{{ site.repository }}"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

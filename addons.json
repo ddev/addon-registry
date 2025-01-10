@@ -1,0 +1,13 @@
+---
+---
+[{% for addon in site.addons %}
+    {
+        "title": {{ addon.title | jsonify }},
+        "url":, {{ addon.url | jsonify }},
+        "description": {{ addon.description | jsonify }},
+        "categories": {{ addon.categories | jsonify }},
+        "created_at": {{ addon.created_at | jsonify }},
+        "updated_at": {{ addon.updated_at | jsonify }},
+        "stargazers_count": {{ addon.stargazers_count | to_integer }},
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
+]
