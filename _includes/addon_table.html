@@ -15,7 +15,7 @@
         <tbody class="list">
             {% for addon in site.addons %}
             <tr>
-                <td class="name"><a href="{{ addon.url }}" class="addon-name">{{ addon.title }}</a></td>
+                <td class="name"><a href="{{ site.baseurl }}{{ addon.url }}" class="addon-name">{{ addon.title }}</a></td>
                 <td class="description">{{ addon.description }}</td>
                 <td class="categories">{% include category_list.html addon=addon %}</td>
                 <td class="stars" data-order="{{ addon.stars | to_integer }}">
