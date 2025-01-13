@@ -21,12 +21,18 @@ include:
   - _pages
 
 exclude:
+  - .bundle/
+  - .ddev/
+  - .git/
+  - .github/
+  - .jekyll-cache/
+  - .sass-cache/
+  - .jekyll-metadata
   - Gemfile
   - Gemfile.lock
-  - .ddev
-  - .git
+  - LICENSE
   - README.md
-  - .github
+  - vendor/
 
 plugins:
   - jekyll-paginate

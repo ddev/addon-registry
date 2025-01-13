@@ -1,0 +1,3 @@
+RUN (apt-get update || true) && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --no-install-suggests -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y ruby-full build-essential zlib1g-dev
+ENV GEM_HOME="/usr/local"
+RUN gem install bundler

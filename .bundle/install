@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+bundle install
+
+# Fix for LiveReload from Jekyll 4.x https://github.com/jekyll/jekyll/pull/8718
+# GitHub Pages use Jekyll 3.10.0 without a proper fix
+sed -i "s|<script src=\"http://|<script src=\"' + location.protocol + '//|" vendor/bundle/ruby/3.1.0/gems/jekyll-3.10.0/lib/jekyll/commands/serve/servlet.rb

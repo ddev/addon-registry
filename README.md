@@ -7,8 +7,9 @@ A registry for DDEV add-ons where users can discover, explore, and leave comment
 - [Jekyll](https://jekyllrb.com/) is used under the hood to generate the site.
 - TODO: DDEV add-ons are updated on daily basis.
 
-# Local usage
+## Local Development Setup
 
-1. `ddev start`
-2. `ddev logs -s jekyll -f` (wait until the server is ready)
-3. `ddev launch :4000/ddev-addon-registry/`
+DDEV already has all the dependencies included.
+
+1. Run `ddev start` to start and set up the project's dependencies (the first start is slow).
+2. Run `ddev launch :4000` to open the development server with LiveReload.
