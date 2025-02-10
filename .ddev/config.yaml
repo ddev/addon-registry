@@ -8,7 +8,7 @@ additional_fqdns: []
 hooks:
     post-start:
         - exec: bash -c 'while [ ! -f /var/tmp/bundleinstalldone ]; do sleep 1; done'
-        - exec: bash -c 'bundle exec jekyll build --baseurl="" --incremental'
+        - exec: bash -c 'bundle exec jekyll build --baseurl=""'
         - exec: echo -e "                                  NOTICE                                        \n
             =================================================================================\n
             =================================================================================\n
@@ -30,5 +30,5 @@ web_extra_exposed_ports:
       https_port: 4010
 web_extra_daemons:
     - name: jekyll-dev-daemon
-      command: bash -c 'bash .bundle/install && touch /var/tmp/bundleinstalldone && bundle exec jekyll serve --host=0.0.0.0 --baseurl="" --livereload --livereload-port=4010 --incremental'
+      command: bash -c 'bash .bundle/install && touch /var/tmp/bundleinstalldone && bundle exec jekyll serve --host=0.0.0.0 --baseurl="" --livereload --livereload-port=4010'
       directory: /var/www/html

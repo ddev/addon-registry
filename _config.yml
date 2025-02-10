@@ -17,6 +17,11 @@ repository: stasadev/ddev-addon-registry
 logo: /assets/logo.png
 markdown: kramdown
 
+kramdown:
+  parse_block_html: true
+  parse_span_html: true
+  html_to_native: true
+
 include:
   - _pages
 
@@ -30,6 +35,7 @@ exclude:
   - .jekyll-metadata
   - Gemfile
   - Gemfile.lock
+  - go
   - LICENSE
   - README.md
   - vendor/

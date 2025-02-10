@@ -1,5 +1,13 @@
+<p>
+    A registry for DDEV add-ons where users can discover, explore, and leave comments on available add-ons.
+</p>
+
 <div id="addon-search-wrapper">
-    <input id="addon-search" type="text" placeholder="Search among {{ site.addons | size }} add-ons..."/>
+    {% if page.group %}
+        <input id="addon-search" type="text" placeholder="{{ include.filter_by_user }} / search among {{ site.addons | where_exp: "addon", "addon.user == include.filter_by_user" | size }} add-on(s)..."/>
+    {% else %}
+        <input id="addon-search" type="text" placeholder="Search among {{ site.addons | where_exp: "addon", "addon.group == nil" | size }} add-on(s)..."/>
+    {% endif %}
 </div>
 
 <div id="addon-table-wrapper">
@@ -13,18 +21,46 @@
             </tr>
         </thead>
         <tbody class="list">
-            {% for addon in site.addons %}
-            <tr>
-                <td class="name"><a href="{{ site.baseurl }}{{ addon.url }}" class="addon-name">{{ addon.title }}</a></td>
-                <td class="description">{{ addon.description }}</td>
-                <td class="categories">{% include category_list.html addon=addon %}</td>
-                <td class="stars" data-order="{{ addon.stars | to_integer }}">
-                    <a class="github-button" href="https://github.com/{{ addon.title }}" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star {{ addon.title }} on GitHub">
-                        Star <span class="star-count">{{ addon.stars | to_integer }}</span>
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
+            {% assign sorted_addons = site.addons | sort_natural %}
+            {% if include.filter_by_user %}
+                {% for addon in sorted_addons %}
+                    {% if addon.group %}{% continue %}{% endif %}
+                    {% if addon.user != include.filter_by_user %}{% continue %}{% endif %}
+                    <tr>
+                        <td class="name addon-name"><a href="{{ site.baseurl }}/addons/{{ addon.user }}">{{ addon.user }}</a>/<a href="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</a></td>
+                        <td class="description">{{ addon.description }}</td>
+                        <td class="categories">{% include category_list.html addon=addon %}</td>
+                        <td class="stars" data-order="{{ addon.stars | to_integer }}">
+                            {{ addon.stars | to_integer }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                {% for addon in sorted_addons %}
+                    {% if addon.group %}{% continue %}{% endif %}
+                    {% if addon.user != "ddev" %}{% continue %}{% endif %}
+                    <tr>
+                        <td class="name addon-name"><a href="{{ site.baseurl }}/addons/{{ addon.user }}">{{ addon.user }}</a>/<a href="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</a></td>
+                        <td class="description">{{ addon.description }}</td>
+                        <td class="categories">{% include category_list.html addon=addon %}</td>
+                        <td class="stars" data-order="{{ addon.stars | to_integer }}">
+                            {{ addon.stars | to_integer }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% for addon in sorted_addons %}
+                    {% if addon.group %}{% continue %}{% endif %}
+                    {% if addon.user == "ddev" %}{% continue %}{% endif %}
+                    <tr>
+                        <td class="name addon-name"><a href="{{ site.baseurl }}/addons/{{ addon.user }}">{{ addon.user }}</a>/<a href="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</a></td>
+                        <td class="description">{{ addon.description }}</td>
+                        <td class="categories">{% include category_list.html addon=addon %}</td>
+                        <td class="stars" data-order="{{ addon.stars | to_integer }}">
+                            {{ addon.stars | to_integer }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 </div>
@@ -43,10 +79,14 @@
             paging: true,
             info: true,
             lengthChange: true,
-            pageLength: 10,
+            pageLength: 25,
+            stateSave: true,
+            order: [],
+            //order: [[3, 'desc']], // Default sort by Stars
             columnDefs: [
                 { orderable: false, targets: 2 }, // Disable sorting on Categories column
-                { searchable: false, targets: [2, 3] } // Disable search on Categories and Stars column
+                { searchable: false, targets: [2, 3] }, // Disable search on Categories and Stars column
+                { "orderSequence": ["desc", "asc", ""], targets: 3 }, // Sort by highest Stars first
             ]
         });
 

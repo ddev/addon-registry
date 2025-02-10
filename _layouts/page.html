@@ -3,7 +3,11 @@ layout: index
 ---
 
 <h1>
-    {{ page.title }}
+    {% if page.group %}
+        <a href="{{ site.baseurl | default: '/' }}">..</a> / {{ page.group }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
 </h1>
 
 {{ content }}

@@ -3,13 +3,14 @@ layout: index
 ---
 
 <h1>
-    <a href="{{ site.baseurl | default: '/' }}">{{ site.title }}</a>
-</h1>
-<h1>
-    {{ page.title }}
-    <a class="github-button" href="https://github.com/{{ page.title }}" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star {{ page.title }} on GitHub">
-        Star <span class="star-count">{{ page.stars | to_integer }}</span>
-    </a>
+    <a href="{{ site.baseurl | default: '/' }}">..</a> / <a href="{{ site.baseurl }}/addons/{{ page.user }}">{{ page.user }}</a> / {{ page.repo }}
+    <iframe src="https://ghbtns.com/github-btn.html?user={{ page.user }}&repo={{ page.repo }}&type=star&count=true&size=large"
+            frameborder="0"
+            scrolling="0"
+            width="170"
+            height="30"
+            title="GitHub {{ page.title }}"
+    ></iframe>
 </h1>
 
 {{ content | markdownify }}

@@ -8,13 +8,19 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  # TODO: enable this
-  # schedule:
-  #   - cron: '05 14 * * *' # Runs every day at 14:05 UTC. 5 min added to ensure posts scheduled for on the hour go out.
+    inputs:
+      debug_enabled:
+        description: 'Run the build with tmate set "debug_enabled"'
+        type: boolean
+        required: false
+        default: false
+
+  schedule:
+    - cron: '0 0 * * *'  # Midnight UTC
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write # for git push
   pages: write
   id-token: write
 
@@ -25,102 +31,60 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  update-addons:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Load 1password secret(s)
+        uses: 1password/load-secrets-action@v2
+        with:
+          export-env: true
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: "${{ secrets.TESTS_SERVICE_ACCOUNT_TOKEN }}"
+          DDEV_ADDON_REGISTRY_TOKEN: "op://test-secrets/DDEV_ADDON_REGISTRY_TOKEN/credential"
+
+      - name: Setup tmate session
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
+
+      - name: Fetch add-on data with Go
+        run: |
+          cd go
+          go mod vendor
+          go run main.go
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _addons/
+          git commit -m "Update addons [skip ci]" || echo "No changes to commit"
+          git push
+
   # Build job
   build:
     runs-on: ubuntu-latest
+    needs: update-addons
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Get Add-on list
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.SEARCH_GITHUB_TOKEN }}  # Use the PAT stored as a secret
-          script: |
-            const allRepos = [];
-            const officialRepos = [];
-            const thirdPartyRepos = [];
-            let page = 1;
-            let hasMore = true;
-            const delay = ms => new Promise(resolve => setTimeout(resolve, ms)); // Create a delay function
-            const maxRetries = 3; // Set max retries
-            let retries = 0; // Track retries
 
-            while (hasMore) {
-              try {
-                const { data } = await github.rest.search.repos({
-                  q: "topic:ddev-get fork:true",
-                  per_page: 100,
-                  order: "desc",
-                  page: page
-                });
-
-                data.items.forEach(repo => {
-                  allRepos.push({
-                    full_name: repo.full_name,
-                    html_url: repo.html_url,
-                    description: repo.description,
-                    created_at: repo.created_at,
-                    updated_at: repo.updated_at,
-                    stargazers_count: repo.stargazers_count
-                  });
-
-                  if (repo.owner.login === "ddev") {
-                    officialRepos.push({
-                      full_name: repo.full_name,
-                      html_url: repo.html_url,
-                      description: repo.description,
-                      created_at: repo.created_at,
-                      updated_at: repo.updated_at,
-                      stargazers_count: repo.stargazers_count
-                    });
-                  } else {
-                    thirdPartyRepos.push({
-                      full_name: repo.full_name,
-                      html_url: repo.html_url,
-                      description: repo.description,
-                      created_at: repo.created_at,
-                      updated_at: repo.updated_at,
-                      stargazers_count: repo.stargazers_count
-                    });
-                  }
-                });
-
-                if (data.items.length < 100) {
-                  hasMore = false;
-                } else {
-                  page++;
-                  await delay(3000); // Add a 3-second delay between requests
-                }
-                retries = 0; // Reset retries after a successful request
-              } catch (error) {
-                retries++;
-                console.log(`Rate limit exceeded or error occurred. Retry ${retries}/${maxRetries}...`);
-
-                if (retries >= maxRetries) {
-                  console.error(`Failed after ${maxRetries} retries. Exiting.`);
-                  throw new Error("Max retries reached. Aborting.");
-                }
-
-                await delay(60000); // Wait 60 seconds before retrying
-              }
-            }
-
-            const fs = require('fs');
-            fs.writeFileSync('./_data/all.json', JSON.stringify(allRepos, null, 2));
-            fs.writeFileSync('./_data/official.json', JSON.stringify(officialRepos, null, 2));
-            fs.writeFileSync('./_data/third-party.json', JSON.stringify(thirdPartyRepos, null, 2));
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
-      - name: Add JSON files to the site for easier local development
-        run: |
-          cat ./_data/all.json | sudo tee ./_site/all.json
-          cat ./_data/official.json | sudo tee ./_site/official.json
-          cat ./_data/third-party.json | sudo tee ./_site/third-party.json
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 

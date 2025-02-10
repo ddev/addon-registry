@@ -1,13 +1,16 @@
 ---
 ---
-[{% for addon in site.addons %}
+{%- assign sorted_addons = site.addons | sort_natural -%}
+[{% for addon in sorted_addons %}{% if addon.group %}{% continue %}{% endif %}
     {
         "title": {{ addon.title | jsonify }},
-        "url":, {{ addon.url | jsonify }},
+        "github_url": {{ addon.github_url | jsonify }},
+        "user": {{ addon.user | jsonify }},
+        "repo": {{ addon.repo | jsonify }},
         "description": {{ addon.description | jsonify }},
         "categories": {{ addon.categories | jsonify }},
         "created_at": {{ addon.created_at | jsonify }},
         "updated_at": {{ addon.updated_at | jsonify }},
-        "stargazers_count": {{ addon.stargazers_count | to_integer }},
+        "stars": {{ addon.stars | to_integer }}
     }{% unless forloop.last %},{% endunless %}{% endfor %}
 ]
