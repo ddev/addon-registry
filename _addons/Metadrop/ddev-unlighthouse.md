@@ -1,0 +1,71 @@
+---
+title: Metadrop/ddev-unlighthouse
+github_url: https://github.com/Metadrop/ddev-unlighthouse
+description: "Unlighthouse service for Aljibe"
+user: Metadrop
+repo: ddev-unlighthouse
+categories:
+  - community
+created_at: 2024-06-07
+updated_at: 2024-12-17
+stars: 2
+---
+
+[![tests](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+![GitHub Release](https://img.shields.io/github/v/release/Metadrop/ddev-unlighthouse)
+
+* [What is DDEV Unlighthouse Add-on?](#what-is-ddev-unlighthouse-add-on)
+* [Getting started](#getting-started)
+* [Configuration](#configuration)
+* [Running Tests](#running-tests)
+* [Interpreting Results](#interpreting-results)
+
+## What is DDEV Unlighthouse Add-on?
+
+This is a [DDEV](https://ddev.readthedocs.io) addon to run Unlighthouse in your site. [Unlighthouse](https://unlighthouse.dev/) is a tool to scan your entire site with Google Lighthouse in 2 minutes (on average).
+
+This is optimized for [Aljibe projects](https://github.com/Metadrop/Aljibe/), but can be used in any DDEV project.
+
+
+## Getting Started
+
+Install this addon:
+
+For DDEV v1.23.5 or above run
+
+```sh
+ddev add-on get Metadrop/ddev-unlighthouse
+```
+
+For earlier versions of DDEV run
+
+```sh
+ddev get Metadrop/ddev-unlighthouse
+```
+
+Once installed, make sure to restart your ddev project:
+
+```sh
+ddev restart
+```
+
+### Configuration
+
+This addon uses the `tests/[local|pro|....]/unlighthouse.ts` configuration file to customize tests according to your needs. You can modify this file following Unlighthouse configuration guidelines.
+
+### Running Tests
+
+To execute unlighthouse tests, simply access your ddev environment and run the following command:
+
+`ddev unlighthouse <folder>[local|pre|pro...]`
+
+Lighthouse will generate detailed reports and save them in the `reports/unlighthouse` folder of your project.
+
+### Interpreting Results
+
+Once unlighthouse reports are generated, you can review them to identify areas for improvement in performance, accessibility, and more of your website.
+
+Happy optimization!
+
+**Contributed and maintained by [@Metadrop](https://github.com/Metadrop)**
+
