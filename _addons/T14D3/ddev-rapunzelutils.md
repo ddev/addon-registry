@@ -8,7 +8,7 @@ categories:
   - community
 created_at: 2025-02-10
 updated_at: 2025-02-10
-stars: 0
+stars: 1
 ---
 
 # ddev-rapunzelutils
@@ -62,7 +62,7 @@ ddev alias --add cc web "php bin/console cache:clear"
 And then we can use the alias like this:
 
 ```sh
-ddev cc
+ddev alias cc
 ```
 The output will look something like this:
 
