@@ -7,7 +7,7 @@ repo: ddev-rapunzelutils
 categories:
   - community
 created_at: 2025-02-10
-updated_at: 2025-02-10
+updated_at: 2025-02-11
 stars: 1
 ---
 

@@ -7,8 +7,8 @@ repo: ddev-backstopjs
 categories:
   - community
 created_at: 2023-01-27
-updated_at: 2025-01-20
-stars: 12
+updated_at: 2025-02-11
+stars: 13
 ---
 
 [![tests](https://github.com/mmunz/ddev-backstopjs/actions/workflows/tests.yml/badge.svg)](https://github.com/mmunz/ddev-backstopjs/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)

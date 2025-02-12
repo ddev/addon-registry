@@ -1,14 +1,14 @@
 ---
 title: ddev/ddev-solr
 github_url: https://github.com/ddev/ddev-solr
-description: "Solr service for DDEV"
+description: "Apache Solr service for DDEV"
 user: ddev
 repo: ddev-solr
 categories:
   - official
 created_at: 2023-06-20
-updated_at: 2025-02-07
-stars: 9
+updated_at: 2025-02-11
+stars: 10
 ---
 
 [![tests](https://github.com/ddev/ddev-solr/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-solr/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
@@ -19,6 +19,7 @@ stars: 9
 - [Getting started](#getting-started)
 - [Create a collection](#create-a-collection)
 - [Solr command line client](#solr-command-line-client)
+- [Using alternate versions of Solr](#using-alternate-versions-of-solr)
 - [Add third party Solr modules and libraries](#add-third-party-solr-modules-and-libraries)
 - [Solarium](#solarium-php-client)
 - [Drupal and Search API Solr](#drupal-and-search-api-solr)
@@ -48,25 +49,11 @@ access rights:
 
 ## Getting started
 
-1. Install the addon
-
-    For DDEV v1.23.5 or above run
+1. Install the add-on and restart:
 
     ```shell
-    ddev add-on get ddev/ddev-solr
+    ddev add-on get ddev/ddev-solr && ddev restart
     ```
-
-    For earlier versions of DDEV run
-
-    ```shell
-    ddev get ddev/ddev-solr
-    ```
-
-1. Restart DDEV to start the addon.
-
-   ```shell
-   ddev restart
-   ```
 
 Once up and running, access Solr's admin UI within your browser by opening
 `https://<projectname>.ddev.site:8943`. For example, if the project is named
@@ -77,12 +64,9 @@ account in `security.json` is user `solr` using the password `SolrRocks`.
 
 To access the Solr container from DDEV's web container, use  `http://solr:8983`.
 
-## Create a collection
 
-It is recommended to use Solr's API to manage your collections (and cores).
-You could use the [Solr command line client](#solr-command-line-client), or the
-Solr API via curl or any http client.
-Or use Solr's admin UI.
+
+## Create a collection
 
 Creating collections require that the configset to be used by this collection
 has been uploaded within a "trusted context". This is ensured if you use the
@@ -104,7 +88,7 @@ trusted context and a corresponding collection with the same name will be
 created if it doesn't exist already.
 
 > [!NOTE]
-> Solr Cloud could be run on multiple nodes. Any node has it's own core
+> Solr Cloud could be run on multiple nodes. Any node has its own core
 > that holds your data. A collection is a set of cores distributed over several
 > nodes. If you read some old documentation or the usage instruction of an old PHP
 > application, it might talk about a "core". In that case you could simply replace
@@ -136,6 +120,30 @@ ddev solr-zk
 
 Both commands are preconfigured to connect as user `solr` which is the admin
 account.
+
+## Using alternate versions of Solr
+
+This addon defaults to installing a preferred version of the [docker Solr image](https://hub.docker.com/_/solr), but can be configured to use a different version via environment variable (`$SOLR_BASE_IMAGE`).  For example, if you would like to install the latest Solr 8.11.x, follow the steps below:
+
+```bash
+ddev addon get ddev/ddev-solr
+
+# Change image version as appropriate.
+ddev dotenv set .ddev/.env.solr --solr-base-image="solr:8.11"
+
+# remove old solr volume (if this is downgrade)
+ddev stop
+docker volume rm ddev-$(ddev status -j | docker run -i --rm ddev/ddev-utilities jq -r '.raw.name')_solr
+
+# rebuild solr image (required step)
+ddev debug rebuild -s solr
+
+ddev restart
+
+# confirm the new Solr version (expect a value something like 8.11.4)
+ddev solr version
+```
+
 
 ## Add third party Solr modules and libraries
 
@@ -180,40 +188,36 @@ $client = new Solarium\Client($adapter, $eventDispatcher, $config);
 
 ## Drupal and Search API Solr
 
-For Drupal and Search API Solr you need to configure a Search API server using
-Solr as backend and `Solr Cloud with Basic Auth` as its connector. As mentioned
-above, username "solr" and password "SolrRocks" are the pre-configured
-credentials for Basic Authentication in `.ddev/solr/security.json`.
+Solr Cloud is the \"modern\" (and simplest) way to run Solr.  You need to configure a Search API server using Solr as backend and `Solr Cloud with Basic Auth` as its connector. Specify the username "solr" and password "SolrRocks" which are the pre-configured credentials for Basic Authentication in `.ddev/solr/security.json`.
 
-Solr requires a Drupal-specific configset for any collection that should be used
-to index Drupal's content. (In Solr Cloud "collections" are the equivalent to
-"cores" in classic Solr installations. Actually, in a big Solr Cloud
-installation a collection might consist of multiple cores across all Solr Cloud
-nodes.)
+Solr requires a Drupal-specific configset for any collection to index Drupal's content. (In Solr Cloud "collections" are the equivalent to "cores" in classic Solr installations. Actually, in a big Solr Cloud installation a collection might consist of multiple cores across all Solr Cloud nodes.)
 
-Starting from Search API Solr module version 4.2.1 you don't need to deal with
-configsets manually anymore. Just enable the `search_api_solr_admin` sub-module
-which is part of Search API Solr. Now you create or update your "collections" at
-any time by clicking the "Upload Configset" button on the Search API server
-details page (see installation steps below), or use `drush` to do this with
+
+Starting from Search API Solr module version 4.2.1 you don't need to define collections or configsets so you can safely ignore the \"Create a collection\" section in this documentation . You simply enable the `search_api_solr_admin` submodule which is part of the [Search API Solr module](https://www.drupal.org/project/search_api_solr). Then you create or update your \"collections\" at any time by clicking the "Upload Configset" button on the Search API server details page or use `drush` to do this with
 
 ```
 ddev drush --numShards=1 search-api-solr:upload-configset SEARCH_API_SERVER_ID
 ```
 
-Note: `SEARCH_API_SERVER_ID` is the machine name of your Search API server.
-The number of "shards" should always be "1" as this local installation only
-runs a single Solr node.
+Note: `SEARCH_API_SERVER_ID` is the machine name of your Search API server.The number of "shards" should always be "1" as this local installation only runs a single Solr node.
+
+[!Note]. Use `solr` rather than  `localhost` for the name of the solr server in your search api configuration.  The Search API suggests `localhost` but that won't work with DDEV.
+
+For step-by-step setup details with screenshots refer to [Drupal at your fingertips: Local Solr setup with Search API Solr](https://www.drupalatyourfingertips.com/development#local-solr-setup-with-search-api-solr).
+
+
+
 
 ### Installation steps
 
-1. Enable the `search_api_solr_admin` module. (This sub-module is included in Search API Solr >= 4.2.1)
+1. Enable the `search_api_solr_admin` module. (This submodule is included in Search API Solr >= 4.2.1)
 2. Create a search server using the Solr backend and select `Solr Cloud with Basic Auth` as connector:
    - HTTP protocol: `http`
    - Solr node: `solr`
    - Solr port: `8983`
    - Solr path: `/`
    - Default Solr collection: `techproducts` (You can define any name here. The collection will be created automatically.)
+   - Solr host context: `solr`
    - Username: `solr`
    - Password: `SolrRocks`
 3. On the server's "view" page click the `Upload Configset` button and check the "Upload (and overwrite) configset" checkbox.
