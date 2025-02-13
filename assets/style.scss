@@ -188,10 +188,16 @@ h2, h3, h4, h5, h5 {
     font-size: 1.2rem;
 }
 
-.addon-official {
-    background-color: lightblue !important;
+footer.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
 }
 
-.addon-community {
-    background-color: lightgray !important;
+footer.footer span {
+    display: inline-block;
 }

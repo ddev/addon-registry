@@ -7,12 +7,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: DDEV Add-on Registry
-baseurl: "/ddev-addon-registry"
+baseurl: "/addon-registry"
 description: >-
   A registry for DDEV add-ons where users can discover,
   explore, and leave comments on available add-ons.
-
-repository: stasadev/ddev-addon-registry
 
 logo: /assets/logo.png
 markdown: kramdown

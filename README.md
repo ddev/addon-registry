@@ -1,11 +1,18 @@
-[![Deploy to GitHub Pages](https://github.com/stasadev/ddev-addon-registry/actions/workflows/deploy-to-github-pages.yml/badge.svg)](https://stasadev.github.io/ddev-addon-registry/)
+[![Deploy to GitHub Pages](https://github.com/ddev/addon-registry/actions/workflows/deploy-to-github-pages.yml/badge.svg)](https://ddev.github.io/addon-registry/)
 
 # DDEV Add-on Registry
 
 A registry for DDEV add-ons where users can discover, explore, and leave comments on available add-ons.
 
 - [Jekyll](https://jekyllrb.com/) is used under the hood to generate the site.
-- TODO: DDEV add-ons are updated on daily basis.
+- Add-ons in the [_addons](./_addons) directory are automatically updated using [Golang](./go/main.go).
+- Manual updates can be performed using:
+    ```bash
+    export DDEV_ADDON_REGISTRY_TOKEN=your-classic-github-token-no-privileges
+    cd go
+    go mod vendor
+    go run main.go
+    ```
 
 ## Local Development Setup
 
