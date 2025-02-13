@@ -4,8 +4,7 @@ github_url: https://github.com/tyler36/ddev-dbslow
 description: "Helper to log \"slow\" queries"
 user: tyler36
 repo: ddev-dbslow
-categories:
-  - community
+type: contrib
 created_at: 2024-02-01
 updated_at: 2024-11-21
 stars: 0

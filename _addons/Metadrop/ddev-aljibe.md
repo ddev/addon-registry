@@ -4,8 +4,7 @@ github_url: https://github.com/Metadrop/ddev-aljibe
 description: "DDEV Aljibe (ddev-aljibe) is an add-on for DDEV to develop Drupal projects with many tools included out-of-the-box"
 user: Metadrop
 repo: ddev-aljibe
-categories:
-  - community
+type: contrib
 created_at: 2024-06-19
 updated_at: 2025-02-04
 stars: 9

@@ -4,8 +4,7 @@ github_url: https://github.com/davereid/ddev-drupal-contrib-dev
 description: "Provides a way to do contributed module development using Git clones and symlinks"
 user: davereid
 repo: ddev-drupal-contrib-dev
-categories:
-  - community
+type: contrib
 created_at: 2024-01-08
 updated_at: 2025-01-10
 stars: 3

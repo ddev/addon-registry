@@ -4,8 +4,7 @@ github_url: https://github.com/Tapkaros-rs/ddev-stripe
 description: "Ddev addon for stripe"
 user: Tapkaros-rs
 repo: ddev-stripe
-categories:
-  - community
+type: contrib
 created_at: 2024-02-04
 updated_at: 2024-05-07
 stars: 0

@@ -4,8 +4,7 @@ github_url: https://github.com/Rindula/ddev-mercure
 description: "A Mercure Server based on the official docker image from https://mercure.rocks"
 user: Rindula
 repo: ddev-mercure
-categories:
-  - community
+type: contrib
 created_at: 2022-06-28
 updated_at: 2024-10-15
 stars: 0

@@ -4,8 +4,7 @@ github_url: https://github.com/thunder/ddev-selenium-chrome
 description: "Selenium standalone for ddev"
 user: thunder
 repo: ddev-selenium-chrome
-categories:
-  - community
+type: contrib
 created_at: 2022-08-02
 updated_at: 2024-07-15
 stars: 0

@@ -4,8 +4,7 @@ github_url: https://github.com/ddev/ddev-drupal-solr
 description: "Drupal Apache Solr installation for DDEV (please consider ddev/ddev-solr first)"
 user: ddev
 repo: ddev-drupal-solr
-categories:
-  - official
+type: official
 created_at: 2022-01-12
 updated_at: 2025-01-30
 stars: 11

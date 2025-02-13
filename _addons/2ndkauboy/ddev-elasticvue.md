@@ -4,8 +4,7 @@ github_url: https://github.com/2ndkauboy/ddev-elasticvue
 description: "Elasticvue service for DDEV"
 user: 2ndkauboy
 repo: ddev-elasticvue
-categories:
-  - community
+type: contrib
 created_at: 2024-05-21
 updated_at: 2024-10-24
 stars: 0

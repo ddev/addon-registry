@@ -4,8 +4,7 @@ github_url: https://github.com/penyaskito/ddev-hugo
 description: "ddev addon for Hugo static site generator https://gohugo.io https://ddev.com"
 user: penyaskito
 repo: ddev-hugo
-categories:
-  - community
+type: contrib
 created_at: 2024-04-26
 updated_at: 2024-11-11
 stars: 1

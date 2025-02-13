@@ -4,8 +4,7 @@ github_url: https://github.com/OpenForgeProject/ddev-woodoo-buildtools-magento
 description: "ddev Addon to build Magento projects without headache"
 user: OpenForgeProject
 repo: ddev-woodoo-buildtools-magento
-categories:
-  - community
+type: contrib
 created_at: 2023-03-14
 updated_at: 2024-12-19
 stars: 8

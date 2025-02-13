@@ -4,8 +4,7 @@ github_url: https://github.com/machine-rc/ddev-frontend-nextjs
 description: "NextJS Drupal Frontend application for ddev stack "
 user: machine-rc
 repo: ddev-frontend-nextjs
-categories:
-  - community
+type: contrib
 created_at: 2024-06-08
 updated_at: 2024-06-08
 stars: 0

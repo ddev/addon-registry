@@ -4,8 +4,7 @@ github_url: https://github.com/gebruederheitz/ddev-headless-chrome
 description: "Setup a running headless chrome service for ddev"
 user: gebruederheitz
 repo: ddev-headless-chrome
-categories:
-  - community
+type: contrib
 created_at: 2023-01-28
 updated_at: 2023-01-28
 stars: 0

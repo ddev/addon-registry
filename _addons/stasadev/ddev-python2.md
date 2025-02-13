@@ -4,8 +4,7 @@ github_url: https://github.com/stasadev/ddev-python2
 description: "Add Python2 for older npm builds with node-gyp"
 user: stasadev
 repo: ddev-python2
-categories:
-  - community
+type: contrib
 created_at: 2024-08-30
 updated_at: 2025-02-08
 stars: 7

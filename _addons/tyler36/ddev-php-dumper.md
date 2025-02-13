@@ -4,8 +4,7 @@ github_url: https://github.com/tyler36/ddev-php-dumper
 description: "Collect and manage 'dump' information in Docker Desktop"
 user: tyler36
 repo: ddev-php-dumper
-categories:
-  - community
+type: contrib
 created_at: 2024-01-04
 updated_at: 2025-01-06
 stars: 0

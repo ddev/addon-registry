@@ -4,8 +4,7 @@ github_url: https://github.com/carsten-walther/ddev-typo3-solr
 description: "TYPO3 solr configuration"
 user: carsten-walther
 repo: ddev-typo3-solr
-categories:
-  - community
+type: contrib
 created_at: 2023-09-14
 updated_at: 2024-11-08
 stars: 0

@@ -4,8 +4,7 @@ github_url: https://github.com/ddev/ddev-mongo
 description: "MongoDB add-on for DDEV"
 user: ddev
 repo: ddev-mongo
-categories:
-  - official
+type: official
 created_at: 2022-03-28
 updated_at: 2025-01-20
 stars: 6

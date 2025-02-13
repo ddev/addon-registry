@@ -4,8 +4,7 @@ github_url: https://github.com/envsa/ddev-pnpm
 description: "Add pnpm to DDEV"
 user: envsa
 repo: ddev-pnpm
-categories:
-  - community
+type: contrib
 created_at: 2023-11-09
 updated_at: 2025-01-09
 stars: 4

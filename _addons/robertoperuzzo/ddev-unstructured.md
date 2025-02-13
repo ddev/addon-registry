@@ -4,8 +4,7 @@ github_url: https://github.com/robertoperuzzo/ddev-unstructured
 description: "Unstructured self-hosted service for DDEV"
 user: robertoperuzzo
 repo: ddev-unstructured
-categories:
-  - community
+type: contrib
 created_at: 2025-01-25
 updated_at: 2025-01-27
 stars: 0

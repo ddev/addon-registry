@@ -4,8 +4,7 @@ github_url: https://github.com/ddev/ddev-redis-7
 description: "Redis 7 service for DDEV"
 user: ddev
 repo: ddev-redis-7
-categories:
-  - official
+type: official
 created_at: 2023-01-06
 updated_at: 2024-10-30
 stars: 3

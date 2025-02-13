@@ -4,8 +4,7 @@ github_url: https://github.com/codemonauts/ddev-s3-http-proxy
 description: ""
 user: codemonauts
 repo: ddev-s3-http-proxy
-categories:
-  - community
+type: contrib
 created_at: 2024-06-14
 updated_at: 2024-06-14
 stars: 0

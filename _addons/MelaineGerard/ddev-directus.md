@@ -4,8 +4,7 @@ github_url: https://github.com/MelaineGerard/ddev-directus
 description: "A simple DDEV addon that add Directus on your project"
 user: MelaineGerard
 repo: ddev-directus
-categories:
-  - community
+type: contrib
 created_at: 2024-03-19
 updated_at: 2024-10-24
 stars: 5

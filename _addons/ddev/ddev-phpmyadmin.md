@@ -4,8 +4,7 @@ github_url: https://github.com/ddev/ddev-phpmyadmin
 description: "phpMyAdmin Add-on For DDEV"
 user: ddev
 repo: ddev-phpmyadmin
-categories:
-  - official
+type: official
 created_at: 2023-06-15
 updated_at: 2025-02-04
 stars: 11

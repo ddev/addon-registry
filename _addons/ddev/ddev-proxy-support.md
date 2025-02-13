@@ -4,8 +4,7 @@ github_url: https://github.com/ddev/ddev-proxy-support
 description: "Support HTTP/HTTPS proxies with DDEV (obsolete)"
 user: ddev
 repo: ddev-proxy-support
-categories:
-  - official
+type: official
 created_at: 2022-07-15
 updated_at: 2025-02-11
 stars: 1

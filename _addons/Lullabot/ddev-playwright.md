@@ -4,8 +4,7 @@ github_url: https://github.com/Lullabot/ddev-playwright
 description: "Integrate Playwright tests into your ddev app"
 user: Lullabot
 repo: ddev-playwright
-categories:
-  - community
+type: contrib
 created_at: 2023-05-01
 updated_at: 2025-02-09
 stars: 16

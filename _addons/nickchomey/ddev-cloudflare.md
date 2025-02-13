@@ -4,8 +4,7 @@ github_url: https://github.com/nickchomey/ddev-cloudflare
 description: "Cloudflare Tunnels for DDEV"
 user: nickchomey
 repo: ddev-cloudflare
-categories:
-  - community
+type: contrib
 created_at: 2024-07-16
 updated_at: 2024-11-03
 stars: 0

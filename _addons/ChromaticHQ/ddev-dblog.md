@@ -4,8 +4,7 @@ github_url: https://github.com/ChromaticHQ/ddev-dblog
 description: "Easily view your db's general_log in ddev"
 user: ChromaticHQ
 repo: ddev-dblog
-categories:
-  - community
+type: contrib
 created_at: 2024-01-10
 updated_at: 2024-11-16
 stars: 1

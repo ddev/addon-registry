@@ -4,8 +4,7 @@ github_url: https://github.com/fullfatthings/ddev-spx
 description: "DDEV Addon to install the PHP-SPX performance package "
 user: fullfatthings
 repo: ddev-spx
-categories:
-  - community
+type: contrib
 created_at: 2024-10-07
 updated_at: 2025-01-31
 stars: 4

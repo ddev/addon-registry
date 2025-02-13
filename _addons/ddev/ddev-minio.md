@@ -4,8 +4,7 @@ github_url: https://github.com/ddev/ddev-minio
 description: "MinIO addon for DDEV"
 user: ddev
 repo: ddev-minio
-categories:
-  - official
+type: official
 created_at: 2023-08-13
 updated_at: 2024-10-17
 stars: 6

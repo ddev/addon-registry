@@ -4,8 +4,7 @@ github_url: https://github.com/JanoPL/ddev-kibana
 description: "Kibana add-on for DDEV"
 user: JanoPL
 repo: ddev-kibana
-categories:
-  - community
+type: contrib
 created_at: 2022-08-30
 updated_at: 2024-10-27
 stars: 1

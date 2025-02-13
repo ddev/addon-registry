@@ -4,8 +4,7 @@ github_url: https://github.com/tyler36/ddev-vite
 description: "Basic Vite implementation for DDEV"
 user: tyler36
 repo: ddev-vite
-categories:
-  - community
+type: contrib
 created_at: 2024-04-03
 updated_at: 2025-01-31
 stars: 1

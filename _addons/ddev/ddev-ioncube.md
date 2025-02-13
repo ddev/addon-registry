@@ -4,8 +4,7 @@ github_url: https://github.com/ddev/ddev-ioncube
 description: "IonCube loaders for DDEV"
 user: ddev
 repo: ddev-ioncube
-categories:
-  - official
+type: official
 created_at: 2023-09-28
 updated_at: 2024-10-24
 stars: 0

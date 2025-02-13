@@ -4,8 +4,7 @@ github_url: https://github.com/tyler36/ddev-tinker
 description: "An addon for DDEV that providers a single command to access a runtime developer console."
 user: tyler36
 repo: ddev-tinker
-categories:
-  - community
+type: contrib
 created_at: 2023-04-14
 updated_at: 2025-01-29
 stars: 1

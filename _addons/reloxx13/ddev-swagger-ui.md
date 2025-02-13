@@ -4,8 +4,7 @@ github_url: https://github.com/reloxx13/ddev-swagger-ui
 description: "Swagger UI add-on for DDEV"
 user: reloxx13
 repo: ddev-swagger-ui
-categories:
-  - community
+type: contrib
 created_at: 2023-09-19
 updated_at: 2024-04-29
 stars: 1

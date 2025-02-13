@@ -4,11 +4,10 @@ github_url: https://github.com/ddev/ddev-xhgui
 description: "XHGui service for a DDEV project"
 user: ddev
 repo: ddev-xhgui
-categories:
-  - official
+type: official
 created_at: 2023-03-29
-updated_at: 2025-01-06
-stars: 12
+updated_at: 2025-02-13
+stars: 13
 ---
 
 [![tests](https://github.com/ddev/ddev-addon-template/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-addon-template/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)

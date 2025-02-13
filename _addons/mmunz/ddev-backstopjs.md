@@ -4,8 +4,7 @@ github_url: https://github.com/mmunz/ddev-backstopjs
 description: "ddev addon to provide a backstopjs container for visual regression testing"
 user: mmunz
 repo: ddev-backstopjs
-categories:
-  - community
+type: contrib
 created_at: 2023-01-27
 updated_at: 2025-02-11
 stars: 13

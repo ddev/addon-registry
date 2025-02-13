@@ -4,8 +4,7 @@ github_url: https://github.com/tyler36/ddev-storybook
 description: "Helpers for DDEV and Storybook"
 user: tyler36
 repo: ddev-storybook
-categories:
-  - community
+type: contrib
 created_at: 2024-01-23
 updated_at: 2025-01-06
 stars: 7

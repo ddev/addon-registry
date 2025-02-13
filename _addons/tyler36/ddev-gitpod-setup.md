@@ -4,8 +4,7 @@ github_url: https://github.com/tyler36/ddev-gitpod-setup
 description: "Helper add-on to add Gitpod config."
 user: tyler36
 repo: ddev-gitpod-setup
-categories:
-  - community
+type: contrib
 created_at: 2024-08-09
 updated_at: 2025-01-09
 stars: 1

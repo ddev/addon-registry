@@ -4,11 +4,10 @@ github_url: https://github.com/kevinquillen/ddev-meilisearch
 description: "Meilisearch is a flexible and powerful user-focused search engine that can be added to any website or application. This is an add on for DDEV so you can run and develop integrations for Meilisearch locally."
 user: kevinquillen
 repo: ddev-meilisearch
-categories:
-  - community
+type: contrib
 created_at: 2024-01-26
-updated_at: 2025-02-03
-stars: 5
+updated_at: 2025-02-12
+stars: 6
 ---
 
 [![tests](https://github.com/kevinquillen/ddev-meilisearch/actions/workflows/tests.yml/badge.svg)](https://github.com/kevinquillen/ddev-meilisearch/actions/workflows/tests.yml)

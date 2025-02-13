@@ -4,8 +4,7 @@ github_url: https://github.com/DiffyWebsite/ddev-diffy
 description: "Diffy integration with DDEV"
 user: DiffyWebsite
 repo: ddev-diffy
-categories:
-  - community
+type: contrib
 created_at: 2024-07-22
 updated_at: 2024-11-07
 stars: 1

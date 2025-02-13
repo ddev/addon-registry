@@ -4,8 +4,7 @@ github_url: https://github.com/tyler36/ddev-qr
 description: "Helper command to generate qr-codes for DDEV, DDEV share and Gitpod URLs"
 user: tyler36
 repo: ddev-qr
-categories:
-  - community
+type: contrib
 created_at: 2024-06-21
 updated_at: 2025-01-06
 stars: 0

@@ -4,8 +4,7 @@ github_url: https://github.com/meevagmbh/ddev-addon-mindsdb
 description: "MindsDB addon service for DDEV"
 user: meevagmbh
 repo: ddev-addon-mindsdb
-categories:
-  - community
+type: contrib
 created_at: 2024-12-12
 updated_at: 2024-12-13
 stars: 0

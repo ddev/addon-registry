@@ -4,8 +4,7 @@ github_url: https://github.com/bserem/ddev-typesense
 description: "WIP: Typesense addon for DDEV"
 user: bserem
 repo: ddev-typesense
-categories:
-  - community
+type: contrib
 created_at: 2022-08-04
 updated_at: 2023-01-13
 stars: 0

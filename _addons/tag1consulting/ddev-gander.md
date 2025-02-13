@@ -4,8 +4,7 @@ github_url: https://github.com/tag1consulting/ddev-gander
 description: "Gander - preconfigured OpenTelemetry stack with Grafana Tempo / Prometheus for performance testing"
 user: tag1consulting
 repo: ddev-gander
-categories:
-  - community
+type: contrib
 created_at: 2023-11-23
 updated_at: 2025-01-23
 stars: 5

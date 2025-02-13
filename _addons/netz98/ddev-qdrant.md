@@ -4,8 +4,7 @@ github_url: https://github.com/netz98/ddev-qdrant
 description: "ddev qdrant"
 user: netz98
 repo: ddev-qdrant
-categories:
-  - community
+type: contrib
 created_at: 2024-06-07
 updated_at: 2024-07-15
 stars: 0

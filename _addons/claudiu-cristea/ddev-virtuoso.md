@@ -4,8 +4,7 @@ github_url: https://github.com/claudiu-cristea/ddev-virtuoso
 description: "Virtuoso triplestore installation for DDEV"
 user: claudiu-cristea
 repo: ddev-virtuoso
-categories:
-  - community
+type: contrib
 created_at: 2022-12-31
 updated_at: 2022-12-31
 stars: 0

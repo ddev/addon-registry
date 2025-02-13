@@ -4,8 +4,7 @@ github_url: https://github.com/ochorocho/ddev-frankenphp
 description: "Replaces apache/nginx with FrankenPHP in ddev web container"
 user: ochorocho
 repo: ddev-frankenphp
-categories:
-  - community
+type: contrib
 created_at: 2024-02-11
 updated_at: 2025-01-23
 stars: 11

@@ -4,8 +4,7 @@ github_url: https://github.com/feuertelegraph/ddev-firebird
 description: "Firebird database for DDEV"
 user: feuertelegraph
 repo: ddev-firebird
-categories:
-  - community
+type: contrib
 created_at: 2023-08-03
 updated_at: 2025-01-26
 stars: 0

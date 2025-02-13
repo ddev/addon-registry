@@ -4,8 +4,7 @@ github_url: https://github.com/b13/ddev-stirling-pdf
 description: "Adds Stirling PDF to ddev"
 user: b13
 repo: ddev-stirling-pdf
-categories:
-  - community
+type: contrib
 created_at: 2024-04-04
 updated_at: 2025-02-08
 stars: 0

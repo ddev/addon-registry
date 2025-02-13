@@ -4,8 +4,7 @@ github_url: https://github.com/ssmarco/ddev-enterprise-search
 description: "Elastic Enterprise Search service for DDEV"
 user: ssmarco
 repo: ddev-enterprise-search
-categories:
-  - community
+type: contrib
 created_at: 2024-01-30
 updated_at: 2025-01-14
 stars: 0

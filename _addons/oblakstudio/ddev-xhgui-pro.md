@@ -4,8 +4,7 @@ github_url: https://github.com/oblakstudio/ddev-xhgui-pro
 description: "XHGui addon for DDEV - batteries included."
 user: oblakstudio
 repo: ddev-xhgui-pro
-categories:
-  - community
+type: contrib
 created_at: 2024-03-22
 updated_at: 2024-11-11
 stars: 2

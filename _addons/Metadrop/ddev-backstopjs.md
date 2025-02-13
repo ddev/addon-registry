@@ -4,8 +4,7 @@ github_url: https://github.com/Metadrop/ddev-backstopjs
 description: "ddev addon to provide a backstopjs container for visual regression testing in Metadrop Aljibe"
 user: Metadrop
 repo: ddev-backstopjs
-categories:
-  - community
+type: contrib
 created_at: 2023-10-24
 updated_at: 2024-10-01
 stars: 0

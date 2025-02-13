@@ -4,8 +4,7 @@ github_url: https://github.com/barbieswimcrew/ddev-imgproxy
 description: "imgproxy add-on for DDEV"
 user: barbieswimcrew
 repo: ddev-imgproxy
-categories:
-  - community
+type: contrib
 created_at: 2024-11-06
 updated_at: 2024-11-07
 stars: 0

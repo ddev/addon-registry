@@ -4,8 +4,7 @@ github_url: https://github.com/justafish/ddev-drupal-core-dev
 description: "ddev addon for core development"
 user: justafish
 repo: ddev-drupal-core-dev
-categories:
-  - community
+type: contrib
 created_at: 2023-10-18
 updated_at: 2025-01-06
 stars: 28

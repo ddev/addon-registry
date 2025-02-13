@@ -4,8 +4,7 @@ github_url: https://github.com/tyler36/ddev-locale
 description: "Change a DDEV project's timezone and language. "
 user: tyler36
 repo: ddev-locale
-categories:
-  - community
+type: contrib
 created_at: 2024-06-06
 updated_at: 2025-01-09
 stars: 0

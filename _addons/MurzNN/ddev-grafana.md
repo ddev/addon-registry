@@ -4,8 +4,7 @@ github_url: https://github.com/MurzNN/ddev-grafana
 description: "Grafana Stack addon for DDEV: Grafana (GUI), Tempo (tracing, OpenTelemetry), Loki (logs, promtail), Mimir (metrics, prometheus)"
 user: MurzNN
 repo: ddev-grafana
-categories:
-  - community
+type: contrib
 created_at: 2023-03-30
 updated_at: 2025-02-07
 stars: 5
