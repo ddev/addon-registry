@@ -3,17 +3,46 @@ layout: index
 ---
 
 <h1>
-    <a href="{{ site.baseurl | default: '/' }}">..</a> / <a href="{{ site.baseurl }}/addons/{{ page.user }}">{{ page.user }}</a> / {{ page.repo }}
-    <iframe src="https://ghbtns.com/github-btn.html?user={{ page.user }}&repo={{ page.repo }}&type=star&count=true&size=large"
-            frameborder="0"
-            scrolling="0"
-            width="170"
-            height="30"
-            title="GitHub {{ page.title }}"
-    ></iframe>
+    <a href="{{ site.baseurl | default: '/' }}" style="text-decoration: none;">{{ site.title }}</a> / <a href="{{ site.baseurl }}/addons/{{ page.user }}" style="text-decoration: none;">{{ page.user }}</a> / {{ page.repo }}
 </h1>
 
-{{ content | markdownify }}
+<div id="content-wrapper">
+    {%- assign split_content = content | split: '<p>' -%}
+    <!-- Display the first 3 paragraphs -->
+    <div id="visible-content">
+        {{ split_content | slice: 0, 3 | join: '<p>' | markdownify }}
+    </div>
+
+    <!-- Hidden content that will be displayed on clicking "Read more" -->
+    <div id="hidden-content" style="display: none;">
+        {{ split_content | slice: 4, 1000 | join: '<p>' | markdownify }}
+    </div>
+</div>
+
+<div class="dt-buttons">
+    {%- if split_content.size > 4 -%}
+    <button class="dt-button" type="button" id="read-more-btn" onclick="toggleContent()">Read more</button>
+    {%- endif -%}
+    <button class="dt-button" type="button" onclick="window.open('{{ page.github_url }}', '_blank')">View on GitHub</button>
+    <button class="dt-button" type="button" onclick="window.open('{{ page.github_url }}/issues', '_blank')">Report an issue</button>
+</div>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.1/css/buttons.dataTables.css" />
+
+<script>
+    function toggleContent() {
+        var content = document.getElementById("hidden-content");
+        var btn = document.getElementById("read-more-btn");
+
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.textContent = "Read less";
+        } else {
+            content.style.display = "none";
+            btn.textContent = "Read more";
+        }
+        btn.blur();
+    }
+</script>
 
 <hr>
 

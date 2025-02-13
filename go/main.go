@@ -114,9 +114,9 @@ func createRepoMarkdown(repo *github.Repository) error {
 	}
 
 	// Create the front matter (YAML-like header)
-	categories := "community"
+	addonType := "contrib"
 	if org == "ddev" {
-		categories = "official"
+		addonType = "official"
 	}
 	content := fmt.Sprintf(`---
 title: %s
@@ -124,15 +124,14 @@ github_url: %s
 description: "%s"
 user: %s
 repo: %s
-categories:
-  - %s
+type: %s
 created_at: %s
 updated_at: %s
 stars: %d
 ---
 
 %s
-`, repo.GetFullName(), repo.GetHTMLURL(), strings.ReplaceAll(repo.GetDescription(), `"`, `\"`), org, repoName, categories, repo.GetCreatedAt().Format(time.DateOnly), repo.GetUpdatedAt().Format(time.DateOnly), repo.GetStargazersCount(), readmeContent)
+`, repo.GetFullName(), repo.GetHTMLURL(), strings.ReplaceAll(repo.GetDescription(), `"`, `\"`), org, repoName, addonType, repo.GetCreatedAt().Format(time.DateOnly), repo.GetUpdatedAt().Format(time.DateOnly), repo.GetStargazersCount(), readmeContent)
 
 	// Write content to the markdown file
 	err = os.WriteFile(filePath, []byte(content), 0644)

@@ -86,7 +86,6 @@ h2, h3, h4, h5, h5 {
     position: relative;
 
     #addon-search {
-        margin-top: 25px;
         padding: 1em;
         font-size: 1rem;
         width: 100%;
@@ -112,7 +111,7 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-.category-list {
+.addon-type-list {
     font-size: 0.8rem;
     list-style: none;
     padding: 0;
@@ -144,7 +143,7 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-.addon-category {
+.addon-type {
     display: inline-block;
     padding: 0.25em 0.5em;
     margin: 0.2em 0;
@@ -152,7 +151,7 @@ h2, h3, h4, h5, h5 {
     position: relative;
 }
 
-.addon-category[data-title]::before {
+.addon-type[data-title]::before {
     content: attr(data-title);
     position: absolute;
     bottom: 100%;
@@ -170,7 +169,7 @@ h2, h3, h4, h5, h5 {
     z-index: 1;
 }
 
-.addon-category:hover[data-title]::before {
+.addon-type:hover[data-title]::before {
     opacity: 1;
     pointer-events: auto;
 }
@@ -187,4 +186,12 @@ h2, h3, h4, h5, h5 {
 .addon-name {
     font-family: monospace;
     font-size: 1.2rem;
+}
+
+.addon-official {
+    background-color: lightblue !important;
+}
+
+.addon-community {
+    background-color: lightgray !important;
 }

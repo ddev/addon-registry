@@ -8,7 +8,7 @@
         "user": {{ addon.user | jsonify }},
         "repo": {{ addon.repo | jsonify }},
         "description": {{ addon.description | jsonify }},
-        "categories": {{ addon.categories | jsonify }},
+        "type": {{ addon.type | jsonify }},
         "created_at": {{ addon.created_at | jsonify }},
         "updated_at": {{ addon.updated_at | jsonify }},
         "stars": {{ addon.stars | to_integer }}

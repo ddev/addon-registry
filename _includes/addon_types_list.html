@@ -1,0 +1,8 @@
+<ul class="addon-type-list">
+    {% for type_pair in site.data.addon_types %}
+    {% assign type_id = type_pair[0] %}
+    {% assign type = type_pair[1] %}
+    {% unless include.addon.type contains type_id %}{% continue %}{% endunless %}
+    <li><span class="addon-type" data-title="{{ type.description | replace: '\n', ' ' }}">{{ type.label }}</span></li>
+    {% endfor %}
+</ul>

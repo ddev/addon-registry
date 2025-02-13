@@ -4,7 +4,9 @@ layout: index
 
 <h1>
     {% if page.group %}
-        <a href="{{ site.baseurl | default: '/' }}">..</a> / {{ page.group }}
+        <a href="{{ site.baseurl | default: '/' }}" style="text-decoration: none;">{{ site.title }}</a> / {{ page.group }}
+    {% else if page.title == site.title %}
+        <a href="{{ site.baseurl | default: '/' }}" style="text-decoration: none;">{{ site.title }}</a>
     {% else %}
         {{ page.title }}
     {% endif %}

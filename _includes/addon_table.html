@@ -1,6 +1,10 @@
 <p>
-    A registry for DDEV add-ons where users can discover, explore, and leave comments on available add-ons.
+    A registry for <a href="https://ddev.readthedocs.io/en/stable/users/extend/additional-services/" target="_blank">DDEV add-ons</a> where users can discover, explore, and leave comments on available add-ons.
 </p>
+
+{%- assign official_addons = site.addons | where_exp: "addon", "addon.group == nil" | where_exp: "addon", "addon.user == 'ddev'" | sort: "repo" -%}
+{%- assign contrib_addons = site.addons | where_exp: "addon", "addon.group == nil" | where_exp: "addon", "addon.user != 'ddev'" | sort: "repo" -%}
+{%- assign all_addons = official_addons | concat: contrib_addons -%}
 
 <div id="addon-search-wrapper">
     {%- if page.group -%}
@@ -16,51 +20,22 @@
             <tr>
                 <th>Add-on</th>
                 <th>Description</th>
-                <th>Categories</th>
+                <th>Type</th>
                 <th>Stars</th>
             </tr>
         </thead>
         <tbody class="list">
-            {%- assign sorted_addons = site.addons | sort_natural -%}
-            {%- if include.filter_by_user -%}
-                {%- for addon in sorted_addons -%}
-                    {%- if addon.group %}{% continue %}{% endif -%}
-                    {%- if addon.user != include.filter_by_user %}{% continue %}{% endif -%}
-                    <tr>
-                        <td class="name addon-name"><a href="{{ site.baseurl }}/addons/{{ addon.user }}">{{ addon.user }}</a>/<a href="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</a></td>
-                        <td class="description">{{ addon.description }}</td>
-                        <td class="categories">{% include category_list.html addon=addon %}</td>
-                        <td class="stars" data-order="{{ addon.stars | to_integer }}">
-                            {{ addon.stars | to_integer }}
-                        </td>
-                    </tr>
-                {%- endfor -%}
-            {%- else -%}
-                {%- for addon in sorted_addons -%}
-                    {%- if addon.group %}{% continue %}{% endif -%}
-                    {%- if addon.user != "ddev" %}{% continue %}{% endif -%}
-                    <tr>
-                        <td class="name addon-name"><a href="{{ site.baseurl }}/addons/{{ addon.user }}">{{ addon.user }}</a>/<a href="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</a></td>
-                        <td class="description">{{ addon.description }}</td>
-                        <td class="categories">{% include category_list.html addon=addon %}</td>
-                        <td class="stars" data-order="{{ addon.stars | to_integer }}">
-                            {{ addon.stars | to_integer }}
-                        </td>
-                    </tr>
-                {%- endfor -%}
-                {%- for addon in sorted_addons -%}
-                    {%- if addon.group %}{% continue %}{% endif -%}
-                    {%- if addon.user == "ddev" %}{% continue %}{% endif -%}
-                    <tr>
-                        <td class="name addon-name"><a href="{{ site.baseurl }}/addons/{{ addon.user }}">{{ addon.user }}</a>/<a href="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</a></td>
-                        <td class="description">{{ addon.description }}</td>
-                        <td class="categories">{% include category_list.html addon=addon %}</td>
-                        <td class="stars" data-order="{{ addon.stars | to_integer }}">
-                            {{ addon.stars | to_integer }}
-                        </td>
-                    </tr>
-                {%- endfor -%}
-            {%- endif -%}
+            {%- for addon in all_addons -%}
+                {%- if include.filter_by_user and addon.user != include.filter_by_user %}{% continue %}{% endif -%}
+                <tr>
+                    <td class="name" data-url="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</td>
+                    <td class="description">[<a href="{{ site.baseurl }}/addons/{{ addon.user }}/">{{ addon.user }}</a>] {{ addon.description }}</td>
+                    <td class="type">{% include addon_types_list.html addon=addon %}</td>
+                    <td class="stars" data-order="{{ addon.stars | to_integer }}">
+                        {{ addon.stars | to_integer }}
+                    </td>
+                </tr>
+            {%- endfor -%}
         </tbody>
     </table>
 </div>
@@ -100,12 +75,32 @@
             lengthChange: true,
             pageLength: 25,
             order: [],
-            //order: [[3, 'desc']], // Default sort by Stars
             columnDefs: [
-                { orderable: false, targets: 2 }, // Disable sorting on Categories column
-                { searchable: false, targets: [2, 3] }, // Disable search on Categories and Stars column
+                { orderable: false, targets: 2 }, // Disable sorting on Type column
+                { searchable: false, targets: [2, 3] }, // Disable search on Type and Stars column
                 { "orderSequence": ["desc", "asc", ""], targets: 3 }, // Sort by highest Stars first
-            ]
+                { width: '25%', targets: 0 },
+            ],
+            language: {
+                lengthMenu: "Show _MENU_ add-ons",
+                info: "Showing _START_ to _END_ of _TOTAL_ add-ons",
+                infoFiltered: "(filtered from _MAX_ total add-ons)",
+                infoEmpty: "Showing 0 to 0 of 0 add-ons",
+                zeroRecords: "No add-ons found",
+                search: "Search add-ons:",
+            },
+            createdRow: function(row, data, dataIndex) {
+                // Get the URL from the "data-url" attribute of the td with class "addon-name"
+                var url = $(row).find('.name').data('url');
+
+                // Assign click event to the entire row
+                $(row).click(function() {
+                    if (url) {
+                        window.location.href = url;
+                    }
+                });
+                $(row).css('cursor','pointer');
+            },
         });
 
         $('#addon-search').on('keyup', function() {
