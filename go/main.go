@@ -124,7 +124,7 @@ github_url: %s
 description: "%s"
 user: %s
 repo: %s
-repo_id: %s
+repo_id: %d
 type: %s
 created_at: %s
 updated_at: %s
