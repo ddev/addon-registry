@@ -20,6 +20,7 @@
             <tr>
                 <th>Add-on</th>
                 <th>Description</th>
+                <th style="white-space: nowrap;">Updated At</th>
                 <th>Type</th>
                 <th>Stars</th>
             </tr>
@@ -30,6 +31,7 @@
                 <tr>
                     <td class="name" data-url="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</td>
                     <td class="description">[<a href="{{ site.baseurl }}/addons/{{ addon.user }}/">{{ addon.user }}</a>] {{ addon.description }}</td>
+                    <td class="updated_at" style="white-space: nowrap;">{{ addon.updated_at }}</td>
                     <td class="type">{% include addon_types_list.html addon=addon %}</td>
                     <td class="stars" data-order="{{ addon.stars | to_integer }}">
                         {{ addon.stars | to_integer }}
@@ -76,9 +78,9 @@
             pageLength: 25,
             order: [],
             columnDefs: [
-                { orderable: false, targets: 2 }, // Disable sorting on Type column
-                { searchable: false, targets: [2, 3] }, // Disable search on Type and Stars column
-                { "orderSequence": ["desc", "asc", ""], targets: 3 }, // Sort by highest Stars first
+                { orderable: false, targets: 3 }, // Disable sorting on Type
+                { searchable: false, targets: [2, 3, 4] }, // Disable search on Updated At, Type, Stars
+                { "orderSequence": ["desc", "asc", ""], targets: 4 }, // Sort by highest Stars first
                 { width: '25%', targets: 0 },
             ],
             language: {
