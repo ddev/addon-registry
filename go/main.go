@@ -124,6 +124,7 @@ github_url: %s
 description: "%s"
 user: %s
 repo: %s
+repo_id: %s
 type: %s
 created_at: %s
 updated_at: %s
@@ -137,6 +138,7 @@ stars: %d
 		strings.ReplaceAll(repo.GetDescription(), `"`, `\"`),
 		org,
 		repoName,
+		repo.GetID(),
 		addonType,
 		repo.GetCreatedAt().Format(time.DateOnly),
 		repo.GetUpdatedAt().Format(time.DateOnly),
