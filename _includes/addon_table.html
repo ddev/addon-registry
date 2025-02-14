@@ -60,7 +60,7 @@
                         {
                             text: 'addons.json',
                             action: function (e, dt, node, config) {
-                                window.location.href = "{{ site.baseurl }}/addons.json";
+                                window.open("{{ site.baseurl }}/addons.json");
                             }
                         },
                         {%- if include.filter_by_user -%}

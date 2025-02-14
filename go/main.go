@@ -162,6 +162,7 @@ stars: %d
 	)
 
 	if !isFileChanged(filePath, newContent) {
+		log.Infof("No changes for repo: %s", repo.GetFullName())
 		return nil
 	}
 
@@ -171,7 +172,7 @@ stars: %d
 		return fmt.Errorf("failed to write file: %v", err)
 	}
 
-	log.Infof("Markdown file created for repository: %s", repo.GetFullName())
+	log.Infof("Updated repo: %s", repo.GetFullName())
 	return nil
 }
 
