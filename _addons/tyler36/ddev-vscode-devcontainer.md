@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-vscode-devcontainer
 description: "Open a DDEV container in VSCode"
 user: tyler36
 repo: ddev-vscode-devcontainer
+repo_id: 623859832
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-04-05
 updated_at: 2024-10-25
@@ -90,4 +93,3 @@ You can can customize the command by removing `#ddev-generated` from `~/.ddev/co
 Note, this will prevent DDEV from updating the command.
 
 **Contributed and maintained by [@tyler36](https://github.com/tyler36)**
-

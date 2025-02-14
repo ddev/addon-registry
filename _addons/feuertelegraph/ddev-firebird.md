@@ -4,6 +4,9 @@ github_url: https://github.com/feuertelegraph/ddev-firebird
 description: "Firebird database for DDEV"
 user: feuertelegraph
 repo: ddev-firebird
+repo_id: 674353134
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-08-03
 updated_at: 2025-01-26
@@ -27,5 +30,3 @@ This Firebird recipe for [DDEV](https://ddev.readthedocs.io) installs a [`.ddev/
 
 * The Firebird database will listen on TCP port 3050 (the Firebird default).
 * Configure your application to access the database on the host `firebird` and the path to the database is `/firebird/data/db.fdb`.
-
-

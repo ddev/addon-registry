@@ -4,6 +4,9 @@ github_url: https://github.com/fwust/ddev-clamav
 description: "ClamAV integration for DDEV"
 user: fwust
 repo: ddev-clamav
+repo_id: 710824160
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-10-27
 updated_at: 2025-02-12
@@ -45,4 +48,3 @@ Then restart your project.
 ```shell
 ddev restart
 ```
-

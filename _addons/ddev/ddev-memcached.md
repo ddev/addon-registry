@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-memcached
 description: "Install Memcached as an extra service in DDEV"
 user: ddev
 repo: ddev-memcached
+repo_id: 449470423
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2022-01-18
 updated_at: 2024-10-24
@@ -39,4 +42,3 @@ This Memcached recipe for [DDEV](https://ddev.readthedocs.io) installs a [`.ddev
 * The Memcached instance will listen on TCP port 11211 (the Memcached default).
 * Configure your application to access Memcached on the host:port `memcached:11211`.
 * To reach the Memcached admin interface, run `ddev ssh` to connect to the web container, then use `nc` or `telnet` to connect to the Memcached container on port 11211, i.e. `nc memcached 11211`. You can then run commands such as `stats` to see usage information. See [cheatsheet](https://lzone.de/cheat-sheet/memcached) for more commands.
-

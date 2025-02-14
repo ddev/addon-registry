@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-ibexa-cloud
 description: "Support `ddev pull ibexa-cloud`"
 user: ddev
 repo: ddev-ibexa-cloud
+repo_id: 869204136
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2024-10-07
 updated_at: 2024-10-23
@@ -30,4 +33,3 @@ This add-on provides integration for Ibexa Cloud and adds the `ddev ibexa_cloud`
 
 
 **Contributed and maintained by [@rfay](https://github.com/rfay)**
-

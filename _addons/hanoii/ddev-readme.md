@@ -4,6 +4,9 @@ github_url: https://github.com/hanoii/ddev-readme
 description: "An opinionated README formatter"
 user: hanoii
 repo: ddev-readme
+repo_id: 769217362
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-03-08
 updated_at: 2024-11-25
@@ -60,4 +63,3 @@ ddev get https://github.com/hanoii/ddev-readme/tarball/main
 ```
 
 **Contributed and maintained by [@hanoii](https://github.com/hanoii)**
-

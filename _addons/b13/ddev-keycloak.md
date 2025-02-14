@@ -4,6 +4,9 @@ github_url: https://github.com/b13/ddev-keycloak
 description: "Adds a Keycloak service to ddev"
 user: b13
 repo: ddev-keycloak
+repo_id: 735703787
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-12-25
 updated_at: 2025-02-11
@@ -100,4 +103,3 @@ ddev kc --help
 * Example [themes](https://github.com/keycloak/keycloak/tree/main/examples/themes/src/main/resources/theme)
 
 **Maintained by [@b13](https://github.com/b13)**
-

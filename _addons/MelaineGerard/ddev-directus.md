@@ -4,6 +4,9 @@ github_url: https://github.com/MelaineGerard/ddev-directus
 description: "A simple DDEV addon that add Directus on your project"
 user: MelaineGerard
 repo: ddev-directus
+repo_id: 774272156
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-03-19
 updated_at: 2024-10-24
@@ -70,4 +73,3 @@ Example url : [https://simple-php-project.ddev.site:8055](https://simple-php-pro
 ## Maintained By
 
 - [Melaine gérard](https://github.com/MelaineGerard)
-

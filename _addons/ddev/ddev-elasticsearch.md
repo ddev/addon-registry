@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-elasticsearch
 description: "Elasticsearch add-on for DDEV"
 user: ddev
 repo: ddev-elasticsearch
+repo_id: 470760591
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2022-03-16
 updated_at: 2024-12-17
@@ -63,4 +66,3 @@ You can use `ddev logs -s elasticsearch` to investigate the Elasticsearch daemon
 **Originally Contributed by [dacostafilipe](https://github.com/dacostafilipe) with contributions by [@Morgy93](https://github.com/Morgy93), [@amitaibu](https://github.com/amitaibu), [@aronnovak](https://github.com/aronnovak) and others**
 
 **Maintained by [@aronnovak](https://github.com/aronnovak)**
-

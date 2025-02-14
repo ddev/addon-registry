@@ -4,6 +4,9 @@ github_url: https://github.com/Metadrop/ddev-pa11y
 description: "Aljibe ddev addon to add pa11y service"
 user: Metadrop
 repo: ddev-pa11y
+repo_id: 783100470
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-04-07
 updated_at: 2024-10-30
@@ -72,4 +75,3 @@ To use this config file, you can run the Pa11y service with the following comman
 `ddev pa11y http://example.com --config=/tests/pa11y/config.json --reporter=junit`.
 
 **Contributed and maintained by [@Metadrop](https://github.com/Metadrop)**
-

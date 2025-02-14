@@ -4,6 +4,9 @@ github_url: https://github.com/TravisCarden/ddev-drupal-xb-dev
 description: "A DDEV add-on for Drupal Experience Builder module development and evaluation"
 user: TravisCarden
 repo: ddev-drupal-xb-dev
+repo_id: 827380616
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-07-11
 updated_at: 2025-02-13
@@ -193,4 +196,3 @@ The webpage at https://xb-dev.ddev.site/ might be temporarily down or it may hav
 
 ERR_SSL_UNRECOGNIZED_NAME_ALERT
 ```
-

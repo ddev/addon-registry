@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-gitpod-setup
 description: "Helper add-on to add Gitpod config."
 user: tyler36
 repo: ddev-gitpod-setup
+repo_id: 840226121
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-08-09
 updated_at: 2025-01-09
@@ -98,4 +101,3 @@ Project-type files are also welcome. However, please take care to keep them as m
 We all have our preferred setup environment and "essential" extensions and add-ons. They are outside this add-ons scope. @see [customizations](#customizing).
 
 **Contributed and maintained by [@tyler36](https://github.com/tyler36)**
-

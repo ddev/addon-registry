@@ -4,6 +4,9 @@ github_url: https://github.com/Metadrop/ddev-lighthouse
 description: "Lighthouse ddev addon based on patrickhulce/lhci-client image"
 user: Metadrop
 repo: ddev-lighthouse
+repo_id: 782495515
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-04-05
 updated_at: 2025-01-20
@@ -70,4 +73,3 @@ Once Lighthouse reports are generated, you can review them to identify areas for
 Happy optimization!
 
 **Contributed and maintained by [@Metadrop](https://github.com/Metadrop)**
-

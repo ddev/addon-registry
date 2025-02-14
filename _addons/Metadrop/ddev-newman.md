@@ -4,6 +4,9 @@ github_url: https://github.com/Metadrop/ddev-newman
 description: "Allows running newman tests on ddev setups"
 user: Metadrop
 repo: ddev-newman
+repo_id: 806591742
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-05-27
 updated_at: 2024-10-01
@@ -39,4 +42,3 @@ ddev newman my_collection.json -e environment.json
 ```
 
 To view all the possible command line options, please [check the documentation](https://www.npmjs.com/package/newman#command-line-options).
-

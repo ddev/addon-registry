@@ -4,6 +4,9 @@ github_url: https://github.com/bserem/ddev-typesense
 description: "WIP: Typesense addon for DDEV"
 user: bserem
 repo: ddev-typesense
+repo_id: 521173968
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-08-04
 updated_at: 2023-01-13
@@ -25,5 +28,3 @@ This is a work-in-progress for typesense in ddev!
 
 **Contributed and maintained by [@bserem](https://github.com/bserem)
 **Sponsored by [Annertech](https://www.annertech.com)
-
-

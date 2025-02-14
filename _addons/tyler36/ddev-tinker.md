@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-tinker
 description: "An addon for DDEV that providers a single command to access a runtime developer console."
 user: tyler36
 repo: ddev-tinker
+repo_id: 627772582
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-04-14
 updated_at: 2025-01-29
@@ -128,4 +131,3 @@ Description:
 ```
 
 **Contributed and maintained by [@tyler36](https://github.com/tyler36) based on the original [ddev-contrib recipe](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/RECIPE) by [@tyler36](https://github.com/tyler36)**
-

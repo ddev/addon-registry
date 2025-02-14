@@ -1,12 +1,15 @@
 ---
 title: ddev/ddev-adminer
 github_url: https://github.com/ddev/ddev-adminer
-description: "AdminerEvo service for DDEV"
+description: "AdminerEvo web-based database browser for DDEV"
 user: ddev
 repo: ddev-adminer
+repo_id: 468763817
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2022-03-11
-updated_at: 2024-11-22
+updated_at: 2025-02-13
 stars: 8
 ---
 
@@ -50,4 +53,3 @@ Then you can just `ddev adminer` or use `ddev describe` to get the URL (`https:/
 
 **Contributed by [@bserem](https://github.com/bserem).**
 **Maintained by DDEV team.**
-

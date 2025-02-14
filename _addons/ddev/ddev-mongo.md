@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-mongo
 description: "MongoDB add-on for DDEV"
 user: ddev
 repo: ddev-mongo
+repo_id: 475054747
+ddev_version_constraint: ">= v1.23.0"
+dependencies: []
 type: official
 created_at: 2022-03-28
 updated_at: 2025-01-20
@@ -72,4 +75,3 @@ This command opens your browser to the Mongo Express page.
 **Originally contributed by [@wtfred](https://github.com/wtfred)**
 
 **Maintained by [@julienloizelet](https://github.com/julienloizelet)**
-

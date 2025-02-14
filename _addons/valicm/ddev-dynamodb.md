@@ -4,6 +4,9 @@ github_url: https://github.com/valicm/ddev-dynamodb
 description: "DynamoDB container for DDEV"
 user: valicm
 repo: ddev-dynamodb
+repo_id: 696750542
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-09-26
 updated_at: 2023-09-26
@@ -20,4 +23,3 @@ This repository allows you to quickly install DynamoDB database manager into a [
 ## Installation
 
 * `ddev get valicm/ddev-dynamodb && ddev restart`
-

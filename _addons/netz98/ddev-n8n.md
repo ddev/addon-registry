@@ -4,6 +4,9 @@ github_url: https://github.com/netz98/ddev-n8n
 description: "ddev addon to run n8n low-code platform (middleware)"
 user: netz98
 repo: ddev-n8n
+repo_id: 641881943
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-05-17
 updated_at: 2025-02-06
@@ -72,5 +75,3 @@ It's disabled by default.
 
 You can enable it by changing the variable `N8N_BASIC_AUTH_ACTIVE` in `.ddev/docker-compose.n8n.yaml` to `true`. 
 The username and password can be configured in the same file.
-
-

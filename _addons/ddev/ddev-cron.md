@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-cron
 description: "Schedule commands to execute within DDEV"
 user: ddev
 repo: ddev-cron
+repo_id: 493892311
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2022-05-19
 updated_at: 2025-02-07
@@ -155,4 +158,3 @@ Every minute, it writes the current time (UTC timezone) to `./time.log`.
 **Contributed and maintained by [@tyler36](https://github.com/tyler36) based on the original [Running TYPO3 Cron inside the web container](https://github.com/ddev/ddev-contrib/tree/master/recipes/cronjob) by [@thomaskieslich](https://github.com/thomaskieslich)**
 
 **Originally Contributed by [@thomaskieslich](https://github.com/thomaskieslich) in <https://github.com/ddev/ddev-contrib/tree/master/recipes/cronjob>)**
-

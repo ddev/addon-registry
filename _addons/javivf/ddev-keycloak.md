@@ -4,6 +4,9 @@ github_url: https://github.com/javivf/ddev-keycloak
 description: "Keycloak service for DDEV"
 user: javivf
 repo: ddev-keycloak
+repo_id: 682633589
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-08-24
 updated_at: 2025-02-12
@@ -35,4 +38,3 @@ This Keycloak recipe for [DDEV](https://ddev.readthedocs.io) installs a [`.ddev/
 
 1. [Official documentation](https://keycloak.org)
 2. [Official repository](https://github.com/keycloak/keycloak)
-

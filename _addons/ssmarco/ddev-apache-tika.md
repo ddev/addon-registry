@@ -4,6 +4,9 @@ github_url: https://github.com/ssmarco/ddev-apache-tika
 description: "DDEV Apache Tika"
 user: ssmarco
 repo: ddev-apache-tika
+repo_id: 762886290
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-02-25
 updated_at: 2025-01-31
@@ -138,4 +141,3 @@ If you have a good amount of CPU's and memory, you can increase the value of `me
 ## Maintainer
 
 - Contributed and maintained by [Marco Hermo](https://github.com/ssmarco).
-

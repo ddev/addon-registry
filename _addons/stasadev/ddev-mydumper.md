@@ -4,6 +4,9 @@ github_url: https://github.com/stasadev/ddev-mydumper
 description: "MySQL Logical Backup Tool"
 user: stasadev
 repo: ddev-mydumper
+repo_id: 846094357
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-08-22
 updated_at: 2025-02-08
@@ -63,4 +66,3 @@ MyDumper config can be adjusted with [mydumper.cnf](https://github.com/stasadev/
 See [MyDumper Wiki](https://github.com/mydumper/mydumper/wiki) for detailed usage.
 
 **Contributed and maintained by [@stasadev](https://github.com/stasadev)**
-

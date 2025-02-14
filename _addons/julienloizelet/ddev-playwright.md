@@ -4,6 +4,9 @@ github_url: https://github.com/julienloizelet/ddev-playwright
 description: "Playwright add-on for ddev"
 user: julienloizelet
 repo: ddev-playwright
+repo_id: 598383514
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-02-07
 updated_at: 2025-01-08
@@ -284,4 +287,3 @@ Anyone is welcome to submit a Pull Request to this repository.
 For more details on development processes, please read the [developer guide](https://github.com/julienloizelet/ddev-playwright/blob/main/./docs/DEVELOPER.md).
 
 **Contributed and maintained by [julienloizelet](https://github.com/julienloizelet)**
-

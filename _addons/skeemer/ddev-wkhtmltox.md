@@ -4,6 +4,9 @@ github_url: https://github.com/skeemer/ddev-wkhtmltox
 description: "Installs wkhtmltopdf and wkhtmltoimage, with patched Qt, into the web service."
 user: skeemer
 repo: ddev-wkhtmltox
+repo_id: 578401670
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-12-15
 updated_at: 2025-02-12
@@ -35,4 +38,3 @@ For earlier versions of DDEV run
 ```sh
 ddev get skeemer/ddev-wkhtmltox
 ```
-

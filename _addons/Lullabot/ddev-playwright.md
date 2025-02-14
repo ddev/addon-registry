@@ -4,10 +4,13 @@ github_url: https://github.com/Lullabot/ddev-playwright
 description: "Integrate Playwright tests into your ddev app"
 user: Lullabot
 repo: ddev-playwright
+repo_id: 635031324
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-05-01
-updated_at: 2025-02-09
-stars: 16
+updated_at: 2025-02-14
+stars: 17
 ---
 
 [![tests](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
@@ -71,4 +74,3 @@ The following services are exposed with this addon:
 2. The official containers do not ship with any sort of remote access to the Playwright UI. This repository includes KasmVNC to run tests in headed mode or to generate code.
 3. By stacking Playwright into the web container, it simplifies permissions for writing Playwright's test reports back out.
 4. We hope to be able to integrate [chanzuckerberg/axe-storybook-testing](https://github.com/chanzuckerberg/axe-storybook-testing) in the future, which should be simplier with having Playwright's dependencies combined into the current project.
-

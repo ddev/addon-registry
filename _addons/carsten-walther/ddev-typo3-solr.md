@@ -4,6 +4,9 @@ github_url: https://github.com/carsten-walther/ddev-typo3-solr
 description: "TYPO3 solr configuration"
 user: carsten-walther
 repo: ddev-typo3-solr
+repo_id: 691593791
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-09-14
 updated_at: 2024-11-08
@@ -107,4 +110,3 @@ You are able to use the DDEV constants in yout local environment. Keep in mind t
 
 **Contributers**
 - [@erik-konrad](https://github.com/erik-konrad)
-

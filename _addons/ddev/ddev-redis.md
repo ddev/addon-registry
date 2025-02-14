@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-redis
 description: "Redis service for DDEV"
 user: ddev
 repo: ddev-redis
+repo_id: 452397673
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2022-01-26
 updated_at: 2025-02-09
@@ -56,4 +59,3 @@ Persistence is disabled by default (see [redis.conf](https://github.com/ddev/dde
 **Contributed and maintained by [@hussainweb](https://github.com/hussainweb) based on the original [ddev-contrib recipe](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/redis) by [@gormus](https://github.com/gormus)**
 
 **Co-maintained by [@stasadev](https://github.com/stasadev)**
-

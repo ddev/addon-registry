@@ -4,6 +4,9 @@ github_url: https://github.com/thunder/ddev-selenium-chrome
 description: "Selenium standalone for ddev"
 user: thunder
 repo: ddev-selenium-chrome
+repo_id: 520471378
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-08-02
 updated_at: 2024-07-15
@@ -29,5 +32,3 @@ This selenium standalone chrome recipe for [ddev](https://ddev.readthedocs.io) i
 
 * The selenium chrome instance will listen on TCP port 4444.
 * For debugging use `selenium/standalone-chrome-debug:latest` image and add port mapping for vnc, reachable at `vnc://localhost:6000`, if you get a prompt asking for a password, it is: `secret`.
-
-

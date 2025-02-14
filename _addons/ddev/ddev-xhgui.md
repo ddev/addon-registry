@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-xhgui
 description: "XHGui service for a DDEV project"
 user: ddev
 repo: ddev-xhgui
+repo_id: 620681072
+ddev_version_constraint: ">=v1.24.0"
+dependencies: []
 type: official
 created_at: 2023-03-29
 updated_at: 2025-02-13
@@ -72,4 +75,3 @@ For example, to set xhgui to use `Asia/Toyko` timezone for dates:
   ```
 
 **Contributed and maintained by [@tyler36](https://github.com/tyler36) based on the original [ddev-contrib PR](https://github.com/ddev/ddev-contrib/pull/128) by [@penyaskito](https://github.com/penyaskito)**
-

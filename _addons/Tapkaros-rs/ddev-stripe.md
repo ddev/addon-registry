@@ -4,6 +4,9 @@ github_url: https://github.com/Tapkaros-rs/ddev-stripe
 description: "Ddev addon for stripe"
 user: Tapkaros-rs
 repo: ddev-stripe
+repo_id: 752762294
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-02-04
 updated_at: 2024-05-07
@@ -103,4 +106,3 @@ Host *.tmate.io
 For a more detailed documentation about `tmate` see [Debug your GitHub Actions by using tmate](https://mxschmitt.github.io/action-tmate/).
 
 **Contributed and maintained by [@CONTRIBUTOR](https://github.com/CONTRIBUTOR)**
-

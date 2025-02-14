@@ -4,6 +4,9 @@ github_url: https://github.com/vinugawade/ddev-civicrm-cli-tools
 description: "Tools to streamline CiviCRM workflows with seamless integration and efficient task management."
 user: vinugawade
 repo: ddev-civicrm-cli-tools
+repo_id: 908624626
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-12-26
 updated_at: 2025-01-23
@@ -175,4 +178,3 @@ The add-on includes automated tests written in [BATS](https://github.com/bats-co
 ## Acknowledgments
 
 Special thanks to the `CiviCRM` and `DDEV` communities for their tools and support!
-

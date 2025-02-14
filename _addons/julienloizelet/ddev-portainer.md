@@ -4,6 +4,9 @@ github_url: https://github.com/julienloizelet/ddev-portainer
 description: "Portainer add-on for ddev"
 user: julienloizelet
 repo: ddev-portainer
+repo_id: 598874816
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-02-08
 updated_at: 2024-10-25
@@ -68,5 +71,3 @@ Anyone is welcome to submit a PR to this repo.
 **Contributed and maintained by [julienloizelet](https://github.com/julienloizelet)**
 
 **Originally Contributed by [@davidjguru](https://github.com/davidjguru) in [ddev-contrib](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/portainer)**
-
-

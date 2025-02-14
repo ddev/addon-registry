@@ -4,6 +4,9 @@ github_url: https://github.com/codemonauts/ddev-s3-http-proxy
 description: ""
 user: codemonauts
 repo: ddev-s3-http-proxy
+repo_id: 815170269
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-06-14
 updated_at: 2024-06-14
@@ -18,4 +21,3 @@ This repository allows you to quickly install the [S3 HTTP proxy](https://github
 
 1. `ddev get codemonauts/ddev-s3-http-proxy`
 2. `ddev restart`
-

@@ -4,6 +4,9 @@ github_url: https://github.com/machine-rc/ddev-frontend-nextjs
 description: "NextJS Drupal Frontend application for ddev stack "
 user: machine-rc
 repo: ddev-frontend-nextjs
+repo_id: 812351367
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-06-08
 updated_at: 2024-06-08
@@ -61,5 +64,3 @@ To add a new service:
 - copy the `Dockerfile` from the `frontend/nextjs` directory and modify it as needed.
 - adjust `docker-compose.frontend-nextjs.yaml` to include the new service by duplicating the `dotnet-users` service and changing the service name
   - adjust the `environment` section to expose the new service on a different port
-
-

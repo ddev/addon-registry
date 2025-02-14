@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-sqlsrv
 description: "MS SQL server add-on for DDEV"
 user: ddev
 repo: ddev-sqlsrv
+repo_id: 618290272
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2023-03-24
 updated_at: 2025-01-27
@@ -109,4 +112,3 @@ See [.ddev/config.yaml Options](https://ddev.readthedocs.io/en/stable/users/exte
 Note that more advanced techniques are discussed in [DDEV docs](https://ddev.readthedocs.io/en/latest/users/extend/additional-services/#additional-service-configurations-and-add-ons-for-ddev).
 
 **Contributed and maintained by [@robertoperuzzo](https://github.com/robertoperuzzo) based on the original [ddev-contrib recipe](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/sqlsrv) by [drupal-daffie](https://github.com/drupal-daffie)**
-

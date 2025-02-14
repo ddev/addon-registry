@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-solr
 description: "Apache Solr service for DDEV"
 user: ddev
 repo: ddev-solr
+repo_id: 656057518
+ddev_version_constraint: ">= v1.23.5"
+dependencies: []
 type: official
 created_at: 2023-06-20
 updated_at: 2025-02-11
@@ -248,4 +251,3 @@ handle NLP models. So DDEV could be used with [search_api_solr_nlp](https://www.
 ddev-solr supports third party Solr plugins/modules/libraries.
 
 **Contributed and maintained by [@mkalkbrenner](https://github.com/mkalkbrenner)**
-

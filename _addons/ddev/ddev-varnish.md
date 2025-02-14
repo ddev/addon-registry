@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-varnish
 description: "Varnish reverse proxy add-on for DDEV"
 user: ddev
 repo: ddev-varnish
+repo_id: 475027974
+ddev_version_constraint: ">= v1.24.0"
+dependencies: []
 type: official
 created_at: 2022-03-28
 updated_at: 2025-01-21
@@ -73,4 +76,3 @@ See [The Varnish Reference Manual](https://varnish-cache.org/docs/6.5/reference/
 **Maintained by [@jedubois](https://github.com/jedubois) and [@rfay](https://github.com/rfay)**
 
 **Based on the original [ddev-contrib recipe](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/varnish) pioneered by [rikwillems](https://github.com/rikwillems)**
-

@@ -4,6 +4,9 @@ github_url: https://github.com/Metadrop/ddev-backstopjs
 description: "ddev addon to provide a backstopjs container for visual regression testing in Metadrop Aljibe"
 user: Metadrop
 repo: ddev-backstopjs
+repo_id: 709536102
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-10-24
 updated_at: 2024-10-01
@@ -147,4 +150,3 @@ If you want to change that edit the file [docker-compose.backstop.yaml](https://
 change the line in volumes to the path you want to use, move the files to the new directory and restart ddev.
 
 Make sure to remove the #ddev-generated line from the file to prevent ddev from making changes to it.
-

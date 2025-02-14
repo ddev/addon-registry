@@ -4,6 +4,9 @@ github_url: https://github.com/OpenForgeProject/ddev-bun
 description: "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one for DDEV"
 user: OpenForgeProject
 repo: ddev-bun
+repo_id: 690646909
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-09-12
 updated_at: 2024-11-21
@@ -62,4 +65,3 @@ Quick links:
 - [BUNDLER](https://bun.sh/docs/bundler)
 - [TEST RUNNER](https://bun.sh/docs/cli/test)
 - [PACKAGE RUNNER](https://bun.sh/docs/cli/bunx)
-

@@ -4,6 +4,9 @@ github_url: https://github.com/stasadev/ddev-python2
 description: "Add Python2 for older npm builds with node-gyp"
 user: stasadev
 repo: ddev-python2
+repo_id: 849742328
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-08-30
 updated_at: 2025-02-08
@@ -54,4 +57,3 @@ After installation, you can run Python2:
 This add-on also adds packages that are normally required for `npm` build, see [config.python2.yaml](https://github.com/stasadev/ddev-python2/blob/main/./config.python2.yaml). Remove or replace the contents of this file if you only need Python2.
 
 **Contributed and maintained by [@stasadev](https://github.com/stasadev)**
-

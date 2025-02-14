@@ -4,6 +4,9 @@ github_url: https://github.com/davereid/ddev-drupal-contrib-dev
 description: "Provides a way to do contributed module development using Git clones and symlinks"
 user: davereid
 repo: ddev-drupal-contrib-dev
+repo_id: 740603044
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-01-08
 updated_at: 2025-01-10
@@ -99,4 +102,3 @@ Host *.tmate.io
 For a more detailed documentation about `tmate` see [Debug your GitHub Actions by using tmate](https://mxschmitt.github.io/action-tmate/).
 
 **Contributed and maintained by [@CONTRIBUTOR](https://github.com/CONTRIBUTOR)**
-

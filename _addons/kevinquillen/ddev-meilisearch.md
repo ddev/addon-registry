@@ -4,6 +4,9 @@ github_url: https://github.com/kevinquillen/ddev-meilisearch
 description: "Meilisearch is a flexible and powerful user-focused search engine that can be added to any website or application. This is an add on for DDEV so you can run and develop integrations for Meilisearch locally."
 user: kevinquillen
 repo: ddev-meilisearch
+repo_id: 748725801
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-01-26
 updated_at: 2025-02-12
@@ -64,4 +67,3 @@ Meilisearch](https://www.drupal.org/project/search_api_meilisearch)
 modules to connect to the running Meilisearch instance.
 
 **Originally Contributed by [kevinquillen](https://github.com/kevinquillen)**
-

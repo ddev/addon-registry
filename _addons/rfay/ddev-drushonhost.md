@@ -4,6 +4,9 @@ github_url: https://github.com/rfay/ddev-drushonhost
 description: "DDEV Add-on to Allow using drush on the host"
 user: rfay
 repo: ddev-drushonhost
+repo_id: 717537366
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-11-11
 updated_at: 2024-07-09
@@ -60,4 +63,3 @@ If you have PHP and Drush installed on your host system and the environment vari
 On Drupal 8+, if you want to use `drush uli` on the host (or other Drush commands that require a default URI), you’ll need to set `DRUSH_OPTIONS_URI` on the host. For example, `export DRUSH_OPTIONS_URI=https://mysite.ddev.site`.
 
 **Contributed and maintained by [@rfay](https://github.com/rfay)**
-

@@ -4,9 +4,12 @@ github_url: https://github.com/hanoii/ddev-pimp-my-shell
 description: "A collection of tools I like to have on ddev."
 user: hanoii
 repo: ddev-pimp-my-shell
+repo_id: 777249734
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-03-25
-updated_at: 2025-02-07
+updated_at: 2025-02-13
 stars: 2
 ---
 
@@ -180,4 +183,3 @@ Example on how I am using it:
 
 - https://github.com/hanoii/ddev-platformsh-lite/blob/ce4b95d578e82f942b75ec9fa6fa60f63473c90b/platformsh-lite/scripts/db-pull.sh#L91
 - https://github.com/hanoii/ddev-platformsh-lite/blob/ce4b95d578e82f942b75ec9fa6fa60f63473c90b/pimp-my-shell/hooks/post-import-db.d/00-drupal.sh
-

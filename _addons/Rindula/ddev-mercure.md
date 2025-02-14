@@ -4,6 +4,9 @@ github_url: https://github.com/Rindula/ddev-mercure
 description: "A Mercure Server based on the official docker image from https://mercure.rocks"
 user: Rindula
 repo: ddev-mercure
+repo_id: 508436797
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-06-28
 updated_at: 2024-10-15
@@ -21,4 +24,3 @@ To install it, run `ddev get Rindula/ddev-mercure`.
 The mercurehost will be available under `mercure.${DDEV_HOSTNAME}`.
 So for `example.ddev.site` the url will be `mercure.example.ddev.site`.
 From inside the web container, you can reach mercure under `http://mercure:3000`.
-

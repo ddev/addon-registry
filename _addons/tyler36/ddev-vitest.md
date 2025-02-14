@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-vitest
 description: "A helper add-on for projects using Vitest"
 user: tyler36
 repo: ddev-vitest
+repo_id: 894807367
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-11-27
 updated_at: 2025-01-12
@@ -97,4 +100,3 @@ For more information about using Vite with DDEV,
 - Matthias Andrasch's excellent blog post - [Working with Vite in DDEV - an introduction](https://ddev.com/blog/working-with-vite-in-ddev/).
 
 **Contributed and maintained by `tyler36`**
-

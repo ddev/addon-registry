@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-dbslow
 description: "Helper to log \"slow\" queries"
 user: tyler36
 repo: ddev-dbslow
+repo_id: 751181760
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-02-01
 updated_at: 2024-11-21
@@ -76,4 +79,3 @@ As both addons mature, it is possible this functionality will merge into `ddev-d
 - [ ] Add support for Postgres
 
 **Contributed and maintained by [@tyler36](https://github.com/tyler36)**
-

@@ -4,6 +4,9 @@ github_url: https://github.com/Metadrop/ddev-aljibe
 description: "DDEV Aljibe (ddev-aljibe) is an add-on for DDEV to develop Drupal projects with many tools included out-of-the-box"
 user: Metadrop
 repo: ddev-aljibe
+repo_id: 817303007
+ddev_version_constraint: ">= v1.24.1"
+dependencies: []
 type: contrib
 created_at: 2024-06-19
 updated_at: 2025-02-04
@@ -349,4 +352,3 @@ xdebug.profiler_output_name=trace.%c%p%r%u.out
 ```
 
 Review the php info (/admin/reports/status/php) page to review that the xdebug variables are setup properly after run ddev xdebug on, restart the project if necessary.
-

@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-cypress
 description: "Cypress E2E testing for use with DDEV"
 user: tyler36
 repo: ddev-cypress
+repo_id: 473510790
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-03-24
 updated_at: 2025-01-06
@@ -207,4 +210,3 @@ Cypress expects a directory structures containing the tests, plugins and support
 - This recipe forwards the Cypress GUI via an X11 / X410 server. Please ensure you have this working on your host system.
 
 **Contributed by [@tyler36](https://github.com/tyler36)**
-

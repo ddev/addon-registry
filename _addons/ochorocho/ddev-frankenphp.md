@@ -4,6 +4,9 @@ github_url: https://github.com/ochorocho/ddev-frankenphp
 description: "Replaces apache/nginx with FrankenPHP in ddev web container"
 user: ochorocho
 repo: ddev-frankenphp
+repo_id: 755946584
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-02-11
 updated_at: 2025-01-23
@@ -43,4 +46,3 @@ ddev get ochorocho/ddev-frankenphp && ddev restart
 This way all domains configured by ddev will be used by frankenphp as well.
 
 `MERCURE_PUBLIC_URL` will use the `DDEV_PRIMARY_URL` (`$DDEV_PRIMARY_URL/.well-known/mercure`)
-

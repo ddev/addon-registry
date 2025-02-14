@@ -4,6 +4,9 @@ github_url: https://github.com/Metadrop/ddev-unlighthouse
 description: "Unlighthouse service for Aljibe"
 user: Metadrop
 repo: ddev-unlighthouse
+repo_id: 811929881
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-06-07
 updated_at: 2024-12-17
@@ -67,4 +70,3 @@ Once unlighthouse reports are generated, you can review them to identify areas f
 Happy optimization!
 
 **Contributed and maintained by [@Metadrop](https://github.com/Metadrop)**
-

@@ -4,6 +4,9 @@ github_url: https://github.com/netz98/ddev-qdrant
 description: "ddev qdrant"
 user: netz98
 repo: ddev-qdrant
+repo_id: 811850723
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-06-07
 updated_at: 2024-07-15
@@ -44,4 +47,3 @@ The qdrant collections will be created as folder in  `.ddev/qdrant_data/collecti
 ## Logging
 
 qdrant logs are directed to the container's stdout. You can view the logs with `ddev logs -s qdrant`.
-

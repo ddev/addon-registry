@@ -4,6 +4,9 @@ github_url: https://github.com/gebruederheitz/ddev-headless-chrome
 description: "Setup a running headless chrome service for ddev"
 user: gebruederheitz
 repo: ddev-headless-chrome
+repo_id: 594352605
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-01-28
 updated_at: 2023-01-28
@@ -20,6 +23,3 @@ This repository provides a headless chrome service for ddev projects.
 **Contributed and maintained by [@gebruederheitz](https://github.com/gebruederheitz) based on the original [ddev-contrib recipe](https://github.com/drud/ddev-contrib/tree/master/docker-compose-services/RECIPE) by [@CONTRIBUTOR](https://github.com/CONTRIBUTOR)**
 
 **Originally Contributed by [somebody](https://github.com/somebody) in https://github.com/drud/ddev-contrib/...)
-
-
-

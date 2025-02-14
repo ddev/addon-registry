@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-typo3-solr
 description: " Use Apache Solr (standalone) in your DDEV project "
 user: ddev
 repo: ddev-typo3-solr
+repo_id: 762432120
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2024-02-23
 updated_at: 2025-02-13
@@ -83,4 +86,3 @@ ddev solr -help
 ```
 
 **Maintained by [@b13](https://github.com/b13)**
-

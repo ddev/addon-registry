@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-drupal-solr
 description: "Drupal Apache Solr installation for DDEV (please consider ddev/ddev-solr first)"
 user: ddev
 repo: ddev-drupal-solr
+repo_id: 447393726
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2022-01-12
 updated_at: 2025-01-30
@@ -85,4 +88,3 @@ You can delete the "dev" core from `http://<projectname>.ddev.site:8983/solr/#/~
 ## Caveats
 
 * This recipe won't work with versions of Solr before `solr:8`, and Acquia's hosting [requires Solr 7](https://docs.acquia.com/acquia-search/). You'll want to see the [contributed recipes](https://github.com/ddev/ddev-contrib) for older versions of Solr.
-

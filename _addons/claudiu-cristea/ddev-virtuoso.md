@@ -4,6 +4,9 @@ github_url: https://github.com/claudiu-cristea/ddev-virtuoso
 description: "Virtuoso triplestore installation for DDEV"
 user: claudiu-cristea
 repo: ddev-virtuoso
+repo_id: 583941282
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-12-31
 updated_at: 2022-12-31
@@ -52,6 +55,3 @@ Note that more advanced techniques are discussed in [DDEV docs](https://ddev.rea
 **Contributed and maintained by [@CONTRIBUTOR](https://github.com/CONTRIBUTOR) based on the original [ddev-contrib recipe](https://github.com/drud/ddev-contrib/tree/master/docker-compose-services/RECIPE) by [@CONTRIBUTOR](https://github.com/CONTRIBUTOR)**
 
 **Originally Contributed by [somebody](https://github.com/somebody) in https://github.com/drud/ddev-contrib/...)
-
-
-

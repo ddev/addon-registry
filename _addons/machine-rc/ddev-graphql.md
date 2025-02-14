@@ -4,6 +4,9 @@ github_url: https://github.com/machine-rc/ddev-graphql
 description: "GraphQL service for ddev stack"
 user: machine-rc
 repo: ddev-graphql
+repo_id: 812082669
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-06-07
 updated_at: 2024-06-08
@@ -33,4 +36,3 @@ To add a new service:
 - copy the `Dockerfile` from the `graphql/book` directory
 - adjust `docker-compose.graphql.yaml` to include the new service by duplicating the `graphql-book` service and changing the service name
   - adjust the `environment` section to expose the new service on a different port
-

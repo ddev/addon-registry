@@ -4,6 +4,9 @@ github_url: https://github.com/robertoperuzzo/ddev-unstructured
 description: "Unstructured self-hosted service for DDEV"
 user: robertoperuzzo
 repo: ddev-unstructured
+repo_id: 922180134
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2025-01-25
 updated_at: 2025-01-27
@@ -30,4 +33,3 @@ Instead, we’re using the build for Linux/amd64. For more details, check out is
 Install the add-on with `ddev add-on get robertoperuzzo/ddev-unstructured`.
 
 **Contributed and maintained by `@robertoperuzzo`** based on the original work of `@roromedia` in the [#ai](https://drupal.slack.com/archives/CDL2YPBNX/p1737148106043569?thread_ts=1737114857.811289&cid=CDL2YPBNX) Slack channel.
-

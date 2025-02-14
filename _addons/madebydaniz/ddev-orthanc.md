@@ -4,6 +4,9 @@ github_url: https://github.com/madebydaniz/ddev-orthanc
 description: "Orthanc service for DDEV"
 user: madebydaniz
 repo: ddev-orthanc
+repo_id: 719515566
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-11-16
 updated_at: 2025-02-13
@@ -64,4 +67,3 @@ dcmsend {PROJECT_URL} 4242 DIRECTORY +sd +ma --aetitle AETITLE --call AETITLE
 Replace `{PROJECT_URL}` with your actual project URL, and `DIRECTORY` with the path to the DICOM files you want to send.
 
 **Contributed and maintained by [@madebydaniz](https://github.com/madebydaniz)**
-

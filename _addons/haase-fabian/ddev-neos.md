@@ -4,6 +4,9 @@ github_url: https://github.com/haase-fabian/ddev-neos
 description: "neos environment variables for ddev"
 user: haase-fabian
 repo: ddev-neos
+repo_id: 535660811
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-09-12
 updated_at: 2024-10-28
@@ -40,6 +43,3 @@ ddev restart
 
 This recipe for ddev installs a .ddev/docker-compose.neos.yaml adding neos specific environment variables to the web container.
 And it adds the `ddev flow` command to run ./flow commands.
-
-
-

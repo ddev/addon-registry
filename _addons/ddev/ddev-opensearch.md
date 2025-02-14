@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-opensearch
 description: "OpenSearch add-on for DDEV"
 user: ddev
 repo: ddev-opensearch
+repo_id: 648147062
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2023-06-01
 updated_at: 2024-10-19
@@ -77,4 +80,3 @@ You can view the logs with `ddev logs -s opensearch` and `ddev logs -s opensearc
 **Contributed and maintained by [@cmuench](https://github.com/cmuench) from [@netz98](https://github.com/netz98) org**
 
 **Co-maintained by [@stasadev](https://github.com/stasadev)**
-

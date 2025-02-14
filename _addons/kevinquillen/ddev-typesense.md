@@ -4,6 +4,9 @@ github_url: https://github.com/kevinquillen/ddev-typesense
 description: "Typesense is a modern, privacy-friendly, open source search engine meticulously engineered for performance & ease-of-use. This is an add on for DDEV so you can run and develop integrations for Typesense locally."
 user: kevinquillen
 repo: ddev-typesense
+repo_id: 715328290
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-11-06
 updated_at: 2025-02-07
@@ -47,4 +50,3 @@ To login, provide the configured API key, `127.0.0.1` as the hostname, and `8108
 If you are using Drupal, you can use Search API and the Search API Typesense modules to connect to the running Typesense instance.
 
 **Originally Contributed by [kevinquillen](https://github.com/kevinquillen)**
-

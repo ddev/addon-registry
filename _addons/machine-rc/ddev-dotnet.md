@@ -4,6 +4,9 @@ github_url: https://github.com/machine-rc/ddev-dotnet
 description: ".NET service for ddev stack "
 user: machine-rc
 repo: ddev-dotnet
+repo_id: 812302710
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-06-08
 updated_at: 2024-06-08
@@ -68,5 +71,3 @@ To add a new service:
 - copy the `Dockerfile` from the `dotnet/Users.API` directory
 - adjust `docker-compose.dotnet.yaml` to include the new service by duplicating the `dotnet-users` service and changing the service name
   - adjust the `environment` section to expose the new service on a different port
-
-

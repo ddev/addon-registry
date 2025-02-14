@@ -4,6 +4,9 @@ github_url: https://github.com/sebastian-ehrling/ddev-opensearch
 description: "Opensearch add-on for DDEV"
 user: sebastian-ehrling
 repo: ddev-opensearch
+repo_id: 501578857
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-06-09
 updated_at: 2024-02-28
@@ -34,4 +37,3 @@ You can use `ddev logs -s opensearch` to investigate what the elasticsearch daem
 
 ## Additional Resources
 **Maintained by [@sebastian-ehrling](https://github.com/sebastian-ehrling)**
-

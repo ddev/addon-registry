@@ -4,6 +4,9 @@ github_url: https://github.com/2ndkauboy/ddev-elasticvue
 description: "Elasticvue service for DDEV"
 user: 2ndkauboy
 repo: ddev-elasticvue
+repo_id: 803841353
+ddev_version_constraint: ""
+dependencies: ["elasticsearch"]
 type: contrib
 created_at: 2024-05-21
 updated_at: 2024-10-24
@@ -57,4 +60,3 @@ Elasticvue is a free and open-source gui for elasticsearch that you can use to m
 
 **Elasticvue is maintained by [@cars10](https://github.com/cars10)**  
 **DDEV Elasticvue is maintained by [@2ndkauboy](https://github.com/2ndkauboy)**
-

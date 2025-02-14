@@ -4,6 +4,9 @@ github_url: https://github.com/torhoehn/ddev-typesense
 description: "Typesense add-on for ddev"
 user: torhoehn
 repo: ddev-typesense
+repo_id: 688424296
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-09-07
 updated_at: 2025-01-19
@@ -23,4 +26,3 @@ Uses [typesense official image](https://hub.docker.com/r/typesense/typesense/)
 From within the container, the typesense container is reached at hostname: "typesense", port: 8108.
 
 **Originally Contributed by [torhoehn](https://github.com/torhoehn)**
-

@@ -4,6 +4,9 @@ github_url: https://github.com/iljapolanskis/ddev-buggregator
 description: "Buggregator service for DDEV (similar to Ray, but free)"
 user: iljapolanskis
 repo: ddev-buggregator
+repo_id: 673257959
+ddev_version_constraint: ">= v1.23.2"
+dependencies: []
 type: contrib
 created_at: 2023-08-01
 updated_at: 2024-10-28
@@ -71,5 +74,3 @@ $log->pushHandler($handler);
 // Send records to the Buggregator
 $log->warning(print_r($handler, true));
 ```
-
-

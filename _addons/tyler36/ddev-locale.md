@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-locale
 description: "Change a DDEV project's timezone and language. "
 user: tyler36
 repo: ddev-locale
+repo_id: 811139520
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-06-06
 updated_at: 2025-01-09
@@ -93,4 +96,3 @@ For example: `LANG=en_AU.UTF-8`
 PRs are welcome, especially if they contain tests.
 
 **Contributed and maintained by [@tyler36](https://github.com/tyler36)**
-

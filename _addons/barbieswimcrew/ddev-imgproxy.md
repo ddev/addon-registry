@@ -4,6 +4,9 @@ github_url: https://github.com/barbieswimcrew/ddev-imgproxy
 description: "imgproxy add-on for DDEV"
 user: barbieswimcrew
 repo: ddev-imgproxy
+repo_id: 884199243
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-11-06
 updated_at: 2024-11-07
@@ -51,4 +54,3 @@ ddev launch :8081/insecure/size:360:240/plain//web/path/to/image.png@avif
 This request would convert/return the file `web/path/to/image.png` into an AVIF thumbnail with the desired dimensions 360x240px.
 
 **Contributed and maintained by [@barbieswimcrew](https://github.com/barbieswimcrew)**
-

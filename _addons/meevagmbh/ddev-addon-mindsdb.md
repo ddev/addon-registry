@@ -4,6 +4,9 @@ github_url: https://github.com/meevagmbh/ddev-addon-mindsdb
 description: "MindsDB addon service for DDEV"
 user: meevagmbh
 repo: ddev-addon-mindsdb
+repo_id: 902241173
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-12-12
 updated_at: 2024-12-13
@@ -55,4 +58,3 @@ This project is not affiliated with or endorsed by [MindsDB](https://mindsdb.com
 
 **Based on the original [ddev-addon-template](https://github.com/ddev/ddev-addon-template).**  
 **Contributed and maintained by [meeva GmbH](https://meeva.de/).**
-

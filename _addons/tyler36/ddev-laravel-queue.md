@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-laravel-queue
 description: "Start a Laravel queue worker automatically in DDEV"
 user: tyler36
 repo: ddev-laravel-queue
+repo_id: 500674839
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2022-06-07
 updated_at: 2025-01-06
@@ -52,4 +55,3 @@ ddev restart
 2. Adds `.ddev/config.laravel-workers.yaml`, which starts the queue worker daemon.
 
 **Contributed and maintained by [tyler36](https://github.com/tyler36)**
-

@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-storybook
 description: "Helpers for DDEV and Storybook"
 user: tyler36
 repo: ddev-storybook
+repo_id: 746948704
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-01-23
 updated_at: 2025-01-06
@@ -114,4 +117,3 @@ This addon was originally created to work with Drupal and [storybook](https://ww
 PRs, especially with automated tests are welcome.
 
 **Contributed and maintained by [@tyler36](https://github.com/tyler36)**
-

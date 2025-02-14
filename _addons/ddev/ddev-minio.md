@@ -4,6 +4,9 @@ github_url: https://github.com/ddev/ddev-minio
 description: "MinIO addon for DDEV"
 user: ddev
 repo: ddev-minio
+repo_id: 678091119
+ddev_version_constraint: ""
+dependencies: []
 type: official
 created_at: 2023-08-13
 updated_at: 2024-10-17
@@ -114,5 +117,3 @@ ___
 
 **Based on the original [ddev-contrib recipe](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/mongodb)**  
 **Developed and maintained by [Oblak Studio](https://github.com/oblakstudio)**
-
-

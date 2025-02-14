@@ -4,6 +4,9 @@ github_url: https://github.com/ssmarco/ddev-enterprise-search
 description: "Elastic Enterprise Search service for DDEV"
 user: ssmarco
 repo: ddev-enterprise-search
+repo_id: 750137374
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-01-30
 updated_at: 2025-01-14
@@ -206,4 +209,3 @@ This will require you to restart your ddev box `ddev restart`.
 ## Maintainer
 
 - Contributed and maintained by [Marco Hermo](https://github.com/ssmarco).
-

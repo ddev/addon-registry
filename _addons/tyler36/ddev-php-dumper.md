@@ -4,6 +4,9 @@ github_url: https://github.com/tyler36/ddev-php-dumper
 description: "Collect and manage 'dump' information in Docker Desktop"
 user: tyler36
 repo: ddev-php-dumper
+repo_id: 738784480
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-01-04
 updated_at: 2025-01-06
@@ -161,4 +164,3 @@ ddev restart
 For more information, see [The Dump Server](https://symfony.com/doc/current/components/var_dumper.html).
 
 **Contributed and maintained by [@tyler36](https://github.com/tyler36)**
-

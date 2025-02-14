@@ -4,6 +4,9 @@ github_url: https://github.com/oblakstudio/ddev-xhgui-pro
 description: "XHGui addon for DDEV - batteries included."
 user: oblakstudio
 repo: ddev-xhgui-pro
+repo_id: 776095983
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-03-22
 updated_at: 2024-11-11
@@ -60,4 +63,3 @@ ___
 
 **Based on the original [ddev-contrib recipe](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/mongodb)**  
 **Developed and maintained by [Oblak Studio](https://github.com/oblakstudio)**
-

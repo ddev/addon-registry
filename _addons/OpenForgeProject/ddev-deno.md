@@ -4,6 +4,9 @@ github_url: https://github.com/OpenForgeProject/ddev-deno
 description: "Deno is the open-source JavaScript runtime for the modern web. Now for DDEV."
 user: OpenForgeProject
 repo: ddev-deno
+repo_id: 862515219
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-09-24
 updated_at: 2024-11-21
@@ -61,4 +64,3 @@ Quick links:
 - [Examples](https://docs.deno.com/examples/)
 - [Fundamentals](https://docs.deno.com/runtime/fundamentals/)
 - [Tutorials](https://docs.deno.com/runtime/tutorials/)
-

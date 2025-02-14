@@ -4,6 +4,9 @@ github_url: https://github.com/s2b/ddev-vite-sidecar
 description: "DDEV add-on that exposes vite dev server on separate subdomain"
 user: s2b
 repo: ddev-vite-sidecar
+repo_id: 810242470
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2024-06-04
 updated_at: 2025-02-01
@@ -87,4 +90,3 @@ The main goals of this add-on are the following:
 * inside **DDEV** with the **project's dependencies** (node version, vite version...)
 * without leaking **ports** to the host system (by using a dedicated subdomain)
 * with a simple CLI wrapper around vite's CLI
-

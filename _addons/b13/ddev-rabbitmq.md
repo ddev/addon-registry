@@ -4,6 +4,9 @@ github_url: https://github.com/b13/ddev-rabbitmq
 description: "Adds a rabbitmq service to ddev"
 user: b13
 repo: ddev-rabbitmq
+repo_id: 706339942
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-10-17
 updated_at: 2025-02-08
@@ -96,4 +99,3 @@ You can access the RabbitMQ service through its AMQP protocol inside any DDEV co
 **Originally Contributed by [@Graloth](https://github.com/Graloth) in [ddev-contrib](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/rabbitmq)**
 
 **Maintained by [@b13](https://github.com/b13)**
-

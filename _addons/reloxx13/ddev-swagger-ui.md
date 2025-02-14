@@ -4,6 +4,9 @@ github_url: https://github.com/reloxx13/ddev-swagger-ui
 description: "Swagger UI add-on for DDEV"
 user: reloxx13
 repo: ddev-swagger-ui
+repo_id: 693512516
+ddev_version_constraint: ""
+dependencies: []
 type: contrib
 created_at: 2023-09-19
 updated_at: 2024-04-29
@@ -47,8 +50,3 @@ To upgrade your version of ddev-swagger-ui, repeat the `ddev get reloxx13/ddev-s
    * BASE_URL=/
    * SWAGGER_JSON=/var/www/html/swagger.json
    * SWAGGER_JSON_URL=
-
-
-
-
-
