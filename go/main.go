@@ -118,7 +118,7 @@ func createRepoMarkdown(repo *github.Repository) error {
 	if org == "ddev" {
 		addonType = "official"
 	}
-	content := fmt.Sprintf(`---
+	newContent := fmt.Sprintf(`---
 title: %s
 github_url: %s
 description: "%s"
@@ -131,10 +131,25 @@ stars: %d
 ---
 
 %s
-`, repo.GetFullName(), repo.GetHTMLURL(), strings.ReplaceAll(repo.GetDescription(), `"`, `\"`), org, repoName, addonType, repo.GetCreatedAt().Format(time.DateOnly), repo.GetUpdatedAt().Format(time.DateOnly), repo.GetStargazersCount(), readmeContent)
+`,
+		repo.GetFullName(),
+		repo.GetHTMLURL(),
+		strings.ReplaceAll(repo.GetDescription(), `"`, `\"`),
+		org,
+		repoName,
+		addonType,
+		repo.GetCreatedAt().Format(time.DateOnly),
+		repo.GetUpdatedAt().Format(time.DateOnly),
+		repo.GetStargazersCount(),
+		strings.TrimSpace(readmeContent),
+	)
+
+	if !isFileChanged(filePath, newContent) {
+		return nil
+	}
 
 	// Write content to the markdown file
-	err = os.WriteFile(filePath, []byte(content), 0644)
+	err = os.WriteFile(filePath, []byte(newContent), 0644)
 	if err != nil {
 		return fmt.Errorf("failed to write file: %v", err)
 	}
@@ -166,18 +181,8 @@ group: %s
 {%% include addon_table.html filter_by_user="%s" %%}
 `, org, org, org)
 
-	// Check if the file already exists
-	if _, err := os.Stat(filePath); err == nil {
-		// Read the existing file content
-		existingContent, err := os.ReadFile(filePath)
-		if err != nil {
-			return fmt.Errorf("failed to read existing file: %v", err)
-		}
-
-		// Compare the existing content with the new content
-		if string(existingContent) == newContent {
-			return nil // No need to update the file
-		}
+	if !isFileChanged(filePath, newContent) {
+		return nil
 	}
 
 	// Write the new content to the file
@@ -246,4 +251,18 @@ func replaceRelativeLinks(content string, repo *github.Repository) string {
 	})
 
 	return updatedContent
+}
+
+// isFileChanged checks if a file has changed
+func isFileChanged(filePath string, newContent string) bool {
+	if _, err := os.Stat(filePath); err == nil {
+		existingContent, err := os.ReadFile(filePath)
+		if err != nil {
+			return true
+		}
+		if string(existingContent) == newContent {
+			return false
+		}
+	}
+	return true
 }
