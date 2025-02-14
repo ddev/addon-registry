@@ -1,11 +1,10 @@
 source "https://rubygems.org"
 
+# This gem depends on Jekyll 3.10.0
 gem "github-pages", group: :jekyll_plugins
 
-gem "tzinfo-data"
-gem "wdm", "~> 0.1.0" if Gem.win_platform?
-
-# If you have any plugins, put them here!
+# List of supported plugins available at
+# https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll#plugins
 group :jekyll_plugins do
   gem "jekyll-paginate"
   gem "jekyll-sitemap"

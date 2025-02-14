@@ -8,6 +8,8 @@
         "user": {{ addon.user | jsonify }},
         "repo": {{ addon.repo | jsonify }},
         "repo_id": {{ addon.repo_id | jsonify }},
+        "ddev_version_constraint": {{ addon.ddev_version_constraint | jsonify }},
+        "dependencies": {{ addon.dependencies | jsonify }},
         "description": {{ addon.description | jsonify }},
         "type": {{ addon.type | jsonify }},
         "created_at": {{ addon.created_at | jsonify }},

@@ -47,29 +47,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
 
-{% if include.filter_by_user %}
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.1/css/buttons.dataTables.css" />
-    <script src="https://cdn.datatables.net/buttons/3.2.1/js/dataTables.buttons.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.2.1/js/buttons.dataTables.js"></script>
-{% endif %}
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.1/css/buttons.dataTables.css" />
+<script src="https://cdn.datatables.net/buttons/3.2.1/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.2.1/js/buttons.dataTables.js"></script>
+
 <script>
     $(document).ready(function() {
         var table = $('#addon-table').DataTable({
             layout: {
-                {%- if include.filter_by_user -%}
-                    topEnd: {
-                        buttons: [
-                            {
-                                text: 'View all add-ons',
-                                action: function (e, dt, node, config) {
-                                    window.location.href = "{{ site.baseurl | default: '/' }}";
-                                }
-                            },
-                        ]
-                    },
-                {%- else -%}
-                    topEnd: null,
-                {%- endif -%}
+                topEnd: {
+                    buttons: [
+                        {
+                            text: 'addons.json',
+                            action: function (e, dt, node, config) {
+                                window.location.href = "{{ site.baseurl }}/addons.json";
+                            }
+                        },
+                        {%- if include.filter_by_user -%}
+                        {
+                            text: 'View all',
+                            action: function (e, dt, node, config) {
+                                window.location.href = "{{ site.baseurl | default: '/' }}";
+                            }
+                        },
+                        {%- endif -%}
+                    ]
+                },
             },
             ordering: true,
             paging: true,

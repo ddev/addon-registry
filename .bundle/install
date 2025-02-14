@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# The first start may take a minute or two
 bundle install
 
 # Fix for LiveReload from Jekyll 4.x https://github.com/jekyll/jekyll/pull/8718

@@ -7,6 +7,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: DDEV Add-on Registry
+# baseurl should look like "/addon-registry" for repo ddev/addon-registry
+# it's empty, because we use custom domain
 baseurl: ""
 description: >-
   A registry for DDEV add-ons where users can discover,

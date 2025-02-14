@@ -14,6 +14,8 @@ hooks:
             =================================================================================\n
             The Jekyll dev container is ready \n LiveReload is available at \e[32m${DDEV_PRIMARY_URL}:4000\e[0m \n
             To troubleshoot any issues run \e[35mddev describe\e[0m or \e[35mddev logs --follow --time\e[0m\n"
+    pre-start:
+        - exec-host: ([ -d vendor ] && [ -f Gemfile.lock ]) || echo "The first start may take a minute or two..."
 omit_containers: [db]
 use_dns_when_possible: true
 composer_version: "2"
@@ -32,3 +34,4 @@ web_extra_daemons:
     - name: jekyll-dev-daemon
       command: bash -c 'bash .bundle/install && touch /var/tmp/bundleinstalldone && bundle exec jekyll serve --host=0.0.0.0 --baseurl="" --livereload --livereload-port=4010'
       directory: /var/www/html
+ddev_version_constraint: '>= v1.24.2'

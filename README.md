@@ -18,5 +18,5 @@ A registry for DDEV add-ons where users can discover, explore, and leave comment
 
 DDEV already has all the dependencies included.
 
-1. Run `ddev start` to start and set up the project's dependencies (the first start is slow).
+1. Run `ddev start` to start and set up the project's dependencies (the first start may take a minute or two).
 2. Run `ddev launch :4000` to open the development server with LiveReload.

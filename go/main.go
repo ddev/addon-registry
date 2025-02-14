@@ -12,6 +12,7 @@ import (
 	"github.com/google/go-github/v69/github"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/oauth2"
+	"gopkg.in/yaml.v3"
 )
 
 func main() {
@@ -113,6 +114,16 @@ func createRepoMarkdown(repo *github.Repository) error {
 		readmeContent = "README not available."
 	}
 
+	installYaml, err := getRepoInstallYaml(repo)
+	if err != nil {
+		return fmt.Errorf("could not retrieve install.yaml for repo %s: %v", repo.GetFullName(), err)
+	}
+
+	dependencies := "[]"
+	if len(installYaml.Dependencies) > 0 {
+		dependencies = fmt.Sprintf(`["%s"]`, strings.Join(installYaml.Dependencies, `", "`))
+	}
+
 	// Create the front matter (YAML-like header)
 	addonType := "contrib"
 	if org == "ddev" {
@@ -125,6 +136,8 @@ description: "%s"
 user: %s
 repo: %s
 repo_id: %d
+ddev_version_constraint: "%s"
+dependencies: %s
 type: %s
 created_at: %s
 updated_at: %s
@@ -139,6 +152,8 @@ stars: %d
 		org,
 		repoName,
 		repo.GetID(),
+		installYaml.DdevVersionConstraint,
+		dependencies,
 		addonType,
 		repo.GetCreatedAt().Format(time.DateOnly),
 		repo.GetUpdatedAt().Format(time.DateOnly),
@@ -267,4 +282,43 @@ func isFileChanged(filePath string, newContent string) bool {
 		}
 	}
 	return true
+}
+
+type InstallDesc struct {
+	// Name must be unique in a project; it will overwrite any existing add-on with the same name.
+	Name                  string            `yaml:"name"`
+	ProjectFiles          []string          `yaml:"project_files"`
+	GlobalFiles           []string          `yaml:"global_files,omitempty"`
+	DdevVersionConstraint string            `yaml:"ddev_version_constraint,omitempty"`
+	Dependencies          []string          `yaml:"dependencies,omitempty"`
+	PreInstallActions     []string          `yaml:"pre_install_actions,omitempty"`
+	PostInstallActions    []string          `yaml:"post_install_actions,omitempty"`
+	RemovalActions        []string          `yaml:"removal_actions,omitempty"`
+	YamlReadFiles         map[string]string `yaml:"yaml_read_files"`
+}
+
+// getRepoInstallYaml retrieves and parses the install.yaml content from the given repository
+func getRepoInstallYaml(repo *github.Repository) (*InstallDesc, error) {
+	client := GetGithubClient(context.Background())
+
+	// Fetch install.yaml from the repo (adjust the path if necessary)
+	fileContent, _, _, err := client.Repositories.GetContents(context.Background(), repo.Owner.GetLogin(), repo.GetName(), "install.yaml", nil)
+	if err != nil {
+		return nil, fmt.Errorf("could not retrieve install.yaml: %v", err)
+	}
+
+	// Decode the file content (GitHub API returns Base64-encoded content)
+	content, err := fileContent.GetContent()
+	if err != nil {
+		return nil, fmt.Errorf("could not decode install.yaml content: %v", err)
+	}
+
+	// Parse the YAML content
+	var parsedYaml InstallDesc
+	err = yaml.Unmarshal([]byte(content), &parsedYaml)
+	if err != nil {
+		return nil, fmt.Errorf("could not parse install.yaml: %v", err)
+	}
+
+	return &parsedYaml, nil
 }
