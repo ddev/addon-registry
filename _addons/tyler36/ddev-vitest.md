@@ -38,7 +38,7 @@ stars: 1
 - [commands/web/vitest](https://github.com/tyler36/ddev-vitest/blob/main/commands/web/vitest): a helper command for Vitest
 - [commands/host/vitest-ui](https://github.com/tyler36/ddev-vitest/blob/main/commands/host/vitest-ui): a helper command for to launch the Vitest UI site.
 - [install.yaml](https://github.com/tyler36/ddev-vitest/blob/main/install.yaml): DDEV installation file
-- [test.bats](tests/test.bats): test suite to ensure the add-on is working.
+- [test.bats](https://github.com/tyler36/ddev-vitest/blob/main/tests/test.bats): test suite to ensure the add-on is working.
 - [Github actions setup](https://github.com/tyler36/ddev-vitest/blob/main/.github/workflows/tests.yml): file to automate checks and tests.
 
 ## Getting started

@@ -52,7 +52,7 @@ You can choose a different PHP version, the command below creates a `.ddev/.env.
 
 * `config.php-yaml`
 * `Dockerfile.php-patch-build`
-* A test suite in [test.bats](tests/test.bats) that makes sure the service continues to work as expected.
+* A test suite in [test.bats](https://github.com/rfay/ddev-php-patch-build/blob/main/tests/test.bats) that makes sure the service continues to work as expected.
 * [Github actions setup](https://github.com/rfay/ddev-php-patch-build/blob/main/.github/workflows/tests.yml) so that the tests run automatically when you push to the repository.
 
 

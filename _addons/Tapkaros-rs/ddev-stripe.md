@@ -36,7 +36,7 @@ This repository is a quick way to get started. You can create a new repo from th
 
 * The fundamental contents of the add-on service or other component. For example, in this template there is a [docker-compose.addon-template.yaml](https://github.com/Tapkaros-rs/ddev-stripe/blob/main/docker-compose.addon-template.yaml) file.
 * An [install.yaml](https://github.com/Tapkaros-rs/ddev-stripe/blob/main/install.yaml) file that describes how to install the service or other component.
-* A test suite in [test.bats](tests/test.bats) that makes sure the service continues to work as expected.
+* A test suite in [test.bats](https://github.com/Tapkaros-rs/ddev-stripe/blob/main/tests/test.bats) that makes sure the service continues to work as expected.
 * [Github actions setup](https://github.com/Tapkaros-rs/ddev-stripe/blob/main/.github/workflows/tests.yml) so that the tests run automatically when you push to the repository.
 
 ## Getting started

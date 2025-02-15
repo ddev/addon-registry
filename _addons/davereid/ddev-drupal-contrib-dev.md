@@ -32,7 +32,7 @@ Install this add-on by running `ddev get davereid/ddev-drupal-contrib-dev`
 
 * The fundamental contents of the add-on service or other component. For example, in this template there is a [docker-compose.addon-template.yaml](https://github.com/davereid/ddev-drupal-contrib-dev/blob/main/docker-compose.addon-template.yaml) file.
 * An [install.yaml](https://github.com/davereid/ddev-drupal-contrib-dev/blob/main/install.yaml) file that describes how to install the service or other component.
-* A test suite in [test.bats](tests/test.bats) that makes sure the service continues to work as expected.
+* A test suite in [test.bats](https://github.com/davereid/ddev-drupal-contrib-dev/blob/main/tests/test.bats) that makes sure the service continues to work as expected.
 * [Github actions setup](https://github.com/davereid/ddev-drupal-contrib-dev/blob/main/.github/workflows/tests.yml) so that the tests run automatically when you push to the repository.
 
 ## Getting started

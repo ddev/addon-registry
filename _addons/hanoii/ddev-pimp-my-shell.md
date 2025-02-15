@@ -79,7 +79,7 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - https://github.com/dbohdan/recur
 - https://www.rust-lang.org/
 - https://github.com/samwho/spacer
-- Some useful [scripts](pimp-my-shell/scripts)
+- Some useful [scripts](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/pimp-my-shell/scripts)
 
 ## Tweaks
 
@@ -90,7 +90,7 @@ a lot inside the container.
 
 I found that you can use DDEV's own `enable_xdebug` and `disable_xdebug` inside
 the container but I wanted a shortcut to that so this add-on
-[ships a small script](homeadditions/.local/bin/xdebug) that simply toggles
+[ships a small script](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/homeadditions/.local/bin/xdebug) that simply toggles
 Xdebug state by running `xdebug` inside the container.
 
 [ddev-xdebug]:
@@ -124,7 +124,7 @@ are many ways you can achieve that. I am personally editing my global
 `~/.ddev/global_config.yaml` on the host and adding a `STARSHIP_CONFIG`
 environment variable pointing to an alternative config file which I also added
 to `~/.ddev/homeadditions/.config` on the host with the content of this add-on's
-[`starship.toml`](homeadditions/.config/starship.toml) and merging it with the
+[`starship.toml`](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/homeadditions/.config/starship.toml) and merging it with the
 output of (`[directory]` is in both):
 
 ```
@@ -152,7 +152,7 @@ endkkk
 
 ### lazygit
 
-It adds a [config.yml](homeadditions/.config/lazygit/config.yml) diabling the
+It adds a [config.yml](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/homeadditions/.config/lazygit/config.yml) diabling the
 startup popups.
 
 ### go

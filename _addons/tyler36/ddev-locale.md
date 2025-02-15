@@ -88,7 +88,7 @@ For example: `LANG=en_AU.UTF-8`
 
 - `config.locale.yaml`: the settings that are merging with the project's configuration.
 - An [install.yaml](https://github.com/tyler36/ddev-locale/blob/main/install.yaml) file that describes how to install the service or other component.
-- A test suite in [test.bats](tests/test.bats) that makes sure the service continues to work as expected.
+- A test suite in [test.bats](https://github.com/tyler36/ddev-locale/blob/main/tests/test.bats) that makes sure the service continues to work as expected.
 - [Github actions setup](https://github.com/tyler36/ddev-locale/blob/main/.github/workflows/tests.yml) so that the tests run automatically when you push to the repository.
 
 ## Contributing

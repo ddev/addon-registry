@@ -34,7 +34,7 @@ Developers are responsible for installing, maintaining, and running the Vite ser
 
 - [config.vite.yaml](https://github.com/tyler36/ddev-vite/blob/main/config.vite.yaml): configure DDEV to expose the port.
 - [install.yaml](https://github.com/tyler36/ddev-vite/blob/main/install.yaml): describes how to install the service or other component.
-- [test.bats](tests/test.bats): test suite to confirm add-on continues to work as expected.
+- [test.bats](https://github.com/tyler36/ddev-vite/blob/main/tests/test.bats): test suite to confirm add-on continues to work as expected.
 - [Github actions setup](https://github.com/tyler36/ddev-vite/blob/main/.github/workflows/tests.yml): automates daily tests and on pull requests.
 
 ## Getting started

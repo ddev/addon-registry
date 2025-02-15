@@ -25,7 +25,7 @@ ddev add-on get ddev/ddev-proxy-support && ddev restart
 
 It installs a docker-compose.proxy.yaml and pre.Dockerfile.proxy-support which add proxy capabilities to DDEV v1.19.5+
 
-With this setup you should be able to use `webimage_extra_packages` against a proxy, and you should also be able to `ddev ssh` into the web container and use curl and see it using the proxy. `curl -v -I <target>` is a good test. See also the [tests](tests/test.bats).
+With this setup you should be able to use `webimage_extra_packages` against a proxy, and you should also be able to `ddev ssh` into the web container and use curl and see it using the proxy. `curl -v -I <target>` is a good test. See also the [tests](https://github.com/ddev/ddev-proxy-support/blob/main/tests/test.bats).
 
 # Testing
 

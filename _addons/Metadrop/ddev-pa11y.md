@@ -33,7 +33,7 @@ In DDEV, addons can be installed from the command line using the `ddev add-on ge
 
 * The fundamental contents of the Pa11y addon. For example, in this template there is a [docker-compose.pa11y.yaml](https://github.com/Metadrop/ddev-pa11y/blob/main/docker-compose.pa11y.yaml) file.
 * An [install.yaml](https://github.com/Metadrop/ddev-pa11y/blob/main/install.yaml) file that describes how to install the Pa11y service.
-* A test suite in [test.bats](tests/test.bats) that makes sure the Pa11y service continues to work as expected.
+* A test suite in [test.bats](https://github.com/Metadrop/ddev-pa11y/blob/main/tests/test.bats) that makes sure the Pa11y service continues to work as expected.
 * [Github actions setup](https://github.com/Metadrop/ddev-pa11y/blob/main/.github/workflows/tests.yml) so that the tests run automatically when you push to the repository.
 
 ## Getting started

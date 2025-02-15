@@ -29,7 +29,7 @@ A repository like this one is the way to get started. You can create a new repo 
 
 * The fundamental contents of the add-on service or other component. For example, in this template there is a [docker-compose.virtuoso.yaml](https://github.com/claudiu-cristea/ddev-virtuoso/blob/main/docker-compose.virtuoso.yaml) file.
 * An [install.yaml](https://github.com/claudiu-cristea/ddev-virtuoso/blob/main/install.yaml) file that describes how to install the service or other component.
-* A test suite in [test.bats](tests/test.bats) that makes sure the service continues to work as expected.
+* A test suite in [test.bats](https://github.com/claudiu-cristea/ddev-virtuoso/blob/main/tests/test.bats) that makes sure the service continues to work as expected.
 * [Github actions setup](https://github.com/claudiu-cristea/ddev-virtuoso/blob/main/.github/workflows/tests.yml) so that the tests run automatically when you push to the repository.
 
 ## Getting started

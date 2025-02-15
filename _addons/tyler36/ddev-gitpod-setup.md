@@ -90,7 +90,7 @@ This approach works best if you want to:
 
 - [gitpod-setup](https://github.com/tyler36/ddev-gitpod-setup/blob/main/gitpod-setup/) directory holds the files used to construct the final `.gitpod.yml` file.
 - An [install.yaml](https://github.com/tyler36/ddev-gitpod-setup/blob/main/install.yaml) file that describes how to install the service or other component.
-- A test suite in [test.bats](tests/test.bats) that makes sure the service continues to work as expected.
+- A test suite in [test.bats](https://github.com/tyler36/ddev-gitpod-setup/blob/main/tests/test.bats) that makes sure the service continues to work as expected.
 - [Github actions setup](https://github.com/tyler36/ddev-gitpod-setup/blob/main/.github/workflows/tests.yml) so that the tests run automatically when you push to the repository.
 
 ## Contributing
