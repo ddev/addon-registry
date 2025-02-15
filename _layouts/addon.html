@@ -7,15 +7,15 @@ layout: index
 </h1>
 
 <div id="content-wrapper">
-    {%- assign split_content = content | split: '<p>' -%}
+    {%- assign split_content = content | split: '</p>' -%}
     <!-- Display the first 3 paragraphs -->
     <div id="visible-content">
-        {{ split_content | slice: 0, 3 | join: '<p>' | markdownify }}
+        {{ split_content | slice: 0, 3 | join: '</p>' | markdownify }}
     </div>
 
     <!-- Hidden content that will be displayed on clicking "Read more" -->
     <div id="hidden-content" style="display: none;">
-        {{ split_content | slice: 4, 1000 | join: '<p>' | markdownify }}
+        {{ split_content | slice: 3, 1000 | join: '</p>' | markdownify }}
     </div>
 </div>
 

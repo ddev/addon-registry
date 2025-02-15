@@ -49,6 +49,18 @@ pre {
     }
 }
 
+#content-wrapper img {
+    max-width: 100%;
+}
+
+#content-wrapper table,
+#content-wrapper th,
+#content-wrapper td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+}
+
 a:link, a:visited {
     color: $accent;
 }
