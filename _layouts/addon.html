@@ -42,6 +42,16 @@ layout: index
         }
         btn.blur();
     }
+    // Open external links in a new tab
+    document.addEventListener("DOMContentLoaded", function() {
+        const links = document.querySelectorAll('a[href^="http"]');
+        links.forEach(function(link) {
+            if (link.hostname !== window.location.hostname) {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+    });
 </script>
 
 <div style="border-top: 1px solid #ddd; margin-top: 10px"></div>

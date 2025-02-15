@@ -239,29 +239,36 @@ func replaceRelativeLinks(content string, repo *github.Repository) string {
 	blobURL := fmt.Sprintf("https://github.com/%s/%s/blob/%s", repo.Owner.GetLogin(), repo.GetName(), repo.GetDefaultBranch())
 	rawURL := fmt.Sprintf("https://raw.githubusercontent.com/%s/%s/%s", repo.Owner.GetLogin(), repo.GetName(), repo.GetDefaultBranch())
 
-	// Regex to find markdown-style links, excluding anchors
-	linkRegex := regexp.MustCompile(`\[(.*?)\]\(([^http#].*?)\)`)
-	// Regex to find markdown-style image links: ![alt](relative-link)
-	imageRegex := regexp.MustCompile(`!\[(.*?)\]\(([^http].*?)\)`)
+	// Match all Markdown links
+	linkRegex := regexp.MustCompile(`\[(.*?)\]\((.*?)\)`)
+	imageRegex := regexp.MustCompile(`!\[(.*?)\]\((.*?)\)`)
 
 	// Replace relative image links with raw.githubusercontent URL
 	updatedContent := imageRegex.ReplaceAllStringFunc(content, func(link string) string {
 		matches := imageRegex.FindStringSubmatch(link)
 		if len(matches) > 2 {
-			altText := matches[1]      // Alt text
-			relativeLink := matches[2] // Relative link for image
+			altText := matches[1]
+			relativeLink := matches[2]
+			// Ignore if the link starts with http or #
+			if strings.HasPrefix(relativeLink, "http") || strings.HasPrefix(relativeLink, "#") {
+				return link
+			}
 			fullLink := fmt.Sprintf("%s/%s", rawURL, strings.TrimPrefix(relativeLink, "/"))
 			return fmt.Sprintf("![%s](%s)", altText, fullLink)
 		}
 		return link
 	})
 
-	// Replace relative links (non-image) with blob URL, excluding anchors
+	// Replace relative links (non-image) with blob URL, excluding anchors and external links
 	updatedContent = linkRegex.ReplaceAllStringFunc(updatedContent, func(link string) string {
 		matches := linkRegex.FindStringSubmatch(link)
 		if len(matches) > 2 {
-			text := matches[1]         // Link text
-			relativeLink := matches[2] // Relative link
+			text := matches[1]
+			relativeLink := matches[2]
+			// Ignore if the link starts with http or #
+			if strings.HasPrefix(relativeLink, "http") || strings.HasPrefix(relativeLink, "#") {
+				return link
+			}
 			fullLink := fmt.Sprintf("%s/%s", blobURL, strings.TrimPrefix(relativeLink, "/"))
 			return fmt.Sprintf("[%s](%s)", text, fullLink)
 		}
