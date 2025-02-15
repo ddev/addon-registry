@@ -108,6 +108,11 @@
             },
         });
 
+        // Reapply table filter if search field has a value (e.g., after back navigation)
+        if ($('#addon-search').val()) {
+            table.search($('#addon-search').val()).draw();
+        }
+
         $('#addon-search').on('keyup', function() {
             table.search(this.value).draw();
         });
