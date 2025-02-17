@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-10-07
-updated_at: 2025-02-15
-stars: 5
+updated_at: 2025-02-16
+stars: 7
 ---
 
 # DDEV SPX
