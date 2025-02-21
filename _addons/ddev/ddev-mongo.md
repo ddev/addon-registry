@@ -9,8 +9,8 @@ ddev_version_constraint: ">= v1.23.0"
 dependencies: []
 type: official
 created_at: 2022-03-28
-updated_at: 2025-01-20
-stars: 6
+updated_at: 2025-02-20
+stars: 7
 ---
 
 [![tests](https://github.com/ddev/ddev-mongo/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-mongo/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)

@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2022-01-12
-updated_at: 2025-02-18
-stars: 11
+updated_at: 2025-02-20
+stars: 12
 ---
 
 [![tests](https://github.com/ddev/ddev-drupal-solr/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-drupal-solr/actions/workflows/tests.yml)
