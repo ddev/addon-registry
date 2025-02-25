@@ -5,15 +5,15 @@ description: "AdminerEvo web-based database browser for DDEV"
 user: ddev
 repo: ddev-adminer
 repo_id: 468763817
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.2"
 dependencies: []
 type: official
 created_at: 2022-03-11
-updated_at: 2025-02-13
+updated_at: 2025-02-24
 stars: 8
 ---
 
-[![tests](https://github.com/ddev/ddev-adminer/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-adminer/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/ddev/ddev-adminer/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-adminer/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
 # DDEV Adminer Service
 
@@ -31,19 +31,9 @@ AdminerEvo works with MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, Elasti
 
 ## Installation
 
-For DDEV v1.23.5 or above run
-
 ```sh
-ddev add-on get ddev/ddev-adminer
+ddev add-on get ddev/ddev-adminer && ddev restart
 ```
-
-For earlier versions of DDEV run
-
-```sh
-ddev get ddev/ddev-adminer
-```
-
-Afterward run `ddev restart`
 
 Then you can just `ddev adminer` or use `ddev describe` to get the URL (`https://<project>.ddev.site:9101`).
 
