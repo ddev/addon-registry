@@ -9,12 +9,12 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-03-25
-updated_at: 2025-02-25
+updated_at: 2025-02-26
 stars: 2
 ---
 
 [![tests](https://github.com/hanoii/ddev-pimp-my-shell/actions/workflows/tests.yml/badge.svg)](https://github.com/hanoii/ddev-pimp-my-shell/actions/workflows/tests.yml)
-![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
 # ddev-pimp-my-shell <!-- omit in toc -->
 
@@ -35,6 +35,7 @@ defaults.
   * [fish](#fish)
   * [lazygit](#lazygit)
   * [go](#go)
+  * [delta](#delta)
   * [DDEV `post-import-db` hook](#ddev-post-import-db-hook)
 
 <!-- tocstop -->
@@ -162,6 +163,12 @@ Other than adding itself to the path and installing some packages I am unsetting
 `GOARCH` and `GOOS` for both `ddev ssh` and `ddev fish` so that are not in
 conflict with the container OS as
 [they are added by DDEV from the host](https://github.com/ddev/ddev/issues/6748).
+
+### delta
+
+Having found [delta](https://dandavison.github.io/delta/) and wanting to give
+this a try I am auto-configuring this for git. I am doing so in the shell
+startup scripts so that it's picked up after any global homeaddition.
 
 ### DDEV `post-import-db` hook
 

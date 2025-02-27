@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2023-04-29
-updated_at: 2025-02-01
-stars: 101
+updated_at: 2025-02-26
+stars: 103
 ---
 
 [![tests](https://github.com/ddev/ddev-drupal-contrib/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-drupal-contrib/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
