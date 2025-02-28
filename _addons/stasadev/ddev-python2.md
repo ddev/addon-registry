@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-08-30
-updated_at: 2025-02-08
-stars: 7
+updated_at: 2025-02-28
+stars: 8
 ---
 
 [![tests](https://github.com/stasadev/ddev-python2/actions/workflows/tests.yml/badge.svg)](https://github.com/stasadev/ddev-python2/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
