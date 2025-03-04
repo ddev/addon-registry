@@ -4,6 +4,8 @@
 
 A registry for DDEV add-ons where users can discover, explore, and leave comments on available add-ons.
 
+See [DDEV Add-on Registry Introduction](https://ddev.com/blog/ddev-addon-registry-introduction/).
+
 While `ddev add-on list` is a fantastic tool, it only scratches the surface when it comes to discovering and exploring add-ons.
 
 The need for a dedicated registry became clear as we sought to streamline access to add-ons, reduce API limitations, and lessen the maintenance burden.
