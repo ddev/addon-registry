@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2025-02-16
-updated_at: 2025-02-19
-stars: 0
+updated_at: 2025-03-04
+stars: 1
 ---
 
 ## Getting started

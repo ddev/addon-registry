@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-02-02
-updated_at: 2025-02-12
-stars: 4
+updated_at: 2025-03-04
+stars: 5
 ---
 
 [![tests](https://github.com/a11ywatch/ddev-a11ywatch/actions/workflows/tests.yml/badge.svg)](https://github.com/a11ywatch/ddev-a11ywatch/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
