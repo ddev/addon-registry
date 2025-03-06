@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-10-17
-updated_at: 2024-10-24
-stars: 0
+updated_at: 2025-03-05
+stars: 1
 ---
 
 [![tests](https://github.com/backdrop-ops/ddev-backdrop-bee/actions/workflows/tests.yml/badge.svg)](https://github.com/backdrop-ops/ddev-backdrop-bee/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
