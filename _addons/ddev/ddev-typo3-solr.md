@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2024-02-23
-updated_at: 2025-02-27
-stars: 4
+updated_at: 2025-03-07
+stars: 5
 ---
 
 # Apache Solr Add-On for DDEV (standalone)
