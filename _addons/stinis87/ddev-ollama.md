@@ -9,9 +9,11 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2025-02-16
-updated_at: 2025-03-04
+updated_at: 2025-03-10
 stars: 1
 ---
+
+Makes it possible to run Ollama in ddev.
 
 ## Getting started
 

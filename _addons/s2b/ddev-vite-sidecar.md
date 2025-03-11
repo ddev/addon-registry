@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-06-04
-updated_at: 2025-03-04
-stars: 21
+updated_at: 2025-03-10
+stars: 22
 ---
 
 [![tests](https://github.com/s2b/ddev-vite-sidecar/actions/workflows/tests.yml/badge.svg)](https://github.com/s2b/ddev-vite-sidecar/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
