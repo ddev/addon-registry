@@ -5,7 +5,7 @@ description: "MySQL Logical Backup Tool"
 user: stasadev
 repo: ddev-mydumper
 repo_id: 846094357
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-08-22
@@ -13,8 +13,8 @@ updated_at: 2025-03-12
 stars: 2
 ---
 
-[![tests](https://github.com/stasadev/ddev-mydumper/actions/workflows/tests.yml/badge.svg?event=schedule)](https://github.com/stasadev/ddev-mydumper/actions/workflows/tests.yml)
-![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/stasadev/ddev-mydumper/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/stasadev/ddev-mydumper/actions/workflows/tests.yml?query=branch%3Amain)
+[![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)](https://github.com/stasadev/ddev-mydumper/commits)
 [![release](https://img.shields.io/github/v/release/stasadev/ddev-mydumper)](https://github.com/stasadev/ddev-mydumper/releases/latest)
 
 # DDEV MyDumper
@@ -65,9 +65,9 @@ ddev add-on get stasadev/ddev-mydumper
 ddev restart
 ```
 
-Make sure to also commit the `.ddev/.env.mydumper` file to version control.
+Make sure to commit the `.ddev/.env.mydumper` file to version control.
 
-Customization options (use with caution):
+All customization options (use with caution):
 
 | Variable | Flag | Default |
 | -------- | ---- | ------- |
