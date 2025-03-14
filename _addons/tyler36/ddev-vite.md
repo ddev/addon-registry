@@ -9,11 +9,11 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-04-03
-updated_at: 2025-03-04
+updated_at: 2025-03-13
 stars: 2
 ---
 
-[![tests](https://github.com/tyler36/ddev-vite/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-vite/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/tyler36/ddev-vite/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-vite/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 
 # ddev-vite <!-- omit in toc -->
 

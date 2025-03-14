@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-22
-updated_at: 2024-11-07
+updated_at: 2025-03-13
 stars: 1
 ---
 
@@ -23,9 +23,19 @@ This repository is a recipe for DDEV to have a local worker that will allow taki
 
 ## Installation
 
-Add this addon as `ddev get diffywebsite/ddev-diffy`.
+For DDEV v1.23.5 or above run
 
-Register an account in Diffy and create an [API key](https://stage.diffy.website/#/keys).
+```sh
+ddev add-on get diffywebsite/ddev-diffy
+```
+
+For earlier versions of DDEV run
+
+```sh
+ddev get diffywebsite/ddev-diffy
+```
+
+Register an account in Diffy and create an [API key](https://app.diffy.website/#/keys).
 
 Once you have your container ready after `ddev restart` we need to provide API key and project ID to `.env` file. For that go to `.ddev/diffy-worker`, copy existing example file `cp .env.example .env` and edit `.env` file to provide your credentials.
 

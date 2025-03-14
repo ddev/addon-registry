@@ -9,11 +9,11 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2022-07-15
-updated_at: 2025-02-25
+updated_at: 2025-03-13
 stars: 3
 ---
 
-[![tests](https://github.com/GetDKAN/ddev-dkan/actions/workflows/tests.yml/badge.svg)](https://github.com/GetDKAN/ddev-dkan/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/GetDKAN/ddev-dkan/actions/workflows/tests.yml/badge.svg)](https://github.com/GetDKAN/ddev-dkan/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
 ## What is ddev-dkan?
 
