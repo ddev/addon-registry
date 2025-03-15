@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-02-25
-updated_at: 2025-03-10
-stars: 2
+updated_at: 2025-03-14
+stars: 3
 ---
 
 [![tests](https://github.com/ssmarco/ddev-apache-tika/actions/workflows/tests.yml/badge.svg)](https://github.com/ssmarco/ddev-apache-tika/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
