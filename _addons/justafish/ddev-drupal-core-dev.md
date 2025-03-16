@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-18
-updated_at: 2025-01-06
-stars: 28
+updated_at: 2025-03-15
+stars: 27
 ---
 
 # ddev-core-dev
