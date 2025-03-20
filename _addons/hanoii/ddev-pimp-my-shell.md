@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-03-25
-updated_at: 2025-03-18
+updated_at: 2025-03-19
 stars: 2
 ---
 
@@ -81,6 +81,8 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - https://www.rust-lang.org/
 - https://github.com/samwho/spacer
 - https://dandavison.github.io/delta/
+- https://github.com/sharkdp/bat
+- https://github.com/sharkdp/fd
 - Some useful [scripts](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/pimp-my-shell/scripts)
 
 ## Tweaks

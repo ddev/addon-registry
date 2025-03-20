@@ -5,26 +5,21 @@ description: "Install bee for Backdrop sites on ddev."
 user: backdrop-ops
 repo: ddev-backdrop-bee
 repo_id: 873926344
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-10-17
-updated_at: 2025-03-05
+updated_at: 2025-03-19
 stars: 1
 ---
 
-[![tests](https://github.com/backdrop-ops/ddev-backdrop-bee/actions/workflows/tests.yml/badge.svg)](https://github.com/backdrop-ops/ddev-backdrop-bee/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/backdrop-ops/ddev-backdrop-bee/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/backdrop-ops/ddev-backdrop-bee/actions/workflows/tests.yml?query=branch%3Amain)
+[![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)](https://github.com/backdrop-ops/ddev-backdrop-bee/commits)
+[![release](https://img.shields.io/github/v/release/backdrop-ops/ddev-backdrop-bee)](https://github.com/backdrop-ops/ddev-backdrop-bee/releases/latest)
 
-# ddev-backdrop-bee <!-- omit in toc -->
+# DDEV Backdrop Bee
 
-* [What is ddev-backdrop-bee?](#what-is-ddev-backdrop-bee)
-* [Installation](#getting-started)
-
-## What is ddev-backdrop-bee?
-
-This is a DDEV addon that will install Bee for use on Backdrop CMS sites.
-
-## What is Backdrop CMS Bee?
+## Overview
 
 Bee is a command line utility for Backdrop CMS. It includes commands that allow developers to interact with Backdrop sites, performing actions like:
 - Running cron
@@ -32,27 +27,37 @@ Bee is a command line utility for Backdrop CMS. It includes commands that allow 
 - Downloading and installing Backdrop
 - Downloading, enabling and disabling projects
 - Viewing information about a site and/or available projects
-See the Release notes and the Changelog for details of changes between versions
-[Backdrop CMS Bee Project](https://backdropcms.org/project/bee)
-[Github Project for Bee](https://github.com/backdrop-contrib/bee)
+
+See the Release notes and the Changelog for details of changes between versions:
+- [Backdrop CMS Bee Project](https://backdropcms.org/project/bee)
+- [GitHub Project for Bee](https://github.com/backdrop-contrib/bee)
+
+This add-on integrates Bee into your [DDEV](https://ddev.com/) Backdrop CMS project.
 
 ## Installation
 
-1. Install this addon
-    For DDEV v1.23.5 or above run
+To install this add-on, run:
 
-    ```sh
-    ddev add-on get backdrop-ops/ddev-backdrop-bee
-    ```
+```bash
+ddev add-on get backdrop-ops/ddev-backdrop-bee
+ddev restart
+```
 
-    For earlier versions of DDEV run
+After installation, make sure to commit the `.ddev` directory to version control.
 
-    ```sh
-    ddev get backdrop-ops/ddev-backdrop-bee
-    ```
+## Usage
 
-2. Restart DDEV with `ddev restart`.
-3. Test bee by running `ddev bee status`.
+| Command | Description |
+| ------- | ----------- |
+| `ddev bee` | Run command line utility for Backdrop CMS |
 
+Examples:
 
-**Contributed and maintained by `@jenlampton` and `@wylbur`**
+```bash
+ddev bee
+ddev bee status
+```
+
+## Credits
+
+**Contributed and maintained by [@jenlampton](https://github.com/jenlampton) and [@wylbur](https://github.com/wylbur)**
