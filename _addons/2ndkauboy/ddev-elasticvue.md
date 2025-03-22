@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: ["elasticsearch"]
 type: contrib
 created_at: 2024-05-21
-updated_at: 2024-10-24
+updated_at: 2025-03-21
 stars: 0
 ---
 
