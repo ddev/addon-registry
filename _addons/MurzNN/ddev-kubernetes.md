@@ -1,7 +1,7 @@
 ---
 title: MurzNN/ddev-kubernetes
 github_url: https://github.com/MurzNN/ddev-kubernetes
-description: "Adds Kubernetes tools (kubectl) to the DDEV project"
+description: "Adds Kubernetes tools (kubectl, krew plugins) to DDEV projects"
 user: MurzNN
 repo: ddev-kubernetes
 repo_id: 951743461
@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.2"
 dependencies: []
 type: contrib
 created_at: 2025-03-20
-updated_at: 2025-03-20
+updated_at: 2025-03-22
 stars: 1
 ---
 
@@ -21,8 +21,8 @@ This is an add-on for the [DDEV](https://ddev.readthedocs.io) project that adds 
 
 After adding, these commands will be available inside the `web` container:
 - `kubectl` (and a shortcut as just `k`).
-- `k ns` and `k ctx` - [details »](https://github.com/ahmetb/kubectx)
 - `k krew` - [details »](https://krew.sigs.k8s.io/)
+- `k ns` and `k ctx` - [details »](https://github.com/ahmetb/kubectx)
 
 ## Installation
 
