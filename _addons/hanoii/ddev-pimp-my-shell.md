@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-03-25
-updated_at: 2025-03-23
+updated_at: 2025-03-24
 stars: 2
 ---
 
@@ -84,6 +84,7 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - https://github.com/sharkdp/bat
 - https://github.com/sharkdp/fd
 - Some useful [scripts](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/pimp-my-shell/scripts)
+- https://github.com/cli/cli
 
 ## Tweaks
 
