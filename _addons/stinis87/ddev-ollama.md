@@ -9,27 +9,52 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2025-02-16
-updated_at: 2025-03-10
+updated_at: 2025-03-25
 stars: 1
 ---
 
-Makes it possible to run Ollama in ddev.
+# DDEV Ollama Add-on
 
-## Getting started
+The **DDEV Ollama Add-on** allows you to integrate [Ollama](https://ollama.com/), a powerful AI model runner, into your [DDEV](https://ddev.readthedocs.io/en/stable/) development environment. This add-on makes it easy to deploy and run language models locally, without the need for cloud-based services.  
 
-1. Install the Ollama ddev add-on and restart:
+With this integration, developers working with DDEV can leverage AI models like **Llama 3**, **Mistral**, and others directly from their local machine. This is particularly useful for web developers who want to use large language models in their projects.
 
-    ```shell
-    ddev add-on get stinis87/ddev-ollama && ddev restart
-    ```
-2. Access Ollama service:
+## Features
 
-    ```shell
-    ddev ssh -s ollama
-    ```
-3. Install and run a model. Example showcases llama but you can find the different models on https://ollama.com/search:
+- **Seamless integration**: Easily install and configure Ollama within your existing DDEV setup.
+- **Local AI model execution**: Run models like **Llama3**, **Mistral**, and more without relying on external services.
+  
+---
 
-    ```shell
-    ollama run llama3.2:3b
-    ```
+## Prerequisites
+
+Before installing the add-on, ensure you have:
+
+- [DDEV installed](https://ddev.readthedocs.io/en/stable/)
+- A working Docker setup (since DDEV relies on Docker)
+- Sufficient system resources for running AI models (depending on the complexity of the model)
+
+---
+
+## Installation
+
+You can install the **DDEV Ollama Add-on** with a single command:
+
+```bash
+ddev get stinis87/ddev-ollama && ddev restart
+```
+---
+
+## Usage
+
+**Access the Ollama service:**
+
+ddev ssh -s ollama
+
+**Install and run a model:**
+
+For example, to run the llama3.2:3b model:
+
+ollama run llama3.2:3b
+
 Ollama is now running on hostname: http://ollama, port: 11434
