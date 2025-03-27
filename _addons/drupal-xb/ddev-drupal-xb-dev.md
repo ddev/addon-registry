@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-11
-updated_at: 2025-03-24
+updated_at: 2025-03-26
 stars: 15
 ---
 
@@ -51,7 +51,7 @@ ddev config --project-type=drupal --php-version=8.3 --docroot=web
 ddev composer create drupal/recommended-project:10.x@dev --no-install
 
 # Install the add-on.
-ddev add-on get TravisCarden/ddev-drupal-xb-dev
+ddev add-on get drupal-xb/ddev-drupal-xb-dev
 
 # Perform one-time setup operations.
 ddev xb-setup
