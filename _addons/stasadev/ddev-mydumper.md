@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-08-22
-updated_at: 2025-03-12
+updated_at: 2025-03-27
 stars: 2
 ---
 
@@ -40,8 +40,8 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Command | Description |
 | ------- | ----------- |
-| `ddev mydumper` | Backup export. |
-| `ddev myloader` | Backup import. |
+| `ddev mydumper` | Backup export |
+| `ddev myloader` | Backup import |
 
 Examples:
 
@@ -75,4 +75,4 @@ All customization options (use with caution):
 
 ## Credits
 
-Contributed and maintained by [@stasadev](https://github.com/stasadev).
+**Contributed and maintained by [@stasadev](https://github.com/stasadev)**
