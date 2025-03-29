@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2022-04-15
-updated_at: 2025-03-12
-stars: 31
+updated_at: 2025-03-28
+stars: 32
 ---
 
 # ddev-browsersync <!-- omit in toc -->

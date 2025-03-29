@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-xhgui
 github_url: https://github.com/ddev/ddev-xhgui
-description: "XHGui service for a DDEV project"
+description: "XHGui web interface for XHProf profiling"
 user: ddev
 repo: ddev-xhgui
 repo_id: 620681072
@@ -9,7 +9,7 @@ ddev_version_constraint: ">=1.24.0-0, <1.24.4-0"
 dependencies: []
 type: official
 created_at: 2023-03-29
-updated_at: 2025-03-26
+updated_at: 2025-03-28
 stars: 15
 ---
 
@@ -63,7 +63,7 @@ ddev logs -s xhgui
 
 To configure XHGui, add `.ddev/xhgui/xhgui.config.php`.
 
-For example, to set xhgui to use `Asia/Toyko` timezone for dates:
+For example, to set xhgui to use `Asia/Tokyo` timezone for dates:
 
 - Remove `#ddev-generated` from `.ddev/xhgui/xhgui.config.php`
 - Change the timezone value
