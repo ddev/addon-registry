@@ -9,8 +9,8 @@ ddev_version_constraint: ">=1.24.0-0, <1.24.4-0"
 dependencies: []
 type: official
 created_at: 2023-03-29
-updated_at: 2025-03-28
-stars: 15
+updated_at: 2025-03-29
+stars: 16
 ---
 
 [![tests](https://github.com/ddev/ddev-xhgui/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-xhgui/actions/workflows/tests.yml?query=branch%3Amain)
