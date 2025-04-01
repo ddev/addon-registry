@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-18
-updated_at: 2025-03-15
+updated_at: 2025-03-31
 stars: 27
 ---
 
@@ -24,7 +24,7 @@ git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
 ddev config --omit-containers=db --disable-settings-management
 ddev start
-ddev get justafish/ddev-drupal-core-dev
+ddev add-on get justafish/ddev-drupal-core-dev 
 ddev restart
 ddev composer install
 

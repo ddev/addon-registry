@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-17
-updated_at: 2025-03-25
+updated_at: 2025-03-31
 stars: 6
 ---
 
@@ -41,7 +41,7 @@ For more details check the connection section below.
 
 ### YAML configuration
 
-The [config.rabbitmq.yaml](https://github.com/b13/ddev-rabbitmq/blob/main/config.rabbitmq.yaml) describes
+The [rabbitmq/config.yaml](https://github.com/b13/ddev-rabbitmq/blob/main/rabbitmq/config.yaml) describes
 vhosts, queues, users, and plugins.
 
 The configuration can be applied with the following command:
