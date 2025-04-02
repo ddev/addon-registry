@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-02-08
-updated_at: 2025-03-19
-stars: 2
+updated_at: 2025-04-01
+stars: 3
 ---
 
 [![tests](https://github.com/julienloizelet/ddev-portainer/actions/workflows/tests.yml/badge.svg)](https://github.com/julienloizelet/ddev-portainer/actions/workflows/tests.yml)

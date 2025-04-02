@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-11
-updated_at: 2025-03-29
-stars: 16
+updated_at: 2025-04-01
+stars: 18
 ---
 
 # DDEV Drupal Experience Builder Development Environment
