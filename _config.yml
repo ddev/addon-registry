@@ -15,7 +15,12 @@ description: >-
   explore, and leave comments on available add-ons.
 
 logo: /assets/logo.png
-markdown: GFM
+markdown: kramdown
+
+kramdown:
+  parse_block_html: true
+  parse_span_html: true
+  html_to_native: true
 
 include:
   - _pages
