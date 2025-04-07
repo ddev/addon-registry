@@ -46,6 +46,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-gfm-admonitions
   - jemoji
 
 whitelist:
@@ -54,6 +55,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-gfm-admonitions
   - jemoji
 
 defaults:
