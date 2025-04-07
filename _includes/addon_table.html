@@ -103,7 +103,7 @@
                     if (e.target.tagName.toLowerCase() !== 'a' && url) {
                         if(e.which === 2 || e.ctrlKey || e.metaKey) {
                             window.open(url);
-                        } else {
+                        } else if (e.which === 1) {
                             window.location.href = url;
                         }                        
                     }
