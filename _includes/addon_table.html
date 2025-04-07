@@ -99,9 +99,13 @@
                 var url = $(row).find('.name').data('url');
 
                 // Assign click event to the entire row
-                $(row).click(function() {
-                    if (url) {
-                        window.location.href = url;
+                $(row).on('mousedown', function(e) {
+                    if (e.target.tagName.toLowerCase() !== 'a' && url) {
+                        if(e.which === 2 || e.ctrlKey || e.metaKey) {
+                            window.open(url);
+                        } else if (e.which === 1) {
+                            window.location.href = url;
+                        }                        
                     }
                 });
                 $(row).css('cursor','pointer');
