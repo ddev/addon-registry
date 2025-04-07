@@ -53,11 +53,19 @@ pre {
     max-width: 100%;
 }
 
-#content-wrapper table,
+#content-wrapper table {
+    width: auto;
+    min-width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border: none;
+    border-collapse: collapse;
+}
+
 #content-wrapper th,
 #content-wrapper td {
     border: 1px solid black;
-    border-collapse: collapse;
     padding: 8px;
 }
 
