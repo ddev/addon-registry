@@ -28,7 +28,8 @@ Getting started with the DDEV Add-on Registry locally is straightforward. Here's
 1. Clone the repository: <https://github.com/ddev/addon-registry>
 2. Run `ddev start` to spin up the environment
 3. Then, launch it by running `ddev launch :4000`
-4. To update add-ons manually:
+4. To blacklist an add-on, add it to the `blacklist` array in `go/main.go` at the top of the file. The changes will take effect after `git push`
+5. To update add-ons manually (not required, as it's automated using GitHub Actions):
     ```bash
     export DDEV_ADDON_REGISTRY_TOKEN=your-classic-github-token-no-privileges
     cd go
