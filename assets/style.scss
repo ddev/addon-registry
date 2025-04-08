@@ -69,6 +69,11 @@ pre {
     padding: 8px;
 }
 
+#content-wrapper summary p {
+    display: inline;
+    margin-left: 0.5rem;
+}
+
 a:link, a:visited {
     color: $accent;
 }
