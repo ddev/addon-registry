@@ -69,6 +69,10 @@ pre {
     padding: 8px;
 }
 
+#content-wrapper summary {
+    cursor: pointer;
+}
+
 #content-wrapper summary p {
     display: inline;
     margin-left: 0.5rem;
