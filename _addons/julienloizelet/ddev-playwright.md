@@ -126,9 +126,9 @@ You can choose to use `npm` or `yarn` as package manager by using the `--pm` opt
 
 You will find an example of such a file in the `tests/project_root/tests/Playwright`folder of this repository.
 
-<details>
+<details markdown="1">
 
-<summary>Example of package.json file</summary>
+<summary markdown="span">Example of package.json file</summary>
 
 ```json
 {
@@ -144,8 +144,8 @@ You will find an example of such a file in the `tests/project_root/tests/Playwri
 
 You will also find an example of a `playwright.config.js` file.
 
-<details>
-<summary>Example of playwright.config.js file</summary>
+<details markdown="1">
+<summary markdown="span">Example of playwright.config.js file</summary>
 
 ```javascript
 // @ts-check
