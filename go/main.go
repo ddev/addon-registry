@@ -230,6 +230,9 @@ func getRepoReadme(repo *github.Repository) (string, error) {
 	// Replace relative links with full links
 	updatedContent := replaceRelativeLinks(content, repo)
 
+	// GitHub spoilers rendering
+	updatedContent = formatGitHubSpoilers(updatedContent)
+
 	return updatedContent, nil
 }
 
@@ -276,6 +279,13 @@ func replaceRelativeLinks(content string, repo *github.Repository) string {
 	})
 
 	return updatedContent
+}
+
+func formatGitHubSpoilers(content string) string {
+	return strings.NewReplacer(
+		`<details>`, `<details markdown="1">`,
+		`<summary>`, `<summary markdown="span">`,
+	).Replace(content)
 }
 
 // isFileChanged checks if a file has changed
