@@ -95,20 +95,15 @@
                 search: "Search add-ons:",
             },
             createdRow: function(row, data, dataIndex) {
-                // Get the URL from the "data-url" attribute of the td with class "addon-name"
-                var url = $(row).find('.name').data('url');
-
-                // Assign click event to the entire row
-                $(row).on('mousedown', function(e) {
-                    if (e.target.tagName.toLowerCase() !== 'a' && url) {
-                        if(e.which === 2 || e.ctrlKey || e.metaKey) {
-                            window.open(url);
-                        } else if (e.which === 1) {
-                            window.location.href = url;
-                        }                        
-                    }
-                });
-                $(row).css('cursor','pointer');
+                const $cells = $('td', row);
+                const $link = $('<a>')
+                    .attr('href', $(row).find('.name').data('url'))
+                    .css({
+                        display: 'contents',
+                        color: 'inherit',
+                        textDecoration: 'none'
+                    });
+                $cells.wrapAll($link);
             },
         });
 
