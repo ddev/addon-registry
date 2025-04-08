@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strings"
 	"time"
 
@@ -14,6 +15,14 @@ import (
 	"golang.org/x/oauth2"
 	"gopkg.in/yaml.v3"
 )
+
+// Excluded add-ons that we don't want to show
+var blacklist = []string{
+	// We have an official add-on for this
+	"sebastian-ehrling/ddev-opensearch",
+	// XHGui is bundled with DDEV
+	"oblakstudio/ddev-xhgui-pro",
+}
 
 func main() {
 	repos, err := listAvailableAddons(false)
@@ -27,6 +36,9 @@ func main() {
 	checkErr(err)
 
 	for _, repo := range repos {
+		if inBlacklist(repo) {
+			continue
+		}
 		err := createRepoMarkdown(repo)
 		if err != nil {
 			log.Errorf("Failed to create markdown file for %s: %v", repo.GetFullName(), err)
@@ -36,6 +48,10 @@ func main() {
 			log.Errorf("Failed to create index file for %s: %v", repo.GetFullName(), err)
 		}
 	}
+}
+
+func inBlacklist(repo *github.Repository) bool {
+	return slices.Contains(blacklist, repo.GetFullName())
 }
 
 // listAvailableAddons lists the add-ons that are listed on GitHub
