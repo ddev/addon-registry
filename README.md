@@ -42,7 +42,7 @@ You'll now be able to explore the add-ons within the registry right on your loca
 
 Here's a breakdown of where important content and configuration files live:
 
-- **`.bundle`**: A script for installing Jekyll dependencies.
+- **`.bundle`**: Contains config for local bundler.
 - **`.ddev`**: The DDEV configuration directory.
 - **`.github`**: The GitHub workflows that handle the deployment process.
 - **`_addons`**: Custom Jekyll collection that holds all the add-ons fetched from the community.
