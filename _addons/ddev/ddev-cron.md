@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2022-05-19
-updated_at: 2025-03-04
-stars: 24
+updated_at: 2025-04-08
+stars: 25
 ---
 
 [![tests](https://github.com/ddev/ddev-cron/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-cron/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
