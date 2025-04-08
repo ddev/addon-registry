@@ -32,6 +32,6 @@ web_extra_exposed_ports:
       https_port: 4010
 web_extra_daemons:
     - name: jekyll-dev-daemon
-      command: bash -c 'bash .bundle/install && touch /var/tmp/bundleinstalldone && bundle exec jekyll serve --host=0.0.0.0 --baseurl="" --livereload --livereload-port=4010'
+      command: bash -c 'bundle install && touch /var/tmp/bundleinstalldone && bundle exec jekyll serve --host=0.0.0.0 --baseurl="" --livereload --livereload-port=4010'
       directory: /var/www/html
 ddev_version_constraint: '>= v1.24.2'
