@@ -9,11 +9,11 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2022-01-26
-updated_at: 2025-03-22
+updated_at: 2025-04-09
 stars: 29
 ---
 
-[![tests](https://github.com/ddev/ddev-redis/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-redis/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/ddev/ddev-redis/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-redis/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
 ## What is this?
 
