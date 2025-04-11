@@ -5,21 +5,23 @@ description: "Schedule commands to execute within DDEV"
 user: ddev
 repo: ddev-cron
 repo_id: 493892311
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-05-19
-updated_at: 2025-04-08
+updated_at: 2025-04-11
 stars: 25
 ---
 
-[![tests](https://github.com/ddev/ddev-cron/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-cron/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
+[![tests](https://github.com/ddev/ddev-cron/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-cron/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-cron)](https://github.com/ddev/ddev-cron/commits)
+[![release](https://img.shields.io/github/v/release/ddev/ddev-cron)](https://github.com/ddev/ddev-cron/releases/latest)
 
-# DDEV-CRON <!-- omit in toc -->
+# DDEV Cron <!-- omit in toc -->
 
-- [Introduction](#introduction)
-- [Getting started](#getting-started)
-- [Implementation](#implementation)
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
   - [\*.cron](#cron)
 - [Useful sites and debugging](#useful-sites-and-debugging)
 - [Examples](#examples)
@@ -29,42 +31,34 @@ stars: 25
   - [OpenMage cron](#openmage-cron)
   - [TYPO3 scheduler](#typo3-scheduler)
   - [WordPress cron](#wordpress-cron)
+- [Credits](#credits)
 
-## Introduction
+## Overview
 
-This DDEV add-on helps to execute a command in the web container based on a cron schedule. Cron is a classic Linux/Unix service with a well-known configuration syntax.
+The [cron command-line utility](https://en.wikipedia.org/wiki/Cron) is a job scheduler on Unix-like operating systems.
 
-The add-on:
+This add-on:
 
-- Installs and runs the cron service inside the web container
+- Helps to execute a command in the web container based on a cron schedule.
+- Installs and runs the cron service inside the web container.
 - Adds an example job that writes out the current time.
 
 *This extension is designed to be a generic implementation. See [Running TYPO3 Cron inside the web container](https://github.com/ddev/ddev-contrib/tree/master/recipes/cronjob) for a specific example of a manual setup.*
 
-## Getting started
+## Installation
 
-- Install the DDEV cron add-on:
+To install this add-on, run:
 
-  For DDEV v1.23.5 or above run
+```bash
+ddev add-on get ddev/ddev-cron
+# modify/rename/adjust the time.cron file for your needs
+cp .ddev/web-build/time.cron.example .ddev/web-build/time.cron
+ddev restart
+```
 
-  ```shell
-  ddev add-on get ddev/ddev-cron
-  ```
+After installation, make sure to commit the `.ddev` directory to version control.
 
-  For earlier versions of DDEV run
-
-  ```shell
-  ddev get ddev/ddev-cron
-  ```
-
-- Add at least one `.ddev/web-build/*.cron` file. This will be automatically added to crontab on startup. See [Implementation](#implementation)
-- Restart DDEV to apply changes:
-
-  ```shell
-  ddev restart
-  ```
-
-## Implementation
+## Usage
 
 This extension does the following:
 
@@ -155,6 +149,8 @@ Every minute, it writes the current time (UTC timezone) to `./time.log`.
 
 - This configuration will run the WordPress scheduler every 15 minutes and will create a `cron.log` file in the root of your project
 
+## Credits
+
 **Contributed and maintained by [@tyler36](https://github.com/tyler36) based on the original [Running TYPO3 Cron inside the web container](https://github.com/ddev/ddev-contrib/tree/master/recipes/cronjob) by [@thomaskieslich](https://github.com/thomaskieslich)**
 
-**Originally Contributed by [@thomaskieslich](https://github.com/thomaskieslich) in <https://github.com/ddev/ddev-contrib/tree/master/recipes/cronjob>)**
+**Originally contributed by [@thomaskieslich](https://github.com/thomaskieslich) in <https://github.com/ddev/ddev-contrib/tree/master/recipes/cronjob>)**
