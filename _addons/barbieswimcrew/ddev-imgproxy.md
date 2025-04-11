@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-11-06
-updated_at: 2024-11-07
+updated_at: 2025-04-10
 stars: 0
 ---
 
@@ -25,7 +25,7 @@ In addition to the paid version, the free, self-hosted version of imgproxy (open
 
 ## Installation
 
-Uses [imgproxy official image](https://hub.docker.com/r/darthsim/imgproxy/)
+Uses [imgproxy official image](https://ghcr.io/imgproxy/imgproxy)
 
 
 ```sh
@@ -43,7 +43,7 @@ Navigating to your DDEV project's hostname:8081 (for example https://imgproxy.dd
 
 ## Explanation
 
-This recipe for [DDEV](https://ddev.readthedocs.io) installs a [.ddev/docker-compose.imgproxy.yaml](https://github.com/barbieswimcrew/ddev-imgproxy/blob/main/docker-compose.imgproxy.yaml) using the `darthsim/imgproxy` Docker image.
+This recipe for [DDEV](https://ddev.readthedocs.io) installs a [.ddev/docker-compose.imgproxy.yaml](https://github.com/barbieswimcrew/ddev-imgproxy/blob/main/docker-compose.imgproxy.yaml) using the `ghcr.io/imgproxy/imgproxy` Docker image.
 
 As soon as imgproxy is running successfully, requests can be sent to imgproxy to convert images from a source format to the desired target format. A prominent scenario for this is the generation of thumbnails:
 

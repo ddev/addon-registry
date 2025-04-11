@@ -9,12 +9,12 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-03-11
-updated_at: 2025-04-01
+updated_at: 2025-04-10
 stars: 8
 ---
 
 [![tests](https://github.com/ddev/ddev-adminer/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-adminer/actions/workflows/tests.yml?query=branch%3Amain)
-[![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)](https://github.com/ddev/ddev-adminer/commits)
+[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-adminer)](https://github.com/ddev/ddev-adminer/commits)
 [![release](https://img.shields.io/github/v/release/ddev/ddev-adminer)](https://github.com/ddev/ddev-adminer/releases/latest)
 
 # DDEV Adminer
