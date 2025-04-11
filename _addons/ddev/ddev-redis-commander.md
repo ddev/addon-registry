@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: ["redis"]
 type: official
 created_at: 2022-03-22
-updated_at: 2025-03-07
+updated_at: 2025-04-11
 stars: 5
 ---
 

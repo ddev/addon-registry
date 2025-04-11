@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2023-08-13
-updated_at: 2025-02-21
+updated_at: 2025-04-10
 stars: 6
 ---
 
@@ -30,9 +30,22 @@ It's based on [MinIO official image](https://hub.docker.com/r/minio/minio) and [
 
 ## Installation
 
+For DDEV v1.23.5 or above run
+
 ```bash
-$ ddev get ddev/ddev-minio
-$ ddev restart
+ddev add-on get ddev/ddev-minio
+```
+
+For earlier versions of DDEV run
+
+```bash
+ddev get ddev/ddev-minio
+```
+
+Then restart the project
+
+```bash
+ddev restart
 ```
 
 ## Configuration
@@ -61,7 +74,7 @@ Example URLs for accessing files are
 Since MinIO is S3 compatible you can use [AWS PHP SDK](https://packagist.org/packages/aws/aws-sdk-php). Install it with composer:
 
 ```bash
-$ ddev composer require aws/aws-sdk-php
+ddev composer require aws/aws-sdk-php
 ```
 
 ### Basic usage
