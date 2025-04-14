@@ -46,6 +46,7 @@ exclude:
 
 plugins:
   - jekyll-gfm-admonitions
+  - jekyll-redirect-from
 
 defaults:
   - scope:
