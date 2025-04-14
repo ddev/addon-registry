@@ -2,9 +2,11 @@
 layout: index
 ---
 
-<h1>
-    <a href="{{ site.baseurl | default: '/' }}" style="text-decoration: none;">{{ site.title }}</a> / <a href="{{ site.baseurl }}/addons/{{ page.user }}" style="text-decoration: none;">{{ page.user }}</a> / {{ page.repo }}
-</h1>
+<header class="header">
+    <h1>
+        <a href="{{ site.baseurl | default: '/' }}" style="text-decoration: none;">{{ site.title }}</a> / <a href="{{ site.baseurl }}/addons/{{ page.user }}" style="text-decoration: none;">{{ page.user }}</a> / {{ page.repo }}
+    </h1>
+</header>
 
 <div id="content-wrapper">
     {%- assign split_content = content | split: '</p>' -%}
@@ -19,15 +21,13 @@ layout: index
     </div>
 </div>
 
-<div class="dt-buttons">
+<div class="sort-buttons">
     {%- if split_content.size > 4 -%}
-    <button class="dt-button" type="button" id="read-more-btn" onclick="toggleContent()">Read more</button>
+    <button class="sort" type="button" id="read-more-btn" onclick="toggleContent()" title="Read more" aria-label="Read more">Read more</button>
     {%- endif -%}
-    <button class="dt-button" type="button" onclick="window.open('{{ page.github_url }}', '_blank')">View on GitHub</button>
-    <button class="dt-button" type="button" onclick="window.open('{{ page.github_url }}/issues', '_blank')">Report an issue</button>
+    <button class="sort" type="button" onclick="window.open('{{ page.github_url }}', '_blank')" title="View add-on on GitHub" aria-label="View add-on on GitHub">View on GitHub</button>
+    <button class="sort" type="button" onclick="window.open('{{ page.github_url }}/issues', '_blank')" title="Report an issue on GitHub" aria-label="Report an issue on GitHub">Report an issue</button>
 </div>
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.1/css/buttons.dataTables.css" />
-
 <script>
     function toggleContent() {
         var content = document.getElementById("hidden-content");
@@ -54,7 +54,11 @@ layout: index
     });
 </script>
 
-<div style="border-top: 1px solid #ddd; margin-top: 10px"></div>
+<div style="border-top: 1px solid #ddd; margin: 25px 0;"></div>
+
+<script>
+    const giscusTheme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark_dimmed';
+</script>
 
 <script src="https://giscus.app/client.js"
         data-repo="ddev/giscus-comments"
@@ -66,7 +70,7 @@ layout: index
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="top"
-        data-theme="light"
+        data-theme="preferred_color_scheme"
         data-lang="en"
         data-loading="lazy"
         crossorigin="anonymous"
