@@ -3,8 +3,8 @@
 
 official:
   label: Official
-  description: Official add-on supported by DDEV.
+  description: Official add-on supported by DDEV
 
 contrib:
   label: Contrib
-  description: Community contributed add-on.
+  description: Community contributed add-on

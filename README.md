@@ -2,7 +2,7 @@
 
 # DDEV Add-on Registry
 
-A registry for DDEV add-ons where users can discover, explore, and leave comments on available add-ons.
+A registry of DDEV add-ons where users can discover, explore, and leave comments on available add-ons.
 
 See [DDEV Add-on Registry Introduction](https://ddev.com/blog/ddev-addon-registry-introduction/).
 
@@ -17,7 +17,7 @@ For inspiration, [@stasadev](https://github.com/stasadev) looked to the simplici
 Here are the key tools used to build the DDEV Add-on Registry:
 
 - [GitHub Pages and Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll): Jekyll powers the static site, while GitHub Pages hosts it.
-- [DataTables](https://datatables.net/): For sorting and searching add-on entries.
+- [List.js](https://listjs.com/): For sorting and searching add-on entries.
 - Add-on comments: [giscus integration](https://github.com/ddev/giscus-comments).
 - Golang: Used to aggregate add-on data into Markdown files, which are transformed into Liquid templates for Jekyll.
 

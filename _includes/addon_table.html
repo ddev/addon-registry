@@ -1,125 +1,61 @@
-<p>
-    A registry of <a href="https://ddev.readthedocs.io/en/stable/users/extend/additional-services/" target="_blank">DDEV add-ons</a> where users can discover, explore, and leave comments on available add-ons.
-</p>
-
-<p>
+<div class="description">
+    A registry of <a href="https://ddev.readthedocs.io/en/stable/users/extend/additional-services/" target="_blank" title="Learn more about DDEV add-ons" aria-label="Learn more about DDEV add-ons">DDEV add-ons</a>
+    where users can discover, explore, and leave comments on available add-ons.<br />
     If you have an add-on but don't see it listed here, add the <code>ddev-get</code>
-    <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics" target="_blank">topic</a>
-    to your GitHub repository.
-</p>
+    <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics" target="_blank" title="Learn more about GitHub topics" aria-label="Learn more about GitHub topics">topic</a> to your GitHub repository.
+</div>
 
 {%- assign official_addons = site.addons | where_exp: "addon", "addon.group == nil" | where_exp: "addon", "addon.user == 'ddev'" | sort: "repo" -%}
 {%- assign contrib_addons = site.addons | where_exp: "addon", "addon.group == nil" | where_exp: "addon", "addon.user != 'ddev'" | sort: "repo" -%}
 {%- assign all_addons = official_addons | concat: contrib_addons -%}
 
-<div id="addon-search-wrapper">
-    {%- if page.group -%}
-        <input id="addon-search" type="text" placeholder="{{ include.filter_by_user }} / search among {{ site.addons | where_exp: "addon", "addon.user == include.filter_by_user" | size }} add-on(s)..."/>
-    {%- else -%}
-        <input id="addon-search" type="text" placeholder="Search among {{ site.addons | where_exp: "addon", "addon.group == nil" | size }} add-on(s)..."/>
-    {%- endif -%}
+<div id="addon-wrapper">
+
+    <div class="search-bar">
+        {%- if page.group -%}
+        <input type="text" class="fuzzy-search" placeholder="{{ include.filter_by_user }} / search among {{ site.addons | where_exp: "addon", "addon.user == include.filter_by_user" | size }} add-on(s)…" title="Search add-ons" aria-label="Search add-ons" tabindex="1" autocomplete="off">
+        {%- else -%}
+        <input type="text" class="fuzzy-search" placeholder="Search among {{ site.addons | where_exp: "addon", "addon.group == nil" | size }} add-on(s)…" title="Search add-ons" aria-label="Search add-ons" tabindex="1" autocomplete="off">
+        {%- endif -%}
+    </div>
+
+    <div class="sort-buttons">
+        <button class="sort" data-sort="name" title="Sort add-ons by name" aria-label="Sort add-ons by name" tabindex="2">Sort by name</button>
+        <button class="sort" data-sort="stars" data-default-order="desc" title="Sort add-ons by stars" aria-label="Sort add-ons by stars" tabindex="2">Sort by stars</button>
+        <button class="sort" data-sort="updated_at" data-default-order="desc" title="Sort add-ons by update date" aria-label="Sort add-ons by update date" tabindex="2">Sort by date</button>
+    </div>
+
+    <div class="card-grid list">
+        {%- for addon in all_addons -%}
+        {%- if include.filter_by_user and addon.user != include.filter_by_user %}{% continue %}{% endif -%}
+            <div class="card">
+                <a href="{{ site.baseurl }}{{ addon.url }}" class="card-link" title="View details for {{ addon.repo }}" aria-label="View details for {{ addon.repo }}" tabindex="3">
+                    <div class="title name">{{ addon.repo }} {% include addon_types_list.html addon=addon %}</div>
+                    <div class="description">{% unless include.filter_by_user %}[<object><a href="{{ site.baseurl }}/addons/{{ addon.user }}/" tabindex="-1">{{ addon.user }}</a></object>]{% endunless %} {{ addon.description }}</div>
+                    <div class="footer">
+                        <span class="updated_at">{{ addon.updated_at }}</span>
+                        <span class="stars">⭐ {{ addon.stars | to_integer }}</span>
+                    </div>
+                </a>
+            </div>
+        {%- endfor -%}
+    </div>
+    <div class="pagination"></div>
 </div>
 
-<div id="addon-table-wrapper">
-    <table id="addon-table">
-        <thead>
-            <tr>
-                <th>Add-on</th>
-                <th>Description</th>
-                <th style="white-space: nowrap;">Updated At</th>
-                <th>Type</th>
-                <th>Stars</th>
-            </tr>
-        </thead>
-        <tbody class="list">
-            {%- for addon in all_addons -%}
-                {%- if include.filter_by_user and addon.user != include.filter_by_user %}{% continue %}{% endif -%}
-                <tr>
-                    <td class="name" data-url="{{ site.baseurl }}{{ addon.url }}">{{ addon.repo }}</td>
-                    <td class="description">{% unless include.filter_by_user %}[<a href="{{ site.baseurl }}/addons/{{ addon.user }}/">{{ addon.user }}</a>]{% endunless %} {{ addon.description }}</td>
-                    <td class="updated_at" style="white-space: nowrap;">{{ addon.updated_at }}</td>
-                    <td class="type">{% include addon_types_list.html addon=addon %}</td>
-                    <td class="stars" data-order="{{ addon.stars | to_integer }}">
-                        {{ addon.stars | to_integer }}
-                    </td>
-                </tr>
-            {%- endfor -%}
-        </tbody>
-    </table>
-</div>
-
-<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.1/css/buttons.dataTables.css" />
-<script src="https://cdn.datatables.net/buttons/3.2.1/js/dataTables.buttons.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.2.1/js/buttons.dataTables.js"></script>
-
+<!-- Local copy with data-default-order https://github.com/javve/list.js/pull/301 -->
+<!-- getOrder:function(e){var r=t.utils.getAttribute(e,"data-order"),n=t.utils.getAttribute(e,"data-default-order");return"asc"==r||"desc"==r?r:t.utils.classes(e).has("desc")?"asc":t.utils.classes(e).has("asc")?"desc":"asc"==n||"desc"==n?n:"asc"} -->
+<script src="{{ site.baseurl }}/assets/list-2.3.1.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var table = $('#addon-table').DataTable({
-            layout: {
-                topEnd: {
-                    buttons: [
-                        {
-                            text: 'addons.json',
-                            action: function (e, dt, node, config) {
-                                window.open("{{ site.baseurl }}/addons.json");
-                            }
-                        },
-                        {%- if include.filter_by_user -%}
-                        {
-                            text: 'View all',
-                            action: function (e, dt, node, config) {
-                                window.location.href = "{{ site.baseurl | default: '/' }}";
-                            }
-                        },
-                        {%- endif -%}
-                    ]
-                },
-            },
-            ordering: true,
-            paging: true,
-            info: true,
-            lengthChange: true,
-            pageLength: 25,
-            order: [],
-            columnDefs: [
-                { orderable: false, targets: 3 }, // Disable sorting on Type
-                { searchable: false, targets: [2, 3, 4] }, // Disable search on Updated At, Type, Stars
-                { "orderSequence": ["desc", "asc", ""], targets: 4 }, // Sort by highest Stars first
-                { width: '25%', targets: 0 },
-            ],
-            language: {
-                lengthMenu: "Show _MENU_ add-ons",
-                info: "Showing _START_ to _END_ of _TOTAL_ add-ons",
-                infoFiltered: "(filtered from _MAX_ total add-ons)",
-                infoEmpty: "Showing 0 to 0 of 0 add-ons",
-                zeroRecords: "No add-ons found",
-                search: "Search add-ons:",
-            },
-            createdRow: function(row, data, dataIndex) {
-                const $cells = $('td', row);
-                const $link = $('<a>')
-                    .attr('href', $(row).find('.name').data('url'))
-                    .css({
-                        display: 'contents',
-                        color: 'inherit',
-                        textDecoration: 'none'
-                    });
-                $cells.wrapAll($link);
-            },
-        });
-
-        // Reapply table filter if search field has a value (e.g., after back navigation)
-        if ($('#addon-search').val()) {
-            table.search($('#addon-search').val()).draw();
-        }
-
-        $('#addon-search').on('keyup', function() {
-            table.search(this.value).draw();
-        });
+    new List('addon-wrapper', {
+        valueNames: [
+            'name',
+            'stars',
+            'description',
+            'type',
+            'updated_at',
+        ],
+        pagination: true,
+        page: 24,
     });
 </script>
