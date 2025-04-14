@@ -32,9 +32,11 @@ exclude:
   - .ddev/
   - .git/
   - .github/
+  - .idea/
   - .jekyll-cache/
   - .sass-cache/
   - .jekyll-metadata
+  - .vscode/
   - Gemfile
   - Gemfile.lock
   - go
