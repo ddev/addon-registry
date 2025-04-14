@@ -13,7 +13,7 @@ baseurl: ""
 repository: ddev/addon-registry
 
 description: >-
-  A registry for DDEV add-ons where users can discover,
+  A registry of DDEV add-ons where users can discover,
   explore, and leave comments on available add-ons.
 
 logo: /assets/logo.png
@@ -37,6 +37,7 @@ exclude:
   - .sass-cache/
   - .jekyll-metadata
   - .vscode/
+  - _site/
   - Gemfile
   - Gemfile.lock
   - go
