@@ -15,7 +15,7 @@
         })();
     </script>
     <link rel="icon" href="{{ site.baseurl }}{{ site.logo }}">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css?v={{ site.clear_cache_date }}" type="text/css"/>
 </head>
 <body>
 <div class="container">
@@ -38,6 +38,6 @@
     </footer>
 </div>
 
-<script src="{{ site.baseurl }}/assets/main.js"></script>
+<script src="{{ site.baseurl }}/assets/main.js?v={{ site.clear_cache_date }}"></script>
 </body>
 </html>
