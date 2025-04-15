@@ -62,6 +62,13 @@
         },
         page: 24,
     });
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('page')) {
+            e.preventDefault();
+            const el = document.scrollingElement || document.documentElement;
+            el.scrollTo({ top: el.scrollHeight });
+        }
+    });
     if ((addonList.size() / addonList.page) <= 1) {
         document.getElementsByClassName('pagination')[0].style.display = 'none';
     }
