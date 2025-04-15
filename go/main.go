@@ -143,6 +143,11 @@ func createRepoMarkdown(repo *github.Repository) error {
 		dependencies = fmt.Sprintf(`["%s"]`, strings.Join(installYaml.Dependencies, `", "`))
 	}
 
+	lastCommitDate, err := getLastCommitDate(org, repoName)
+	if err != nil {
+		lastCommitDate = repo.GetUpdatedAt().Format(time.DateOnly)
+	}
+
 	// Create the front matter (YAML-like header)
 	addonType := "contrib"
 	if org == "ddev" {
@@ -175,7 +180,7 @@ stars: %d
 		dependencies,
 		addonType,
 		repo.GetCreatedAt().Format(time.DateOnly),
-		repo.GetUpdatedAt().Format(time.DateOnly),
+		lastCommitDate,
 		repo.GetStargazersCount(),
 		strings.TrimSpace(readmeContent),
 	)
@@ -193,6 +198,25 @@ stars: %d
 
 	log.Infof("Updated repo: %s", repo.GetFullName())
 	return nil
+}
+
+// getLastCommitDate retrieves the date of the latest commit on the repository's default branch.
+// This assumes the default branch is "main" or "master", which covers the vast majority of cases.
+// It avoids an extra API call per repo, so it's not 100% reliable, but it's fast and good enough for most use cases.
+func getLastCommitDate(owner, repo string) (string, error) {
+	ctx := context.Background()
+	client := GetGithubClient(context.Background())
+	// Get the repo to know the default branch
+	commits, _, err := client.Repositories.ListCommits(ctx, owner, repo, &github.CommitsListOptions{
+		ListOptions: github.ListOptions{PerPage: 1},
+	})
+	if err != nil {
+		return "", err
+	}
+	if len(commits) == 0 {
+		return "", fmt.Errorf("no commits found")
+	}
+	return commits[0].GetCommit().GetAuthor().GetDate().Format(time.DateOnly), nil
 }
 
 // createIndexFile creates a markdown file for each repository in the structure _addons/<org>/<repo>.md
