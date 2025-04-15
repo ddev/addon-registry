@@ -47,7 +47,7 @@
 <!-- getOrder:function(e){var r=t.utils.getAttribute(e,"data-order"),n=t.utils.getAttribute(e,"data-default-order");return"asc"==r||"desc"==r?r:t.utils.classes(e).has("desc")?"asc":t.utils.classes(e).has("asc")?"desc":"asc"==n||"desc"==n?n:"asc"} -->
 <script src="{{ site.baseurl }}/assets/list-2.3.1.min.js"></script>
 <script>
-    new List('addon-wrapper', {
+    let addonList = new List('addon-wrapper', {
         valueNames: [
             'name',
             'stars',
@@ -55,7 +55,14 @@
             'type',
             'updated_at',
         ],
-        pagination: true,
+        pagination: {
+            innerWindow: 5,
+            outerWindow: 1,
+            item: "<li><a class='page' href='javascript:;' tabindex='4'></a></li>",
+        },
         page: 24,
     });
+    if ((addonList.size() / addonList.page) <= 1) {
+        document.getElementsByClassName('pagination')[0].style.display = 'none';
+    }
 </script>
