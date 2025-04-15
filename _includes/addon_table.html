@@ -13,9 +13,9 @@
 
     <div class="search-bar">
         {%- if page.group -%}
-        <input type="text" class="fuzzy-search" placeholder="{{ include.filter_by_user }} / search among {{ site.addons | where_exp: "addon", "addon.user == include.filter_by_user" | size }} add-on(s)…" title="Search add-ons" aria-label="Search add-ons" tabindex="1" autocomplete="off">
+        <input id="addon-search" type="search" placeholder="{{ include.filter_by_user }} / search among {{ site.addons | where_exp: "addon", "addon.user == include.filter_by_user" | size }} add-on(s)…" title="Search add-ons" aria-label="Search add-ons" tabindex="1" autocomplete="off">
         {%- else -%}
-        <input type="text" class="fuzzy-search" placeholder="Search among {{ site.addons | where_exp: "addon", "addon.group == nil" | size }} add-on(s)…" title="Search add-ons" aria-label="Search add-ons" tabindex="1" autocomplete="off">
+        <input id="addon-search" type="search" placeholder="Search among {{ site.addons | where_exp: "addon", "addon.group == nil" | size }} add-on(s)…" title="Search add-ons" aria-label="Search add-ons" tabindex="1" autocomplete="off">
         {%- endif -%}
     </div>
 
@@ -43,33 +43,5 @@
     <div class="pagination"></div>
 </div>
 
-<!-- Local copy with data-default-order https://github.com/javve/list.js/pull/301 -->
-<!-- getOrder:function(e){var r=t.utils.getAttribute(e,"data-order"),n=t.utils.getAttribute(e,"data-default-order");return"asc"==r||"desc"==r?r:t.utils.classes(e).has("desc")?"asc":t.utils.classes(e).has("asc")?"desc":"asc"==n||"desc"==n?n:"asc"} -->
-<script src="{{ site.baseurl }}/assets/list-2.3.1.min.js"></script>
-<script>
-    let addonList = new List('addon-wrapper', {
-        valueNames: [
-            'name',
-            'stars',
-            'description',
-            'type',
-            'updated_at',
-        ],
-        pagination: {
-            innerWindow: 5,
-            outerWindow: 1,
-            item: "<li><a class='page' href='javascript:;' tabindex='4'></a></li>",
-        },
-        page: 24,
-    });
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('page')) {
-            e.preventDefault();
-            const el = document.scrollingElement || document.documentElement;
-            el.scrollTo({ top: el.scrollHeight });
-        }
-    });
-    if ((addonList.size() / addonList.page) <= 1) {
-        document.getElementsByClassName('pagination')[0].style.display = 'none';
-    }
-</script>
+<script src="{{ site.baseurl }}/assets/list-2.3.1.min.js?v={{ site.clear_cache_date }}"></script>
+<script src="{{ site.baseurl }}/assets/addon-list.js?v={{ site.clear_cache_date }}"></script>
