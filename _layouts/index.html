@@ -15,7 +15,7 @@
         })();
     </script>
     <link rel="icon" href="{{ site.baseurl }}{{ site.logo }}">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css" type="text/css"/>
 </head>
 <body>
 <div class="container">
@@ -23,7 +23,7 @@
 
     <footer>
         <div class="footer-content">
-            <span>© {{ site.time | date: '%Y' }} DDEV Foundation</span>
+            <span><a href="https://ddev.com" target="_blank" title="Go to ddev.com" aria-label="Go to ddev.com" style="color: inherit;" tabindex="5">© {{ site.time | date: '%Y' }} DDEV Foundation</a></span>
             <div class="theme-switch" id="themeSwitch" role="radiogroup" title="Theme selection" aria-label="Theme selection">
                 <div class="theme-option" data-theme="auto" role="radio" aria-checked="false" title="Auto theme" aria-label="Auto theme">🔄</div>
                 <div class="theme-option" data-theme="light" role="radio" aria-checked="false" title="Light theme" aria-label="Light theme">☀️</div>
@@ -31,109 +31,13 @@
                 <div class="switch-knob" id="switchKnob"></div>
             </div>
             <div>
-                <a href="{{ site.baseurl }}/addons.json" target="_blank" title="View addons.json" aria-label="View addons.json">addons.json</a> |
-                <a href="https://github.com/ddev/addon-registry" target="_blank" title="View source code on GitHub" aria-label="View source code on GitHub">Source code</a>
+                <a href="{{ site.baseurl }}/addons.json" target="_blank" title="View addons.json" aria-label="View addons.json" tabindex="7">addons.json</a> |
+                <a href="https://github.com/ddev/addon-registry" target="_blank" title="View source code on GitHub" aria-label="View source code on GitHub" tabindex="7">Source code</a>
             </div>
         </div>
     </footer>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const themeSwitch = document.getElementById("themeSwitch");
-        const knob = document.getElementById("switchKnob");
-        const options = themeSwitch.querySelectorAll(".theme-option");
-
-        function setKnobPosition(theme) {
-            const index = ["auto", "light", "dark"].indexOf(theme);
-            const position = index * 108;
-            knob.style.transform = `translateX(${position}%)`;
-
-            options.forEach((option, i) => {
-                option.setAttribute('tabindex', '5');
-                option.setAttribute('aria-checked', i === index ? 'true' : 'false');
-            });
-        }
-
-        function applyTheme(theme) {
-            document.documentElement.removeAttribute('data-theme');
-
-            if (theme === "dark") {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                updateGiscusTheme('dark_dimmed');
-            } else if (theme === "light") {
-                document.documentElement.setAttribute('data-theme', 'light');
-                updateGiscusTheme('light');
-            } else if (theme === "auto") {
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    updateGiscusTheme('dark_dimmed');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    updateGiscusTheme('light');
-                }
-            }
-
-            setKnobPosition(theme);
-            localStorage.setItem("theme", theme);
-        }
-
-        function updateGiscusTheme(theme) {
-            const iframe = document.querySelector('iframe.giscus-frame');
-            if (!iframe) return;
-
-            iframe.contentWindow.postMessage({
-                giscus: {
-                    setConfig: {
-                        theme: theme
-                    }
-                }
-            }, 'https://giscus.app');
-        }
-
-        // Listen for Giscus to load
-        window.addEventListener('message', (event) => {
-            if (event.origin !== 'https://giscus.app') return;
-            if (!(typeof event.data === 'object' && event.data.giscus)) return;
-
-            // When Giscus is ready, set the initial theme
-            const savedTheme = localStorage.getItem("theme") || "auto";
-            if (savedTheme === 'light') {
-                updateGiscusTheme('light');
-            } else if (savedTheme === 'dark' || (savedTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                updateGiscusTheme('dark_dimmed');
-            }
-        });
-
-        // Initialize theme
-        const savedTheme = localStorage.getItem("theme") || "auto";
-        applyTheme(savedTheme);
-
-        // Theme switch event listeners
-        options.forEach(option => {
-            option.addEventListener("click", () => {
-                const theme = option.dataset.theme;
-                applyTheme(theme);
-            });
-
-            // Keyboard accessibility
-            option.addEventListener("keydown", (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const theme = option.dataset.theme;
-                    applyTheme(theme);
-                }
-            });
-        });
-
-        // System theme change listener
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-            const currentTheme = localStorage.getItem("theme") || "auto";
-            if (currentTheme === "auto") {
-                applyTheme("auto");
-            }
-        });
-    });
-</script>
+<script src="{{ site.baseurl }}/assets/main.js"></script>
 </body>
 </html>

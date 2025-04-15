@@ -1,8 +1,6 @@
-<ul class="addon-type-list">
-    {% for type_pair in site.data.addon_types %}
+{% for type_pair in site.data.addon_types %}
     {% assign type_id = type_pair[0] %}
     {% assign type = type_pair[1] %}
     {% unless include.addon.type contains type_id %}{% continue %}{% endunless %}
     <span class="badge" title="{{ type.description | replace: '\n', ' ' }}" aria-label="{{ type.description | replace: '\n', ' ' }}">{{ type.label }}</span>
-    {% endfor %}
-</ul>
+{% endfor %}

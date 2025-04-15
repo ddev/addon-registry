@@ -71,6 +71,21 @@ body {
 
 .header a {
     color: var(--header-link-color);
+    text-decoration: none !important;
+}
+
+.header-title {
+    display: inline-block;
+    padding-left: 35px;
+    background: url('{{ site.baseurl }}/assets/logo.svg') no-repeat left center;
+    background-size: 24px 24px;
+    text-decoration: none;
+}
+
+[data-theme="dark"] {
+    .header-title {
+        background-image: url('{{ site.baseurl }}/assets/logo-dark.svg');
+    }
 }
 
 h1 {
