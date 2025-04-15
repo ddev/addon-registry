@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-03-08
-updated_at: 2024-11-25
+updated_at: 2024-11-21
 stars: 0
 ---
 

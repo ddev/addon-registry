@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2023-04-29
-updated_at: 2025-04-04
+updated_at: 2025-04-02
 stars: 106
 ---
 
