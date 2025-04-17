@@ -30,7 +30,7 @@
         {%- if include.filter_by_user and addon.user != include.filter_by_user %}{% continue %}{% endif -%}
             <div class="card">
                 <a href="{{ site.baseurl }}{{ addon.url }}" class="card-link" title="View details for {{ addon.repo }}" aria-label="View details for {{ addon.repo }}" tabindex="3">
-                    <div class="title name">{{ addon.repo }} {% include addon_types_list.html addon=addon %}</div>
+                    <div class="title name">{{ addon.repo }} {% include addon_badge.html addon=addon %}</div>
                     <div class="description">{% unless include.filter_by_user %}[<object><a href="{{ site.baseurl }}/addons/{{ addon.user }}/" tabindex="-1">{{ addon.user }}</a></object>]{% endunless %} {{ addon.description }}</div>
                     <div class="footer">
                         <span class="updated_at">{{ addon.updated_at }}</span>
