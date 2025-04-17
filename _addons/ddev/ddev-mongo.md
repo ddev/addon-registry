@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-mongo
 github_url: https://github.com/ddev/ddev-mongo
-description: "MongoDB add-on for DDEV"
+description: "MongoDB NoSQL database support for DDEV"
 user: ddev
 repo: ddev-mongo
 repo_id: 475054747

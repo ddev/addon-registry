@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-varnish
 github_url: https://github.com/ddev/ddev-varnish
-description: "Varnish reverse proxy add-on for DDEV"
+description: "Varnish HTTP reverse proxy and caching layer for DDEV"
 user: ddev
 repo: ddev-varnish
 repo_id: 475027974

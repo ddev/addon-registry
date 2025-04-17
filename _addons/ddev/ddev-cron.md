@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-cron
 github_url: https://github.com/ddev/ddev-cron
-description: "Schedule commands to execute within DDEV"
+description: "Run scheduled tasks and cron jobs inside web container for DDEV"
 user: ddev
 repo: ddev-cron
 repo_id: 493892311

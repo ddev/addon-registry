@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-browsersync
 github_url: https://github.com/ddev/ddev-browsersync
-description: "Auto-refresh HTTPS page on changes with DDEV"
+description: "Live-reload and HTTPS auto-refresh on file changes for DDEV"
 user: ddev
 repo: ddev-browsersync
 repo_id: 481804435

@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-platformsh
 github_url: https://github.com/ddev/ddev-platformsh
-description: "Add integration with Platform.sh hosting service"
+description: "Platform.sh integration for project syncing and workflows in DDEV"
 user: ddev
 repo: ddev-platformsh
 repo_id: 489460881

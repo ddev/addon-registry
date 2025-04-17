@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-ibexa-cloud
 github_url: https://github.com/ddev/ddev-ibexa-cloud
-description: "Support `ddev pull ibexa-cloud`"
+description: "Pull projects and data from Ibexa Cloud into DDEV"
 user: ddev
 repo: ddev-ibexa-cloud
 repo_id: 869204136
