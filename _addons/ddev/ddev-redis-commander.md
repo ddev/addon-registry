@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-redis-commander
 github_url: https://github.com/ddev/ddev-redis-commander
-description: "Redis Commander for use with DDEV Redis service"
+description: "Redis Commander Web UI for use with DDEV Redis service"
 user: ddev
 repo: ddev-redis-commander
 repo_id: 472932399

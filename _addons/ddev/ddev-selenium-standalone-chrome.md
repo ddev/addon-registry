@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-selenium-standalone-chrome
 github_url: https://github.com/ddev/ddev-selenium-standalone-chrome
-description: "A DDEV service for running standalone Chrome"
+description: "Headless Chrome browser testing with Selenium for DDEV"
 user: ddev
 repo: ddev-selenium-standalone-chrome
 repo_id: 563535124

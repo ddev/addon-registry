@@ -1,7 +1,7 @@
 ---
 title: stasadev/ddev-python2
 github_url: https://github.com/stasadev/ddev-python2
-description: "Add Python2 for older npm builds with node-gyp"
+description: "Python 2 for older npm builds with node-gyp inside DDEV"
 user: stasadev
 repo: ddev-python2
 repo_id: 849742328

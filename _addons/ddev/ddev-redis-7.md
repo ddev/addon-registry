@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-redis-7
 github_url: https://github.com/ddev/ddev-redis-7
-description: "Redis 7 service for DDEV"
+description: "Redis 7 cache and data store service for DDEV"
 user: ddev
 repo: ddev-redis-7
 repo_id: 585919134

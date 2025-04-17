@@ -9,11 +9,11 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-05-01
-updated_at: 2025-03-29
+updated_at: 2025-04-16
 stars: 19
 ---
 
-[![tests](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml)
 
 # ddev-playwright <!-- omit in toc -->
 

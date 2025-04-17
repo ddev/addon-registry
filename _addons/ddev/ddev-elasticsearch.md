@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-elasticsearch
 github_url: https://github.com/ddev/ddev-elasticsearch
-description: "Elasticsearch add-on for DDEV"
+description: "Elasticsearch full-text search and analytics engine for DDEV"
 user: ddev
 repo: ddev-elasticsearch
 repo_id: 470760591

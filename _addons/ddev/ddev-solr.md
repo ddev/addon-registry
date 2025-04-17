@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-solr
 github_url: https://github.com/ddev/ddev-solr
-description: "Apache Solr service for DDEV"
+description: "Apache Solr server setup for search indexing in DDEV"
 user: ddev
 repo: ddev-solr
 repo_id: 656057518

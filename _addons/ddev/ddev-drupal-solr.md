@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-drupal-solr
 github_url: https://github.com/ddev/ddev-drupal-solr
-description: "Drupal Apache Solr installation for DDEV (please consider ddev/ddev-solr first)"
+description: "Apache Solr search engine integration for Drupal on DDEV (please consider ddev/ddev-solr first)"
 user: ddev
 repo: ddev-drupal-solr
 repo_id: 447393726

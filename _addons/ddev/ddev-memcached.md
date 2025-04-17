@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-memcached
 github_url: https://github.com/ddev/ddev-memcached
-description: "Install Memcached as an extra service in DDEV"
+description: "High-performance Memcached caching service for DDEV"
 user: ddev
 repo: ddev-memcached
 repo_id: 449470423
