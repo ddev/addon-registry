@@ -9,8 +9,8 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-03-11
-updated_at: 2025-04-15
-stars: 8
+updated_at: 2025-04-16
+stars: 9
 ---
 
 [![tests](https://github.com/ddev/ddev-adminer/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-adminer/actions/workflows/tests.yml?query=branch%3Amain)
@@ -77,7 +77,7 @@ All customization options (use with caution):
 | `ADMINER_DEFAULT_USERNAME` | `--adminer-default-username` | `db` |
 | `ADMINER_DESIGN` | `--adminer-design` | `` |
 | `ADMINER_DOCKER_IMAGE` | `--adminer-docker-image` | `adminer:standalone` |
-| `ADMINER_PLUGINS` | `--adminer-plugins` | `` |
+| `ADMINER_PLUGINS` | `--adminer-plugins` | `tables-filter` |
 
 ## Credits
 
