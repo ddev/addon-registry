@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-adminer
 github_url: https://github.com/ddev/ddev-adminer
-description: "Adminer web-based MySQL/MariaDB/PostgreSQL database browser for DDEV"
+description: "Adminer web-based MySQL, MariaDB, PostgreSQL database browser for DDEV"
 user: ddev
 repo: ddev-adminer
 repo_id: 468763817

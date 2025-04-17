@@ -1,7 +1,7 @@
 ---
 title: ddev/ddev-phpmyadmin
 github_url: https://github.com/ddev/ddev-phpmyadmin
-description: "Web-based phpMyAdmin interface for MySQL/MariaDB in DDEV"
+description: "Web-based phpMyAdmin interface for MySQL, MariaDB in DDEV"
 user: ddev
 repo: ddev-phpmyadmin
 repo_id: 653879988
