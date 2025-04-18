@@ -9,10 +9,11 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-01-18
-updated_at: 2025-04-11
+updated_at: 2025-04-17
 stars: 3
 ---
 
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/ddev/ddev-memcached/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-memcached/actions/workflows/tests.yml?query=branch%3Amain)
 [![last commit](https://img.shields.io/github/last-commit/ddev/ddev-memcached)](https://github.com/ddev/ddev-memcached/commits)
 [![release](https://img.shields.io/github/v/release/ddev/ddev-memcached)](https://github.com/ddev/ddev-memcached/releases/latest)

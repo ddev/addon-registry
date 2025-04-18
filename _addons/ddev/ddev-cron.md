@@ -9,10 +9,11 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-05-19
-updated_at: 2025-04-11
+updated_at: 2025-04-17
 stars: 25
 ---
 
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/ddev/ddev-cron/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-cron/actions/workflows/tests.yml?query=branch%3Amain)
 [![last commit](https://img.shields.io/github/last-commit/ddev/ddev-cron)](https://github.com/ddev/ddev-cron/commits)
 [![release](https://img.shields.io/github/v/release/ddev/ddev-cron)](https://github.com/ddev/ddev-cron/releases/latest)
