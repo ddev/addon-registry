@@ -9,10 +9,11 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2023-03-24
-updated_at: 2025-04-14
+updated_at: 2025-04-18
 stars: 4
 ---
 
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/ddev/ddev-sqlsrv/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-sqlsrv/actions/workflows/tests.yml?query=branch%3Amain)
 [![last commit](https://img.shields.io/github/last-commit/ddev/ddev-sqlsrv)](https://github.com/ddev/ddev-sqlsrv/commits)
 [![release](https://img.shields.io/github/v/release/ddev/ddev-sqlsrv)](https://github.com/ddev/ddev-sqlsrv/releases/latest)
