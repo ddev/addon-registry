@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-04-15
-updated_at: 2025-04-17
+updated_at: 2025-04-21
 stars: 32
 ---
 
@@ -148,6 +148,9 @@ ddev exec npm run watch
 - Browsersync will be running on **HTTPS** at `https://browsersync-demo.ddev.site:3000`
 
 ### WordPress Configuration Changes
+
+When this add-on is added to a WordPress project, DDEV's management of the installation files is turned
+off. 
 
 The changes this add-on makes to the `wp-config-ddev.php` file during installation can be seen below.
 
