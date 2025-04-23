@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2024-02-11
 updated_at: 2024-10-24
-stars: 18
+stars: 19
 ---
 
 # FrankenPHP Add-On for DDEV
