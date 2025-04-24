@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: official
 created_at: 2023-01-06
-updated_at: 2025-04-10
+updated_at: 2025-04-23
 stars: 4
 ---
 
@@ -18,7 +18,7 @@ stars: 4
 # ddev-redis-7 - Redis 7 container for DDEV
 
 [![GitHub release (with filter)](https://img.shields.io/github/v/release/ddev/ddev-redis-7)](https://github.com/ddev/ddev-redis-7/releases)
-[![Tests](https://github.com/ddev/ddev-redis-7/actions/workflows/cron_tests.yml/badge.svg)](https://github.com/ddev/ddev-redis-7/actions/workflows/cron_tests.yml)
+[![tests](https://github.com/ddev/ddev-redis-7/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-redis-7/actions/workflows/tests.yml)
 ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
 
 </div>
@@ -68,14 +68,14 @@ Then restart your project
 ddev restart
 ```
 
-> [!IMPORTANT]  
-> Authentication is setup by default, and the password is `redis`.  
-> If needed, you can auth with a username and password.  
+> [!IMPORTANT]
+> Authentication is setup by default, and the password is `redis`.
+> If needed, you can auth with a username and password.
 > Username is `redis` as well.
 
 ## Configuration
 
-Redis configuration files are split in the `.ddev/redis/conf` folder, you can modify them as you wish.  
+Redis configuration files are split in the `.ddev/redis/conf` folder, you can modify them as you wish.
 Otherwise, plugin just works out of the box.
 
 ## Commands
@@ -89,5 +89,5 @@ Addon exposes the following commands
 | `redis-flush`     | `ddev redis-flush` | Clears all the Redis Databases     |
 ___
 
-**Based on the original [ddev-contrib recipe](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/mongodb)**  
+**Based on the original [ddev-contrib recipe](https://github.com/ddev/ddev-contrib/tree/master/docker-compose-services/mongodb)**
 **Developed and maintained by [Oblak Studio](https://github.com/oblakstudio)**

@@ -9,11 +9,13 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-02-07
-updated_at: 2025-04-17
+updated_at: 2025-04-23
 stars: 10
 ---
 
-[![tests](https://github.com/julienloizelet/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/julienloizelet/ddev-playwright/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/julienloizelet/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/julienloizelet/ddev-playwright/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/julienloizelet/ddev-playwright)](https://github.com/julienloizelet/ddev-playwright/commits)
 [![Version](https://img.shields.io/github/v/release/julienloizelet/ddev-playwright)](https://github.com/julienloizelet/ddev-playwright/releases)
 
 # ddev-playwright
@@ -51,16 +53,10 @@ This DDEV add-on allows you to use Playwright in a separate `playwright` service
 
 ## Installation
 
-For DDEV v1.23.5 or above run
+Run:
 
 ```bash
 ddev add-on get julienloizelet/ddev-playwright
-```
-
-For earlier versions of DDEV run
-
-```bash
-ddev get julienloizelet/ddev-playwright
 ```
 
 Then restart your project

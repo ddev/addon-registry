@@ -9,11 +9,14 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-02-08
-updated_at: 2025-04-17
+updated_at: 2025-04-23
 stars: 3
 ---
 
-[![tests](https://github.com/julienloizelet/ddev-portainer/actions/workflows/tests.yml/badge.svg)](https://github.com/julienloizelet/ddev-portainer/actions/workflows/tests.yml)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![Tests](https://github.com/julienloizelet/ddev-portainer/actions/workflows/tests.yml/badge.svg)](https://github.com/julienloizelet/ddev-portainer/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/julienloizelet/ddev-portainer)](https://github.com/julienloizelet/ddev-portainer/commits)
+[![release](https://img.shields.io/github/v/release/julienloizelet/ddev-portainer)](https://github.com/julienloizelet/ddev-portainer/releases)
 
 # ddev-portainer
 
@@ -37,16 +40,9 @@ This DDEV add-on allows you to use [Portainer Community Edition (CE)](https://do
 
 ## Installation
 
-For DDEV v1.23.5 or above run
 
 ```sh
 ddev add-on get julienloizelet/ddev-portainer && ddev restart
-```
-
-For earlier versions of DDEV run
-
-```sh
-ddev get julienloizelet/ddev-portainer && ddev restart
 ```
 
 ## Basic usage

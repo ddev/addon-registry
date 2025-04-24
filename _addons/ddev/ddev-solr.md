@@ -5,11 +5,11 @@ description: "Apache Solr server setup for search indexing in DDEV"
 user: ddev
 repo: ddev-solr
 repo_id: 656057518
-ddev_version_constraint: ">= v1.23.5"
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2023-06-20
-updated_at: 2025-02-11
+updated_at: 2025-04-23
 stars: 11
 ---
 
@@ -57,9 +57,7 @@ access rights:
     ddev add-on get ddev/ddev-solr && ddev restart
     ```
 
-Once up and running, access Solr's admin UI within your browser by opening
-`https://<projectname>.ddev.site:8943`. For example, if the project is named
-"myproject" the hostname will be `https://myproject.ddev.site:8943`.
+Once up and running, access Solr's admin UI within your browser by using `ddev solr-admin` (`https://<projectname>.ddev.site:8943`).
 
 The admin UI is protected by basic authentication. The preconfigured admin
 account in `security.json` is user `solr` using the password `SolrRocks`.
