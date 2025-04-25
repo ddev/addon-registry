@@ -9,8 +9,8 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-03-25
-updated_at: 2025-04-23
-stars: 2
+updated_at: 2025-04-24
+stars: 3
 ---
 
 [![tests](https://github.com/hanoii/ddev-pimp-my-shell/actions/workflows/tests.yml/badge.svg)](https://github.com/hanoii/ddev-pimp-my-shell/actions/workflows/tests.yml)

@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2023-10-18
 updated_at: 2025-04-07
-stars: 27
+stars: 28
 ---
 
 # ddev-core-dev
