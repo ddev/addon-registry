@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2023-10-17
-updated_at: 2025-04-23
+updated_at: 2025-04-26
 stars: 8
 ---
 
@@ -73,14 +73,14 @@ ddev rabbitmq wipe
 
 ## Usage
 
-| Command | Description |
-| ------- | ----------- |
-| `ddev rabbitmq --help` | RabbitMQ custom helper command |
-| `ddev rabbitmqadmin --help` | RabbitMQ Management CLI (no auth required) |
-| `ddev rabbitmqctl --help` | Used to manage the cluster and nodes |
-| `ddev launch :15673` | Run RabbitMQ Management UI in the browser (credentials `rabbitmq:rabbitmq`) |
-| `ddev describe` | View service status and used ports for RabbitMQ |
-| `ddev logs -s rabbitmq` | Check RabbitMQ logs |
+| Command                     | Description                                                                    |
+|-----------------------------|--------------------------------------------------------------------------------|
+| `ddev rabbitmq --help`      | RabbitMQ custom helper command                                                 |
+| `ddev rabbitmqadmin --help` | RabbitMQ Management CLI (no auth required)                                     |
+| `ddev rabbitmqctl --help`   | Used to manage the cluster and nodes                                           |
+| `ddev rabbitmq launch`      | Launch RabbitMQ Management UI in the browser (credentials `rabbitmq:rabbitmq`) |
+| `ddev describe`             | View service status and used ports for RabbitMQ                                |
+| `ddev logs -s rabbitmq`     | Check RabbitMQ logs                                                            |
 
 ℹ️`rabbitmqadmin` and `rabbitmqctl` share some functions. Both are needed for full configuration.
 
