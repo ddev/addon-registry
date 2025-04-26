@@ -9,13 +9,16 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-27
-updated_at: 2025-04-08
+updated_at: 2025-04-25
 stars: 0
 ---
 
 # ddev-clamav <!-- omit in toc -->
 
-[![tests](https://github.com/fwust/ddev-clamav/actions/workflows/tests.yml/badge.svg)](https://github.com/fwust/ddev-clamav/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/fwust/ddev-clamav/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/fwust/ddev-clamav/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/fwust/ddev-clamav)](https://github.com/fwust/ddev-clamav/commits)
+[![release](https://img.shields.io/github/v/release/fwust/ddev-clamav)](https://github.com/fwust/ddev-clamav/releases/latest)
 
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
