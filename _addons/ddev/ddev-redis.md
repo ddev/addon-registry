@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-01-26
-updated_at: 2025-04-25
+updated_at: 2025-04-28
 stars: 29
 ---
 
@@ -52,10 +52,16 @@ Redis is available inside Docker containers with `redis:6379`.
 
 ## Redis Credentials
 
-| Field    | Value                 |
-|----------|-----------------------|
-| Username | `redis`               |
-| Password | `` (empty by default) |
+By default, no authentication is required.
+
+If you have the optimized config enabled (`ddev dotenv set .ddev/.env.redis --redis-optimized=true`), the credentials are:
+
+| Field    | Value   |
+|----------|---------|
+| Username | `redis` |
+| Password | `redis` |
+
+For more information about ACLs, see the [Redis documentation](https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/).
 
 ## Advanced Customization
 
@@ -64,6 +70,11 @@ To apply an optimized configuration from `ddev/ddev-redis-7`:
 ```bash
 ddev dotenv set .ddev/.env.redis --redis-optimized=true
 ddev add-on get ddev/ddev-redis
+
+# (optional) if you have an existing Redis volume, delete it to avoid problems with Redis:
+ddev stop
+docker volume rm ddev-$(ddev status -j | docker run -i --rm ddev/ddev-utilities jq -r '.raw.name')_redis
+
 ddev restart
 ```
 
@@ -74,6 +85,11 @@ To change the used Docker image:
 ```bash
 ddev dotenv set .ddev/.env.redis --redis-docker-image=redis:7
 ddev add-on get ddev/ddev-redis
+
+# (optional) if you have an existing Redis volume, delete it to avoid problems with Redis:
+ddev stop
+docker volume rm ddev-$(ddev status -j | docker run -i --rm ddev/ddev-utilities jq -r '.raw.name')_redis
+
 ddev restart
 ```
 
