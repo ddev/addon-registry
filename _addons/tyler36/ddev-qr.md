@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2024-06-21
 updated_at: 2025-01-06
-stars: 0
+stars: 1
 ---
 
 [![tests](https://github.com/tyler36/ddev-qr/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-qr/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)

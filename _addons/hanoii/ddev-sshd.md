@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-08-02
-updated_at: 2025-03-18
+updated_at: 2025-04-28
 stars: 4
 ---
 
@@ -49,7 +49,7 @@ hooks:
     - exec-host: ddev sshd:config
 ```
 
-If you are courious on what the command will add, try
+If you are curious on what the command will add, try
 
 ```sh
 ddev sshd:config --dry-run
