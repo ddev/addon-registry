@@ -5,11 +5,11 @@ description: "Redis Commander Web UI for use with DDEV Redis service"
 user: ddev
 repo: ddev-redis-commander
 repo_id: 472932399
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: ["redis"]
 type: official
 created_at: 2022-03-22
-updated_at: 2025-04-11
+updated_at: 2025-04-28
 stars: 5
 ---
 

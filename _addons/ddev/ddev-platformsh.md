@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-05-06
-updated_at: 2025-04-18
+updated_at: 2025-04-28
 stars: 10
 ---
 
@@ -87,7 +87,7 @@ If you change your `.platform.app.yaml` or something in your `.platform` directo
 These Platform.sh templates are included in the automated tests that run nightly. They will be growing in maturity with your feedback!
 
 * [php](https://github.com/platformsh-templates/php)
-* [drupal9](https://github.com/platformsh-templates/drupal9) and [drupal10](https://github.com/platformsh-templates/drupal10)
+* [drupal9](https://github.com/platformsh-templates/drupal9), [drupal10](https://github.com/platformsh-templates/drupal10), [drupal11](https://github.com/platformsh-templates/drupal11)
 * [laravel](https://github.com/platformsh-templates/laravel)
 * [magento2ce](https://github.com/platformsh-templates/magento2ce)
 * [wordpress-composer](https://github.com/platformsh-templates/wordpress-composer)
