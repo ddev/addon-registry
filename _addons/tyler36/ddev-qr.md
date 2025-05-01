@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-06-21
-updated_at: 2025-01-06
+updated_at: 2025-04-30
 stars: 1
 ---
 
@@ -37,16 +37,8 @@ This helps reduce errors and frustration when entering URLs on portable devices.
 
 1. Install the app.
 
-    For DDEV v1.23.5 or above run
-
     ```shell
     ddev add-on get tyler36/ddev-qr
-    ```
-
-    For earlier versions of DDEV run
-
-    ```shell
-    ddev get tyler36/ddev-qr
     ```
 
     Then restart your project
@@ -93,7 +85,7 @@ Instead:
 - Generate a qr code: `ddev qr share`
 - Scan with code with your phone to visit the site.
 
-Similar, when using DDEV in Gitpod, DDEV defers to Gitpod's routing system that also generates random complex strings.
+Similarly, when using DDEV in Gitpod, DDEV defers to Gitpod's routing system that also generates random complex strings.
 Using `ddev qr` or `ddev qr https` inside a Gitpod environment will encode the Gitpod-routed DDEV URL instead. Eg. <https://tyler36-qrdemo-cksfu15uj8u4.ws-us131.gitpod.io/>
 
 ## Components of the repository
