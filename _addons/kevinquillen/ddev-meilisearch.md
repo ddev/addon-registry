@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2024-01-26
 updated_at: 2025-04-24
-stars: 6
+stars: 7
 ---
 
 [![tests](https://github.com/kevinquillen/ddev-meilisearch/actions/workflows/tests.yml/badge.svg)](https://github.com/kevinquillen/ddev-meilisearch/actions/workflows/tests.yml)

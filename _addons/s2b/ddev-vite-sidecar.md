@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2024-06-04
 updated_at: 2025-01-22
-stars: 23
+stars: 24
 ---
 
 [![tests](https://github.com/s2b/ddev-vite-sidecar/actions/workflows/tests.yml/badge.svg)](https://github.com/s2b/ddev-vite-sidecar/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)

@@ -9,24 +9,20 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-28
-updated_at: 2024-07-29
+updated_at: 2025-05-01
 stars: 0
 ---
 
 [![tests](https://github.com/MurzNN/ddev-pgadmin/actions/workflows/tests.yml/badge.svg)](https://github.com/MurzNN/ddev-pgadmin/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
 
-# ddev-pgadmin <!-- omit in toc -->
+# DDEV pgAdmin add-on<!-- omit in toc -->
 
-* [What is ddev-pgadmin?](#what-is-ddev-pgadmin)
+This is a [DDEV](https://github.com/ddev/ddev/) add-on provides a pgAdmin service for PostgreSQL databases.
 
-## What is ddev-pgadmin?
-
-This add-on provides a pgAdmin service for [DDEV](https://github.com/ddev/ddev/).
-
-Installation:
+## Installation:
 
 ```
-ddev get MurzNN/ddev-pgadmin
+ddev add-on get MurzNN/ddev-pgadmin
 ddev restart
 ```
 
@@ -40,5 +36,9 @@ Also, it will be available on the url `https://pgadmin.yourprojectname.ddev.site
 
 > [!TIP]
 > For Gitpod: The `ddev pgadmin` command can open a blank page in preview mode, open the link in a new browser tab/window to make it work.
+
+# Tips
+
+- PgAdmin stores the initial configuration from the `server.json` in the internal database on the first start. So, if you make changes in the `servers.json` - delete the `pgadmin-data` Docker volume to apply changes.
 
 **Contributed and maintained by [@MurzNN](https://github.com/MurzNN)**
