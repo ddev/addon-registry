@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-03-11
-updated_at: 2025-04-17
+updated_at: 2025-05-01
 stars: 9
 ---
 
@@ -66,6 +66,8 @@ ddev dotenv set .ddev/.env.adminer --adminer-plugins="tables-filter edit-calenda
 ddev add-on get ddev/ddev-adminer
 ddev restart
 ```
+
+If a plugin *requires* parameters, refer to the [official documentation](https://hub.docker.com/_/adminer) for more details.
 
 Make sure to commit the `.ddev/.env.adminer` file to version control.
 
