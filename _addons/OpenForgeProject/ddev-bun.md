@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2023-09-12
 updated_at: 2024-11-21
-stars: 6
+stars: 7
 ---
 
 <div align="center">
