@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2023-04-28
 updated_at: 2025-03-23
-stars: 3
+stars: 4
 ---
 
 [![tests](https://github.com/echavaillaz/ddev-gotenberg/actions/workflows/tests.yml/badge.svg)](https://github.com/echavaillaz/ddev-gotenberg/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
