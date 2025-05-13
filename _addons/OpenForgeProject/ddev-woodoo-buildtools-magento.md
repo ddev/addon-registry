@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2023-03-14
 updated_at: 2025-03-14
-stars: 8
+stars: 9
 ---
 
 # [DDEV] Woodoo Frontend Buildtools for Magento & Hyvä
