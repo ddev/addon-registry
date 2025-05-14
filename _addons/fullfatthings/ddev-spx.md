@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2024-10-07
 updated_at: 2024-10-08
-stars: 8
+stars: 9
 ---
 
 # DDEV SPX
