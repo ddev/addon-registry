@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2025-03-31
 updated_at: 2025-04-03
-stars: 0
+stars: 1
 ---
 
 # ddev-claude-code <!-- omit in toc -->
