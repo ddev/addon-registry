@@ -5,15 +5,17 @@ description: "Basic Vite implementation for DDEV"
 user: tyler36
 repo: ddev-vite
 repo_id: 781313945
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-04-03
-updated_at: 2025-03-13
+updated_at: 2025-05-16
 stars: 2
 ---
 
-[![tests](https://github.com/tyler36/ddev-vite/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-vite/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/tyler36/ddev-vite/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-vite/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-vite)](https://github.com/tyler36/ddev-vite/commits)
 
 # ddev-vite <!-- omit in toc -->
 
