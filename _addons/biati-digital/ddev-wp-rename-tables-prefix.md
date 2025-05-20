@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2023-09-27
 updated_at: 2024-10-24
-stars: 1
+stars: 2
 ---
 
 # ddev-wp-rename-tables-prefix
