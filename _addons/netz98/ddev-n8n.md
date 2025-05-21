@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-05-17
-updated_at: 2025-04-02
+updated_at: 2025-05-20
 stars: 5
 ---
 
@@ -19,8 +19,23 @@ This addon sets up a n8n instance for your DDEV project. n8n is a free and open 
 
 ## Installation
 
-1. Run `ddev get netz98/ddev-n8n` to install the addon in your exiting ddev project.
-2. `ddev restart` to restart your project.
+To install the addon in your existing DDEV project for DDEV v1.23.5 or above run
+
+```bash
+ddev add-on get netz98/ddev-n8n
+```
+
+For earlier versions of DDEV run
+
+```bash
+ddev get netz98/ddev-n8n
+```
+
+Then restart your project
+
+```bash
+ddev restart
+```
 
 ## Usage
 
