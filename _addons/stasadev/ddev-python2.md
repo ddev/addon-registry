@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-08-30
-updated_at: 2025-04-28
+updated_at: 2025-05-25
 stars: 8
 ---
 
@@ -33,14 +33,14 @@ It is only needed if your `npm` setup requires Python 2 to build dependencies.
 For DDEV v1.23.5 or above run:
 
 ```bash
-ddev add-on get ddev/ddev-python2
+ddev add-on get stasadev/ddev-python2
 ddev restart
 ```
 
 For earlier versions of DDEV run:
 
 ```bash
-ddev get ddev/ddev-python2
+ddev get stasadev/ddev-python2
 ddev restart
 ```
 
