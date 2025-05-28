@@ -5,15 +5,18 @@ description: "Helper to log \"slow\" queries"
 user: tyler36
 repo: ddev-dbslow
 repo_id: 751181760
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-02-01
-updated_at: 2024-11-21
+updated_at: 2025-05-27
 stars: 1
 ---
 
-[![tests](https://github.com/tyler36/ddev-dbslow/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-dbslow/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/tyler36/ddev-dbslow/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-dbslow/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-dbslow)](https://github.com/tyler36/ddev-dbslow/commits)
+[![release](https://img.shields.io/github/v/release/tyler36/ddev-dbslow)](https://github.com/tyler36/ddev-dbslow/releases/latest)
 
 # dbslow <!-- omit in toc -->
 
@@ -40,16 +43,8 @@ As both addons mature, it is possible this functionality will merge into `ddev-d
 
 1. Install the addon.
 
-    For DDEV v1.23.5 or above run
-
     ```shell
     ddev add-on get tyler36/ddev-dbslow
-    ```
-
-    For earlier versions of DDEV run
-
-    ```shell
-    ddev get tyler36/ddev-dbslow
     ```
 
 2. Restart DDEV.

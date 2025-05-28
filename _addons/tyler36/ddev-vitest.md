@@ -5,15 +5,18 @@ description: "A helper add-on for projects using Vitest"
 user: tyler36
 repo: ddev-vitest
 repo_id: 894807367
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-11-27
-updated_at: 2025-04-25
+updated_at: 2025-05-27
 stars: 1
 ---
 
-[![tests](https://github.com/tyler36/ddev-vitest/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-vitest/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/tyler36/ddev-vitest/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-vitest/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-vite)](https://github.com/tyler36/ddev-vite/commits)
+[![release](https://img.shields.io/github/v/release/tyler36/ddev-vite)](https://github.com/tyler36/ddev-vite/releases/latest)
 
 # ddev-vitest <!-- omit in toc -->
 

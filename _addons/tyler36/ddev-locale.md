@@ -5,15 +5,18 @@ description: "Change a DDEV project's timezone and language. "
 user: tyler36
 repo: ddev-locale
 repo_id: 811139520
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-06-06
-updated_at: 2025-01-09
+updated_at: 2025-05-27
 stars: 0
 ---
 
-[![tests](https://github.com/tyler36/ddev-locale/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-locale/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/tyler36/ddev-locale/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-locale/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-locale)](https://github.com/tyler36/ddev-locale/commits)
+[![release](https://img.shields.io/github/v/release/tyler36/ddev-locale)](https://github.com/tyler36/ddev-locale/releases/latest)
 
 # ddev-locale <!-- omit in toc -->
 
@@ -52,7 +55,7 @@ If/when the language files are removed, this addon will be updated to install th
 1. Install this addon.
 
     ```shell
-    ddev addon get tyler36/ddev-locale
+    ddev add-on get tyler36/ddev-locale
     ddev restart
     ```
 
