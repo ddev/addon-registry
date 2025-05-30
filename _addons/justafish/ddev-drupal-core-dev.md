@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-18
-updated_at: 2025-04-07
+updated_at: 2025-05-29
 stars: 28
 ---
 
@@ -38,7 +38,7 @@ ddev drupal list
 ddev drupal install standard
 
 # Run PHPUnit tests
-ddev phpunit core/modules/sdc
+ddev phpunit core/modules/announcements_feed
 
 # Run Nightwatch tests (currently only runs on Chrome)
 ddev nightwatch --tag core
