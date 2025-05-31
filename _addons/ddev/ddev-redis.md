@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-01-26
-updated_at: 2025-04-30
+updated_at: 2025-05-30
 stars: 30
 ---
 
@@ -42,6 +42,7 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Command | Description |
 | ------- | ----------- |
+| `ddev redis-backend` | Use a different key-value store for Redis |
 | `ddev redis-cli` | Run `redis-cli` inside the Redis container |
 | `ddev redis` | Alias for `ddev redis-cli` |
 | `ddev redis-flush` | Flush all cache inside the Redis container |
@@ -50,11 +51,21 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 Redis is available inside Docker containers with `redis:6379`.
 
+## What makes the optimized config different?
+
+The default config only uses the [redis.conf](https://github.com/ddev/ddev-redis/blob/main/./redis/redis.conf) file.
+
+The optimized config uses all `*.conf` files in the [redis](https://github.com/ddev/ddev-redis/blob/main/./redis) directory except `redis.conf`.
+
+It uses *hardened* settings ready for production, like enabling Redis credentials.
+
+You can read each config file to see the exact differences.
+
 ## Redis Credentials
 
-By default, no authentication is required.
+By default, there is no authentication.
 
-If you have the optimized config enabled (`ddev dotenv set .ddev/.env.redis --redis-optimized=true`), the credentials are:
+If you have the optimized config enabled, the credentials are:
 
 | Field    | Value   |
 |----------|---------|
@@ -62,6 +73,23 @@ If you have the optimized config enabled (`ddev dotenv set .ddev/.env.redis --re
 | Password | `redis` |
 
 For more information about ACLs, see the [Redis documentation](https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/).
+
+### Swappable Redis backends
+
+Use the `ddev redis-backend` command to swap between Redis backends:
+
+| Command | Docker Image |
+|--------------------------------------|-----------------------------------------------|
+| `ddev redis-backend redis`           | `redis:7`                                     |
+| `ddev redis-backend redis-alpine`    | `redis:7-alpine`                              |
+| `ddev redis-backend valkey`          | `valkey/valkey:8`                             |
+| `ddev redis-backend valkey-alpine`   | `valkey/valkey:8-alpine`                      |
+| `ddev redis-backend <image>`         | `<image>` (specify your custom Redis image)   |
+
+> [!TIP]
+> Add `optimize` or `optimized` after the command to enable optimized Redis configuration.
+>
+> Example: `ddev redis-backend redis optimize`
 
 ## Advanced Customization
 
