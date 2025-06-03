@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2025-03-07
 updated_at: 2025-03-10
-stars: 1
+stars: 2
 ---
 
 ddev-typo3-multi-version-extension

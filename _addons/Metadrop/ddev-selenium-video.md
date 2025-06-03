@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: ["ddev-selenium"]
 type: contrib
 created_at: 2025-05-19
-updated_at: 2025-05-27
+updated_at: 2025-06-02
 stars: 0
 ---
 
@@ -41,6 +41,55 @@ After installation, make sure to commit the `.ddev` directory to version control
 | Command                       | Description                            |
 |-------------------------------|----------------------------------------|
 | `ddev behat-video <env>`      | Run behat tests with recodings enabled |
+
+
+## Recommended behat.yml Configurations
+We recommend the use of https://github.com/Metadrop/behat-contexts to add steps and scenario info to the vídeos using VideoRecordingContext:
+```
+- Metadrop\Behat\Context\VideoRecordingContext:
+  parameters:
+    - Metadrop\Behat\Context\VideoRecordingContext:
+        parameters:
+          enabled: true
+          show_test_info_screen: true
+          show_test_info_screen_time: 2000
+          show_green_screen: false
+          show_green_screen_time: 1000
+          show_step_info_bubble: true
+          show_step_info_bubble_time: 2000
+          show_error_info_bubble: true
+          show_error_info_bubble_time: 2000
+```
+
+
+We advise implementing the following configurations within your **behat.yml** file. These should always be tailored to your specific requisites:
+If you use NuvoleWeb\Drupal\DrupalExtension\Context\ResponsiveContext set the correct screen size for your devices:
+```
+  - NuvoleWeb\Drupal\DrupalExtension\Context\ResponsiveContext:
+      devices:
+        laptop: 1200x800
+        desktop: 1920x1080
+        mobile_portrait: 370x650
+        mobile_landscape: 650x370
+        tablet_portrait: 800x1024
+        tablet_landscape: 1024x768
+```
+
+and adjust the Selenium2 config on Drupal\MinkExtension:
+```
+      javascript_session: selenium2
+      selenium2:
+        wd_host: http://hub:4444/wd/hub
+        capabilities:
+          browser: "chrome"
+          extra_capabilities:
+            chromeOptions:
+              w3c: false
+              args:
+                - '--start-maximized'
+                - '--disable-web-security'
+                - '--ignore-certificate-errors'
+```
 
 ## Credits
 
