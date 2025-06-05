@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-03-11
-updated_at: 2025-05-01
+updated_at: 2025-06-04
 stars: 9
 ---
 
@@ -68,6 +68,8 @@ ddev restart
 ```
 
 If a plugin *requires* parameters, refer to the [official documentation](https://hub.docker.com/_/adminer) for more details.
+
+For user-contributed plugins, see [example](https://github.com/ddev/ddev-adminer/issues/43).
 
 Make sure to commit the `.ddev/.env.adminer` file to version control.
 

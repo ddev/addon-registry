@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2023-06-20
-updated_at: 2025-06-02
+updated_at: 2025-06-04
 stars: 13
 ---
 
@@ -24,6 +24,7 @@ stars: 13
 - [Installation](#installation)
 - [Usage](#usage)
   - [Solr Admin credentials](#solr-admin-credentials)
+  - [Changing Solr credentials](#changing-solr-credentials)
   - [Create a collection](#create-a-collection)
   - [Solr command line client](#solr-command-line-client)
 - [Advanced Customization](#advanced-customization)
@@ -78,7 +79,20 @@ a simple pre-configured [`security.json`](https://github.com/ddev/ddev-solr/blob
 | Username | `solr`      |
 | Password | `SolrRocks` |
 
-To access the Solr container from DDEV's web container, use  `http://solr:8983`.
+To access the Solr container from DDEV's web container, use `http://solr:8983`.
+
+### Changing Solr credentials
+
+- Remove `#ddev-generated` line from `.ddev/docker-compose.solr.yaml`
+- Remove `"#ddev-generated":true,` line from `.ddev/solr/security.json`
+- Update username and password in `.ddev/docker-compose.solr.yaml`
+  - in `dockerfile_inline`
+  - in `SOLR_AUTHENTICATION_OPTS`
+- Update username and hashed password in `.ddev/solr/security.json`
+  - in `authentication.credentials.solr` (where `solr` is the username)
+  - in `authorization.user-role.solr` (where `solr` is the username)
+  - (the hashed password can be generated with [clemente-biondo.github.io](https://github.com/clemente-biondo/clemente-biondo.github.io))
+- Run `ddev stop && ddev debug rebuild -s solr && ddev start`
 
 ## Create a collection
 
