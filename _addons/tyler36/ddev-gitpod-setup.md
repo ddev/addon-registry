@@ -5,23 +5,26 @@ description: "Helper add-on to add Gitpod config."
 user: tyler36
 repo: ddev-gitpod-setup
 repo_id: 840226121
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-08-09
-updated_at: 2025-01-09
+updated_at: 2025-06-09
 stars: 1
 ---
 
-[![tests](https://github.com/tyler36/ddev-gitpod-setup/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-gitpod-setup/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/tyler36/ddev-gitpod-setup/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-gitpod-setup/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-gitpod-setup)](https://github.com/tyler36/ddev-gitpod-setup/commits)
+[![release](https://img.shields.io/github/v/release/tyler36/ddev-gitpod-setup)](https://github.com/tyler36/ddev-gitpod-setup/releases/latest)
 
 # ddev-gitpod-setup <!-- omit in toc -->
 
 - [What is ddev-gitpod-setup?](#what-is-ddev-gitpod-setup)
 - [Getting started](#getting-started)
 - [Customizing](#customizing)
-    - [Full control](#full-control)
-    - [Project-type customizing](#project-type-customizing)
+  - [Full control](#full-control)
+  - [Project-type customizing](#project-type-customizing)
 - [Components of the repository](#components-of-the-repository)
 - [Contributing](#contributing)
 
@@ -42,16 +45,8 @@ It does this by generating a `.gitpod.yml` file which includes:
 
 1. Install add-on
 
-    For DDEV v1.23.5 or above run
-
     ```shell
     ddev add-on get tyler36/ddev-gitpod-setup
-    ```
-
-    For earlier versions of DDEV run
-
-    ```shell
-    ddev get tyler36/ddev-gitpod-setup
     ```
 
 2. Commit files to repository. All that really matters is the .gitpod.yml, but it does no harm to commit all the files the add-on creates.
@@ -77,7 +72,7 @@ Currently this add-on has explicit support for Drupal and Laravel projects, with
 
 - Copy an existing `.ddev/gitpod-setup/{project-type}.yml`
 - Update `.ddev/gitpod-setup/{project-type}.yml` with tasks your project type needs.
-- Run `ddev get tyler36/ddev-gitpod-setup` to generate a new config file.
+- Run `ddev addon get tyler36/ddev-gitpod-setup` to generate a new config file.
 - Contribute your changes back to this add-on.
 
 This approach works best if you want to:

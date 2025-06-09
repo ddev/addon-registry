@@ -5,15 +5,18 @@ description: "A DDEV helper to run `Makefile`s in the web container."
 user: tyler36
 repo: ddev-make
 repo_id: 962418405
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-04-08
-updated_at: 2025-04-08
+updated_at: 2025-06-09
 stars: 0
 ---
 
-[![tests](https://github.com/tyler36/ddev-make/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-make/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/tyler36/ddev-make/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-make/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-make)](https://github.com/tyler36/ddev-make/commits)
+[![release](https://img.shields.io/github/v/release/tyler36/ddev-make)](https://github.com/tyler36/ddev-make/releases/latest)
 
 # ddev-make <!-- omit in toc -->
 
