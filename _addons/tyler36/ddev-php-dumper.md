@@ -5,15 +5,18 @@ description: "Collect and manage 'dump' information in Docker Desktop"
 user: tyler36
 repo: ddev-php-dumper
 repo_id: 738784480
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-01-04
-updated_at: 2025-01-06
+updated_at: 2025-06-09
 stars: 0
 ---
 
-[![tests](https://github.com/ddev/ddev-addon-template/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-addon-template/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/tyler36/ddev-php-dumper/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-php-dumper/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-php-dumper)](https://github.com/tyler36/ddev-php-dumper/commits)
+[![release](https://img.shields.io/github/v/release/tyler36/ddev-php-dumper)](https://github.com/tyler36/ddev-php-dumper/releases/latest)
 
 # ddev-php-dumper <!-- omit in toc -->
 
@@ -21,11 +24,11 @@ stars: 0
 - [What does this add-on do?](#what-does-this-add-on-do)
 - [Requirements](#requirements)
 - [Installation](#installation)
-    - [Docker "PHP Dump" setup](#docker-php-dump-setup)
-        - [Troubleshooting](#troubleshooting)
-    - ["var-dump server" setup](#var-dump-server-setup)
+  - [Docker "PHP Dump" setup](#docker-php-dump-setup)
+    - [Troubleshooting](#troubleshooting)
+  - ["var-dump server" setup](#var-dump-server-setup)
 - [Usage](#usage)
-    - [Disable the service](#disable-the-service)
+  - [Disable the service](#disable-the-service)
 - [Reference](#reference)
 
 ## What is ddev-php-dumper?
@@ -65,16 +68,8 @@ If you project is based on Symfony (such as Laravel, Drupal), it may already inc
 
 1. Install ddev-php-dump addon and restart to activate the addon.
 
-    For DDEV v1.23.5 or above run
-
     ```shell
     ddev add-on get tyler36/ddev-php-dumper
-    ```
-
-    For earlier versions of DDEV run
-
-    ```shell
-    ddev get tyler36/ddev-php-dumper
     ```
 
     Then restart your project

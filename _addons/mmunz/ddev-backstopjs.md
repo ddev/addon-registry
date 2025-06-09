@@ -5,15 +5,18 @@ description: "ddev addon to provide a backstopjs container for visual regression
 user: mmunz
 repo: ddev-backstopjs
 repo_id: 594003686
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2023-01-27
-updated_at: 2025-03-16
+updated_at: 2025-06-09
 stars: 13
 ---
 
-[![tests](https://github.com/mmunz/ddev-backstopjs/actions/workflows/tests.yml/badge.svg)](https://github.com/mmunz/ddev-backstopjs/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/mmunz/ddev-backstopjs/actions/workflows/tests.yml/badge.svg)](https://github.com/mmunz/ddev-backstopjs/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/mmunz/ddev-backstopjs)](https://github.com/mmunz/ddev-backstopjs/commits)
+[![release](https://img.shields.io/github/v/release/mmunz/ddev-backstopjs)](https://github.com/mmunz/ddev-backstopjs/releases/latest)
 
 ## ddev-backstopjs
 
@@ -112,7 +115,7 @@ The entrypoint is responsible for:
 
 ### How to add additional hostnames?
 
-If you want to test hosts not configured in the web container, you need to use external_links in the service containers. 
+If you want to test hosts not configured in the web container, you need to use external_links in the service containers.
 For that add a file `docker-compose.external_links.yaml` to your project which should look like this:
 
 ```yaml
