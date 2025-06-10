@@ -1,7 +1,7 @@
 ---
 title: stasadev/ddev-frankenphp
 github_url: https://github.com/stasadev/ddev-frankenphp
-description: "FrankenPHP modern application server for PHP built on top of the Caddy web server for DDEV"
+description: "FrankenPHP server (extra service) for PHP built on top of Caddy for DDEV"
 user: stasadev
 repo: ddev-frankenphp
 repo_id: 998879403
@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2025-06-09
 updated_at: 2025-06-09
-stars: 0
+stars: 1
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
@@ -24,7 +24,9 @@ stars: 0
 
 [FrankenPHP](https://frankenphp.dev/) is a modern application server for PHP built on top of the [Caddy](https://caddyserver.com/) web server.
 
-This add-on integrates FrankenPHP into your [DDEV](https://ddev.com/) project.
+This add-on integrates FrankenPHP into your [DDEV](https://ddev.com/) project as an extra service.
+
+Running it as a separate service lets you install additional PHP extensions. This differs from the [official quckstart](https://ddev.readthedocs.io/en/stable/users/quickstart/#generic-frankenphp) and [another add-on](https://github.com/ochorocho/ddev-frankenphp), which bundle a static FrankenPHP build inside the `web` container.
 
 ## Installation
 
@@ -58,6 +60,7 @@ To change the `docroot` from the default `public` directory to something else, r
         extra_hosts:
           - "host.docker.internal:IP_ADDRESS"
     ```
+- `ddev xdebug` is only designed to work in the `web` container, it won't work here.
 - `ddev launch` doesn't work. Open the website URL directly in your browser.
 
 ## Advanced Customization
