@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-06-09
-updated_at: 2025-06-09
+updated_at: 2025-06-10
 stars: 1
 ---
 
@@ -38,22 +38,26 @@ ddev restart
 
 After installation, make sure to commit the `.ddev` directory to version control.
 
-### Using a different docroot
-
-To change the `docroot` from the default `public` directory to something else, remove the `#ddev-generated` line from the`.ddev/frankenphp/Caddyfile` and update the `root public/` line.
-
 ## Usage
 
 | Command | Description |
 | ------- | ----------- |
 | `ddev describe` | View service status and ports used by FrankenPHP |
 | `ddev php` | Run PHP in the FrankenPHP container |
-| `ddev exec -s frankenphp -- bash` | Enter the FrankenPHP container |
+| `ddev exec -s frankenphp bash` | Enter the FrankenPHP container |
 | `ddev logs -s frankenphp -f` | View FrankenPHP logs |
 
 ## Caveats
 
-- To make Xdebug available on the host, create a `.ddev/docker-compose.frankenphp_extra.yaml` file, and replace `IP_ADDRESS` with the IP from `ddev exec ping -c1 host.docker.internal`. If you're on Linux, use `host-gateway` instead of `IP_ADDRESS`:
+- To make Xdebug available on the host, create a `.ddev/docker-compose.frankenphp_extra.yaml` file:
+  - For Linux and WSL2:
+    ```yaml
+    services:
+      frankenphp:
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
+    ```
+  - For other setups, replace `IP_ADDRESS` with IP from the `ddev exec ping -c1 host.docker.internal` command:
     ```yaml
     services:
       frankenphp:
@@ -75,10 +79,10 @@ ddev stop && ddev debug rebuild -s frankenphp && ddev start
 
 Make sure to commit the `.ddev/.env.frankenphp` file to version control.
 
-To add PHP extensions:
+To add PHP extensions (see supported extensions [here](https://github.com/mlocati/docker-php-extension-installer?tab=readme-ov-file#supported-php-extensions)):
 
 ```bash
-ddev dotenv set .ddev/.env.frankenphp --frankenphp-php-extensions="opcache xdebug"
+ddev dotenv set .ddev/.env.frankenphp --frankenphp-php-extensions="opcache xdebug spx"
 ddev add-on get stasadev/ddev-frankenphp
 ddev stop && ddev debug rebuild -s frankenphp && ddev start
 ```
