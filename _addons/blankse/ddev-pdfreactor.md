@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2022-03-26
 updated_at: 2024-10-24
-stars: 2
+stars: 3
 ---
 
 [![tests](https://github.com/blankse/ddev-pdfreactor/actions/workflows/tests.yml/badge.svg)](https://github.com/blankse/ddev-pdfreactor/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
