@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2022-06-07
 updated_at: 2025-01-06
-stars: 3
+stars: 4
 ---
 
 # tyler36/ddev-laravel-queue <!-- omit in toc -->

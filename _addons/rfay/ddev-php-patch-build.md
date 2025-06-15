@@ -9,11 +9,14 @@ ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
 created_at: 2023-09-17
-updated_at: 2025-03-10
+updated_at: 2025-06-14
 stars: 0
 ---
 
-[![tests](https://github.com/rfay/ddev-php-patch-build/actions/workflows/tests.yml/badge.svg)](https://github.com/rfay/ddev-php-patch-build/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/rfay/ddev-php-patch-build/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/rfay/ddev-php-patch-build/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/rfay/ddev-php-patch-build)](https://github.com/rfay/ddev-php-patch-build/commits)
+[![release](https://img.shields.io/github/v/release/rfay/ddev-php-patch-build)](https://github.com/rfay/ddev-php-patch-build/releases/latest)
 
 # Experimental Add-on to use PHP patch versions: ddev-php-patch-build
 
@@ -45,8 +48,8 @@ ddev restart
 You can choose a different PHP version, the command below creates a `.ddev/.env.php-patch-build` file that you can commit:
 
 1. `ddev dotenv set .ddev/.env.php-patch-build --static-php-version=8.0.10`
-1. `ddev add-on get rfay/ddev-php-patch-build`
-2. `ddev restart`
+2. `ddev add-on get rfay/ddev-php-patch-build`
+3. `ddev restart`
 
 ## Components of the add-on
 
