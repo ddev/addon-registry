@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2025-02-16
 updated_at: 2025-03-25
-stars: 1
+stars: 2
 ---
 
 # DDEV Ollama Add-on
