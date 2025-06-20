@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2023-07-07
 updated_at: 2024-12-06
-stars: 1
+stars: 2
 ---
 
 ## Installation:
