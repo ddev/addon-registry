@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2022-06-28
-updated_at: 2024-10-15
+updated_at: 2025-06-22
 stars: 0
 ---
 
@@ -19,7 +19,17 @@ stars: 0
 
 This extension is based on [dunglas/mercure](https://github.com/dunglas/mercure)s implementation.
 
-To install it, run `ddev get Rindula/ddev-mercure`.
+To install it, for DDEV v1.23.5 or above run
+
+```sh
+ddev add-on get Rindula/ddev-mercure
+```
+
+For earlier versions of DDEV run
+
+```sh
+ddev get Rindula/ddev-mercure
+```
 
 The mercurehost will be available under `mercure.${DDEV_HOSTNAME}`.
 So for `example.ddev.site` the url will be `mercure.example.ddev.site`.
