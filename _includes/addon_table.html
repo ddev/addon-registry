@@ -35,7 +35,7 @@
                     <div class="footer">
                         <div class="footer-item">
                             <object>
-                                <a href="https://github.com/{{ addon.user }}/{{ addon.repo }}/actions/workflows/tests.yml" tabindex="-1" target="_blank">
+                                <a href="https://github.com/{{ addon.user }}/{{ addon.repo }}/actions?query=event%3Aschedule" tabindex="-1" target="_blank">
                                     {% if addon.workflow_status == "success" %}
                                         <img src="{{ site.baseurl }}/assets/tests-success.svg" height="20" alt="Tests - passing" title="Tests - passing" aria-label="Tests - passing">
                                     {% elsif addon.workflow_status == "failure" %}
