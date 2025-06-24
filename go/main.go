@@ -148,7 +148,7 @@ func createRepoMarkdown(repo *github.Repository) error {
 		lastCommitDate = repo.GetUpdatedAt().Format(time.DateOnly)
 	}
 
-	workflowStatus := getWorkflowStatus(repo, "tests.yml")
+	workflowStatus := getScheduledWorkflowStatus(repo)
 
 	// Create the front matter (YAML-like header)
 	addonType := "contrib"
@@ -388,12 +388,13 @@ func getRepoInstallYaml(repo *github.Repository) (*InstallDesc, error) {
 	return &parsedYaml, nil
 }
 
-// getWorkflowStatus returns the status of the given workflow
-func getWorkflowStatus(repo *github.Repository, workflowFile string) string {
+// getWorkflowStatus returns the status of the last scheduled workflow
+func getScheduledWorkflowStatus(repo *github.Repository) string {
 	client := GetGithubClient(context.Background())
 	since := time.Now().Add(-24 * time.Hour)
 
-	runs, _, err := client.Actions.ListWorkflowRunsByFileName(context.Background(), repo.Owner.GetLogin(), repo.GetName(), workflowFile, &github.ListWorkflowRunsOptions{
+	runs, _, err := client.Actions.ListRepositoryWorkflowRuns(context.Background(), repo.Owner.GetLogin(), repo.GetName(), &github.ListWorkflowRunsOptions{
+		Event:  "schedule",
 		Branch: repo.GetDefaultBranch(),
 		ListOptions: github.ListOptions{
 			PerPage: 10,
@@ -405,12 +406,10 @@ func getWorkflowStatus(repo *github.Repository, workflowFile string) string {
 
 	for _, run := range runs.WorkflowRuns {
 		if run.GetCreatedAt().Time.After(since) {
-			switch run.GetConclusion() {
-			case "":
+			if run.GetConclusion() == "" {
 				return "unknown"
-			default:
-				return run.GetConclusion()
 			}
+			return run.GetConclusion()
 		}
 	}
 	return "disabled"
