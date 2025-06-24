@@ -10,6 +10,7 @@ dependencies: ["redis"]
 type: official
 created_at: 2022-03-22
 updated_at: 2025-05-02
+workflow_status: success
 stars: 6
 ---
 
