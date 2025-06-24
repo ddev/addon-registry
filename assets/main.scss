@@ -319,11 +319,33 @@ button {
 
 .card .footer {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    overflow: hidden;
     font-size: 13px;
     color: var(--text-color);
     opacity: 0.8;
     margin-top: auto;
+
+    .footer-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .footer-item span,
+    .footer-item img,
+    .footer-item svg,
+    .footer-item a,
+    .footer-item object {
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle;
+    }
+
+    .footer-item:last-child {
+        margin-left: auto;
+    }
 }
 
 .pagination {

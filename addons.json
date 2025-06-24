@@ -5,15 +5,16 @@
     {
         "title": {{ addon.title | jsonify }},
         "github_url": {{ addon.github_url | jsonify }},
+        "description": {{ addon.description | jsonify }},
         "user": {{ addon.user | jsonify }},
         "repo": {{ addon.repo | jsonify }},
         "repo_id": {{ addon.repo_id | jsonify }},
         "ddev_version_constraint": {{ addon.ddev_version_constraint | jsonify }},
         "dependencies": {{ addon.dependencies | jsonify }},
-        "description": {{ addon.description | jsonify }},
         "type": {{ addon.type | jsonify }},
         "created_at": {{ addon.created_at | jsonify }},
         "updated_at": {{ addon.updated_at | jsonify }},
+        "workflow_status": {{ addon.workflow_status | jsonify }},
         "stars": {{ addon.stars | to_integer }}
     }{% unless forloop.last %},{% endunless %}{% endfor %}
 ]

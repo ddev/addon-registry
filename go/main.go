@@ -148,6 +148,8 @@ func createRepoMarkdown(repo *github.Repository) error {
 		lastCommitDate = repo.GetUpdatedAt().Format(time.DateOnly)
 	}
 
+	workflowStatus := getWorkflowStatus(repo, "tests.yml")
+
 	// Create the front matter (YAML-like header)
 	addonType := "contrib"
 	if org == "ddev" {
@@ -165,6 +167,7 @@ dependencies: %s
 type: %s
 created_at: %s
 updated_at: %s
+workflow_status: %s
 stars: %d
 ---
 
@@ -181,6 +184,7 @@ stars: %d
 		addonType,
 		repo.GetCreatedAt().Format(time.DateOnly),
 		lastCommitDate,
+		workflowStatus,
 		repo.GetStargazersCount(),
 		strings.TrimSpace(readmeContent),
 	)
@@ -382,4 +386,32 @@ func getRepoInstallYaml(repo *github.Repository) (*InstallDesc, error) {
 	}
 
 	return &parsedYaml, nil
+}
+
+// getWorkflowStatus returns the status of the given workflow
+func getWorkflowStatus(repo *github.Repository, workflowFile string) string {
+	client := GetGithubClient(context.Background())
+	since := time.Now().Add(-24 * time.Hour)
+
+	runs, _, err := client.Actions.ListWorkflowRunsByFileName(context.Background(), repo.Owner.GetLogin(), repo.GetName(), workflowFile, &github.ListWorkflowRunsOptions{
+		Branch: repo.GetDefaultBranch(),
+		ListOptions: github.ListOptions{
+			PerPage: 10,
+		},
+	})
+	if err != nil || runs == nil || len(runs.WorkflowRuns) == 0 {
+		return "unknown"
+	}
+
+	for _, run := range runs.WorkflowRuns {
+		if run.GetCreatedAt().Time.After(since) {
+			switch run.GetConclusion() {
+			case "":
+				return "unknown"
+			default:
+				return run.GetConclusion()
+			}
+		}
+	}
+	return "disabled"
 }
