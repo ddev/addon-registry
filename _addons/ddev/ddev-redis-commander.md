@@ -10,7 +10,7 @@ dependencies: ["redis"]
 type: official
 created_at: 2022-03-22
 updated_at: 2025-05-02
-stars: 5
+stars: 6
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)

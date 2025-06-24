@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2023-09-17
 updated_at: 2025-06-14
-stars: 0
+stars: 1
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)

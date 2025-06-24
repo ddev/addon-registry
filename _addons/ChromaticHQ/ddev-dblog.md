@@ -10,7 +10,7 @@ dependencies: []
 type: contrib
 created_at: 2024-01-10
 updated_at: 2024-11-16
-stars: 1
+stars: 2
 ---
 
 [![tests](https://github.com/ChromaticHQ/ddev-dblog/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-dblog/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
