@@ -33,8 +33,43 @@
                     <div class="title name">{{ addon.repo }} {% include addon_badge.html addon=addon %}</div>
                     <div class="description">{% unless include.filter_by_user %}[<object><a href="{{ site.baseurl }}/addons/{{ addon.user }}/" tabindex="-1">{{ addon.user }}</a></object>]{% endunless %} {{ addon.description }}</div>
                     <div class="footer">
-                        <span class="updated_at">{{ addon.updated_at }}</span>
-                        <span class="stars">⭐ {{ addon.stars | to_integer }}</span>
+                        <div class="footer-item">
+                            <object>
+                                <a href="https://github.com/{{ addon.user }}/{{ addon.repo }}/actions/workflows/tests.yml" tabindex="-1" target="_blank">
+                                    {% if addon.workflow_status == "success" %}
+                                        <img src="{{ site.baseurl }}/assets/tests-success.svg" height="20" alt="Tests - passing" title="Tests - passing" aria-label="Tests - passing">
+                                    {% elsif addon.workflow_status == "failure" %}
+                                        <img src="{{ site.baseurl }}/assets/tests-failure.svg" height="20" alt="Tests - failing" title="Tests - failing" aria-label="Tests - failing">
+                                    {% elsif addon.workflow_status == "disabled" %}
+                                        <img src="{{ site.baseurl }}/assets/tests-disabled.svg" height="20" alt="Tests - disabled" title="Tests - disabled" aria-label="Tests - disabled">
+                                    {% else %}
+                                        <img src="{{ site.baseurl }}/assets/tests-unknown.svg" height="20" alt="Tests - no status" title="Tests - no status" aria-label="Tests - no status">
+                                    {% endif %}
+                                </a>
+                            </object>
+                        </div>
+                        <div class="footer-item">
+                        <span class="updated_at" style="display: none;">{{ addon.updated_at }}</span>
+                            <object>
+                                <a href="https://github.com/{{ addon.user }}/{{ addon.repo }}/commits" tabindex="-1" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="142" height="20" role="img" aria-label="{{ addon.updated_at }}: updated at">
+                                        <title>Last update date</title>
+                                        <linearGradient id="s" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient>
+                                        <clipPath id="r"><rect width="142" height="20" rx="3" fill="#fff"/></clipPath>
+                                        <g clip-path="url(#r)"><rect width="73" height="20" fill="#555"/><rect x="73" width="69" height="20" fill="#007ec6"/><rect width="142" height="20" fill="url(#s)"/></g>
+                                        <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110">
+                                            <text aria-hidden="true" x="375" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="630">{{ addon.updated_at }}</text>
+                                            <text x="375" y="140" transform="scale(.1)" fill="#fff" textLength="630">{{ addon.updated_at }}</text>
+                                            <text aria-hidden="true" x="1065" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="590">updated at</text>
+                                            <text x="1065" y="140" transform="scale(.1)" fill="#fff" textLength="590">updated at</text>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </object>
+                        </div>
+                        <div class="footer-item">
+                            <span class="stars">⭐ {{ addon.stars | to_integer }}</span>
+                        </div>
                     </div>
                 </a>
             </div>
