@@ -10,6 +10,7 @@ dependencies: ["redis"]
 type: contrib
 created_at: 2025-03-10
 updated_at: 2025-03-11
+workflow_status: disabled
 stars: 0
 ---
 
