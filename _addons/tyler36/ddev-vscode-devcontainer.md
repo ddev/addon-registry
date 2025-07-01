@@ -9,13 +9,13 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2023-04-05
-updated_at: 2025-05-27
+updated_at: 2025-06-30
 workflow_status: success
 stars: 6
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
-[![tests](https://github.com/ddev/ddev-addon-template/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-addon-template/actions/workflows/tests.yml)
+[![tests](https://github.com/tyler36/ddev-vscode-devcontainer/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-vscode-devcontainer/actions/workflows/tests.yml)
 [![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-vscode-devcontainer)](https://github.com/tyler36/ddev-vscode-devcontainer/commits)
 [![release](https://img.shields.io/github/v/release/tyler36/ddev-vscode-devcontainer)](https://github.com/tyler36/ddev-vscode-devcontainer/releases/latest)
 
