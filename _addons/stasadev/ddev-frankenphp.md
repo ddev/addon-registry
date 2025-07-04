@@ -9,8 +9,8 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-06-09
-updated_at: 2025-07-01
-workflow_status: success
+updated_at: 2025-07-03
+workflow_status: failure
 stars: 3
 ---
 
@@ -68,7 +68,7 @@ Make sure to commit the `.ddev/.env.frankenphp` file to version control.
 To add PHP extensions (see supported extensions [here](https://github.com/mlocati/docker-php-extension-installer?tab=readme-ov-file#supported-php-extensions)):
 
 ```bash
-ddev dotenv set .ddev/.env.frankenphp --frankenphp-php-extensions="opcache spx"
+ddev dotenv set .ddev/.env.frankenphp --frankenphp-php-extensions="redis pdo_mysql"
 ddev add-on get stasadev/ddev-frankenphp
 ddev stop && ddev debug rebuild -s frankenphp && ddev start
 ```
