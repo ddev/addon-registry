@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-11-08
-updated_at: 2025-07-03
+updated_at: 2025-07-04
 workflow_status: success
 stars: 37
 ---
@@ -111,4 +111,5 @@ If you use Behat as a test running, adjust your `behat.yml`
 
 ## Credits
 
-**Contributed and maintained by [@weitzman](https://github.com/weitzman)**
+Contributed and maintained by Moshe Weitzman ([@weitzman](https://github.com/weitzman)) and
+Dezső BICZÓ  ([@mxr576](https://github.com/mxr576))
