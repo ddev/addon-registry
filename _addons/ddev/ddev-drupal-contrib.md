@@ -6,10 +6,10 @@ user: ddev
 repo: ddev-drupal-contrib
 repo_id: 634259708
 ddev_version_constraint: ">= v1.24.6"
-dependencies: []
+dependencies: ["ddev/ddev-selenium-standalone-chrome"]
 type: official
 created_at: 2023-04-29
-updated_at: 2025-07-03
+updated_at: 2025-07-04
 workflow_status: success
 stars: 111
 ---
@@ -32,7 +32,7 @@ DDEV integration for developing Drupal contrib projects. As a general philosophy
 4. Configure DDEV for Drupal using `ddev config --project-type=drupal --docroot=web --php-version=8.3 --corepack-enable --project-name=[module]` or select these options when prompted using `ddev config`
    - Remove underscores in the project name, or replace with hyphens. (DDEV will do this for you.)
    - See [Misc](#misc) for help on using alternate versions of Drupal core.
-5. Run `ddev add-on get ddev/ddev-drupal-contrib`
+5. Run `ddev add-on get ddev/ddev-selenium-standalone-chrome ddev/ddev-drupal-contrib && ddev add-on get ddev/ddev-drupal-contrib`
 6. Run `ddev start`
 7. Run `ddev poser`
 8. Run `ddev symlink-project`
@@ -202,4 +202,5 @@ Don't forget to run `ddev restart` if `.ddev/config.yaml` has been updated.
 
 ## Credits
 
-**Contributed and maintained by [@weitzman](https://github.com/weitzman)**
+Contributed and maintained by Moshe Weitzman ([@weitzman](https://github.com/weitzman)) and 
+Dezső BICZÓ  ([@mxr576](https://github.com/mxr576))
