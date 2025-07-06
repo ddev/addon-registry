@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-03-07
-updated_at: 2025-06-19
+updated_at: 2025-07-05
 workflow_status: success
 stars: 2
 ---
@@ -35,7 +35,15 @@ ddev-typo3-multi-version-extension is a DDEV add-on that provides a multi-versio
 
 ## Requirements
 
+- Extension key as DDEV project name, e.g. `custom-extension`
 - `apache-fpm` as webserver type
+- a valid `composer.json` file in the project root directory
+
+You may use the following command to create a new DDEV project with the required settings:
+
+```shell
+ddev config --project-type=php --docroot=public --webserver-type=apache-fpm --project-name=custom-extension
+```
 
 ## Installation
 

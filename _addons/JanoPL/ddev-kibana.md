@@ -10,7 +10,7 @@ dependencies: ["elasticsearch"]
 type: contrib
 created_at: 2022-08-30
 updated_at: 2024-10-27
-workflow_status: success
+workflow_status: disabled
 stars: 1
 ---
 
