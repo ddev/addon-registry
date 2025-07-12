@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.6"
 dependencies: ["ddev/ddev-selenium-standalone-chrome"]
 type: official
 created_at: 2023-04-29
-updated_at: 2025-07-08
+updated_at: 2025-07-11
 workflow_status: success
 stars: 111
 ---
@@ -32,7 +32,7 @@ DDEV integration for developing Drupal contrib projects. As a general philosophy
 4. Configure DDEV for Drupal using `ddev config --project-type=drupal --docroot=web --php-version=8.3 --corepack-enable --project-name=[module]` or select these options when prompted using `ddev config`
    - Remove underscores in the project name, or replace with hyphens. (DDEV will do this for you.)
    - See [Misc](#misc) for help on using alternate versions of Drupal core.
-5. Run `ddev add-on get ddev/ddev-selenium-standalone-chrome ddev/ddev-drupal-contrib && ddev add-on get ddev/ddev-drupal-contrib`
+5. Run `ddev add-on get ddev/ddev-selenium-standalone-chrome && ddev add-on get ddev/ddev-drupal-contrib`
 6. Run `ddev start`
 7. Run `ddev poser`
 8. Run `ddev symlink-project`
@@ -44,6 +44,7 @@ After installation, make sure to commit the `.ddev` directory to version control
 ## Update
 
 ```bash
+ddev add-on get ddev/ddev-selenium-standalone-chrome
 ddev add-on get ddev/ddev-drupal-contrib
 ddev restart
 ```
@@ -76,7 +77,7 @@ Run tests on your project code (defaults to `web/modules/custom`, [configurable]
 
 ## Misc
 
-- Optional: [Install the ddev-selenium-standalone-chrome extension for FunctionalJavascript and Nightwatch tests](https://github.com/ddev/ddev-selenium-standalone-chrome).
+- The [ddev-selenium-standalone-chrome add-on helps run FunctionalJavascript and Nightwatch tests](https://github.com/ddev/ddev-selenium-standalone-chrome). This add-on already depends on that one so you likely have it installed.
 - Optional: [Install the ddev-mkdocs extension for local preview of your docs site](https://github.com/nireneko/ddev-mkdocs). Drupal.org's Gitlab CI can [automatically publish your site](https://project.pages.drupalcode.org/gitlab_templates/jobs/pages/).
 - Optional. Commit the changes in the `.ddev` folder after this plugin installs. This saves other users from having to install this integration.
 - If you add/remove a root file or directory, re-symlink root files via EITHER of these methods
@@ -185,12 +186,11 @@ variable.
 i.e. `TEST_DRUPAL_CORE=11 ./tests/bats/bin/bats ./tests`.
 
 Tests are triggered automatically on every push to the
-repository, and periodically each night. The automated tests are against all of
-the supported Drupal core versions.
+repository, and periodically each night. The automated tests are against all the supported Drupal core versions.
 
 Also, consider adding tests in your PR.
 
-To learn more about Bats see the [documentation][bats-docs].
+To learn more about Bats, see the [documentation][bats-docs].
 
 [bats-docs]: https://bats-core.readthedocs.io/en/stable/
 
