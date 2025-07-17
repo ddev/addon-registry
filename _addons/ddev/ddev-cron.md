@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-05-19
-updated_at: 2025-04-17
+updated_at: 2025-07-16
 workflow_status: success
 stars: 29
 ---
@@ -28,6 +28,7 @@ stars: 29
 - [Useful sites and debugging](#useful-sites-and-debugging)
 - [Examples](#examples)
   - [Logging current time](#logging-current-time)
+  - [Contao cron](#contao-cron)
   - [Drupal cron](#drupal-cron)
   - [Laravel cron](#laravel-cron)
   - [OpenMage cron](#openmage-cron)
@@ -102,6 +103,15 @@ Every minute, it writes the current time (UTC timezone) to `./time.log`.
 - Rename `.ddev/web-build/time.cron.example` to `.ddev/web-build/time.cron`
 - Restart the DDEV project to start the time example.
 - After at least a minute, you should see `./time.log` containing the web container's current time.
+
+### Contao cron
+
+- Create a `./.ddev/web-build/contao.cron` file
+- Add the following code to run the Contao scheduler every minute.
+
+```cron
+* * * * * php /var/www/html/vendor/bin/contao-console contao:cron
+```
 
 ### Drupal cron
 
