@@ -11,7 +11,7 @@ type: contrib
 created_at: 2025-03-07
 updated_at: 2025-07-05
 workflow_status: success
-stars: 2
+stars: 3
 ---
 
 ddev-typo3-multi-version-extension
