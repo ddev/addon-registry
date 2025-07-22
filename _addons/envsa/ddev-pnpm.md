@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-11-09
-updated_at: 2025-03-05
+updated_at: 2025-07-21
 workflow_status: disabled
 stars: 6
 ---
@@ -59,3 +59,24 @@ ddev pnpm
 ```
 
 Please refer to the documentation at [pnpm.io](https://pnpm.io)
+
+### Working directory
+
+By default, this add-on assumes your `package.json` is in the root of the DDEV project.
+
+In a monorepo, such as the one below, `package.json` is in `frontend`.
+
+```md
+.
+├── .ddev
+├── backend/
+│   └── composer.json
+└── frontend/
+    └── package.json
+```
+
+To configure this addon to run PNPM commands for this example project, set a `PNPM_DIRECTORY` environment variable to `frontend`. For example: `.ddev/.env`
+
+```env
+PNPM_DIRECTORY=frontend
+```
