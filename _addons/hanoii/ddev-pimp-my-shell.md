@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-03-25
-updated_at: 2025-07-23
+updated_at: 2025-07-25
 workflow_status: success
 stars: 4
 ---
