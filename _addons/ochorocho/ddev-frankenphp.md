@@ -11,7 +11,7 @@ type: contrib
 created_at: 2024-02-11
 updated_at: 2024-10-24
 workflow_status: unknown
-stars: 22
+stars: 23
 ---
 
 # FrankenPHP Add-On for DDEV
