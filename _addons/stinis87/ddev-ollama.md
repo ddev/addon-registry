@@ -11,7 +11,7 @@ type: contrib
 created_at: 2025-02-16
 updated_at: 2025-03-25
 workflow_status: failure
-stars: 2
+stars: 3
 ---
 
 # DDEV Ollama Add-on
