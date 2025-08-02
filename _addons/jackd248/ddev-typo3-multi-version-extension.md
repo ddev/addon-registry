@@ -9,10 +9,12 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-03-07
-updated_at: 2025-07-05
+updated_at: 2025-08-01
 workflow_status: success
 stars: 3
 ---
+
+<div align="center">
 
 ddev-typo3-multi-version-extension
 ===============================
@@ -21,9 +23,9 @@ ddev-typo3-multi-version-extension
 [![tests](https://github.com/jackd248/ddev-typo3-multi-version-extension/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/jackd248/ddev-typo3-multi-version-extension/actions/workflows/tests.yml?query=branch%3Amain)
 [![last commit](https://img.shields.io/github/last-commit/jackd248/ddev-typo3-multi-version-extension)](https://github.com/jackd248/ddev-typo3-multi-version-extension/commits)
 [![release](https://img.shields.io/github/v/release/jackd248/ddev-typo3-multi-version-extension)](https://github.com/jackd248/ddev-typo3-multi-version-extension/releases/latest)
+</div>
 
-
-## What is ddev-typo3-multi-version-extension
+## What is `ddev-typo3-multi-version-extension`?
 
 ddev-typo3-multi-version-extension is a DDEV add-on that provides a multi-version TYPO3 environment. With this feature, it is possible to develop and test your extension with different TYPO3 versions at the same time.
 
@@ -45,7 +47,7 @@ You may use the following command to create a new DDEV project with the required
 ddev config --project-type=php --docroot=public --webserver-type=apache-fpm --project-name=custom-extension
 ```
 
-## Installation
+## 🔥 Installation
 
 Install the add-on with the following command:
 
@@ -67,7 +69,7 @@ ddev install all
 ddev install 11
 ```
 
-## Configuration
+## ⚙ Configuration
 
 By default, a blank TYPO3 instance will be installed for each version. They are only two extensions installed:
 
@@ -83,7 +85,7 @@ If you need more extensions for your setup, you can place them in the `Tests/.ty
 
 If you need additional data for the automatic installation process, place a TYPO3 export file in the `Tests/.typo3-setup/data` directory.
 
-## Usage
+## 📊 Usage
 
 You can launch a TYPO3 instance in your browser with the following command:
 
