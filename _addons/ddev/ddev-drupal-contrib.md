@@ -6,10 +6,10 @@ user: ddev
 repo: ddev-drupal-contrib
 repo_id: 634259708
 ddev_version_constraint: ">= v1.24.6"
-dependencies: ["ddev/ddev-selenium-standalone-chrome"]
+dependencies: []
 type: official
 created_at: 2023-04-29
-updated_at: 2025-07-21
+updated_at: 2025-08-02
 workflow_status: success
 stars: 113
 ---
@@ -32,7 +32,7 @@ DDEV integration for developing Drupal contrib projects. As a general philosophy
 4. Configure DDEV for Drupal using `ddev config --project-type=drupal --docroot=web --php-version=8.3 --corepack-enable --project-name=[module]` or select these options when prompted using `ddev config`
    - Remove underscores in the project name, or replace with hyphens. (DDEV will do this for you.)
    - See [Changing the Drupal core version](#changing-the-drupal-core-version) to update your  version of Drupal core.
-5. Run `ddev add-on get ddev/ddev-selenium-standalone-chrome && ddev add-on get ddev/ddev-drupal-contrib`
+5. Run `ddev add-on get ddev/ddev-drupal-contrib`
 6. Run `ddev start`
 7. Run `ddev poser`
 8. Run `ddev symlink-project`
@@ -44,7 +44,6 @@ After installation, make sure to commit the `.ddev` directory to version control
 ## Update
 
 ```bash
-ddev add-on get ddev/ddev-selenium-standalone-chrome
 ddev add-on get ddev/ddev-drupal-contrib
 ddev restart
 ```
@@ -55,7 +54,7 @@ This project provides the following DDEV container commands.
 
 - [ddev poser](https://github.com/ddev/ddev-drupal-contrib/blob/main/commands/web/poser).
   - Creates a temporary [composer.contrib.json](https://getcomposer.org/doc/03-cli.md#composer) so that `drupal/core-recommended` becomes a dev dependency. This way the composer.json from the module is untouched.
-  - Runs `composer install` AND `yarn install` so that dependencies are available. Additional arguments to `ddev poser` like --prefer-source are passed along to `composer install`
+  - Runs `composer install` so that dependencies are available. Additional arguments to `ddev poser` like `--prefer-source` are passed along to `composer install`
   - Note: it is perfectly acceptable to skip this command and edit the require-dev of composer.json by hand.
 - [ddev symlink-project](https://github.com/ddev/ddev-drupal-contrib/blob/main/commands/web/symlink-project). Symlinks your project files into the configured location (defaults to `web/modules/custom`) so Drupal can find your module. This command runs automatically on every `ddev start` _as long as Composer has generated `vendor/autoload.php`_ which occurs during `composer install/update`. See codebase image below.
 - `ddev phpunit` Run [PHPUnit](https://github.com/sebastianbergmann/phpunit) tests.
@@ -74,9 +73,10 @@ This project provides the following DDEV container commands.
 
 ## Misc
 
-- The [ddev-selenium-standalone-chrome add-on helps run FunctionalJavascript and Nightwatch tests](https://github.com/ddev/ddev-selenium-standalone-chrome). This add-on already depends on that one so you likely have it installed.
+- Optional. The [ddev-selenium-standalone-chrome add-on helps run FunctionalJavascript and Nightwatch tests](https://github.com/ddev/ddev-selenium-standalone-chrome).
 - Optional: [Install the ddev-mkdocs extension for local preview of your docs site](https://github.com/nireneko/ddev-mkdocs). Drupal.org's Gitlab CI can [automatically publish your site](https://project.pages.drupalcode.org/gitlab_templates/jobs/pages/).
 - Optional. Commit the changes in the `.ddev` folder after this plugin installs. This saves other users from having to install this integration.
+- To install javascript dependencies, run `ddev exec "cd web/core && yarn install"`
 - If you add/remove a root file or directory, re-symlink root files via EITHER of these methods
   - `ddev restart`
   - `ddev symlink-project`
@@ -103,7 +103,7 @@ DRUPAL_CORE=^11
 
 Then run `ddev restart` and then `ddev poser` to update the Drupal core version.
 
-If Drupal core cannot be changed because the project is using an unsupported version of PHP, `ddev poser` will show a `composer` error. In that case, open `.ddev/config.yaml` and change the `PHP_VERSION` to a supported version; then run `ddev restart` and `ddev poser` again.  Note that the project PHP version is set in `.ddev/config.yaml`, while the core version to use is set in `.ddev/config.local.yaml`.
+If Drupal core cannot be changed because the project is using an unsupported version of PHP, `ddev poser` will show a `composer` error. In that case, open `.ddev/config.yaml` and change the `PHP_VERSION` to a supported version; then run `ddev restart` and `ddev poser` again.  Note that the project PHP version is set in `.ddev/config.yaml`, while the core version to use is set in `.ddev/.env.web`.
 
 ### Changing the symlink location
 
