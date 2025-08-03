@@ -9,8 +9,8 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-08-01
-updated_at: 2025-08-01
-workflow_status: unknown
+updated_at: 2025-08-02
+workflow_status: failure
 stars: 0
 ---
 
@@ -38,6 +38,7 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Command | Description |
 | ------- | ----------- |
+| `ddev kafka` | kafka helper |
 | `ddev describe` | View service status and used ports for Apache Kafka |
 | `ddev logs -s zookeper` | Check Zookeeper logs |
 | `ddev logs -s kafka` | Check Kafka logs |
