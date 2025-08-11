@@ -10,7 +10,7 @@ dependencies: ["ddev-kubernetes"]
 type: contrib
 created_at: 2025-07-23
 updated_at: 2025-07-25
-workflow_status: failure
+workflow_status: success
 stars: 0
 ---
 
