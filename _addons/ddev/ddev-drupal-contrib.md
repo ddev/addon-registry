@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: official
 created_at: 2023-04-29
-updated_at: 2025-08-10
+updated_at: 2025-08-11
 workflow_status: success
 stars: 113
 ---
