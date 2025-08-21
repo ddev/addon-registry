@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: ["ddev-selenium"]
 type: contrib
 created_at: 2025-05-19
-updated_at: 2025-06-02
+updated_at: 2025-08-20
 workflow_status: disabled
 stars: 0
 ---
@@ -26,8 +26,8 @@ stars: 0
 This add-on integrates Selenium Video into your [DDEV](https://ddev.com/) project.
 
 ## Requirements
-- [DDEV Aljibe] (https://www.github.com/metadrop/ddev-aljibe)
-- [DDEV selenium] (https://www.github.com/metadrop/ddev-selenium)
+- [DDEV Aljibe](https://www.github.com/metadrop/ddev-aljibe)
+- [DDEV selenium](https://www.github.com/metadrop/ddev-selenium)
 
 ## Installation
 
