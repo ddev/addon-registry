@@ -9,9 +9,9 @@ ddev_version_constraint: ">= 1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-08-13
-updated_at: 2025-08-19
+updated_at: 2025-08-21
 workflow_status: disabled
-stars: 0
+stars: 1
 ---
 
 # ddev-kanopi-wp
