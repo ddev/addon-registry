@@ -11,7 +11,7 @@ type: contrib
 created_at: 2025-08-08
 updated_at: 2025-08-08
 workflow_status: unknown
-stars: 0
+stars: 1
 ---
 
 # DDEV Kanopi Pantheon Drupal Add-on
