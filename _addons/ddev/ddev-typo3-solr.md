@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2024-02-23
-updated_at: 2025-04-24
+updated_at: 2025-08-22
 workflow_status: success
 stars: 8
 ---
@@ -56,6 +56,7 @@ Configuration example for TYPO3 in `.ddev/typo3-solr/config.yaml`:
 
 ```yaml
 config: 'vendor/apache-solr-for-typo3/solr/Resources/Private/Solr/solr.xml'
+typo3lib: "vendor/apache-solr-for-typo3/solr/Resources/Private/Solr/typo3lib"
 configsets:
     - name: "ext_solr_12_0_0"
       path: "vendor/apache-solr-for-typo3/solr/Resources/Private/Solr/configsets/ext_solr_12_0_0"
