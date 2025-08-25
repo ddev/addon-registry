@@ -1,13 +1,45 @@
-<header class="header">
-    <h1>
-        {% if page.group %}
-            <a href="{{ site.baseurl | default: '/' }}" class="header-title">{{ site.title }}</a> &rsaquo; {{ page.group }}
-        {% elsif page.user %}
-            <a href="{{ site.baseurl | default: '/' }}" class="header-title">{{ site.title }}</a> &rsaquo; <a href="{{ site.baseurl }}/addons/{{ page.user }}">{{ page.user }}</a> &rsaquo; {{ page.repo }}
-        {% elsif page.title == site.title %}
-            <a href="{{ site.baseurl | default: '/' }}" class="header-title">{{ site.title }}</a>
-        {% else %}
-            {{ page.title }}
-        {% endif %}
-    </h1>
+<header class="main-header">
+    <nav class="nav-container">
+        <div class="nav-brand">
+            <a href="{{ site.baseurl | default: '/' }}" class="brand-link">
+                <img src="{{ site.baseurl }}/assets/logo.svg" alt="DDEV Logo" class="brand-logo">
+                <span class="brand-text">{{ site.title }}</span>
+            </a>
+        </div>
+        
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+        </button>
+        
+        <div class="nav-menu">
+            <ul class="nav-links">
+                <li><a href="https://docs.ddev.com/" target="_blank" rel="noopener">Docs</a></li>
+                <li><a href="https://ddev.com/" target="_blank" rel="noopener">Blog</a></li>
+                <li><a href="https://github.com/ddev/ddev" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://ddev.com/support-ddev/" target="_blank" rel="noopener">❤️ Support DDEV</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    {% if page.group or page.user or (page.title != site.title and page.title) %}
+    <div class="breadcrumb-container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ site.baseurl | default: '/' }}" class="breadcrumb-link">Home</a>
+            {% if page.group %}
+                <span class="breadcrumb-separator">›</span>
+                <span class="breadcrumb-current">{{ page.group }}</span>
+            {% elsif page.user %}
+                <span class="breadcrumb-separator">›</span>
+                <a href="{{ site.baseurl }}/addons/{{ page.user }}" class="breadcrumb-link">{{ page.user }}</a>
+                <span class="breadcrumb-separator">›</span>
+                <span class="breadcrumb-current">{{ page.repo }}</span>
+            {% elsif page.title != site.title %}
+                <span class="breadcrumb-separator">›</span>
+                <span class="breadcrumb-current">{{ page.title }}</span>
+            {% endif %}
+        </nav>
+    </div>
+    {% endif %}
 </header>
