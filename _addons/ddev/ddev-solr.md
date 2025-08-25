@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2023-06-20
-updated_at: 2025-07-23
+updated_at: 2025-08-25
 workflow_status: success
 stars: 14
 ---
@@ -174,7 +174,7 @@ The `solr` command line client is available as a `ddev` command:
 ddev solr
 ```
 
-The `zk` command is usually executed as `solr zk -z <HOST>:<PORT>`. To ease its
+The `zk` command is usually executed as `solr zk <subcommand> -z <HOST>:<PORT>`. To ease its
 usage a convenient `ddev` command exists that uses preconfigured connection
 settings. So the `-z` option can be omitted:
 
