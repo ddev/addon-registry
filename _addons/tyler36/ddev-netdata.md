@@ -1,7 +1,7 @@
 ---
 title: tyler36/ddev-netdata
 github_url: https://github.com/tyler36/ddev-netdata
-description: ""
+description: "Stream any metrics to one dashboard, in real-time."
 user: tyler36
 repo: ddev-netdata
 repo_id: 1042591911

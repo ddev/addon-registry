@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2023-10-17
-updated_at: 2025-04-26
+updated_at: 2025-08-26
 workflow_status: success
 stars: 7
 ---
@@ -63,7 +63,7 @@ hook to your `.ddev/config.yaml`:
 ```yaml
 hooks:
   post-start:
-    - exec-host: ddev solrctl apply
+    - exec-host: ddev rabbitmq apply
 ```
 
 Remove rabbitmq configuration but keep default user (`rabbitmq`) and vhost (`/`):
