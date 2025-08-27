@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: ["redis"]
 type: contrib
 created_at: 2025-06-17
-updated_at: 2025-06-19
+updated_at: 2025-08-26
 workflow_status: success
 stars: 0
 ---
