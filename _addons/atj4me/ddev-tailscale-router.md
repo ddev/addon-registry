@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-03-18
-updated_at: 2025-08-04
+updated_at: 2025-08-27
 workflow_status: success
 stars: 2
 ---
@@ -50,9 +50,6 @@ With this setup, your development sites become accessible over Tailscale's secur
   Templates for filing bug reports, feature requests, and submitting pull requests to streamline contributions.
 
 ## Getting Started
-
-> [!WARNING]
-> This add-on is only supported on Linux and Windows (WSL2). It is not compatible with macOS or systems with an `arm64` architecture (like Apple Silicon).
 
 ### 1. Install DDEV and Tailscale
 
@@ -104,6 +101,17 @@ Remember to ddev restart after changing this setting for it to take effect.
 ### 5. Access Your DDEV Sites Securely
 
 Once connected to Tailscale, use the **Tailscale-assigned IP** of your DDEV environment to access your local development sites securely from any connected device.
+
+### 6. Command Line Usage
+
+The addon supports all [Tailscale CLI}(https://tailscale.com/kb/1080/cli) commands under 
+```
+ddev tailscale
+```
+
+
+> [!INFO]
+> Hint: This add-on has following commands can be used to debug connection, such as `ddev proxy` to see the funnel or serve status, or `ddev slogs` to see the socat output. 
 
 ## Testing
 
