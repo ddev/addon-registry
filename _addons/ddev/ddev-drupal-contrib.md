@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: official
 created_at: 2023-04-29
-updated_at: 2025-08-11
+updated_at: 2025-08-28
 workflow_status: success
 stars: 113
 ---
@@ -135,6 +135,13 @@ Theme Settings Form (Drupal\Tests\config_enforce_devel\Functional\ThemeSettingsF
 Time: 00:13.453, Memory: 4.00 MB
 
 OK (3 tests, 20 assertions)
+```
+
+To run a single test class, make sure to use the path relative to the `web` directory. Or use --filter to refer to a test class or method. For example:
+
+```
+ddev phpunit --filter MyTest.php
+ddev phpunit --filter testMyFunction
 ```
 
 ## Automatically correct coding standard violations
