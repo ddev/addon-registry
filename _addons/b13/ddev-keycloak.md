@@ -11,7 +11,7 @@ type: contrib
 created_at: 2023-12-25
 updated_at: 2025-05-30
 workflow_status: success
-stars: 9
+stars: 10
 ---
 
 # Keycloak Add-On for DDEV
