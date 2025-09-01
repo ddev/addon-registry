@@ -11,7 +11,7 @@ type: contrib
 created_at: 2024-06-07
 updated_at: 2024-06-20
 workflow_status: disabled
-stars: 0
+stars: 1
 ---
 
 # DDEV qdrant Addon
