@@ -1,7 +1,7 @@
 ---
 title: tyler36/ddev-ollama
 github_url: https://github.com/tyler36/ddev-ollama
-description: "Add Ollama service"
+description: "Run Ollama and AI models locally."
 user: tyler36
 repo: ddev-ollama
 repo_id: 1044108721
