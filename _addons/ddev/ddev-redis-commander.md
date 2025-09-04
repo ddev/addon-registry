@@ -6,10 +6,10 @@ user: ddev
 repo: ddev-redis-commander
 repo_id: 472932399
 ddev_version_constraint: ">= v1.24.3"
-dependencies: ["redis"]
+dependencies: ["ddev/ddev-redis"]
 type: official
 created_at: 2022-03-22
-updated_at: 2025-05-02
+updated_at: 2025-09-03
 workflow_status: success
 stars: 6
 ---
