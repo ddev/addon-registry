@@ -1,7 +1,7 @@
 ---
 title: dmytriikaiun/ddev-newrelic
 github_url: https://github.com/dmytriikaiun/ddev-newrelic
-description: ""
+description: "New Relic integration for DDEV"
 user: dmytriikaiun
 repo: ddev-newrelic
 repo_id: 1044927356
