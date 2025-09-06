@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2025-08-08
+updated_at: 2025-09-05
 workflow_status: unknown
 stars: 1
 ---
@@ -22,11 +22,13 @@ A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Dr
 
 - **🚀 Complete Development Workflow**: From project init to deployment
 - **🏛️ Enhanced Pantheon Integration**: Smart backup management and seamless database/file syncing
+- **🌐 Nginx Proxy Configuration**: Automatic proxy setup to Pantheon environment so you dont need to download assets.
 - **🧪 Cypress Testing Support**: E2E testing with user management
 - **🎨 Theme Development Tools**: Node.js/NPM integration with build tools
 - **📦 Drupal Recipe Support**: Apply Drupal 11 recipes with cache management
 - **🔄 Migration Utilities**: Tools for site migrations and database management
 - **⚡ Performance Tools**: Critical CSS generation and asset optimization
+- **🔍 Search Integration**: Redis and Solr add-ons with DDEV configuration
 
 ## Installation
 
@@ -35,14 +37,11 @@ A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Dr
 If you already have DDEV set up in your project:
 
 ```bash
-# Install the add-on
+# Install the add-on (includes interactive configuration)
 ddev add-on get kanopi/ddev-kanopi-pantheon-drupal
 
-# Configure your Pantheon machine token globally
-ddev config global --web-environment-add=TERMINUS_MACHINE_TOKEN=your_token_here
-
 # Restart DDEV to apply changes
-ddev restart
+ddev init
 ```
 
 ### For Projects Without DDEV
@@ -54,7 +53,9 @@ If your project doesn't have DDEV yet, follow these steps:
 **macOS:**
 ```bash
 # Using Homebrew (recommended)
-brew install ddev
+# Install DDEV
+brew install ddev/ddev/ddev
+mkcert -install
 
 # Or using the installer script
 curl -fsSL https://ddev.com/install.sh | bash
@@ -62,94 +63,56 @@ curl -fsSL https://ddev.com/install.sh | bash
 
 **Linux/Windows:** Follow instructions at [ddev.readthedocs.io](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/)
 
-#### Step 2: Initialize DDEV in Your Project
+#### Step 2: Initialize DDEV in Your Project and run addon
 
 Navigate to your existing project directory and configure DDEV:
 ```bash
 cd /path/to/your-drupal-project
 
-# Initialize DDEV configuration
-ddev config --project-type=drupal --docroot=web --php-version=8.3
+# Initialize DDEV configuration. Match your existing PHP/DB versions set in pantheon.yml
+ddev config --project-type=drupal --docroot=web --php-version=8.3 --database=mariadb:10.6
 
-# Add Pantheon machine token
-ddev config global --web-environment-add=TERMINUS_MACHINE_TOKEN=your_pantheon_token
-
-# Start DDEV
-ddev start
-```
-
-#### Step 3: Install This Add-on
-
-```bash
-# Install the Kanopi Pantheon Drupal add-on
+# Run add-on
 ddev add-on get kanopi/ddev-kanopi-pantheon-drupal
-
-# Restart DDEV
-ddev restart
 ```
 
-#### Step 4: Configuration
+During installation, you'll be prompted to configure:
 
-Configure the add-on for your project:
+1. **Theme Settings**:
+    - **THEME**: Path to your active Drupal theme (e.g., `themes/custom/mytheme`)
+    - **THEMENAME**: Your theme name (e.g., `mytheme`)
 
-1. **Configure your Pantheon project** in `.ddev/providers/pantheon.yaml`:
-   ```yaml
-   environment_variables:
-     project: your-site-name.env
-   ```
+2. **Pantheon Settings**:
+    - **PANTHEON_SITE**: Your Pantheon project machine name (required)
+    - **PANTHEON_ENV**: Default environment for database pulls (defaults to `dev`)
 
-2. **Configure Pantheon and Migration variables** in `.ddev/env.web`:
-   ```yaml
-THEME=themes/custom/your-theme
-THEMENAME=your-theme
-hostingsite=your-pantheon-site
-hostingenv=dev
-MIGRATE_DB_SOURCE=pantheon_source_project
-MIGRATE_DB_ENV=live
-   ```
+3. **Optional Migration Settings**:
+    - **MIGRATE_DB_SOURCE**: Migration source Pantheon project (optional)
+    - **MIGRATE_DB_ENV**: Migration source environment (optional)
 
-3. **Restart DDEV** to apply changes:
-   ```bash
-   ddev restart
-   ```
+The configuration is applied automatically during installation. You can modify these settings later using:
+```bash
+ddev config --web-environment-add THEME=path/to/your/theme
+ddev config --web-environment-add THEMENAME=your-theme-name
+# etc.
+```
 
-#### Step 5: Complete Setup
+If you are running Solr, copy and paste the connection details and tweak as necessary.
+
+#### Step 3: Spin up project
 
 ```bash
-# Run complete initialization (installs all dependencies and tools)
+# Initialize
 ddev init
-
-# Open your site
-ddev open
 ```
 
-### Quick Start Summary
+## Interactive Installation
 
-For the performant developer:
+During the add-on installation process, you'll be prompted to configure your project settings:
+
 ```bash
-# 1. Navigate to your Drupal project
-cd your-drupal-project
-
-# 2. Configure DDEV
-ddev config --project-type=drupal --docroot=web --php-version=8.3
-
-# 3. Add Pantheon token
-ddev config global --web-environment-add=TERMINUS_MACHINE_TOKEN=your_token
-
-# 4. Start DDEV and add add-on
-ddev start
 ddev add-on get kanopi/ddev-kanopi-pantheon-drupal
-
-# 5. Update variables in .ddev/env.web and .ddev/providers/pantheon.yaml
-
-# 6. Restart and initialize
-ddev restart
-ddev init
-
-# 7. You're ready to develop!
-ddev open
 ```
-
 
 ## Available Commands
 
@@ -211,6 +174,38 @@ ddev refresh pr-123
 2. **Clean Config**: `ddev uuid-rm config/sync`
 3. **Export Config**: `ddev drush config:export`
 
+## Search Integration
+
+### Solr Configuration
+
+The add-on installs Solr for search functionality. To connect your Drupal site to the DDEV Solr container, add this configuration to `web/sites/default/settings.php`:
+
+```php
+/**
+ * DDEV Solr Configuration
+ * Override Pantheon search configuration when in DDEV environment
+ */
+if (getenv('IS_DDEV_PROJECT') == 'true') {
+  // Override any Pantheon search configuration for DDEV
+  $config['search_api.server.pantheon_solr8']['backend_config']['connector_config']['host'] = 'solr';
+  $config['search_api.server.pantheon_solr8']['backend_config']['connector_config']['port'] = '8983';
+  $config['search_api.server.pantheon_solr8']['backend_config']['connector_config']['path'] = '/';
+  $config['search_api.server.pantheon_solr8']['backend_config']['connector_config']['core'] = 'dev';
+  
+  // Alternative configuration if using different server name
+  $config['search_api.server.solr']['backend_config']['connector_config']['host'] = 'solr';
+  $config['search_api.server.solr']['backend_config']['connector_config']['port'] = '8983';
+  $config['search_api.server.solr']['backend_config']['connector_config']['path'] = '/';
+  $config['search_api.server.solr']['backend_config']['connector_config']['core'] = 'dev';
+}
+```
+
+**Note**: Adjust the server machine name (`pantheon_solr8` or `solr`) to match your project's Search API server configuration.
+
+### Redis Integration
+
+Redis is automatically installed and configured for object caching. The configuration is applied automatically during add-on installation.
+
 ## Environment Variables
 
 The add-on automatically configures these environment variables:
@@ -238,9 +233,20 @@ ddev add-on get kanopi/ddev-kanopi-pantheon-drupal
 
 ### Remove the Add-on
 ```bash
-# Remove the add-on completely
+# Remove the add-on completely (includes Redis, Solr, and all 17 commands)
 ddev add-on remove kanopi-pantheon-drupal
+
+# Restart DDEV to apply changes
+ddev restart
 ```
+
+The removal process automatically:
+- ✅ Uninstalls Redis add-on (`ddev-redis`)
+- ✅ Uninstalls Solr add-on (`ddev-drupal-solr`) 
+- ✅ Removes all 17 custom commands
+- ✅ Removes nginx proxy configuration
+- ✅ Cleans up command directories
+- ✅ Preserves your environment variables (remove manually if needed)
 
 ## Troubleshooting
 
@@ -270,6 +276,25 @@ ddev exec terminus site:list
 # Force new backup
 ddev refresh -f
 ```
+
+## Testing
+
+To test the add-on installation process:
+
+```bash
+# Run the automated test script
+./test-install.sh
+```
+
+The test script will:
+- Create a temporary DDEV project with real Drupal from git.drupalcode.org
+- Test the non-interactive installation process with predefined values
+- Validate that environment variables are set correctly in `config.yaml`
+- Verify PHP and database versions from `pantheon.yml` are applied
+- Check that Redis and Solr add-ons are installed
+- Verify custom commands are available
+- Test add-on removal
+- Preserve test environment for inspection (use cleanup commands shown at end)
 
 ## Contributing
 
