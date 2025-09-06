@@ -6,15 +6,15 @@ user: 2ndkauboy
 repo: ddev-elasticvue
 repo_id: 803841353
 ddev_version_constraint: ""
-dependencies: ["elasticsearch"]
+dependencies: ["ddev/ddev-elasticsearch"]
 type: contrib
 created_at: 2024-05-21
-updated_at: 2025-03-21
+updated_at: 2025-09-05
 workflow_status: disabled
 stars: 1
 ---
 
-[![tests](https://github.com/2ndkauboy/ddev-elasticvue/actions/workflows/tests.yml/badge.svg)](https://github.com/2ndkauboy/ddev-elasticvue/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/2ndkauboy/ddev-elasticvue/actions/workflows/tests.yml/badge.svg)](https://github.com/2ndkauboy/ddev-elasticvue/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
 # DDEV Elasticvue
 
