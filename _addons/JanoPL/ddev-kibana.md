@@ -6,11 +6,11 @@ user: JanoPL
 repo: ddev-kibana
 repo_id: 530812551
 ddev_version_constraint: ""
-dependencies: ["elasticsearch"]
+dependencies: ["ddev/ddev-elasticsearch"]
 type: contrib
 created_at: 2022-08-30
-updated_at: 2024-10-27
-workflow_status: disabled
+updated_at: 2025-09-07
+workflow_status: success
 stars: 1
 ---
 
