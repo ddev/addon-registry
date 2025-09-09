@@ -6,10 +6,10 @@ user: froboy
 repo: ddev-tsh
 repo_id: 1025009597
 ddev_version_constraint: ">= v1.24.3"
-dependencies: ["ddev-kubernetes"]
+dependencies: ["MurzNN/ddev-kubernetes"]
 type: contrib
 created_at: 2025-07-23
-updated_at: 2025-07-25
+updated_at: 2025-09-08
 workflow_status: success
 stars: 0
 ---

@@ -1,9 +1,9 @@
 ---
-title: kanopi/ddev-kanopi-pantheon-drupal
-github_url: https://github.com/kanopi/ddev-kanopi-pantheon-drupal
+title: kanopi/ddev-kanopi-drupal
+github_url: https://github.com/kanopi/ddev-kanopi-drupal
 description: "A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development with Pantheon hosting. This add-on includes 17 custom commands, enhanced Pantheon provider, and complete tooling for modern Drupal development."
 user: kanopi
-repo: ddev-kanopi-pantheon-drupal
+repo: ddev-kanopi-drupal
 repo_id: 1034499133
 ddev_version_constraint: ">= v1.22.0"
 dependencies: []
@@ -302,4 +302,4 @@ This add-on is maintained by [Kanopi Studios](https://kanopi.com). For issues, f
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/kanopi/ddev-kanopi-pantheon-drupal/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/kanopi/ddev-kanopi-drupal/blob/main/LICENSE) file for details.
