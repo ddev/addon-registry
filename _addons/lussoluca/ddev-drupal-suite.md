@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-07-11
-updated_at: 2025-09-01
+updated_at: 2025-09-09
 workflow_status: success
 stars: 1
 ---
@@ -44,6 +44,7 @@ mkdir ai-dev && cd ai-dev
 ddev config --project-type=drupal11 --docroot=web --php-version=8.3 --corepack-enable
 ddev add-on get lussoluca/ddev-drupal-suite
 ddev drupal-init 11.2.2
+ddev auth ssh
 ddev drupal-get-module ai 1.2.x
 ```
 
