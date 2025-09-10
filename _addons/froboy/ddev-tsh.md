@@ -10,7 +10,7 @@ dependencies: ["MurzNN/ddev-kubernetes"]
 type: contrib
 created_at: 2025-07-23
 updated_at: 2025-09-08
-workflow_status: success
+workflow_status: failure
 stars: 0
 ---
 

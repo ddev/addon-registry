@@ -9,14 +9,14 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2025-09-06
+updated_at: 2025-09-09
 workflow_status: unknown
 stars: 1
 ---
 
-# DDEV Kanopi Pantheon Drupal Add-on
+# DDEV Kanopi Drupal Add-on
 
-A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development with Pantheon hosting. This add-on includes 17 custom commands, enhanced Pantheon provider, and complete tooling for modern Drupal development.
+A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development.. This add-on includes complete tooling for modern Drupal development.
 
 ## Features
 
@@ -38,7 +38,7 @@ If you already have DDEV set up in your project:
 
 ```bash
 # Install the add-on (includes interactive configuration)
-ddev add-on get kanopi/ddev-kanopi-pantheon-drupal
+ddev add-on get kanopi/ddev-kanopi-drupal
 
 # Restart DDEV to apply changes
 ddev init
@@ -73,7 +73,7 @@ cd /path/to/your-drupal-project
 ddev config --project-type=drupal --docroot=web --php-version=8.3 --database=mariadb:10.6
 
 # Run add-on
-ddev add-on get kanopi/ddev-kanopi-pantheon-drupal
+ddev add-on get kanopi/ddev-kanopi-drupal
 ```
 
 During installation, you'll be prompted to configure:
@@ -111,7 +111,7 @@ ddev init
 During the add-on installation process, you'll be prompted to configure your project settings:
 
 ```bash
-ddev add-on get kanopi/ddev-kanopi-pantheon-drupal
+ddev add-on get kanopi/ddev-kanopi-drupal
 ```
 
 ## Available Commands
@@ -228,7 +228,7 @@ ddev add-on list --installed
 ### Update the Add-on
 ```bash
 # Update to the latest version
-ddev add-on get kanopi/ddev-kanopi-pantheon-drupal
+ddev add-on get kanopi/ddev-kanopi-drupal
 ```
 
 ### Remove the Add-on
@@ -298,7 +298,7 @@ The test script will:
 
 ## Contributing
 
-This add-on is maintained by [Kanopi Studios](https://kanopi.com). For issues, feature requests, or contributions, please visit our [GitHub repository](https://github.com/kanopi/ddev-kanopi-pantheon-drupal).
+This add-on is maintained by [Kanopi Studios](https://kanopi.com). For issues, feature requests, or contributions, please visit our [GitHub repository](https://github.com/kanopi/ddev-kanopi-drupal).
 
 ## License
 
