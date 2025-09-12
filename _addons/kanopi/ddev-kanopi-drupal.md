@@ -9,14 +9,18 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2025-09-09
+updated_at: 2025-09-11
 workflow_status: unknown
 stars: 1
 ---
 
 # DDEV Kanopi Drupal Add-on
 
-A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development.. This add-on includes complete tooling for modern Drupal development.
+[![tests](https://github.com/kanopi/ddev-kanopi-drupal/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kanopi/ddev-kanopi-drupal/actions/workflows/test.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/kanopi/ddev-kanopi-drupal)](https://github.com/kanopi/ddev-kanopi-drupal/commits)
+[![release](https://img.shields.io/github/v/release/kanopi/ddev-kanopi-drupal)](https://github.com/kanopi/ddev-kanopi-drupal/releases/latest)
+
+A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development. This add-on includes complete tooling for modern Drupal development.
 
 ## Features
 
@@ -63,7 +67,16 @@ curl -fsSL https://ddev.com/install.sh | bash
 
 **Linux/Windows:** Follow instructions at [ddev.readthedocs.io](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/)
 
-#### Step 2: Initialize DDEV in Your Project and run addon
+#### Step 2: Initialize DDEV in Your Project
+
+**Important**: If you're migrating from Docksal or Lando, stop those services first to avoid port conflicts:
+```bash
+# Stop Docksal
+fin system stop
+
+# Or stop Lando
+lando poweroff
+```
 
 Navigate to your existing project directory and configure DDEV:
 ```bash
@@ -118,25 +131,30 @@ ddev add-on get kanopi/ddev-kanopi-drupal
 
 This add-on provides 17 custom commands organized by where they execute (host system vs. web container):
 
-| Command | Type | Description | Example |
-|---------|------|-------------|---------|
-| `ddev cypress <command>` | Host | Run Cypress commands with environment support | `ddev cypress open` |
-| `ddev cypress-users` | Host | Create default admin user for Cypress testing | `ddev cypress-users` |
-| `ddev init` | Host | Complete project initialization with all dependencies | `ddev init` |
-| `ddev install-cypress` | Host | Install Cypress E2E testing dependencies | `ddev install-cypress` |
-| `ddev open` | Host | Open project URL in browser | `ddev open` |
-| `ddev phpmyadmin` | Host | Launch PhpMyAdmin | `ddev phpmyadmin` |
-| `ddev rebuild` | Host | Composer install + database refresh | `ddev rebuild` |
-| `ddev refresh [env] [-f]` | Host | Smart database refresh from Pantheon with backup management | `ddev refresh test -f` |
-| `ddev testenv <name> [profile]` | Host | Create isolated testing environment | `ddev testenv my-test minimal` |
-| `ddev install-critical-tools` | Web | Install Critical CSS generation tools | `ddev install-critical-tools` |
-| `ddev install-theme-tools` | Web | Set up Node.js, NPM, and build tools for theme development | `ddev install-theme-tools` |
-| `ddev migrate-prep-db` | Web | Create secondary database for migrations | `ddev migrate-prep-db` |
-| `ddev npm <command>` | Web | Run NPM commands in theme directory | `ddev npm run build` |
-| `ddev npx <command>` | Web | Run NPX commands in theme directory | `ddev npx webpack` |
-| `ddev recipe-apply <path>` | Web | Apply Drupal recipe with cache management | `ddev recipe-apply core/recipes/standard` |
-| `ddev tickle` | Web | Keep Pantheon environment awake (useful for migrations) | `ddev tickle` |
-| `ddev uuid-rm <path>` | Web | Remove UUIDs from config files (recipe development) | `ddev uuid-rm config/sync` |
+### Host Commands (Execute on your machine)
+| Command | Description | Example |
+|---------|-------------|---------|
+| `ddev cypress <command>` | Run Cypress commands with environment support | `ddev cypress open` |
+| `ddev cypress-users` | Create default admin user for Cypress testing | `ddev cypress-users` |
+| `ddev init` | Complete project initialization with dependencies, Lefthook, NVM, Cypress, and database refresh | `ddev init` |
+| `ddev install-cypress` | Install Cypress E2E testing dependencies | `ddev install-cypress` |
+| `ddev open` | Open project URL in browser | `ddev open` |
+| `ddev phpmyadmin` | Launch PhpMyAdmin database interface | `ddev phpmyadmin` |
+| `ddev rebuild` | Run composer install followed by database refresh | `ddev rebuild` |
+| `ddev refresh [env] [-f]` | Smart database refresh from Pantheon with 12-hour backup age detection | `ddev refresh live -f` |
+| `ddev testenv <name> [profile]` | Create isolated testing environment with optional install profile | `ddev testenv my-test minimal` |
+
+### Web Commands (Execute inside DDEV container)
+| Command | Description | Example |
+|---------|-------------|---------|
+| `ddev install-critical-tools` | Install Critical CSS generation tools | `ddev install-critical-tools` |
+| `ddev install-theme-tools` | Set up Node.js, NPM, and build tools using .nvmrc | `ddev install-theme-tools` |
+| `ddev migrate-prep-db` | Create secondary database for migrations | `ddev migrate-prep-db` |
+| `ddev npm <command>` | Run NPM commands in theme directory specified by THEME env var | `ddev npm run build` |
+| `ddev npx <command>` | Run NPX commands in theme directory | `ddev npx webpack --watch` |
+| `ddev recipe-apply <path>` | Apply Drupal recipe with automatic cache clearing | `ddev recipe-apply ../recipes/my-recipe` |
+| `ddev tickle` | Keep Pantheon environment awake during long operations | `ddev tickle` |
+| `ddev uuid-rm <path>` | Remove UUIDs from config files for recipe development | `ddev uuid-rm config/sync` |
 
 ## Smart Database Refresh
 
@@ -204,7 +222,77 @@ if (getenv('IS_DDEV_PROJECT') == 'true') {
 
 ### Redis Integration
 
-Redis is automatically installed and configured for object caching. The configuration is applied automatically during add-on installation.
+Redis is automatically installed and configured for object caching. The configuration is applied automatically during add-on installation through the `settings.ddev.redis.php` file.
+
+If you need custom Redis configuration, add it within your DDEV settings block:
+
+```php
+/**
+ * DDEV Configuration
+ * Override Pantheon configurations when in DDEV environment
+ */
+if (getenv('IS_DDEV_PROJECT') == 'true') {
+  // Redis configuration (if needed for custom settings)
+  $settings['redis.connection']['interface'] = 'PhpRedis';
+  $settings['redis.connection']['host'] = 'redis';
+  $settings['redis.connection']['port'] = 6379;
+
+  // Cache backend configuration
+  $settings['cache']['default'] = 'cache.backend.redis';
+  $settings['cache_prefix']['default'] = 'ddev_' . hash('sha256', $app_root);
+}
+```
+
+### Additional DDEV Settings Recommendations
+
+Here are additional settings you may want to include in your DDEV configuration block:
+
+```php
+/**
+ * DDEV Configuration
+ * Override Pantheon configurations when in DDEV environment
+ */
+if (getenv('IS_DDEV_PROJECT') == 'true') {
+  // Database configuration
+  $databases['default']['default'] = [
+    'database' => 'db',
+    'username' => 'db',
+    'password' => 'db',
+    'host' => 'db',
+    'driver' => 'mysql',
+    'port' => 3306,
+    'prefix' => '',
+  ];
+
+  // Trusted host patterns
+  $settings['trusted_host_patterns'] = [
+    '^.+\\\\.ddev\\\\.site$',
+  ];
+
+  // Development-friendly settings
+  $config['system.performance']['css']['preprocess'] = FALSE;
+  $config['system.performance']['js']['preprocess'] = FALSE;
+  $config['system.logging']['error_level'] = 'verbose';
+
+  // Disable render cache and page cache for development
+  $settings['cache']['bins']['render'] = 'cache.backend.null';
+  $settings['cache']['bins']['page'] = 'cache.backend.null';
+  $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
+
+  // Mail configuration (use Mailpit)
+  $config['system.mail']['interface']['default'] = 'test_mail_collector';
+
+  // File system paths
+  $settings['file_public_path'] = 'sites/default/files';
+  $settings['file_private_path'] = '../private';
+  $settings['file_temp_path'] = '/tmp';
+
+  // Include local development settings if they exist
+  if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+    include $app_root . '/' . $site_path . '/settings.local.php';
+  }
+}
+```
 
 ## Environment Variables
 
@@ -248,6 +336,201 @@ The removal process automatically:
 - ✅ Cleans up command directories
 - ✅ Preserves your environment variables (remove manually if needed)
 
+## Post-Installation Setup
+
+### Required Configuration Steps
+
+After installing the add-on, complete these essential setup tasks to ensure proper functionality:
+
+#### 1. Configure Terminus Machine Token
+
+Set your Pantheon Terminus machine token globally (required for database refreshes and Pantheon integration):
+
+```bash
+# Set the token globally for all DDEV projects
+ddev config global --web-environment-add=TERMINUS_MACHINE_TOKEN=your_token_here
+```
+
+**Note**: Replace `your_token_here` with your actual Pantheon machine token. You can generate one at [https://dashboard.pantheon.io/machine-token/create](https://dashboard.pantheon.io/machine-token/create).
+
+#### 2. Stop Conflicting Development Tools
+
+**If using Docksal**: Stop Docksal services before using DDEV to avoid port conflicts:
+```bash
+fin system stop
+```
+
+**If using Lando**: Stop Lando services:
+```bash
+lando poweroff
+```
+
+#### 3. Configure Settings.php for DDEV
+
+Add DDEV-specific configuration to your `web/sites/default/settings.php` file. Place this at the end of your settings file:
+
+```php
+/**
+ * DDEV Configuration
+ * Override Pantheon configurations when in DDEV environment
+ */
+if (getenv('IS_DDEV_PROJECT') == 'true') {
+  // Override any existing database configuration for DDEV
+  $databases['default']['default'] = [
+    'database' => 'db',
+    'username' => 'db',
+    'password' => 'db',
+    'host' => 'db',
+    'driver' => 'mysql',
+    'port' => 3306,
+    'prefix' => '',
+  ];
+
+  // Set local development settings
+  $settings['trusted_host_patterns'] = [
+    '^.+\\.ddev\\.site$',
+  ];
+
+  // Disable CSS/JS aggregation for development
+  $config['system.performance']['css']['preprocess'] = FALSE;
+  $config['system.performance']['js']['preprocess'] = FALSE;
+
+  // Enable local development modules if they exist
+  if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+    include $app_root . '/' . $site_path . '/settings.local.php';
+  }
+}
+```
+
+**Migrate Docksal/Lando Settings**: If you have existing settings.php customizations for Docksal or Lando, review and adapt them within the `if (getenv('IS_DDEV_PROJECT') == 'true')` block.
+
+#### 4. Review and Update Theme Tools Command
+
+Compare the provided `install-theme-tools` command with your project's current build process:
+
+```bash
+# Review the command
+ddev help install-theme-tools
+
+# Test the command in your theme directory
+ddev install-theme-tools
+```
+
+The command expects:
+- A `.nvmrc` file in your theme directory specifying the Node.js version
+- A `package.json` with build scripts (like `npm run build` and `npm run watch`)
+- Standard NPM package structure
+
+If your theme build process differs, you may need to:
+- Update your theme's `package.json` scripts
+- Modify the `commands/web/install-theme-tools` file to match your workflow
+- Create a `.nvmrc` file with your preferred Node.js version
+
+#### 5. Convert Existing Custom Commands
+
+If you have custom commands from Docksal (`.docksal/commands/`) or Lando (in your `.lando.yml` tooling section):
+
+1. **Host commands** (run on your machine): Place in `.ddev/commands/host/`
+2. **Container commands** (run inside DDEV): Place in `.ddev/commands/web/`
+
+Use the existing commands as templates:
+```bash
+# View existing command structure
+ls -la .ddev/commands/host/
+ls -la .ddev/commands/web/
+
+# Copy a similar command as a template
+cp .ddev/commands/host/rebuild .ddev/commands/host/your-new-command
+```
+
+#### 6. Update Project Documentation
+
+Update your project's README to document the DDEV setup. Here's a template section:
+
+```markdown
+## Local Development with DDEV
+
+This project supports both DDEV and Docksal for local development.
+
+### DDEV Setup
+
+1. **Install DDEV**: Follow [DDEV Installation Guide](https://docs.ddev.com/en/stable/users/install/ddev-installation/)
+
+2. **Configure Terminus Token**:
+   ```bash
+   ddev config global --web-environment-add=TERMINUS_MACHINE_TOKEN=your_token_here
+   ```
+
+3. **Stop Docksal** (if running):
+   ```bash
+   fin system stop
+   ```
+
+4. **Initialize Project**:
+   ```bash
+   ddev start
+   ddev init
+   ```
+
+### Available DDEV Commands
+
+[Include the commands table from the add-on README]
+```
+
+#### 7. Initial Project Setup
+
+After configuration, initialize your project:
+
+```bash
+# Start DDEV and run initialization
+ddev start
+ddev init
+
+# This will:
+# - Install Lefthook git hooks
+# - Set up NVM for Node.js
+# - Install Cypress for testing
+# - Refresh database from Pantheon
+# - Create Cypress test users
+```
+
+### Verification Steps
+
+1. **Test database refresh**: `ddev refresh`
+2. **Test theme tools**: `ddev install-theme-tools`
+3. **Verify Pantheon connection**: `ddev exec terminus site:list`
+4. **Test proxy setup**: Visit your local site and check if assets load from Pantheon
+
+## Quick Reference
+
+### Common Workflow
+```bash
+# Daily development workflow
+ddev init
+
+# or individually
+ddev start                    # Start DDEV
+ddev refresh                  # Get latest database
+ddev install-theme-tools      # Set up theme tools (first time)
+ddev npm run watch           # Start theme development
+
+# Testing workflow
+ddev install-cypress         # Set up Cypress (first time)
+ddev cypress-users          # Create test users
+ddev cypress open           # Open Cypress
+
+# Deployment preparation
+ddev npm run build          # Build theme assets
+ddev drush cache:rebuild    # Clear Drupal caches
+```
+
+### Key Environment Variables
+- `THEME`: Path to your theme directory (e.g., `themes/custom/mytheme`)
+- `THEMENAME`: Theme name for development tools
+- `PANTHEON_SITE`: Pantheon project machine name
+- `PANTHEON_ENV`: Default environment for database pulls
+- `TERMINUS_MACHINE_TOKEN`: Pantheon API access token (set globally)
+
 ## Troubleshooting
 
 ### Pantheon Authentication Issues
@@ -279,22 +562,82 @@ ddev refresh -f
 
 ## Testing
 
-To test the add-on installation process:
+This add-on uses the official DDEV testing framework combined with comprehensive integration testing:
+
+### 1. Automated CI/CD Testing
+
+The add-on is automatically tested using the official DDEV add-on testing framework:
+
+- **GitHub Actions**: Tests run on every push and pull request
+- **Matrix Testing**: Validates against both stable and HEAD DDEV versions  
+- **Official Framework**: Uses `ddev/github-action-add-on-test@v2`
+- **Reliable & Fast**: Proven testing patterns from the DDEV team
+
+### 2. Local Development Testing
+
+For local development and debugging, use the comprehensive integration test:
 
 ```bash
-# Run the automated test script
-./test-install.sh
+# Run comprehensive integration test
+./tests/test-install.sh
 ```
 
-The test script will:
-- Create a temporary DDEV project with real Drupal from git.drupalcode.org
-- Test the non-interactive installation process with predefined values
-- Validate that environment variables are set correctly in `config.yaml`
-- Verify PHP and database versions from `pantheon.yml` are applied
-- Check that Redis and Solr add-ons are installed
-- Verify custom commands are available
-- Test add-on removal
-- Preserve test environment for inspection (use cleanup commands shown at end)
+**What this test does:**
+- Creates a temporary DDEV project with real Drupal from git.drupalcode.org
+- Tests the interactive installation process with automated responses
+- Validates environment variables are set correctly in `config.yaml`
+- Verifies PHP and database versions from `pantheon.yml` are applied
+- Checks that Redis and Solr add-ons are installed and configured
+- Validates all 17 custom commands are available and functional
+- Tests add-on removal and cleanup
+- Preserves test environment for inspection and debugging
+
+**Test Results:**
+- ✅ Pass: All functionality works correctly
+- ❌ Fail: Issues found (test environment preserved for debugging)
+- 🔍 Debug: Use provided commands to inspect the test environment
+
+### 3. Component Testing
+
+For testing specific functionality during development:
+
+```bash
+# Install bats if not already installed
+# macOS: brew install bats-core
+# Linux: See https://bats-core.readthedocs.io/en/stable/installation.html
+
+# Run component tests
+bats tests/test.bats
+```
+
+### Testing Strategy
+
+| Test Level | Purpose | When to Use |
+|------------|---------|-------------|
+| **GitHub Actions** | Automated validation | Every push/PR |
+| **Integration Test** | Comprehensive workflow | Local development, debugging |
+| **Bats Tests** | Component functionality | Feature development |
+
+### Debugging Failed Tests
+
+If the integration test fails, inspect the preserved environment:
+
+```bash
+# Navigate to test environment
+cd test/test-install/drupal
+
+# Check DDEV status
+ddev describe
+
+# Verify environment variables
+ddev exec env | grep -E "(THEME|PANTHEON)"
+
+# Check installed add-ons
+ddev add-on list --installed
+
+# Cleanup when done
+ddev delete -Oy test-kanopi-addon && cd ../.. && rm -rf test/
+```
 
 ## Contributing
 
