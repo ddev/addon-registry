@@ -5,11 +5,11 @@ description: "This repository provides a DDEV add-on that configures a WordPress
 user: kanopi
 repo: ddev-kanopi-wp
 repo_id: 1037631023
-ddev_version_constraint: ">= 1.24.3"
+ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-13
-updated_at: 2025-08-23
+updated_at: 2025-09-12
 workflow_status: disabled
 stars: 1
 ---

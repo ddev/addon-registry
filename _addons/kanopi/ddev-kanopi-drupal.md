@@ -9,8 +9,8 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2025-09-11
-workflow_status: unknown
+updated_at: 2025-09-12
+workflow_status: success
 stars: 1
 ---
 
@@ -25,8 +25,12 @@ A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Dr
 ## Features
 
 - **🚀 Complete Development Workflow**: From project init to deployment
-- **🏛️ Enhanced Pantheon Integration**: Smart backup management and seamless database/file syncing
-- **🌐 Nginx Proxy Configuration**: Automatic proxy setup to Pantheon environment so you dont need to download assets.
+- **🏛️ Multi-Platform Hosting Integration**: 
+  - **Pantheon**: Smart backup management and seamless database/file syncing
+  - **Acquia**: Multi-database support with intelligent backup age detection
+- **🌐 Smart Proxy Configuration**: 
+  - **Nginx**: Automatic proxy setup for Pantheon environments
+  - **Apache-FPM**: Native Apache configuration for Acquia environments
 - **🧪 Cypress Testing Support**: E2E testing with user management
 - **🎨 Theme Development Tools**: Node.js/NPM integration with build tools
 - **📦 Drupal Recipe Support**: Apply Drupal 11 recipes with cache management
@@ -95,19 +99,31 @@ During installation, you'll be prompted to configure:
     - **THEME**: Path to your active Drupal theme (e.g., `themes/custom/mytheme`)
     - **THEMENAME**: Your theme name (e.g., `mytheme`)
 
-2. **Pantheon Settings**:
+2. **Hosting Provider Settings**:
+    - **HOSTING_PROVIDER**: Choose between `pantheon` or `acquia`
+    
+    **For Pantheon**:
     - **PANTHEON_SITE**: Your Pantheon project machine name (required)
     - **PANTHEON_ENV**: Default environment for database pulls (defaults to `dev`)
+    
+    **For Acquia**:
+    - **HOSTING_SITE**: Your Acquia application UUID (required)
+    - **HOSTING_ENV**: Default environment for database pulls (defaults to `prod`)
+    - **HOSTING_DOMAIN**: Your Acquia domain for file proxy (optional)
 
 3. **Optional Migration Settings**:
-    - **MIGRATE_DB_SOURCE**: Migration source Pantheon project (optional)
+    - **MIGRATE_DB_SOURCE**: Migration source project (optional)
     - **MIGRATE_DB_ENV**: Migration source environment (optional)
 
 The configuration is applied automatically during installation. You can modify these settings later using:
 ```bash
 ddev config --web-environment-add THEME=path/to/your/theme
 ddev config --web-environment-add THEMENAME=your-theme-name
-# etc.
+ddev config --web-environment-add HOSTING_PROVIDER=pantheon
+ddev config --web-environment-add PANTHEON_SITE=your-site-name
+# For Acquia:
+ddev config --web-environment-add HOSTING_PROVIDER=acquia
+ddev config --web-environment-add HOSTING_SITE=your-app-uuid
 ```
 
 If you are running Solr, copy and paste the connection details and tweak as necessary.
@@ -342,8 +358,9 @@ The removal process automatically:
 
 After installing the add-on, complete these essential setup tasks to ensure proper functionality:
 
-#### 1. Configure Terminus Machine Token
+#### 1. Configure Hosting Provider Authentication
 
+**For Pantheon Projects:**
 Set your Pantheon Terminus machine token globally (required for database refreshes and Pantheon integration):
 
 ```bash
@@ -352,6 +369,17 @@ ddev config global --web-environment-add=TERMINUS_MACHINE_TOKEN=your_token_here
 ```
 
 **Note**: Replace `your_token_here` with your actual Pantheon machine token. You can generate one at [https://dashboard.pantheon.io/machine-token/create](https://dashboard.pantheon.io/machine-token/create).
+
+**For Acquia Projects:**
+Set your Acquia API credentials globally (required for database refreshes and Acquia integration):
+
+```bash
+# Set Acquia API credentials globally for all DDEV projects
+ddev config global --web-environment-add=ACQUIA_API_KEY=your_api_key_here
+ddev config global --web-environment-add=ACQUIA_API_SECRET=your_api_secret_here
+```
+
+**Note**: Replace the placeholder values with your actual Acquia API credentials. You can generate these at [https://cloud.acquia.com/a/profile/tokens](https://cloud.acquia.com/a/profile/tokens).
 
 #### 2. Stop Conflicting Development Tools
 
@@ -527,9 +555,19 @@ ddev drush cache:rebuild    # Clear Drupal caches
 ### Key Environment Variables
 - `THEME`: Path to your theme directory (e.g., `themes/custom/mytheme`)
 - `THEMENAME`: Theme name for development tools
+- `HOSTING_PROVIDER`: Hosting platform (`pantheon` or `acquia`)
+
+**For Pantheon:**
 - `PANTHEON_SITE`: Pantheon project machine name
 - `PANTHEON_ENV`: Default environment for database pulls
 - `TERMINUS_MACHINE_TOKEN`: Pantheon API access token (set globally)
+
+**For Acquia:**
+- `HOSTING_SITE`: Acquia application UUID
+- `HOSTING_ENV`: Default environment for database pulls (typically `prod`)
+- `HOSTING_DOMAIN`: Acquia domain for file proxy (optional)
+- `ACQUIA_API_KEY`: Acquia API key (set globally)
+- `ACQUIA_API_SECRET`: Acquia API secret (set globally)
 
 ## Troubleshooting
 
@@ -542,6 +580,19 @@ ddev exec printenv TERMINUS_MACHINE_TOKEN
 ddev exec terminus auth:login --machine-token="your_token"
 ```
 
+### Acquia Authentication Issues
+```bash
+# Check if API credentials are set
+ddev exec printenv ACQUIA_API_KEY
+ddev exec printenv ACQUIA_API_SECRET
+
+# Test Acquia CLI authentication
+ddev exec acli auth:login --key="your_key" --secret="your_secret"
+
+# List Acquia applications to verify access
+ddev exec acli api:applications:find
+```
+
 ### Theme Build Issues
 ```bash
 # Check Node.js version
@@ -552,6 +603,8 @@ ddev install-theme-tools
 ```
 
 ### Database Refresh Issues
+
+**For Pantheon:**
 ```bash
 # Check Pantheon connection
 ddev exec terminus site:list
@@ -559,6 +612,44 @@ ddev exec terminus site:list
 # Force new backup
 ddev refresh -f
 ```
+
+**For Acquia:**
+```bash
+# Check Acquia connection and applications
+ddev exec acli api:applications:find
+
+# List environments for your application
+ddev exec acli api:environments:find HOSTING_SITE
+
+# Force new backup
+ddev refresh -f
+```
+
+## Platform-Specific Configurations
+
+### Webserver Configuration
+
+The add-on automatically configures the appropriate webserver based on your hosting provider:
+
+**Pantheon Projects** (Nginx):
+- Uses Nginx configuration optimized for Pantheon environments
+- Includes automatic file proxy to Pantheon environment for assets
+- Optimized for Drupal with clean URLs and caching headers
+- Configuration file: `.ddev/nginx_full/nginx-site.conf`
+
+**Acquia Projects** (Apache-FPM):
+- Uses Apache with PHP-FPM configuration matching Acquia Cloud
+- No additional Nginx configuration applied
+- Native Apache performance with mod_rewrite for clean URLs
+- Compatible with Acquia Cloud's Apache-based infrastructure
+
+The webserver configuration is automatically selected during installation based on your `HOSTING_PROVIDER` setting. No manual configuration is required.
+
+### File Proxy Configuration
+
+**Pantheon**: Automatic proxy to `PANTHEON_ENV-PANTHEON_SITE.pantheonsite.io` for missing assets.
+
+**Acquia**: Configurable proxy to `HOSTING_ENV-HOSTING_SITE.HOSTING_DOMAIN` (requires `HOSTING_DOMAIN` environment variable).
 
 ## Testing
 
