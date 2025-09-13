@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: ["ddev-selenium"]
 type: contrib
 created_at: 2025-05-19
-updated_at: 2025-08-20
+updated_at: 2025-09-12
 workflow_status: disabled
 stars: 0
 ---
