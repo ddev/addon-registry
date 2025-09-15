@@ -8,20 +8,18 @@ import (
 	"regexp"
 	"slices"
 	"strings"
+	"sync"
 	"time"
 
-	"github.com/google/go-github/v69/github"
+	"github.com/google/go-github/v74/github"
 	log "github.com/sirupsen/logrus"
-	"golang.org/x/oauth2"
-	"gopkg.in/yaml.v3"
+	"go.yaml.in/yaml/v3"
 )
 
 // Excluded add-ons that we don't want to show
 var blacklist = []string{
 	// We have an official add-on for this
 	"sebastian-ehrling/ddev-opensearch",
-	// XHGui is bundled with DDEV
-	"oblakstudio/ddev-xhgui-pro",
 }
 
 func main() {
@@ -36,27 +34,54 @@ func main() {
 	checkErr(err)
 
 	for _, repo := range repos {
-		if inBlacklist(repo) {
+		if isRepoBlacklisted(repo) {
 			continue
 		}
-		err := createRepoMarkdown(repo)
+		err := generateAddonMarkdown(repo)
 		if err != nil {
 			log.Errorf("Failed to create markdown file for %s: %v", repo.GetFullName(), err)
 		}
-		err = createIndexFile(repo)
+		err = generateOrgIndexFile(repo)
 		if err != nil {
 			log.Errorf("Failed to create index file for %s: %v", repo.GetFullName(), err)
 		}
 	}
 }
 
-func inBlacklist(repo *github.Repository) bool {
+// =============================================================================
+// UTILITY FUNCTIONS
+// =============================================================================
+
+func checkErr(err error) {
+	if err != nil {
+		log.Panic("CheckErr(): ERROR:", err)
+	}
+}
+
+func isRepoBlacklisted(repo *github.Repository) bool {
 	return slices.Contains(blacklist, repo.GetFullName())
 }
 
-// listAvailableAddons lists the add-ons that are listed on GitHub
+func hasFileChanged(filePath string, newContent string) bool {
+	if _, err := os.Stat(filePath); err == nil {
+		existingContent, err := os.ReadFile(filePath)
+		if err != nil {
+			return true
+		}
+		if string(existingContent) == newContent {
+			return false
+		}
+	}
+	return true
+}
+
+// =============================================================================
+// GITHUB API FUNCTIONS
+// =============================================================================
+
+// listAvailableAddons retrieves all DDEV add-ons from GitHub using the 'ddev-get' topic
 func listAvailableAddons(officialOnly bool) ([]*github.Repository, error) {
-	client := GetGithubClient(context.Background())
+	ctx, client := GetGitHubClient()
 	q := "topic:ddev-get fork:true"
 	if officialOnly {
 		q = q + " org:" + "ddev"
@@ -65,7 +90,7 @@ func listAvailableAddons(officialOnly bool) ([]*github.Repository, error) {
 	opts := &github.SearchOptions{Sort: "updated", Order: "desc", ListOptions: github.ListOptions{PerPage: 200}}
 	var allRepos []*github.Repository
 	for {
-		repos, resp, err := client.Search.Repositories(context.Background(), q, opts)
+		repos, resp, err := client.Search.Repositories(ctx, q, opts)
 		if err != nil {
 			msg := fmt.Sprintf("Unable to get list of available services: %v", err)
 			if resp != nil {
@@ -91,29 +116,106 @@ func listAvailableAddons(officialOnly bool) ([]*github.Repository, error) {
 	return allRepos, nil
 }
 
-// GetGithubClient creates the required GitHub client
-func GetGithubClient(ctx context.Context) github.Client {
-	// Use authenticated client for higher rate limit, normally only needed for tests
-	githubToken := os.Getenv("DDEV_ADDON_REGISTRY_TOKEN")
-	if githubToken != "" {
-		ts := oauth2.StaticTokenSource(
-			&oauth2.Token{AccessToken: githubToken},
-		)
-		tc := oauth2.NewClient(ctx, ts)
-		return *github.NewClient(tc)
-	}
-
-	return *github.NewClient(nil)
-}
-
-func checkErr(err error) {
+// getLastCommitDate retrieves the date of the latest commit on the repository's default branch.
+// This assumes the default branch is "main" or "master", which covers the vast majority of cases.
+// It avoids an extra API call per repo, so it's not 100% reliable, but it's fast and good enough for most use cases.
+func getLastCommitDate(repo *github.Repository) (string, error) {
+	ctx, client := GetGitHubClient()
+	// Get the repo to know the default branch
+	commits, _, err := client.Repositories.ListCommits(ctx, repo.Owner.GetLogin(), repo.GetName(), &github.CommitsListOptions{
+		ListOptions: github.ListOptions{PerPage: 1},
+	})
 	if err != nil {
-		log.Panic("CheckErr(): ERROR:", err)
+		return "", err
 	}
+	if len(commits) == 0 {
+		return "", fmt.Errorf("no commits found")
+	}
+	return commits[0].GetCommit().GetAuthor().GetDate().Format(time.DateOnly), nil
 }
 
-// createRepoMarkdown creates a markdown file for each repository in the structure _addons/<org>/<repo>.md
-func createRepoMarkdown(repo *github.Repository) error {
+// fetchRepositoryReadme retrieves the README.md content from the given repository
+func fetchRepositoryReadme(repo *github.Repository) (string, error) {
+	ctx, client := GetGitHubClient()
+	readme, _, err := client.Repositories.GetReadme(ctx, repo.Owner.GetLogin(), repo.GetName(), nil)
+	if err != nil {
+		return "", fmt.Errorf("could not retrieve README: %v", err)
+	}
+
+	// Decode README content (GitHub API returns it as Base64-encoded)
+	content, err := readme.GetContent()
+	if err != nil {
+		return "", fmt.Errorf("could not decode README content: %v", err)
+	}
+
+	// Replace relative links with full links
+	updatedContent := replaceRelativeLinks(content, repo)
+
+	// GitHub spoilers rendering
+	updatedContent = formatGitHubSpoilers(updatedContent)
+
+	return updatedContent, nil
+}
+
+// fetchInstallConfig retrieves and parses the install.yaml content from the given repository
+func fetchInstallConfig(repo *github.Repository) (*InstallDesc, error) {
+	ctx, client := GetGitHubClient()
+
+	// Fetch install.yaml from the repo (adjust the path if necessary)
+	fileContent, _, _, err := client.Repositories.GetContents(ctx, repo.Owner.GetLogin(), repo.GetName(), "install.yaml", nil)
+	if err != nil {
+		return nil, fmt.Errorf("could not retrieve install.yaml: %v", err)
+	}
+
+	// Decode the file content (GitHub API returns Base64-encoded content)
+	content, err := fileContent.GetContent()
+	if err != nil {
+		return nil, fmt.Errorf("could not decode install.yaml content: %v", err)
+	}
+
+	// Parse the YAML content
+	var parsedYaml InstallDesc
+	err = yaml.Unmarshal([]byte(content), &parsedYaml)
+	if err != nil {
+		return nil, fmt.Errorf("could not parse install.yaml: %v", err)
+	}
+
+	return &parsedYaml, nil
+}
+
+// getScheduledWorkflowStatus returns the status of the last scheduled workflow
+func getScheduledWorkflowStatus(repo *github.Repository) string {
+	ctx, client := GetGitHubClient()
+	since := time.Now().Add(-24 * time.Hour)
+
+	runs, _, err := client.Actions.ListRepositoryWorkflowRuns(ctx, repo.Owner.GetLogin(), repo.GetName(), &github.ListWorkflowRunsOptions{
+		Event:  "schedule",
+		Branch: repo.GetDefaultBranch(),
+		ListOptions: github.ListOptions{
+			PerPage: 10,
+		},
+	})
+	if err != nil || runs == nil || len(runs.WorkflowRuns) == 0 {
+		return "unknown"
+	}
+
+	for _, run := range runs.WorkflowRuns {
+		if run.GetCreatedAt().Time.After(since) {
+			if run.GetConclusion() == "" {
+				return "unknown"
+			}
+			return run.GetConclusion()
+		}
+	}
+	return "disabled"
+}
+
+// =============================================================================
+// FILE GENERATION FUNCTIONS
+// =============================================================================
+
+// generateAddonMarkdown creates a markdown file for each repository in the structure _addons/<org>/<repo>.md
+func generateAddonMarkdown(repo *github.Repository) error {
 	// Define the directory and filename
 	org := repo.Owner.GetLogin()         // Get organization/user name
 	repoName := repo.GetName()           // Get repository name
@@ -127,13 +229,13 @@ func createRepoMarkdown(repo *github.Repository) error {
 	filePath := filepath.Join(dir, fmt.Sprintf("%s.md", repoName))
 
 	// Get README content from the repository
-	readmeContent, err := getRepoReadme(repo)
+	readmeContent, err := fetchRepositoryReadme(repo)
 	if err != nil {
 		log.Warnf("Could not retrieve README for repo %s: %v", repo.GetFullName(), err)
 		readmeContent = "README not available."
 	}
 
-	installYaml, err := getRepoInstallYaml(repo)
+	installYaml, err := fetchInstallConfig(repo)
 	if err != nil {
 		return fmt.Errorf("could not retrieve install.yaml for repo %s: %v", repo.GetFullName(), err)
 	}
@@ -143,7 +245,7 @@ func createRepoMarkdown(repo *github.Repository) error {
 		dependencies = fmt.Sprintf(`["%s"]`, strings.Join(installYaml.Dependencies, `", "`))
 	}
 
-	lastCommitDate, err := getLastCommitDate(org, repoName)
+	lastCommitDate, err := getLastCommitDate(repo)
 	if err != nil {
 		lastCommitDate = repo.GetUpdatedAt().Format(time.DateOnly)
 	}
@@ -189,7 +291,7 @@ stars: %d
 		strings.TrimSpace(readmeContent),
 	)
 
-	if !isFileChanged(filePath, newContent) {
+	if !hasFileChanged(filePath, newContent) {
 		log.Infof("No changes for repo: %s", repo.GetFullName())
 		return nil
 	}
@@ -204,27 +306,8 @@ stars: %d
 	return nil
 }
 
-// getLastCommitDate retrieves the date of the latest commit on the repository's default branch.
-// This assumes the default branch is "main" or "master", which covers the vast majority of cases.
-// It avoids an extra API call per repo, so it's not 100% reliable, but it's fast and good enough for most use cases.
-func getLastCommitDate(owner, repo string) (string, error) {
-	ctx := context.Background()
-	client := GetGithubClient(context.Background())
-	// Get the repo to know the default branch
-	commits, _, err := client.Repositories.ListCommits(ctx, owner, repo, &github.CommitsListOptions{
-		ListOptions: github.ListOptions{PerPage: 1},
-	})
-	if err != nil {
-		return "", err
-	}
-	if len(commits) == 0 {
-		return "", fmt.Errorf("no commits found")
-	}
-	return commits[0].GetCommit().GetAuthor().GetDate().Format(time.DateOnly), nil
-}
-
-// createIndexFile creates a markdown file for each repository in the structure _addons/<org>/<repo>.md
-func createIndexFile(repo *github.Repository) error {
+// generateOrgIndexFile creates an index.html file for each organization in the structure _addons/<org>/index.html
+func generateOrgIndexFile(repo *github.Repository) error {
 	// Define the directory and filename
 	org := repo.Owner.GetLogin()         // Get organization/user name
 	dir := filepath.Join("_addons", org) // Create path _addons/<org>
@@ -246,7 +329,7 @@ group: %s
 {%% include addon_table.html filter_by_user="%s" %%}
 `, org, org, org)
 
-	if !isFileChanged(filePath, newContent) {
+	if !hasFileChanged(filePath, newContent) {
 		return nil
 	}
 
@@ -260,28 +343,9 @@ group: %s
 	return nil
 }
 
-// getRepoReadme retrieves the README.md content from the given repository
-func getRepoReadme(repo *github.Repository) (string, error) {
-	client := GetGithubClient(context.Background())
-	readme, _, err := client.Repositories.GetReadme(context.Background(), repo.Owner.GetLogin(), repo.GetName(), nil)
-	if err != nil {
-		return "", fmt.Errorf("could not retrieve README: %v", err)
-	}
-
-	// Decode README content (GitHub API returns it as Base64-encoded)
-	content, err := readme.GetContent()
-	if err != nil {
-		return "", fmt.Errorf("could not decode README content: %v", err)
-	}
-
-	// Replace relative links with full links
-	updatedContent := replaceRelativeLinks(content, repo)
-
-	// GitHub spoilers rendering
-	updatedContent = formatGitHubSpoilers(updatedContent)
-
-	return updatedContent, nil
-}
+// =============================================================================
+// CONTENT PROCESSING FUNCTIONS
+// =============================================================================
 
 // replaceRelativeLinks replaces relative links with full links in the README content,
 // handling both regular links and images. It ignores anchor links (e.g., "#introduction").
@@ -328,6 +392,7 @@ func replaceRelativeLinks(content string, repo *github.Repository) string {
 	return updatedContent
 }
 
+// formatGitHubSpoilers ensures that GitHub spoilers are rendered correctly in Jekyll by adding markdown attributes
 func formatGitHubSpoilers(content string) string {
 	return strings.NewReplacer(
 		`<details>`, `<details markdown="1">`,
@@ -335,19 +400,9 @@ func formatGitHubSpoilers(content string) string {
 	).Replace(content)
 }
 
-// isFileChanged checks if a file has changed
-func isFileChanged(filePath string, newContent string) bool {
-	if _, err := os.Stat(filePath); err == nil {
-		existingContent, err := os.ReadFile(filePath)
-		if err != nil {
-			return true
-		}
-		if string(existingContent) == newContent {
-			return false
-		}
-	}
-	return true
-}
+// =============================================================================
+// DATA STRUCTURES
+// =============================================================================
 
 type InstallDesc struct {
 	// Name must be unique in a project; it will overwrite any existing add-on with the same name.
@@ -362,55 +417,38 @@ type InstallDesc struct {
 	YamlReadFiles         map[string]string `yaml:"yaml_read_files"`
 }
 
-// getRepoInstallYaml retrieves and parses the install.yaml content from the given repository
-func getRepoInstallYaml(repo *github.Repository) (*InstallDesc, error) {
-	client := GetGithubClient(context.Background())
+// =============================================================================
+// GITHUB CLIENT MANAGEMENT
+// =============================================================================
 
-	// Fetch install.yaml from the repo (adjust the path if necessary)
-	fileContent, _, _, err := client.Repositories.GetContents(context.Background(), repo.Owner.GetLogin(), repo.GetName(), "install.yaml", nil)
-	if err != nil {
-		return nil, fmt.Errorf("could not retrieve install.yaml: %v", err)
-	}
+var (
+	// githubContext is the Go context used for GitHub API requests
+	githubContext context.Context
+	// githubClient is the singleton instance of Client
+	githubClient *github.Client
+	// githubClientOnce ensures githubClient is initialized only once
+	githubClientOnce sync.Once
+)
 
-	// Decode the file content (GitHub API returns Base64-encoded content)
-	content, err := fileContent.GetContent()
-	if err != nil {
-		return nil, fmt.Errorf("could not decode install.yaml content: %v", err)
-	}
-
-	// Parse the YAML content
-	var parsedYaml InstallDesc
-	err = yaml.Unmarshal([]byte(content), &parsedYaml)
-	if err != nil {
-		return nil, fmt.Errorf("could not parse install.yaml: %v", err)
-	}
-
-	return &parsedYaml, nil
+// GetGitHubClient returns a singleton GitHub client and context, initializing it if necessary.
+func GetGitHubClient() (context.Context, *github.Client) {
+	githubClientOnce.Do(func() {
+		githubContext = context.Background()
+		// Respect proxies set in the environment
+		githubClient = github.NewClientWithEnvProxy()
+		if githubToken := GetGitHubToken(); githubToken != "" {
+			githubClient = githubClient.WithAuthToken(githubToken)
+		}
+	})
+	return githubContext, githubClient
 }
 
-// getWorkflowStatus returns the status of the last scheduled workflow
-func getScheduledWorkflowStatus(repo *github.Repository) string {
-	client := GetGithubClient(context.Background())
-	since := time.Now().Add(-24 * time.Hour)
-
-	runs, _, err := client.Actions.ListRepositoryWorkflowRuns(context.Background(), repo.Owner.GetLogin(), repo.GetName(), &github.ListWorkflowRunsOptions{
-		Event:  "schedule",
-		Branch: repo.GetDefaultBranch(),
-		ListOptions: github.ListOptions{
-			PerPage: 10,
-		},
-	})
-	if err != nil || runs == nil || len(runs.WorkflowRuns) == 0 {
-		return "unknown"
-	}
-
-	for _, run := range runs.WorkflowRuns {
-		if run.GetCreatedAt().Time.After(since) {
-			if run.GetConclusion() == "" {
-				return "unknown"
-			}
-			return run.GetConclusion()
+// GetGitHubToken returns the GitHub access token from the environment variable.
+func GetGitHubToken() string {
+	for _, token := range []string{"DDEV_ADDON_REGISTRY_TOKEN", "DDEV_GITHUB_TOKEN", "GH_TOKEN", "GITHUB_TOKEN"} {
+		if githubToken := os.Getenv(token); githubToken != "" {
+			return githubToken
 		}
 	}
-	return "disabled"
+	return ""
 }
