@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.4"
 dependencies: []
 type: official
 created_at: 2022-03-28
-updated_at: 2025-04-18
+updated_at: 2025-09-15
 workflow_status: success
 stars: 7
 ---
@@ -27,7 +27,7 @@ stars: 7
 
 This add-on integrates MongoDB and Mongo Express into your [DDEV](https://ddev.com/) project.
 
-It's based on [MongoDB from Docker Hub](https://hub.docker.com/_/mongo?tab=description), [DDEV custom compose files](https://ddev.readthedocs.io/en/stable/users/extend/custom-compose-files/) and [API Platform tutorial](https://api-platform.com/docs/core/mongodb/#enabling-mongodb-support).
+It's based on [MongoDB from Docker Hub](https://hub.docker.com/_/mongo?tab=description), [DDEV custom compose files](https://docs.ddev.com/en/stable/users/extend/custom-compose-files/) and [API Platform tutorial](https://api-platform.com/docs/core/mongodb/#enabling-mongodb-support).
 
 ## Installation
 
@@ -41,7 +41,10 @@ After installation, make sure to commit the `.ddev` directory to version control
 ## Configuration
 
 1. Your project will likely require the [Doctrine MongoDB ODM bundle](https://github.com/doctrine/DoctrineMongoDBBundle)
-   `ddev composer require doctrine/mongodb-odm-bundle:^4.0.0@beta doctrine/mongodb-odm:^2.0.0@beta`
+
+   ```bash
+   ddev composer require doctrine/mongodb-odm-bundle doctrine/mongodb-odm
+   ```
 
 2. In your application `.env` or other client, set the connection string:
 
@@ -63,7 +66,6 @@ Mongo Express can now be started on demand using the `ddev mongo-express` comman
 
 ## Caveats:
 
-- The php extension (`phpX.X-mongodb`) is set up in `.ddev/config.mongo.yaml` using `webimage_extra_packages`. You may want to edit your `.ddev/config.yaml` to do what you want and remove the `.ddev/config.mongo.yaml`.
 - You can't define custom MongoDB configuration with this current setup.
 - You can't use `ddev import-db` to import to mongo.
 

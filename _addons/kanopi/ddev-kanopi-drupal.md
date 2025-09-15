@@ -9,8 +9,8 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2025-09-11
-workflow_status: unknown
+updated_at: 2025-09-15
+workflow_status: failure
 stars: 1
 ---
 
@@ -19,14 +19,19 @@ stars: 1
 [![tests](https://github.com/kanopi/ddev-kanopi-drupal/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kanopi/ddev-kanopi-drupal/actions/workflows/test.yml?query=branch%3Amain)
 [![last commit](https://img.shields.io/github/last-commit/kanopi/ddev-kanopi-drupal)](https://github.com/kanopi/ddev-kanopi-drupal/commits)
 [![release](https://img.shields.io/github/v/release/kanopi/ddev-kanopi-drupal)](https://github.com/kanopi/ddev-kanopi-drupal/releases/latest)
+[![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
-A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development. This add-on includes complete tooling for modern Drupal development.
+A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development. This add-on includes complete tooling for modern Drupal development with multi-provider hosting support.
 
 ## Features
 
 - **🚀 Complete Development Workflow**: From project init to deployment
-- **🏛️ Enhanced Pantheon Integration**: Smart backup management and seamless database/file syncing
-- **🌐 Nginx Proxy Configuration**: Automatic proxy setup to Pantheon environment so you dont need to download assets.
+- **🏛️ Multi-Platform Hosting Integration**: 
+  - **Pantheon**: Smart backup management and seamless database/file syncing
+  - **Acquia**: Multi-database support with intelligent backup age detection
+- **🌐 Smart Proxy Configuration**: 
+  - **Nginx**: Automatic proxy setup for Pantheon environments
+  - **Apache-FPM**: Native Apache configuration for Acquia environments
 - **🧪 Cypress Testing Support**: E2E testing with user management
 - **🎨 Theme Development Tools**: Node.js/NPM integration with build tools
 - **📦 Drupal Recipe Support**: Apply Drupal 11 recipes with cache management
@@ -95,19 +100,31 @@ During installation, you'll be prompted to configure:
     - **THEME**: Path to your active Drupal theme (e.g., `themes/custom/mytheme`)
     - **THEMENAME**: Your theme name (e.g., `mytheme`)
 
-2. **Pantheon Settings**:
+2. **Hosting Provider Settings**:
+    - **HOSTING_PROVIDER**: Choose between `pantheon` or `acquia`
+    
+    **For Pantheon**:
     - **PANTHEON_SITE**: Your Pantheon project machine name (required)
     - **PANTHEON_ENV**: Default environment for database pulls (defaults to `dev`)
+    
+    **For Acquia**:
+    - **HOSTING_SITE**: Your Acquia application UUID (required)
+    - **HOSTING_ENV**: Default environment for database pulls (defaults to `prod`)
+    - **HOSTING_DOMAIN**: Your Acquia domain for file proxy (optional)
 
 3. **Optional Migration Settings**:
-    - **MIGRATE_DB_SOURCE**: Migration source Pantheon project (optional)
+    - **MIGRATE_DB_SOURCE**: Migration source project (optional)
     - **MIGRATE_DB_ENV**: Migration source environment (optional)
 
 The configuration is applied automatically during installation. You can modify these settings later using:
 ```bash
 ddev config --web-environment-add THEME=path/to/your/theme
 ddev config --web-environment-add THEMENAME=your-theme-name
-# etc.
+ddev config --web-environment-add HOSTING_PROVIDER=pantheon
+ddev config --web-environment-add PANTHEON_SITE=your-site-name
+# For Acquia:
+ddev config --web-environment-add HOSTING_PROVIDER=acquia
+ddev config --web-environment-add HOSTING_SITE=your-app-uuid
 ```
 
 If you are running Solr, copy and paste the connection details and tweak as necessary.
@@ -129,32 +146,32 @@ ddev add-on get kanopi/ddev-kanopi-drupal
 
 ## Available Commands
 
-This add-on provides 17 custom commands organized by where they execute (host system vs. web container):
-
-### Host Commands (Execute on your machine)
-| Command | Description | Example |
-|---------|-------------|---------|
-| `ddev cypress <command>` | Run Cypress commands with environment support | `ddev cypress open` |
-| `ddev cypress-users` | Create default admin user for Cypress testing | `ddev cypress-users` |
-| `ddev init` | Complete project initialization with dependencies, Lefthook, NVM, Cypress, and database refresh | `ddev init` |
-| `ddev install-cypress` | Install Cypress E2E testing dependencies | `ddev install-cypress` |
-| `ddev open` | Open project URL in browser | `ddev open` |
-| `ddev phpmyadmin` | Launch PhpMyAdmin database interface | `ddev phpmyadmin` |
-| `ddev rebuild` | Run composer install followed by database refresh | `ddev rebuild` |
-| `ddev refresh [env] [-f]` | Smart database refresh from Pantheon with 12-hour backup age detection | `ddev refresh live -f` |
-| `ddev testenv <name> [profile]` | Create isolated testing environment with optional install profile | `ddev testenv my-test minimal` |
-
-### Web Commands (Execute inside DDEV container)
-| Command | Description | Example |
-|---------|-------------|---------|
-| `ddev install-critical-tools` | Install Critical CSS generation tools | `ddev install-critical-tools` |
-| `ddev install-theme-tools` | Set up Node.js, NPM, and build tools using .nvmrc | `ddev install-theme-tools` |
-| `ddev migrate-prep-db` | Create secondary database for migrations | `ddev migrate-prep-db` |
-| `ddev npm <command>` | Run NPM commands in theme directory specified by THEME env var | `ddev npm run build` |
-| `ddev npx <command>` | Run NPX commands in theme directory | `ddev npx webpack --watch` |
-| `ddev recipe-apply <path>` | Apply Drupal recipe with automatic cache clearing | `ddev recipe-apply ../recipes/my-recipe` |
-| `ddev tickle` | Keep Pantheon environment awake during long operations | `ddev tickle` |
-| `ddev uuid-rm <path>` | Remove UUIDs from config files for recipe development | `ddev uuid-rm config/sync` |
+This add-on provides 17 custom commands:
+| Command | Type | Description | Example | Aliases |
+|---------|------|-------------|---------|---------|
+| `ddev critical:install` | Web | Install Critical CSS generation tools | `ddev critical:install` | install-critical-tools, cri, critical-install |
+| `ddev critical:run` | Web | Run Critical CSS generation | `ddev critical:run` | critical, crr, critical-run |
+| `ddev cypress:install` | Host | Install Cypress E2E testing dependencies | `ddev cypress:install` | cyi, cypress-install, install-cypress |
+| `ddev cypress:run <command>` | Host | Run Cypress commands with environment support | `ddev cypress:run open` | cy, cypress, cypress-run, cyr |
+| `ddev cypress:users` | Host | Create default admin user for Cypress testing | `ddev cypress:users` | cyu, cypress-users |
+| `ddev init` | Host | Complete project initialization with dependencies, Lefthook, NVM, Cypress, and database refresh | `ddev init` | - |
+| `ddev db:prep-migrate` | Web | Create secondary database for migrations | `ddev db:prep-migrate` | migrate-prep-db, db-prep-migrate, db-mpdb |
+| `ddev theme:npm <command>` | Web | Run NPM commands in theme directory specified by THEME env var | `ddev theme:npm run build` | npm, theme-npm |
+| `ddev theme:npx <command>` | Web | Run NPX commands in theme directory | `ddev theme:npx webpack --watch` | npx, theme-npx |
+| `ddev open [service]` | Web | Open the site or admin in your default browser | `ddev open` or `ddev open cms` | - |
+| `ddev pantheon:testenv <name> [profile]` | Host | Create isolated testing environment with optional install profile | `ddev pantheon:testenv my-test minimal` | testenv, pantheon-testenv |
+| `ddev pantheon:terminus <command>` | Host | Run Terminus commands for Pantheon integration | `ddev pantheon:terminus site:list` | terminus, pantheon-terminus |
+| `ddev pantheon:tickle` | Web | Keep Pantheon environment awake during long operations | `ddev pantheon:tickle` | tickle, pantheon-tickle |
+| `ddev phpmyadmin` | Host | Launch PhpMyAdmin database interface | `ddev phpmyadmin` | - |
+| `ddev project:configure` | Host | Interactive reconfiguration wizard | `ddev project:configure` | configure, project-configure, prc |
+| `ddev db:rebuild` | Host | Run composer install followed by database refresh | `ddev db:rebuild` | rebuild, db-rebuild, dbreb |
+| `ddev recipe:apply <path>` | Web | Apply Drupal recipe with automatic cache clearing | `ddev recipe:apply ../recipes/my-recipe` | recipe, recipe-apply, ra |
+| `ddev recipe:unpack [recipe]` | Web | Unpack a recipe package or all recipes | `ddev recipe:unpack drupal/example_recipe` | recipe-unpack, ru |
+| `ddev recipe:uuid-rm <path>` | Web | Remove UUIDs from config files for recipe development | `ddev recipe:uuid-rm config/sync` | uuid-rm, recipe-uuid-rm |
+| `ddev db:refresh [env] [-f]` | Web | Smart database refresh from Pantheon with 12-hour backup age detection | `ddev db:refresh live -f` | refresh, db-refresh, dbref |
+| `ddev theme:build` | Web | Build production assets for the theme | `ddev theme:build` | production, theme-build, thb, theme-production |
+| `ddev theme:install` | Web | Set up Node.js, NPM, and build tools using .nvmrc | `ddev theme:install` | install-theme-tools, thi, theme-install |
+| `ddev theme:watch` | Web | Start theme development with file watching | `ddev theme:watch` | development, thw, theme-watch, theme-development |
 
 ## Smart Database Refresh
 
@@ -181,14 +198,15 @@ ddev refresh pr-123
 
 ## Theme Development Workflow
 
-1. **Setup**: `ddev install-theme-tools`
-2. **Development**: `ddev npm run watch` 
-3. **Build**: `ddev npm run build`
-4. **Critical CSS**: `ddev install-critical-tools`
+1. **Setup**: `ddev theme:install`
+2. **Development**: `ddev theme:watch`
+3. **Build**: `ddev theme:build`
+4. **Critical CSS**: `ddev critical:install` then `ddev critical:run`
 
 ## Recipe Development Workflow
 
-1. **Apply Recipe**: `ddev recipe-apply ../recipes/my-recipe`
+1. **Apply Recipe**: `ddev recipe:apply ../recipes/my-recipe`
+2. **Unpack Recipe**: `ddev recipe:unpack drupal/example_recipe`
 2. **Clean Config**: `ddev uuid-rm config/sync`
 3. **Export Config**: `ddev drush config:export`
 
@@ -342,8 +360,9 @@ The removal process automatically:
 
 After installing the add-on, complete these essential setup tasks to ensure proper functionality:
 
-#### 1. Configure Terminus Machine Token
+#### 1. Configure Hosting Provider Authentication
 
+**For Pantheon Projects:**
 Set your Pantheon Terminus machine token globally (required for database refreshes and Pantheon integration):
 
 ```bash
@@ -352,6 +371,17 @@ ddev config global --web-environment-add=TERMINUS_MACHINE_TOKEN=your_token_here
 ```
 
 **Note**: Replace `your_token_here` with your actual Pantheon machine token. You can generate one at [https://dashboard.pantheon.io/machine-token/create](https://dashboard.pantheon.io/machine-token/create).
+
+**For Acquia Projects:**
+Set your Acquia API credentials globally (required for database refreshes and Acquia integration):
+
+```bash
+# Set Acquia API credentials globally for all DDEV projects
+ddev config global --web-environment-add=ACQUIA_API_KEY=your_api_key_here
+ddev config global --web-environment-add=ACQUIA_API_SECRET=your_api_secret_here
+```
+
+**Note**: Replace the placeholder values with your actual Acquia API credentials. You can generate these at [https://cloud.acquia.com/a/profile/tokens](https://cloud.acquia.com/a/profile/tokens).
 
 #### 2. Stop Conflicting Development Tools
 
@@ -406,14 +436,14 @@ if (getenv('IS_DDEV_PROJECT') == 'true') {
 
 #### 4. Review and Update Theme Tools Command
 
-Compare the provided `install-theme-tools` command with your project's current build process:
+Compare the provided `theme:install` command with your project's current build process:
 
 ```bash
 # Review the command
-ddev help install-theme-tools
+ddev help theme:install
 
 # Test the command in your theme directory
-ddev install-theme-tools
+ddev theme:install
 ```
 
 The command expects:
@@ -423,7 +453,7 @@ The command expects:
 
 If your theme build process differs, you may need to:
 - Update your theme's `package.json` scripts
-- Modify the `commands/web/install-theme-tools` file to match your workflow
+- Modify the `commands/web/theme:install` file to match your workflow
 - Create a `.nvmrc` file with your preferred Node.js version
 
 #### 5. Convert Existing Custom Commands
@@ -497,8 +527,8 @@ ddev init
 ### Verification Steps
 
 1. **Test database refresh**: `ddev refresh`
-2. **Test theme tools**: `ddev install-theme-tools`
-3. **Verify Pantheon connection**: `ddev exec terminus site:list`
+2. **Test theme tools**: `ddev theme:install`
+3. **Verify Pantheon connection**: `ddev pantheon:terminus site:list`
 4. **Test proxy setup**: Visit your local site and check if assets load from Pantheon
 
 ## Quick Reference
@@ -511,25 +541,35 @@ ddev init
 # or individually
 ddev start                    # Start DDEV
 ddev refresh                  # Get latest database
-ddev install-theme-tools      # Set up theme tools (first time)
-ddev npm run watch           # Start theme development
+ddev theme:install           # Set up theme tools (first time)
+ddev theme:watch             # Start theme development
 
 # Testing workflow
-ddev install-cypress         # Set up Cypress (first time)
-ddev cypress-users          # Create test users
-ddev cypress open           # Open Cypress
+ddev cypress:install         # Set up Cypress (first time)
+ddev cypress:users          # Create test users
+ddev cypress:run open       # Open Cypress
 
 # Deployment preparation
-ddev npm run build          # Build theme assets
+ddev theme:build             # Build theme assets
 ddev drush cache:rebuild    # Clear Drupal caches
 ```
 
 ### Key Environment Variables
 - `THEME`: Path to your theme directory (e.g., `themes/custom/mytheme`)
 - `THEMENAME`: Theme name for development tools
+- `HOSTING_PROVIDER`: Hosting platform (`pantheon` or `acquia`)
+
+**For Pantheon:**
 - `PANTHEON_SITE`: Pantheon project machine name
 - `PANTHEON_ENV`: Default environment for database pulls
 - `TERMINUS_MACHINE_TOKEN`: Pantheon API access token (set globally)
+
+**For Acquia:**
+- `HOSTING_SITE`: Acquia application UUID
+- `HOSTING_ENV`: Default environment for database pulls (typically `prod`)
+- `HOSTING_DOMAIN`: Acquia domain for file proxy (optional)
+- `ACQUIA_API_KEY`: Acquia API key (set globally)
+- `ACQUIA_API_SECRET`: Acquia API secret (set globally)
 
 ## Troubleshooting
 
@@ -539,7 +579,20 @@ ddev drush cache:rebuild    # Clear Drupal caches
 ddev exec printenv TERMINUS_MACHINE_TOKEN
 
 # Re-authenticate manually
-ddev exec terminus auth:login --machine-token="your_token"
+ddev pantheon:terminus auth:login --machine-token="your_token"
+```
+
+### Acquia Authentication Issues
+```bash
+# Check if API credentials are set
+ddev exec printenv ACQUIA_API_KEY
+ddev exec printenv ACQUIA_API_SECRET
+
+# Test Acquia CLI authentication
+ddev exec acli auth:login --key="your_key" --secret="your_secret"
+
+# List Acquia applications to verify access
+ddev exec acli api:applications:find
 ```
 
 ### Theme Build Issues
@@ -548,17 +601,57 @@ ddev exec terminus auth:login --machine-token="your_token"
 ddev exec node --version
 
 # Reinstall dependencies
-ddev install-theme-tools
+ddev theme:install
 ```
 
 ### Database Refresh Issues
+
+**For Pantheon:**
 ```bash
 # Check Pantheon connection
-ddev exec terminus site:list
+ddev pantheon:terminus site:list
 
 # Force new backup
 ddev refresh -f
 ```
+
+**For Acquia:**
+```bash
+# Check Acquia connection and applications
+ddev exec acli api:applications:find
+
+# List environments for your application
+ddev exec acli api:environments:find HOSTING_SITE
+
+# Force new backup
+ddev refresh -f
+```
+
+## Platform-Specific Configurations
+
+### Webserver Configuration
+
+The add-on automatically configures the appropriate webserver based on your hosting provider:
+
+**Pantheon Projects** (Nginx):
+- Uses Nginx configuration optimized for Pantheon environments
+- Includes automatic file proxy to Pantheon environment for assets
+- Optimized for Drupal with clean URLs and caching headers
+- Configuration file: `.ddev/nginx_full/nginx-site.conf`
+
+**Acquia Projects** (Apache-FPM):
+- Uses Apache with PHP-FPM configuration matching Acquia Cloud
+- No additional Nginx configuration applied
+- Native Apache performance with mod_rewrite for clean URLs
+- Compatible with Acquia Cloud's Apache-based infrastructure
+
+The webserver configuration is automatically selected during installation based on your `HOSTING_PROVIDER` setting. No manual configuration is required.
+
+### File Proxy Configuration
+
+**Pantheon**: Automatic proxy to `PANTHEON_ENV-PANTHEON_SITE.pantheonsite.io` for missing assets.
+
+**Acquia**: Configurable proxy to `HOSTING_ENV-HOSTING_SITE.HOSTING_DOMAIN` (requires `HOSTING_DOMAIN` environment variable).
 
 ## Testing
 
@@ -645,4 +738,4 @@ This add-on is maintained by [Kanopi Studios](https://kanopi.com). For issues, f
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/kanopi/ddev-kanopi-drupal/blob/main/LICENSE) file for details.
+This project is licensed under the GNU General Public License v2 - see the [LICENSE](https://github.com/kanopi/ddev-kanopi-drupal/blob/main/LICENSE) file for details.
