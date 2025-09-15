@@ -58,6 +58,27 @@ jobs:
           go mod vendor
           go run main.go
 
+      - name: Check for GitHub search API degradation
+        run: |
+          # Check if any deleted addon repos still have the ddev-get topic (indicating search API issues)
+          DELETED_ADDONS=$(git status --porcelain | grep '^.D.*\.md$' | sed 's|.D _addons/\([^/]*\)/\([^/]*\)\.md|\1/\2|')
+
+          if [ -n "$DELETED_ADDONS" ]; then
+            echo "Found deleted addons, checking for ddev-get topic..."
+
+            while IFS= read -r repo; do
+              echo "Checking $repo..."
+              if curl -sf "https://github.com/$repo" | grep -q '"Topic: ddev-get"'; then
+                echo "ERROR: Repository $repo has ddev-get topic but was deleted (search API degraded)"
+                echo "GitHub search API appears degraded. Refusing to commit deletions."
+                echo "Please check https://www.githubstatus.com/ for API status."
+                exit 1
+              fi
+            done <<< "$DELETED_ADDONS"
+          else
+            echo "No addon deletions detected."
+          fi
+
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
