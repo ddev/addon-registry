@@ -14,6 +14,11 @@ on:
         type: boolean
         required: false
         default: false
+      skip_update_addons:
+        description: 'Skip addon updates and go directly to build'
+        type: boolean
+        required: false
+        default: false
 
   schedule:
     - cron: '0 0 * * *'  # Midnight UTC
@@ -53,12 +58,14 @@ jobs:
           limit-access-to-actor: true
 
       - name: Fetch add-on data with Go
+        if: ${{ !inputs.skip_update_addons }}
         run: |
           cd go
           go mod vendor
           go run main.go
 
       - name: Check for GitHub search API degradation
+        if: ${{ !inputs.skip_update_addons }}
         run: |
           # Check if any deleted addon repos still have the ddev-get topic (indicating search API issues)
           DELETED_ADDONS=$(git status --porcelain | grep '^.D.*\.md$' | sed 's|.D _addons/\([^/]*\)/\([^/]*\)\.md|\1/\2|')
@@ -69,10 +76,18 @@ jobs:
             while IFS= read -r repo; do
               echo "Checking $repo..."
               if curl -sf "https://github.com/$repo" | grep -q '"Topic: ddev-get"'; then
-                echo "ERROR: Repository $repo has ddev-get topic but was deleted (search API degraded)"
-                echo "GitHub search API appears degraded. Refusing to commit deletions."
-                echo "Please check https://www.githubstatus.com/ for API status."
-                exit 1
+                echo "WARNING: Repository $repo has ddev-get topic but was deleted (search API degraded)"
+                echo "GitHub search API appears degraded. Undeleting file to prevent data loss."
+                # Restore the deleted files
+                ADDON_FILE="_addons/$repo.md"
+                OWNER=$(echo "$repo" | cut -d'/' -f1)
+                OWNER_INDEX="_addons/$OWNER/index.html"
+
+                git checkout HEAD -- "$ADDON_FILE" || { echo "Could not restore $ADDON_FILE"; exit 1; }
+                git checkout HEAD -- "$OWNER_INDEX" || { echo "Could not restore $OWNER_INDEX"; exit 1; }
+                echo "Files $ADDON_FILE and $OWNER_INDEX have been restored."
+              else
+                echo "Repository $repo does not have ddev-get topic, safe to delete."
               fi
             done <<< "$DELETED_ADDONS"
           else
@@ -80,6 +95,7 @@ jobs:
           fi
 
       - name: Commit and push changes
+        if: ${{ !inputs.skip_update_addons }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
