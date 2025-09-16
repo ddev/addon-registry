@@ -41,10 +41,11 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Load 1password secret(s)
-        uses: 1password/load-secrets-action@v2
+        if: ${{ !inputs.skip_update_addons }}
+        uses: 1password/load-secrets-action@v3
         with:
           export-env: true
         env:
@@ -109,7 +110,7 @@ jobs:
     needs: update-addons
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: main
 
@@ -132,7 +133,7 @@ jobs:
 
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
 
   # Deployment job
   deploy:
