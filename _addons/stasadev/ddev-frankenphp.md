@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.7"
 dependencies: []
 type: contrib
 created_at: 2025-06-09
-updated_at: 2025-09-03
+updated_at: 2025-09-12
 workflow_status: success
 stars: 7
 ---
@@ -47,13 +47,14 @@ After installation, make sure to commit the `.ddev` directory to version control
 | ------- | ----------- |
 | `ddev describe` | View service status and ports used by FrankenPHP |
 | `ddev php` | Run PHP in the FrankenPHP container |
+| `ddev xdebug on` | Enable Xdebug in the FrankenPHP container |
+| `ddev xdebug off` | Disable Xdebug in the FrankenPHP container |
 | `ddev exec -s frankenphp bash` | Enter the FrankenPHP container |
 | `ddev logs -s frankenphp -f` | View FrankenPHP logs |
 
 ## Caveats
 
-- `ddev xdebug` and `ddev xhprof` are only designed to work in the `web` container, it won't work here.
-- `ddev launch` doesn't work. Open the website URL directly in your browser.
+- `ddev xhprof` and `ddev xhgui` are only designed to work in the `web` container, it won't work here.
 
 ## Advanced Customization
 
@@ -102,29 +103,6 @@ services:
         # mercure {
         #   ...
         # }
-```
-
----
-
-To make Xdebug work for Linux and WSL2:
-
-```bash
-# Add xdebug to PHP extensions
-ddev dotenv set .ddev/.env.frankenphp --frankenphp-php-extensions="xdebug"
-printf "services:\n  frankenphp:\n    extra_hosts:\n      - \"host.docker.internal:host-gateway\"\n" > .ddev/docker-compose.frankenphp_extra.yaml
-ddev stop && ddev debug rebuild -s frankenphp && ddev start
-```
-
----
-
-To make Xdebug work for other setups:
-
-```bash
-ddev start
-printf "services:\n  frankenphp:\n    extra_hosts:\n      - \"host.docker.internal:$(ddev exec "ping -c1 host.docker.internal | awk -F'[()]' '/PING/{print \$2}'")\"\n" > .ddev/docker-compose.frankenphp_extra.yaml
-# Add xdebug to PHP extensions
-ddev dotenv set .ddev/.env.frankenphp --frankenphp-php-extensions="xdebug"
-ddev stop && ddev debug rebuild -s frankenphp && ddev start
 ```
 
 ---
