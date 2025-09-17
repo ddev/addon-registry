@@ -11,7 +11,7 @@ type: contrib
 created_at: 2024-05-27
 updated_at: 2024-09-06
 workflow_status: disabled
-stars: 0
+stars: 2
 ---
 
 [![tests](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
