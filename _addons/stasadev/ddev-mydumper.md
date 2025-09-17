@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-08-22
-updated_at: 2025-04-28
+updated_at: 2025-09-16
 workflow_status: success
 stars: 3
 ---
@@ -52,8 +52,9 @@ Examples:
 ddev mydumper --help
 ddev myloader --help
 
-ddev mydumper --database=db --outputdir=dump
-ddev myloader --database=db --directory=dump
+# To dump and load a different database (not the default "db"):
+ddev mydumper --database=other-db --outputdir=dump
+ddev myloader --database=other-db --directory=dump
 ```
 
 For more detailed usage instructions, visit the [MyDumper Wiki](https://github.com/mydumper/mydumper/wiki).
