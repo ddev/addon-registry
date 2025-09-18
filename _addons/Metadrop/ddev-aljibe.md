@@ -9,9 +9,9 @@ ddev_version_constraint: ">= v1.24.1"
 dependencies: []
 type: contrib
 created_at: 2024-06-19
-updated_at: 2025-09-12
-workflow_status: disabled
-stars: 14
+updated_at: 2025-09-17
+workflow_status: success
+stars: 15
 ---
 
 [![tests](https://github.com/Metadrop/ddev-aljibe/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-aljibe/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
@@ -59,7 +59,7 @@ After this, you are **ready to work on your project.**
 
 #### Unique site install (Multisite)
 
-If you have a multisite instalation, you can install only one site by running:
+If you have a multisite installation, you can install only one site by running:
 
 ```sh
 ddev site-install <site_name>
@@ -92,20 +92,20 @@ To run pa11y against a site, you can run:
 
 ```sh
 ddev pa11y [site_url]
-``` 
+```
 For example `ddev pa11y http://web`
 
 ### Working with frontend themes
 #### Process custom themes CSS
 
-By default there is one theme defined in .ddev/aljibe.yml with the name "custom_theme". 
+By default there is one theme defined in .ddev/aljibe.yml with the name "custom_theme".
 You can [add multiple themes](#advanced-configuration). To transpile them, run:
 
 ```sh
 ddev frontend production [theme_name]
 ```
 
-where theme_name is the key defined in .ddev/aljibe.yml. 
+where theme_name is the key defined in .ddev/aljibe.yml.
 
 You can run a watch command to process the CSS on the fly:
 
@@ -214,14 +214,14 @@ The `aljibe.yml` file allows you to customize various aspects of the Aljibe setu
 
 ### `default_site`
 
-This option sets the default site name to be installed on setup command. 
+This option sets the default site name to be installed on setup command.
 It is used when no specific site name is provided when running. For example,
 with this configuration:
 
 ```yaml
 default_site: my_site
 ```
-`dev setup` will install the site "my_site", the same way as `dev setup my_site`.   
+`dev setup` will install the site "my_site", the same way as `dev setup my_site`.
 
 > **NOTE**: The site names must mustch the drush aliases. Names without dots are
 > considered as ".local" aliases, but if you have a different alias, you can specify it
@@ -230,7 +230,7 @@ default_site: my_site
 
 ### `theme_paths`
 
-This section allows you to define paths to custom themes. Each theme should be 
+This section allows you to define paths to custom themes. Each theme should be
 listed with a unique key. Those themes works with the `ddev frontend` command.
 
 ```yaml
@@ -287,7 +287,7 @@ In addition, all the variables [provided by ddev](https://ddev.readthedocs.io/en
 
 #### `installable_sites_aliases`
 
-You can add the names of the different sites you want install when running 
+You can add the names of the different sites you want install when running
 `ddev setup --all`. Additional sites can still be installed later using the `ddev site-install MYSITE` command.
 
 ```yaml
@@ -296,7 +296,7 @@ installable_sites_aliases:
   - site2
   - site3.mylocal
 ```
-> **NOTE**: The site names must mustch the drush aliases. Names without dots are 
+> **NOTE**: The site names must mustch the drush aliases. Names without dots are
 > considered as ".local" aliases, but if you have a different alias, you can specify it
 > and .local will not be appended.
 

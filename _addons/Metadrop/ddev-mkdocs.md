@@ -9,12 +9,12 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-11-15
-updated_at: 2025-05-19
-workflow_status: disabled
+updated_at: 2025-09-17
+workflow_status: success
 stars: 5
 ---
 
-[![tests](https://github.com/Metadrop/ddev-mkdocs/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-mkdocs/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/Metadrop/ddev-mkdocs/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-mkdocs/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/Metadrop/ddev-mkdocs)
 
 * [What is DDEV Mkdocs Add-on?](#what-is-ddev-mkdocs-add-on)
@@ -50,9 +50,9 @@ ddev restart
 
 ### Configuration
 
-By default, mkdocs addon show docs from /docs folder inside yout project. This can be updated in docker-compose.mkdocs.yaml as needed.
+By default, mkdocs addon show docs from /docs folder inside your project. This can be updated in docker-compose.mkdocs.yaml as needed.
 
-Also this addon uses ports 9004 and 9005 to view documentation, this can be updated in docker-compose.mkdocs.yaml too. 
+Also this addon uses ports 9004 and 9005 to view documentation, this can be updated in docker-compose.mkdocs.yaml too.
 
 ### Write your own documentation
 
@@ -60,4 +60,4 @@ To start building your docs you can read the [Mkdocs getting started guide](http
 
 ### View the documentation
 
-Mkdocs documentation can be accesed in https://${PROJECT_NAME}.ddev.site:9005
+MkDocs documentation can be accessed in https://${PROJECT_NAME}.ddev.site:9005
