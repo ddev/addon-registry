@@ -9,12 +9,12 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-05-27
-updated_at: 2024-09-06
-workflow_status: disabled
+updated_at: 2025-09-17
+workflow_status: success
 stars: 2
 ---
 
-[![tests](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/Metadrop/ddev-newman)
 
 
@@ -36,10 +36,11 @@ ddev get metadrop/ddev-newman
 ddev newman [args]
 ```
 
-Example:
+Example using provided exmaple files:
 
 ```
-ddev newman my_collection.json -e environment.json
+ddev newman run postman/collections/example_cache_headers.postman_collection.json -e postman/envs/example_ddev.postman_environment.json
+
 ```
 
 To view all the possible command line options, please [check the documentation](https://www.npmjs.com/package/newman#command-line-options).

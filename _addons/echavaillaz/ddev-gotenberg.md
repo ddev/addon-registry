@@ -5,16 +5,19 @@ description: "Gotenberg service for DDEV."
 user: echavaillaz
 repo: ddev-gotenberg
 repo_id: 633840053
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2023-04-28
-updated_at: 2025-03-23
+updated_at: 2025-09-17
 workflow_status: disabled
 stars: 4
 ---
 
-[![tests](https://github.com/echavaillaz/ddev-gotenberg/actions/workflows/tests.yml/badge.svg)](https://github.com/echavaillaz/ddev-gotenberg/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/echavaillaz/ddev-gotenberg/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/echavaillaz/ddev-gotenberg/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/echavaillaz/ddev-gotenberg)](https://github.com/echavaillaz/ddev-gotenberg/commits)
+[![release](https://img.shields.io/github/v/release/echavaillaz/ddev-gotenberg)](https://github.com/echavaillaz/ddev-gotenberg/releases/latest)
 
 ## What is ddev-gotenberg?
 
