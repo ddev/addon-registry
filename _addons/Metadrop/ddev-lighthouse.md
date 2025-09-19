@@ -11,7 +11,7 @@ type: contrib
 created_at: 2024-04-05
 updated_at: 2025-09-17
 workflow_status: success
-stars: 0
+stars: 2
 ---
 
 [![tests](https://github.com/Metadrop/ddev-lighthouse/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-lighthouse/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)

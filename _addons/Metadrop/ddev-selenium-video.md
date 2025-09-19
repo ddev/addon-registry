@@ -10,8 +10,8 @@ dependencies: ["Metadrop/ddev-selenium"]
 type: contrib
 created_at: 2025-05-19
 updated_at: 2025-09-17
-workflow_status: failure
-stars: 3
+workflow_status: success
+stars: 4
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
