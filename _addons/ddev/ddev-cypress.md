@@ -1,13 +1,13 @@
 ---
-title: tyler36/ddev-cypress
-github_url: https://github.com/tyler36/ddev-cypress
+title: ddev/ddev-cypress
+github_url: https://github.com/ddev/ddev-cypress
 description: "Cypress E2E testing for use with DDEV"
-user: tyler36
+user: ddev
 repo: ddev-cypress
 repo_id: 473510790
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
+type: official
 created_at: 2022-03-24
 updated_at: 2025-05-16
 workflow_status: success
@@ -183,7 +183,7 @@ This recipe includes 2 alias commands to help you use Cypress.
 To see Cypress in interactive mode, Cypress forward XVFB messages out of the Cypress container into an X11 server running on the host machine. Each OS has different options. Developers have reported success with the following:
 
 - Windows 10 / WSL users:
-  - [GWSL](https://opticos.github.io/gwsl/tutorials/manual.html) (via [Microsoft store](https://github.com/tyler36/ddev-cypress/blob/main/ms-windows-store://pdp/?productid=9NL6KD1H33V3))
+  - [GWSL](https://opticos.github.io/gwsl/tutorials/manual.html) (via [Microsoft store](https://github.com/ddev/ddev-cypress/blob/main/ms-windows-store://pdp/?productid=9NL6KD1H33V3))
   - [VcXsrv](https://sourceforge.net/projects/vcxsrv/) (via [chocolatey](https://community.chocolatey.org/packages/vcxsrv#versionhistory)).
 - Mac users:
   - [XQuartz](https://www.xquartz.org/). See [Running GUI applications using Docker for Mac](https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/).
