@@ -1,13 +1,13 @@
 ---
-title: tyler36/ddev-qr
-github_url: https://github.com/tyler36/ddev-qr
+title: ddev/ddev-qr
+github_url: https://github.com/ddev/ddev-qr
 description: "Helper command to generate qr-codes for DDEV, DDEV share and Gitpod URLs"
-user: tyler36
+user: ddev
 repo: ddev-qr
 repo_id: 818052769
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
+type: official
 created_at: 2024-06-21
 updated_at: 2025-05-16
 workflow_status: success
@@ -71,7 +71,7 @@ You can use a QR reader, such as the camera in you mobile phone, to read the ima
 
 Below is QR code with <https://ddev.com> encoded.
 
-![https://ddev.com](https://raw.githubusercontent.com/tyler36/ddev-qr/main/./images/ddev.com.png)
+![https://ddev.com](https://raw.githubusercontent.com/ddev/ddev-qr/main/./images/ddev.com.png)
 
 See [Scan QR codes on Camera from Google](https://support.google.com/camerafromgoogle/answer/12033278?hl=en).
 See [Scan a QR code with your iPhone, iPad, or iPod touch](https://support.apple.com/en-us/102680).
