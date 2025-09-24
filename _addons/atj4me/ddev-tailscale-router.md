@@ -1,7 +1,7 @@
 ---
 title: atj4me/ddev-tailscale-router
 github_url: https://github.com/atj4me/ddev-tailscale-router
-description: "A router for Tailnet with MagicDNS and HTTPS"
+description: "This add-on integrates Tailscale into your DDEV project. Unlike temporary sharing solutions, this gives you permanent, human-readable URLs that work across all your Tailscale-connected devices."
 user: atj4me
 repo: ddev-tailscale-router
 repo_id: 950788832
