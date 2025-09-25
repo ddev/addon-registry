@@ -1,7 +1,7 @@
 ---
 title: stasadev/ddev-mydumper
 github_url: https://github.com/stasadev/ddev-mydumper
-description: "MySQL Logical backup yool for DDEV"
+description: "MySQL logical backup tool for DDEV"
 user: stasadev
 repo: ddev-mydumper
 repo_id: 846094357

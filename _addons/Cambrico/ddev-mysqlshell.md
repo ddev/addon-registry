@@ -5,33 +5,37 @@ description: "A DDEV addon to seamlessly install and manage MySQL Shell within y
 user: Cambrico
 repo: ddev-mysqlshell
 repo_id: 939360133
-ddev_version_constraint: ">= v1.24.2"
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-02-26
-updated_at: 2025-03-19
-workflow_status: disabled
+updated_at: 2025-09-24
+workflow_status: success
 stars: 0
 ---
 
-[![tests](https://github.com/cambrico/ddev-mysqlshell/actions/workflows/tests.yml/badge.svg)](https://github.com/cambrico/ddev-mysqlshell/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/cambrico/ddev-mysqlshell/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/cambrico/ddev-mysqlshell/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/cambrico/ddev-mysqlshell)](https://github.com/cambrico/ddev-mysqlshell/commits)
+[![release](https://img.shields.io/github/v/release/cambrico/ddev-mysqlshell)](https://github.com/cambrico/ddev-mysqlshell/releases/latest)
 
 # DDEV MySQL Shell
 
-* [What is ddev-mysqlshell?](#what-is-ddev-mysql-shell)
-* [Commands](#commands)
+## Overview
 
-## What is DDEV MySQL Shell?
+This add-on integrates MySQL Shell into your [DDEV](https://ddev.com/) project.
 
-This repository provides an add-on for [DDEV](https://ddev.readthedocs.io)
-to integrate MySQL Shell into your DDEV projects.
+## Installation
 
-In DDEV addons can be installed from the command line using the `ddev add-on get` command (or `ddev get` for versions of DDEV prior to v1.23.5), for example, `ddev add-on get cambrico/ddev-mysqlshell`.
+```bash
+ddev add-on get cambrico/ddev-mysqlshell
+ddev restart
+```
 
-### Dependencies
-Make sure you have [DDEV v1.24.2+ installed](https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/)
+After installation, make sure to commit the `.ddev` directory to version control.
 
 ## Commands
+
 The following commands are available:
 
 | Command          | Usage                           |
@@ -40,5 +44,6 @@ The following commands are available:
 | `mysqlsh-export` | `ddev mysqlsh-export`           |
 | `mysqlsh-import` | `ddev mysqlsh-import [options]` |
 
+## Credits
 
 **Contributed and maintained by [@cambrico](https://github.com/cambrico)**

@@ -5,33 +5,40 @@ description: "A DDEV addon to seamlessly install and manage Ansible within your 
 user: Cambrico
 repo: ddev-ansible
 repo_id: 892347556
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-11-22
-updated_at: 2024-11-22
-workflow_status: disabled
+updated_at: 2025-09-24
+workflow_status: success
 stars: 0
 ---
 
-[![tests](https://github.com/cambrico/ddev-ansible/actions/workflows/tests.yml/badge.svg)](https://github.com/cambrico/ddev-ansible/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/cambrico/ddev-ansible/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/cambrico/ddev-ansible/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/cambrico/ddev-ansible)](https://github.com/cambrico/ddev-ansible/commits)
+[![release](https://img.shields.io/github/v/release/cambrico/ddev-ansible)](https://github.com/cambrico/ddev-ansible/releases/latest)
 
 # DDEV Ansible
 
-* [What is ddev-ansible?](#what-is-ddev-ansible)
-* [Commands](#commands)
+## Overview
 
-## What is DDEV Ansible?
+This add-on integrates Ansible into your [DDEV](https://ddev.com/) project.
 
-This repository provides an add-on for [DDEV](https://ddev.readthedocs.io)
-to integrate Ansible into your DDEV projects.
+## Installation
 
-In DDEV addons can be installed from the command line using the `ddev add-on get` command (or `ddev get` for versions of DDEV prior to v1.23.5), for example, `ddev add-on get cambrico/ddev-ansible`.
+```bash
+ddev add-on get cambrico/ddev-ansible
+ddev restart
+```
+
+After installation, make sure to commit the `.ddev` directory to version control.
 
 ### Dependencies
 Make sure you have [DDEV v1.23.3+ installed](https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/)
 
 ## Commands
+
 The following commands are available:
 
 | Command              | Usage                               |
@@ -48,5 +55,7 @@ The following commands are available:
 | `ansible-pull`       | `ddev ansible-pull [options]`       |
 | `ansible-test`       | `ddev ansible-test [options]`       |
 | `ansible-vault`      | `ddev ansible-vault [options]`      |
+
+## Credits
 
 **Contributed and maintained by [@cambrico](https://github.com/cambrico)**
