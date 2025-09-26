@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: ["MurzNN/ddev-kubernetes"]
 type: contrib
 created_at: 2025-07-23
-updated_at: 2025-09-08
+updated_at: 2025-09-25
 workflow_status: success
 stars: 0
 ---
@@ -32,20 +32,34 @@ Teleport is an open-source platform that provides secure access to SSH, Kubernet
 
 ## Installation
 
-It is recommended to use this add-on in conjunction with the [DDEV Kubernetes add-on](https://github.com/MurzNN/ddev-kubernetes).
+It is recommended to use this add-on in conjunction with the [DDEV Kubernetes add-on](https://github.com/MurzNN/ddev-kubernetes). If you have [DDEV >=1.24.8](https://github.com/ddev/ddev/releases/tag/v1.24.8) this will be done automagically! If not, please install it first:
 
 ```shell
  ddev add-on get MurzNN/ddev-kubernetes
 ```
 
-During installation, you will be asked to input your Teleport username, proxy, cluster, and k8s cluster (if applicable). You can skip any if you don't need them or don't know them yet.
+To install the `ddev-tsh` add-on, run the following command in your DDEV project directory:
 
-```bash
-ddev add-on get froboy/ddev-tsh
-ddev restart
+```shell
+ ddev add-on get froboy/ddev-tsh
 ```
 
+During installation, you will be asked to input your Teleport configuration:
+
+- username
+- proxy (e.g. `teleport.example.com:443`)
+- cluster (e.g. `teleport.example.com`)
+- k8s cluster (if applicable). 
+
+You can skip any if you don't need them or don't know them yet.
+
 After installation, adjust any files for your project needs. Remove `#ddev-generated` from any files that you edit, as they will be overwritten on the next `ddev restart`.
+
+As always, after install or modifying any config, run:
+
+```shell
+ ddev restart
+```
 
 ## Usage
 

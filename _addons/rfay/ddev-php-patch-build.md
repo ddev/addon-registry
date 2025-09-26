@@ -5,11 +5,11 @@ description: "Build a patch version of PHP for use with DDEV"
 user: rfay
 repo: ddev-php-patch-build
 repo_id: 692610647
-ddev_version_constraint: ">= v1.23.5"
+ddev_version_constraint: ">= v1.24.8"
 dependencies: []
 type: contrib
 created_at: 2023-09-17
-updated_at: 2025-06-14
+updated_at: 2025-09-25
 workflow_status: success
 stars: 1
 ---
