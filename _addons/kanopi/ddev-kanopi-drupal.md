@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2025-09-25
+updated_at: 2025-09-28
 workflow_status: failure
 stars: 1
 ---
@@ -25,6 +25,34 @@ stars: 1
 A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development with multi-provider hosting support.
 
 ## 🚀 Quick Start
+
+### Prerequisites
+This add-on requires a DDEV project to be set up first. Choose your hosting provider setup:
+
+#### For Pantheon Projects
+```bash
+# Clone your Pantheon repository
+git clone git@github.com:pantheon-systems/my-site.git
+cd my-site
+
+# Initialize DDEV with recommended settings for Pantheon
+ddev config --project-type=drupal11 --docroot=web --database=mariadb:10.6
+ddev start
+```
+
+#### For Acquia Projects
+```bash
+# Clone your Acquia repository
+git clone my-app@svn-123.prod.hosting.acquia.com:my-app.git
+cd my-app
+
+# Initialize DDEV with recommended settings for Acquia
+ddev config --project-type=drupal11 --docroot=docroot --webserver-type=apache-fpm --database=mysql:5.7
+ddev start
+```
+
+### Add-on Installation
+Once your DDEV project is configured:
 
 ```bash
 # Install the add-on
@@ -154,9 +182,17 @@ ddev cypress-run open    # Open Cypress UI
 ## 📋 Requirements
 
 - DDEV v1.22.0 or higher
+- **Existing DDEV project** - Must be configured before installing this add-on
 - Drupal 8+ project
-- Hosting provider account (Pantheon or Acquia)
+- Hosting provider account (Pantheon or Acquia) with appropriate credentials
 - Node.js (managed by add-on via NVM)
+
+### DDEV Configuration Requirements by Provider
+
+| Provider | Docroot | Webserver | Database | Notes |
+|----------|---------|-----------|----------|--------|
+| **Pantheon** | `web` | nginx-fpm | mariadb:10.6 | Default DDEV settings work well |
+| **Acquia** | `docroot` | apache-fpm | mysql:5.7 | Requires specific webserver configuration |
 
 ## 🔧 Management
 
