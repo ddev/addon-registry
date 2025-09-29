@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-13
-updated_at: 2025-09-24
+updated_at: 2025-09-28
 workflow_status: success
 stars: 1
 ---
@@ -83,7 +83,7 @@ ddev project-init
 | Provider | Authentication | Features |
 |----------|---------------|----------|
 | **[Pantheon](https://kanopi.github.io/ddev-kanopi-wp/providers/pantheon/)** | Machine Token | Terminus integration, multidev support |
-| **[WPEngine](https://kanopi.github.io/ddev-kanopi-wp/providers/wpengine/)** | SSH Key | Nightly backup utilization |
+| **[WPEngine](https://kanopi.github.io/ddev-kanopi-wp/providers/wpengine/)** | SSH Key (local config) | Nightly backup utilization |
 | **[Kinsta](https://kanopi.github.io/ddev-kanopi-wp/providers/kinsta/)** | SSH Key | Direct server access |
 
 ## 📋 Installation Options
