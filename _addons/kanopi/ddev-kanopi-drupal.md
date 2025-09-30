@@ -9,9 +9,9 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2025-09-28
-workflow_status: failure
-stars: 1
+updated_at: 2025-09-29
+workflow_status: disabled
+stars: 2
 ---
 
 # DDEV Kanopi Drupal Add-on
@@ -36,7 +36,7 @@ git clone git@github.com:pantheon-systems/my-site.git
 cd my-site
 
 # Initialize DDEV with recommended settings for Pantheon
-ddev config --project-type=drupal11 --docroot=web --database=mariadb:10.6
+ddev config --project-type=drupal --docroot=web --database=mariadb:10.6
 ddev start
 ```
 
@@ -47,23 +47,25 @@ git clone my-app@svn-123.prod.hosting.acquia.com:my-app.git
 cd my-app
 
 # Initialize DDEV with recommended settings for Acquia
-ddev config --project-type=drupal11 --docroot=docroot --webserver-type=apache-fpm --database=mysql:5.7
+ddev config --project-type=drupal --docroot=docroot --webserver-type=apache-fpm --database=mysql:5.7
 ddev start
 ```
 
-### Add-on Installation
-Once your DDEV project is configured:
+### Installation (4 Steps)
 
-```bash
-# Install the add-on
-ddev add-on get kanopi/ddev-kanopi-drupal
-
-# Configure your hosting provider
-ddev project-configure
-
-# Initialize your development environment
-ddev project-init
-```
+1. **Add DDEV** - Complete the prerequisites above first
+2. **Install the Add-on**
+   ```bash
+   ddev add-on get kanopi/ddev-kanopi-drupal
+   ```
+3. **Configure Your Project**
+   ```bash
+   ddev project-configure
+   ```
+4. **Initialize Development Environment**
+   ```bash
+   ddev project-init
+   ```
 
 ## ✨ Features
 
@@ -87,10 +89,6 @@ ddev project-init
 | **[🏁 Getting Started](https://kanopi.github.io/ddev-kanopi-drupal/installation/)** | Installation and setup guide |
 | **[⚙️ Configuration](https://kanopi.github.io/ddev-kanopi-drupal/configuration/)** | Hosting provider setup |
 | **[🛠 Commands](https://kanopi.github.io/ddev-kanopi-drupal/commands/)** | Complete command reference |
-| **[🎨 Theme Development](https://kanopi.github.io/ddev-kanopi-drupal/theme-development/)** | Asset compilation and build tools |
-| **[📦 Recipe Development](https://kanopi.github.io/ddev-kanopi-drupal/recipe-development/)** | Drupal 11 recipe workflows |
-| **[🗄 Database Operations](https://kanopi.github.io/ddev-kanopi-drupal/database-operations/)** | Smart refresh and migrations |
-| **[🧪 Testing](https://kanopi.github.io/ddev-kanopi-drupal/testing/)** | Cypress E2E and automated testing |
 | **[☁️ Hosting Providers](https://kanopi.github.io/ddev-kanopi-drupal/hosting-providers/)** | Platform-specific guides |
 | **[🔧 Troubleshooting](https://kanopi.github.io/ddev-kanopi-drupal/troubleshooting/)** | Common issues and solutions |
 
