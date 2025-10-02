@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-09-22
-updated_at: 2025-09-30
+updated_at: 2025-10-01
 workflow_status: success
 stars: 0
 ---
@@ -53,12 +53,14 @@ There are two types of commands provided by this add-on:
 
 ### `ddev devkit-*` commands
 
-| Command                      | Description                                                    |
-| ---------------------------- | -------------------------------------------------------------- |
-| `devkit-db-import`           | Interactively import an SQL dump into the project database     |
-| `devkit-minio-create-bucket` | Create a MinIO bucket if it does not exist, and set its policy |
-| `devkit-script-run`          | Run a script on the host or in the web container               |
-| `devkit-var-get`             | Get the value of a variable from the specified source          |
+| Command                      | Description                                                                              |
+| ---------------------------- | ---------------------------------------------------------------------------------------- |
+| `devkit-config-diff`         | Compare config and report keys present in reference but missing in target                |
+| `devkit-config-get`          | Get a config value by name from a given format and location                              |
+| `devkit-db-import`           | Interactively import an SQL dump into the project database                               |
+| `devkit-file-copy`           | Copy a file from source to destination within the project, skipping if it already exists |
+| `devkit-minio-create-bucket` | Create a MinIO bucket if it does not exist, and set its policy                           |
+| `devkit-script-run`          | Run a script on the host or in a specified service                                       |
 
 ### `ddev site-*` commands
 
@@ -90,15 +92,16 @@ If your project doesn't need frontend or backend scripts, just leave them unused
 ### How to modify
 1. Open the matching script.
 2. Remove the `#ddev-generated` line (this prevents the script being replaced on update).
-3. Keep the shebang and safety flags:
+3. Remove the `## Script provided by https://github.com/colinstillwell/ddev-site-devkit.` line.
+4. Keep the shebang and safety flags:
    ```bash
    #!/usr/bin/env bash
 
    # Exit on error; treat unset variables as errors; fail pipelines if any command fails
    set -euo pipefail
    ```
-4. Replace the placeholder content with your project's logic.
-5. Use the `ddev devkit-*` commands provided by this add-on where useful.
+5. Replace the placeholder content with your project's logic.
+6. Use the `ddev devkit-*` commands provided by this add-on where useful.
 
 ### Update behaviour
 
