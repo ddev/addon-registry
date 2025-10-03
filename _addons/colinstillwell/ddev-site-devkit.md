@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-09-22
-updated_at: 2025-10-01
+updated_at: 2025-10-02
 workflow_status: success
 stars: 0
 ---
@@ -59,6 +59,7 @@ There are two types of commands provided by this add-on:
 | `devkit-config-get`          | Get a config value by name from a given format and location                              |
 | `devkit-db-import`           | Interactively import an SQL dump into the project database                               |
 | `devkit-file-copy`           | Copy a file from source to destination within the project, skipping if it already exists |
+| `devkit-log`                 | Print a formatted log message                                                            |
 | `devkit-minio-create-bucket` | Create a MinIO bucket if it does not exist, and set its policy                           |
 | `devkit-script-run`          | Run a script on the host or in a specified service                                       |
 
@@ -70,7 +71,9 @@ There are two types of commands provided by this add-on:
 | `site-build`            | Build tasks                    | Wraps tasks for the backend and frontend                                |
 | `site-build-backend`    | Backend build tasks            | Composer install                                                        |
 | `site-build-frontend`   | Frontend build tasks           | NPM install                                                             |
-| `site-install`          | Installation tasks             | New project installs the application; existing project builds and syncs |
+| `site-install`          | Installation tasks             | Wraps tasks for the backend and frontend                                |
+| `site-install-backend`  | Backend installation tasks     | New project installs the application; existing project builds and syncs |
+| `site-install-frontend` | Frontend installation tasks    | New project installs the application; existing project builds and syncs |
 | `site-mode-development` | Enable development mode        | Disable caches, enable verbose logging                                  |
 | `site-mode-production`  | Enable production mode         | Enable caches, aggregate CSS and JS                                     |
 | `site-scaffold`         | Scaffolding tasks              | Copy required files, set permissions                                    |
