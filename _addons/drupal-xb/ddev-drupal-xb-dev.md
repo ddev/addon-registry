@@ -11,7 +11,7 @@ type: contrib
 created_at: 2024-07-11
 updated_at: 2025-05-27
 workflow_status: disabled
-stars: 20
+stars: 19
 ---
 
 # DDEV Drupal Experience Builder Development Environment
