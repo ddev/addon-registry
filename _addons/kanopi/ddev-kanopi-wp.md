@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-13
-updated_at: 2025-09-28
+updated_at: 2025-10-06
 workflow_status: disabled
 stars: 1
 ---
@@ -27,6 +27,9 @@ A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Wo
 ## 🚀 Quick Start
 
 ```bash
+# Intialize a project
+ddev config --project-type=wordpress 
+
 # Install the add-on
 ddev add-on get kanopi/ddev-kanopi-wp
 
@@ -98,7 +101,7 @@ ddev restart
 ### New Projects
 ```bash
 # Initialize DDEV
-ddev config --project-type=wordpress --docroot=public # or web or wp...
+ddev config --project-type=wordpress
 
 # Install add-on
 ddev add-on get kanopi/ddev-kanopi-wp
