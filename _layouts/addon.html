@@ -4,29 +4,24 @@ layout: index
 
 {% include header.html page=page %}
 
-<div id="content-wrapper">
-    {%- assign split_content = content | split: '</p>' -%}
-    <!-- Display the first 3 paragraphs -->
-    <div id="visible-content">
-        {{ split_content | slice: 0, 3 | join: '</p>' | markdownify }}
-    </div>
+<div class="sort-buttons">
+    <button class="button-page" type="button" onclick="document.querySelector('.addon-comments').scrollIntoView({ behavior: 'smooth' })" title="Scroll to comments section" aria-label="Scroll to comments section">Comments</button>
+    <button class="button-page" type="button" onclick="window.open('{{ page.github_url }}', '_blank')" title="View add-on on GitHub" aria-label="View add-on on GitHub">View on GitHub <span class="github-icon github-icon-20" aria-hidden="true"></span></button>
+    <button class="button-page" type="button" onclick="window.open('{{ page.github_url }}/issues', '_blank')" title="Report an issue on GitHub" aria-label="Report an issue on GitHub">Report an issue <span class="github-icon github-icon-20" aria-hidden="true"></span></button>
+</div>
 
-    <!-- Hidden content that will be displayed on clicking "Read more" -->
-    <div id="hidden-content" style="display: none;">
-        {{ split_content | slice: 3, 1000 | join: '</p>' | markdownify }}
-    </div>
+<div id="content-wrapper">
+    {{ content }}
 </div>
 
 <div class="sort-buttons">
-    {%- if split_content.size > 4 -%}
-    <button class="button-page" type="button" id="read-more-btn" onclick="toggleContent()" title="Read more about add-on" aria-label="Read more about add-on">Read more</button>
-    {%- endif -%}
+    <button class="button-page" type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" title="Scroll to top of page" aria-label="Scroll to top of page">Back to top</button>
     <button class="button-page" type="button" onclick="window.open('{{ page.github_url }}', '_blank')" title="View add-on on GitHub" aria-label="View add-on on GitHub">View on GitHub <span class="github-icon github-icon-20" aria-hidden="true"></span></button>
     <button class="button-page" type="button" onclick="window.open('{{ page.github_url }}/issues', '_blank')" title="Report an issue on GitHub" aria-label="Report an issue on GitHub">Report an issue <span class="github-icon github-icon-20" aria-hidden="true"></span></button>
 </div>
 <script src="{{ site.baseurl }}/assets/addon.js"></script>
 
-<div style="border-top: 1px solid #ddd; margin: 25px 0;"></div>
+<div style="border-top: 1px solid #ddd; margin: 25px 0;" class="addon-comments"></div>
 
 <script src="https://giscus.app/client.js"
         data-repo="ddev/giscus-comments"
