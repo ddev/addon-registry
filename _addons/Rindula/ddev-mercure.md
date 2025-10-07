@@ -11,7 +11,7 @@ type: contrib
 created_at: 2022-06-28
 updated_at: 2025-09-29
 workflow_status: success
-stars: 0
+stars: 1
 ---
 
 [![tests](https://github.com/Rindula/ddev-mercure/actions/workflows/tests.yml/badge.svg)](https://github.com/Rindula/ddev-mercure/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
