@@ -76,7 +76,11 @@ jobs:
 
             while IFS= read -r repo; do
               echo "Checking $repo..."
-              if curl -sf "https://github.com/$repo" | grep -q '"Topic: ddev-get"'; then
+              PAGE_CONTENT=$(curl -sf "https://github.com/$repo")
+
+              if echo "$PAGE_CONTENT" | grep -q '>Public archive<'; then
+                echo "Repository $repo is archived, safe to delete."
+              elif echo "$PAGE_CONTENT" | grep -q '"Topic: ddev-get"'; then
                 echo "WARNING: Repository $repo has ddev-get topic but was deleted (search API degraded)"
                 echo "GitHub search API appears degraded. Undeleting file to prevent data loss."
                 # Restore the deleted files

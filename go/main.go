@@ -17,13 +17,10 @@ import (
 )
 
 // Excluded add-ons that we don't want to show
-var blacklist = []string{
-	// We have an official add-on for this
-	"sebastian-ehrling/ddev-opensearch",
-}
+var blacklist = []string{}
 
 func main() {
-	repos, err := listAvailableAddons(false)
+	repos, ddevRepos, err := listAvailableAddons()
 	checkErr(err)
 
 	err = os.Chdir("..")
@@ -34,7 +31,8 @@ func main() {
 	checkErr(err)
 
 	for _, repo := range repos {
-		if isRepoBlacklisted(repo) {
+		if isRepoBlacklisted(repo, ddevRepos) {
+			log.Warnf("Skipping blacklisted repo: %s", repo.GetFullName())
 			continue
 		}
 		err := generateAddonMarkdown(repo)
@@ -58,8 +56,22 @@ func checkErr(err error) {
 	}
 }
 
-func isRepoBlacklisted(repo *github.Repository) bool {
-	return slices.Contains(blacklist, repo.GetFullName())
+func isRepoBlacklisted(repo *github.Repository, ddevRepos []*github.Repository) bool {
+	// Check explicit blacklist
+	if slices.Contains(blacklist, repo.GetFullName()) {
+		return true
+	}
+
+	// Skip non-ddev repos that have the same name as a ddev org repo
+	if repo.Owner.GetLogin() != "ddev" {
+		for _, ddevRepo := range ddevRepos {
+			if repo.GetName() == ddevRepo.GetName() {
+				return true
+			}
+		}
+	}
+
+	return false
 }
 
 func hasFileChanged(filePath string, newContent string) bool {
@@ -80,12 +92,10 @@ func hasFileChanged(filePath string, newContent string) bool {
 // =============================================================================
 
 // listAvailableAddons retrieves all DDEV add-ons from GitHub using the 'ddev-get' topic
-func listAvailableAddons(officialOnly bool) ([]*github.Repository, error) {
+// Returns all repos and ddev org repos separately
+func listAvailableAddons() ([]*github.Repository, []*github.Repository, error) {
 	ctx, client := GetGitHubClient()
-	q := "topic:ddev-get fork:true"
-	if officialOnly {
-		q = q + " org:" + "ddev"
-	}
+	q := "topic:ddev-get fork:true archived:false"
 
 	opts := &github.SearchOptions{Sort: "updated", Order: "desc", ListOptions: github.ListOptions{PerPage: 200}}
 	var allRepos []*github.Repository
@@ -96,7 +106,7 @@ func listAvailableAddons(officialOnly bool) ([]*github.Repository, error) {
 			if resp != nil {
 				msg = msg + fmt.Sprintf(" rateinfo=%v", resp.Rate)
 			}
-			return nil, fmt.Errorf("%s", msg)
+			return nil, nil, fmt.Errorf("%s", msg)
 		}
 		allRepos = append(allRepos, repos.Repositories...)
 		if resp.NextPage == 0 {
@@ -104,16 +114,25 @@ func listAvailableAddons(officialOnly bool) ([]*github.Repository, error) {
 		}
 
 		// Set the next page number for the next request
-		opts.ListOptions.Page = resp.NextPage
+		opts.Page = resp.NextPage
 	}
 	out := ""
 	for _, r := range allRepos {
 		out = out + fmt.Sprintf("%s: %s\n", r.GetFullName(), r.GetDescription())
 	}
 	if len(allRepos) == 0 {
-		return nil, fmt.Errorf("no add-ons found")
+		return nil, nil, fmt.Errorf("no add-ons found")
 	}
-	return allRepos, nil
+
+	// Filter ddev org repos from allRepos
+	var ddevRepos []*github.Repository
+	for _, repo := range allRepos {
+		if repo.Owner.GetLogin() == "ddev" {
+			ddevRepos = append(ddevRepos, repo)
+		}
+	}
+
+	return allRepos, ddevRepos, nil
 }
 
 // getLastCommitDate retrieves the date of the latest commit on the repository's default branch.
@@ -200,7 +219,7 @@ func getScheduledWorkflowStatus(repo *github.Repository) string {
 	}
 
 	for _, run := range runs.WorkflowRuns {
-		if run.GetCreatedAt().Time.After(since) {
+		if run.GetCreatedAt().After(since) {
 			if run.GetConclusion() == "" {
 				return "unknown"
 			}
