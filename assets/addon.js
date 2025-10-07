@@ -1,37 +1,3 @@
-function toggleContent(expand = false) {
-    const content = document.getElementById("hidden-content");
-    const btn = document.getElementById("read-more-btn");
-
-    if (content.style.display === "none" || expand) {
-        content.style.display = "block";
-        btn.textContent = "Read less";
-        btn.title = "Read less about add-on";
-        btn.ariaLabel = "Read less about add-on";
-    } else {
-        content.style.display = "none";
-        btn.textContent = "Read more";
-        btn.title = "Read more about add-on";
-        btn.ariaLabel = "Read more about add-on";
-    }
-    btn.blur();
-}
-
-function expandHash(hash) {
-    if (!hash) return;
-
-    const target = document.querySelector(hash);
-    const content = document.getElementById("hidden-content");
-
-    if (target && content && content.contains(target)) {
-        toggleContent(true);
-
-        // Wait for layout update, then scroll
-        setTimeout(() => {
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100);
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     // Add permalinks to headings
     document.querySelectorAll('h1, h2, h3, h4, h5').forEach((heading) => {
@@ -58,9 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Expand hash on load
-    expandHash(window.location.hash);
-
     // Intercept internal anchor clicks
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", (e) => {
@@ -68,13 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (hash.length > 1 && document.querySelector(hash)) {
                 e.preventDefault();
                 history.pushState(null, '', hash); // update URL without reloading
-                expandHash(hash);
             }
         });
     });
-});
-
-// Handle hash changes (e.g. if user edits URL manually)
-window.addEventListener("hashchange", () => {
-    expandHash(window.location.hash);
 });
