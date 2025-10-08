@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: ["MurzNN/ddev-kubernetes"]
 type: contrib
 created_at: 2025-07-23
-updated_at: 2025-09-25
+updated_at: 2025-10-07
 workflow_status: success
 stars: 0
 ---
@@ -47,9 +47,8 @@ To install the `ddev-tsh` add-on, run the following command in your DDEV project
 During installation, you will be asked to input your Teleport configuration:
 
 - username
-- proxy (e.g. `teleport.example.com:443`)
-- cluster (e.g. `teleport.example.com`)
-- k8s cluster (if applicable). 
+- teleport base url (e.g. `teleport.example.com`)
+- k8s cluster base name (if applicable). 
 
 You can skip any if you don't need them or don't know them yet.
 
@@ -74,16 +73,16 @@ If you are using drush aliases, you will want to set up a drush alias using `kub
 
 For example, in `drush/sites/example.site.yml`:
 ```yaml
-my-site-k8s:
+my-site-k8s-dev:
   kubectl:
-    namespace: 'my-site'
-    resource: 'deploy/my-site'
+    namespace: "${env.CUSTOMER_NAME}-dev"
+    resource: 'deploy/${env.CUSTOMER_NAME}-dev'
     container: 'php'
     tty: true
     interactive: true
   paths:
     drush-script: /path/to/project/vendor/bin/drush
-  uri: https://my-site.example.com/
+  uri: "https://k8s.${env.CUSTOMER_NAME}-dev.example.net/"
   ```
 
 Please note that `tty` and `interactive` are set to `true` to allow for interactive commands via `tsh` in the container.
