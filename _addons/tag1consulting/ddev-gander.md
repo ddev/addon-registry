@@ -11,7 +11,7 @@ type: contrib
 created_at: 2023-11-23
 updated_at: 2025-04-09
 workflow_status: disabled
-stars: 5
+stars: 6
 ---
 
 [![tests](https://github.com/tag1consulting/ddev-gander/actions/workflows/tests.yml/badge.svg)](https://github.com/tag1consulting/ddev-gander/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
