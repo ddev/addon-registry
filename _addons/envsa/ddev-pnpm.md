@@ -11,7 +11,7 @@ type: contrib
 created_at: 2023-11-09
 updated_at: 2025-07-21
 workflow_status: disabled
-stars: 6
+stars: 7
 ---
 
 <div align="center">
