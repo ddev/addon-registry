@@ -11,7 +11,7 @@ type: contrib
 created_at: 2025-01-25
 updated_at: 2025-04-17
 workflow_status: disabled
-stars: 0
+stars: 1
 ---
 
 [![tests](https://github.com/robertoperuzzo/ddev-unstructured/actions/workflows/tests.yml/badge.svg)](https://github.com/robertoperuzzo/ddev-unstructured/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
