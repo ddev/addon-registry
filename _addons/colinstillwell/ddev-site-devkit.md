@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-09-22
-updated_at: 2025-10-08
+updated_at: 2025-10-15
 workflow_status: success
 stars: 0
 ---
@@ -53,15 +53,18 @@ There are two types of commands provided by this add-on:
 
 ### `ddev devkit-*` commands
 
-| Command                      | Description                                                                              |
-| ---------------------------- | ---------------------------------------------------------------------------------------- |
-| `devkit-config-diff`         | Compare config and report keys present in reference but missing in target                |
-| `devkit-config-get`          | Get a config value by name from a given format and location                              |
-| `devkit-db-import`           | Interactively import an SQL dump into the project database                               |
-| `devkit-file-copy`           | Copy a file from source to destination within the project, skipping if it already exists |
-| `devkit-log`                 | Print a formatted log message                                                            |
-| `devkit-minio-create-bucket` | Create a MinIO bucket if it does not exist, and set its policy                           |
-| `devkit-script-run`          | Run a script on the host or in a specified service                                       |
+| Command                               | Description                                                                              |
+| ------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `devkit-config-diff`                  | Compare config and report keys present in reference but missing in target                |
+| `devkit-config-get`                   | Get a config value by name from a given format and location                              |
+| `devkit-db-import`                    | Interactively import an SQL dump into the project database                               |
+| `devkit-drupal-search-api-index`      | Index Drupal Search API indexes                                                          |
+| `devkit-file-copy`                    | Copy a file from source to destination within the project, skipping if it already exists |
+| `devkit-log`                          | Print a formatted log message                                                            |
+| `devkit-minio-create-bucket`          | Create a MinIO bucket if it does not exist, and set its policy                           |
+| `devkit-prompt`                       | Prompt the user for input                                                                |
+| `devkit-script-run`                   | Run a script on the host or in a specified service                                       |
+| `devkit-typesense-delete-collections` | Delete Typesense collections                                                             |
 
 ### `ddev site-*` commands
 
