@@ -10,7 +10,7 @@ dependencies: ["Metadrop/ddev-selenium"]
 type: contrib
 created_at: 2025-05-19
 updated_at: 2025-09-17
-workflow_status: success
+workflow_status: failure
 stars: 4
 ---
 
