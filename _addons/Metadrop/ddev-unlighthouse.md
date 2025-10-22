@@ -10,8 +10,8 @@ dependencies: []
 type: contrib
 created_at: 2024-06-07
 updated_at: 2025-09-16
-workflow_status: failure
-stars: 9
+workflow_status: success
+stars: 10
 ---
 
 [![tests](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
