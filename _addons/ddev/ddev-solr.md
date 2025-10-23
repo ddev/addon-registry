@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2023-06-20
-updated_at: 2025-08-25
+updated_at: 2025-10-22
 workflow_status: success
 stars: 14
 ---
@@ -211,11 +211,33 @@ ddev solr version
 
 Make sure to commit the `.ddev/.env.solr` file to version control.
 
+### Add custom Solr libraries via SOLR_MODULES env variable
+
+Since version 9.8 Solr deprecates lib-directives: https://solr.apache.org/guide/solr/latest/upgrade-notes/major-changes-in-solr-9.html#solr-9-8
+
+To enable custom libraries you can use `SOLR_MODULES` environment variable.
+
+By default it is set to `SOLR_MODULES: "extraction,langid,ltr,analysis-extras"` to work with
+Drupal Search API Solr default (jump start) config.
+
+You can unset by using:
+
+```
+ddev dotenv set .ddev/.env.solr --solr-modules=
+```
+
+or set to custom value:
+
+```
+ddev dotenv set .ddev/.env.solr --solr-modules=extraction,ltr
+```
+
 All customization options (use with caution):
 
-| Variable | Flag | Default |
-| -------- | ---- | ------- |
-| `SOLR_BASE_IMAGE` | `--solr-base-image` | `solr:9.6` |
+| Variable          | Flag                | Default   |
+|-------------------|---------------------|-----------|
+| `SOLR_BASE_IMAGE` | `--solr-base-image` | `solr:9` |
+| `SOLR_MODULES`    | `--solr-modules`    | `extraction,langid,ltr,analysis-extras` |
 
 ### Add third party Solr modules and libraries
 
@@ -225,6 +247,9 @@ collection's `solrconfig.xml`:
 ```xml
 <lib dir="/opt/solr/modules/ddev/lib/" regex=".*\.jar" />
 ```
+
+Attention: This changed since Solr 9.8, read https://solr.apache.org/guide/solr/latest/upgrade-notes/major-changes-in-solr-9.html#solr-9-8 
+for details.
 
 ## Solarium PHP client
 
