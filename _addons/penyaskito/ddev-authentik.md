@@ -10,8 +10,8 @@ dependencies: []
 type: contrib
 created_at: 2024-07-10
 updated_at: 2025-01-13
-workflow_status: failure
-stars: 2
+workflow_status: success
+stars: 3
 ---
 
 [![tests](https://github.com/penyaskito/ddev-authentik/actions/workflows/tests.yml/badge.svg)](https://github.com/penyaskito/ddev-authentik/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
