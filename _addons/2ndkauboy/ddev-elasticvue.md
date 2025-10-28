@@ -10,7 +10,7 @@ dependencies: ["ddev/ddev-elasticsearch"]
 type: contrib
 created_at: 2024-05-21
 updated_at: 2025-09-05
-workflow_status: disabled
+workflow_status: failure
 stars: 1
 ---
 
