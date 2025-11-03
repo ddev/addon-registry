@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-13
-updated_at: 2025-10-17
+updated_at: 2025-11-03
 workflow_status: disabled
 stars: 1
 ---
@@ -49,7 +49,7 @@ ddev project-init
 - **Block Development** - WordPress block scaffolding and tooling
 - **E2E Testing** - Cypress integration with user management
 - **Performance Tools** - Critical CSS generation and optimization
-- **Service Integration** - PHPMyAdmin, Redis, and Solr support
+- **Service Integration** - Redis support for Pantheon object caching
 
 ## 📚 Documentation
 
@@ -83,11 +83,11 @@ ddev project-init
 
 ## 🌐 Hosting Provider Support
 
-| Provider | Authentication | Features |
-|----------|---------------|----------|
-| **[Pantheon](https://kanopi.github.io/ddev-kanopi-wp/providers/pantheon/)** | Machine Token | Terminus integration, multidev support |
-| **[WPEngine](https://kanopi.github.io/ddev-kanopi-wp/providers/wpengine/)** | SSH Key (local config) | Nightly backup utilization |
-| **[Kinsta](https://kanopi.github.io/ddev-kanopi-wp/providers/kinsta/)** | SSH Key | Direct server access |
+| Provider | Authentication | Features | Docroot |
+|----------|---------------|----------|---------|
+| **[Pantheon](https://kanopi.github.io/ddev-kanopi-wp/providers/pantheon/)** | Machine Token | Terminus integration, multidev support | `web` (recommended) or root (legacy) |
+| **[WPEngine](https://kanopi.github.io/ddev-kanopi-wp/providers/wpengine/)** | SSH Key (local config) | Nightly backup utilization | Configurable |
+| **[Kinsta](https://kanopi.github.io/ddev-kanopi-wp/providers/kinsta/)** | SSH Key | Direct server access | `public` |
 
 ## 📋 Installation Options
 
