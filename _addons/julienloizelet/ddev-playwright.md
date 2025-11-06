@@ -5,11 +5,11 @@ description: "Playwright add-on for ddev"
 user: julienloizelet
 repo: ddev-playwright
 repo_id: 598383514
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.9"
 dependencies: []
 type: contrib
 created_at: 2023-02-07
-updated_at: 2025-05-12
+updated_at: 2025-11-05
 workflow_status: success
 stars: 14
 ---
@@ -66,9 +66,6 @@ Then restart your project
 ```bash
 ddev restart
 ```
-
-> [!NOTE]
-> If you change `additional_hostnames` or `additional_fqdns`, you have to re-run `ddev add-on get julienloizelet/ddev-playwright`.
 
 ## Basic usage
 

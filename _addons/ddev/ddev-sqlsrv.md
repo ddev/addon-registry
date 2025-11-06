@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2023-03-24
-updated_at: 2025-08-08
+updated_at: 2025-11-05
 workflow_status: success
 stars: 6
 ---
@@ -44,7 +44,7 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Command | Description |
 | ------- | ----------- |
-| `ddev sqlcmd` | For Transact-SQL statements, system procedures, and script files |
+| `ddev sqlcmd` | For Transact-SQL statements, system procedures, and script files.<br>See examples for T-SQL statements in `ddev help sqlcmd` |
 | `ddev drupal-regex` | For compatibility with Drupal version 9 or higher |
 
 ### Drupal Notice

@@ -5,11 +5,11 @@ description: "Redis cache and data store service for DDEV"
 user: ddev
 repo: ddev-redis
 repo_id: 452397673
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-01-26
-updated_at: 2025-07-22
+updated_at: 2025-11-05
 workflow_status: success
 stars: 35
 ---
@@ -129,6 +129,7 @@ All customization options (use with caution):
 | Variable | Flag | Default |
 | -------- | ---- | ------- |
 | `REDIS_DOCKER_IMAGE` | `--redis-docker-image` | `redis:7` |
+| `REDIS_HOSTNAME` | `--redis-hostname` | `redis` |
 | `REDIS_OPTIMIZED` | `--redis-optimized` | `false` (`true`/`false`) |
 
 ## Credits

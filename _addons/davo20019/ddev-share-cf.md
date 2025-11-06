@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.22.3"
 dependencies: []
 type: contrib
 created_at: 2025-10-14
-updated_at: 2025-11-01
+updated_at: 2025-11-05
 workflow_status: unknown
 stars: 6
 ---
