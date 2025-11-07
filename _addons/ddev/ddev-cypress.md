@@ -5,11 +5,11 @@ description: "Cypress E2E testing for use with DDEV"
 user: ddev
 repo: ddev-cypress
 repo_id: 473510790
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-03-24
-updated_at: 2025-10-03
+updated_at: 2025-11-07
 workflow_status: success
 stars: 14
 ---
@@ -79,9 +79,6 @@ Installing Cypress with favorite package manager works great locally. However, m
   ```shell
   ddev restart
   ```
-
-> [!NOTE]
-> If you change `additional_hostnames` or `additional_fqdns`, you have to re-run `ddev add-on get ddev/ddev-cypress`
 
 - Run cypress via `ddev cypress-open` or `ddev cypress-run` (headless).
 

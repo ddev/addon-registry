@@ -10,8 +10,8 @@ dependencies: []
 type: contrib
 created_at: 2024-02-07
 updated_at: 2025-11-05
-workflow_status: disabled
-stars: 2
+workflow_status: success
+stars: 3
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
