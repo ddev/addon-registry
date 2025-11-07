@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: official
 created_at: 2023-04-29
-updated_at: 2025-08-29
+updated_at: 2025-11-06
 workflow_status: success
 stars: 117
 ---
@@ -29,13 +29,19 @@ DDEV integration for developing Drupal contrib projects. As a general philosophy
 1. If you haven't already, [install Docker and DDEV](https://ddev.readthedocs.io/en/latest/users/install/)
 2. `git clone` your contrib module
 3. cd [contrib module directory]
-4. Configure DDEV for Drupal using `ddev config --project-type=drupal --docroot=web --php-version=8.3 --corepack-enable` or select these options when prompted using `ddev config`
-5. Run `ddev add-on get ddev/ddev-drupal-contrib`
-6. Run `ddev start`
-7. Run `ddev poser`
-8. Run `ddev symlink-project`
-9. `ddev config --update` to detect expected Drupal and PHP versions.
-10. `ddev restart`
+4. Execute the commands below, adjust as needed.
+
+```sh
+# Configure DDEV for Drupal, or use interactive mode.
+ddev config --project-type=drupal --docroot=web --php-version=8.3 --corepack-enable
+ddev add-on get ddev/ddev-drupal-contrib
+ddev start
+ddev poser
+ddev symlink-project
+# Detect expected Drupal and PHP versions.
+ddev config --update
+ddev restart
+```
 
 ## Update
 
@@ -71,7 +77,7 @@ This project provides the following DDEV container commands.
 
 - Optional. The [ddev-selenium-standalone-chrome add-on helps run FunctionalJavascript and Nightwatch tests](https://github.com/ddev/ddev-selenium-standalone-chrome).
 - Optional: [Install the ddev-mkdocs extension for local preview of your docs site](https://github.com/nireneko/ddev-mkdocs). Drupal.org's Gitlab CI can [automatically publish your site](https://project.pages.drupalcode.org/gitlab_templates/jobs/pages/).
-- Optional. Commit the changes in the `.ddev` folder after this plugin installs. This saves other users from having to install this integration.
+- Optional. Commit the changes in the `.ddev` folder after this add-on installs. This saves other users from having to install this integration.
 - To install javascript dependencies, run `ddev exec "cd web/core && yarn install"`
 - If you add/remove a root file or directory, re-symlink root files via EITHER of these methods
   - `ddev restart`
