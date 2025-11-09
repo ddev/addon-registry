@@ -5,11 +5,11 @@ description: "Microsoft SQL Server database support for DDEV"
 user: ddev
 repo: ddev-sqlsrv
 repo_id: 618290272
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2023-03-24
-updated_at: 2025-11-05
+updated_at: 2025-11-08
 workflow_status: success
 stars: 6
 ---
@@ -46,6 +46,8 @@ After installation, make sure to commit the `.ddev` directory to version control
 | ------- | ----------- |
 | `ddev sqlcmd` | For Transact-SQL statements, system procedures, and script files.<br>See examples for T-SQL statements in `ddev help sqlcmd` |
 | `ddev drupal-regex` | For compatibility with Drupal version 9 or higher |
+| `ddev describe` | Describe the SQL Server container and its configuration |
+| `ddev logs -s sqlsrv` | View the SQL Server container logs |
 
 ### Drupal Notice
 
