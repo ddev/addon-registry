@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-11-11
-updated_at: 2025-11-17
+updated_at: 2025-11-18
 workflow_status: unknown
 stars: 0
 ---
@@ -116,6 +116,10 @@ URL will become example.com.ddev.site.
 - `phpcs`: Runs PHPcs commands
   ```bash
   ddev phpcs
+  ```
+- `phpstan`: Runs PHPStan commands. Usually, the directory to be scanned is web/modules/custom or a module in the said directory.
+  ```bash
+  ddev phpstan analyze <directory-or-module-to-be-scanned>
   ```
 - `syncdb`: Synchronizes local database from desired environment.
   You should have aliases set in drush/sites/self.site.yml
