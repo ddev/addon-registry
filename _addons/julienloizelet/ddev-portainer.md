@@ -5,11 +5,11 @@ description: "Portainer add-on for ddev"
 user: julienloizelet
 repo: ddev-portainer
 repo_id: 598874816
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2023-02-08
-updated_at: 2025-04-23
+updated_at: 2025-11-20
 workflow_status: failure
 stars: 3
 ---

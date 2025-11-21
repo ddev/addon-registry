@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-11-11
-updated_at: 2025-11-18
+updated_at: 2025-11-20
 workflow_status: unknown
 stars: 0
 ---
@@ -66,17 +66,15 @@ URL will become example.com.ddev.site.
    git commit
    ```
 
-   Also note that whenever you update wunderio/ddev-drupal add-on, you need to add everything under .ddev to GIT.
+   Also note that whenever you update wunderio/ddev-wunderio-drupal add-on, you need to add everything under .ddev to GIT.
 
 ### Updating the add-on
 
 - To update the add-on to the latest version:
 
   ```bash
-  ddev add-on get wunderio/ddev-drupal --update
+  ddev add-on get wunderio/ddev-wunderio-drupal --update
   ```
-
-- Optional interactive update prompt can be enabled by setting `WUNDERIO_UPDATE_PROMPT=1` in your environment; it runs on `ddev start`.
 
 ## Features
 
@@ -166,7 +164,7 @@ overwritten during autoupdate.
 Previously, this package was installed as a Composer plugin and deployed files into the project. To migrate:
 
 1. Remove legacy managed files from previous versions if present and commit your cleanup.
-2. Install the add-on via `ddev add-on get wunderio/ddev-drupal`.
+2. Install the add-on via `ddev add-on get wunderio/ddev-wunderio-drupal`.
 3. Verify `.ddev/wunderio/custom/` overrides are preserved.
 4. Commit updated `.ddev/` files.
 
