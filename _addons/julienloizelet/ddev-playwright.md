@@ -11,7 +11,7 @@ type: contrib
 created_at: 2023-02-07
 updated_at: 2025-11-14
 workflow_status: success
-stars: 14
+stars: 15
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
