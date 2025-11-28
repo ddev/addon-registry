@@ -1,23 +1,23 @@
 ---
-title: stasadev/ddev-redis-insight
-github_url: https://github.com/stasadev/ddev-redis-insight
+title: ddev/ddev-redis-insight
+github_url: https://github.com/ddev/ddev-redis-insight
 description: "Redis Insight Web UI for use with DDEV Redis service"
-user: stasadev
+user: ddev
 repo: ddev-redis-insight
 repo_id: 1023853846
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: ["ddev/ddev-redis"]
-type: contrib
+type: official
 created_at: 2025-07-21
-updated_at: 2025-09-03
+updated_at: 2025-11-27
 workflow_status: success
 stars: 2
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
-[![tests](https://github.com/stasadev/ddev-redis-insight/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/stasadev/ddev-redis-insight/actions/workflows/tests.yml?query=branch%3Amain)
-[![last commit](https://img.shields.io/github/last-commit/stasadev/ddev-redis-insight)](https://github.com/stasadev/ddev-redis-insight/commits)
-[![release](https://img.shields.io/github/v/release/stasadev/ddev-redis-insight)](https://github.com/stasadev/ddev-redis-insight/releases/latest)
+[![tests](https://github.com/ddev/ddev-redis-insight/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-redis-insight/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-redis-insight)](https://github.com/ddev/ddev-redis-insight/commits)
+[![release](https://img.shields.io/github/v/release/ddev/ddev-redis-insight)](https://github.com/ddev/ddev-redis-insight/releases/latest)
 
 # DDEV Redis Insight
 
@@ -38,7 +38,7 @@ ddev add-on get ddev/ddev-redis
 ## Installation
 
 ```bash
-ddev add-on get stasadev/ddev-redis-insight
+ddev add-on get ddev/ddev-redis-insight
 ddev restart
 ```
 
@@ -63,7 +63,7 @@ To change the Docker image:
 
 ```bash
 ddev dotenv set .ddev/.env.redis-insight --redis-insight-docker-image="redis/redisinsight:latest"
-ddev add-on get stasadev/ddev-redis-insight
+ddev add-on get ddev/ddev-redis-insight
 ddev restart
 ```
 
@@ -77,4 +77,6 @@ All customization options (use with caution):
 
 ## Credits
 
-**Contributed and maintained by [@stasadev](https://github.com/stasadev)**
+**Contributed by [@stasadev](https://github.com/stasadev)**
+
+**Maintained by the [DDEV team](https://ddev.com/support-ddev/) and [@julienloizelet](https://github.com/julienloizelet)**
