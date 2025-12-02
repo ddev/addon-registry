@@ -5,12 +5,12 @@ description: "Headless Chrome browser testing with Selenium for DDEV"
 user: ddev
 repo: ddev-selenium-standalone-chrome
 repo_id: 563535124
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-11-08
-updated_at: 2025-11-12
-workflow_status: failure
+updated_at: 2025-12-01
+workflow_status: success
 stars: 38
 ---
 
@@ -23,7 +23,7 @@ stars: 38
 
 ## Overview
 
-Makes it easy to run Functional, FunctionalJavascript, and Nightwatch tests in DDEV. 
+Makes it easy to run Functional, FunctionalJavascript, and Nightwatch tests in DDEV.
 
 This service can be used with any project type. The examples below are Drupal-specific. Contributions for docs and tests that show this service working with other project types are appreciated.
 
@@ -114,7 +114,7 @@ If you use Behat as a test running, adjust your `behat.yml`
 
 ## Contribute
 
-- Anyone is welcome to submit a PR to this repo. See README.md at https://github.com/ddev/ddev-addon-template, the parent of this repo.
+- Anyone is welcome to submit a PR to this repo. See [DDEV Add-on Maintenance Guide](https://ddev.com/blog/ddev-add-on-maintenance-guide/).
 
 ## Credits
 
