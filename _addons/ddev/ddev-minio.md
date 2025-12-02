@@ -5,11 +5,11 @@ description: "MinIO S3-compatible object storage solution for DDEV"
 user: ddev
 repo: ddev-minio
 repo_id: 678091119
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2023-08-13
-updated_at: 2025-04-17
+updated_at: 2025-12-01
 workflow_status: success
 stars: 6
 ---
@@ -150,4 +150,6 @@ configs:
 
 ## Credits
 
-**Developed and maintained by [Oblak Studio](https://github.com/oblakstudio)**
+**Contributed by [Oblak Studio](https://github.com/oblakstudio)**
+
+**Maintained by the [DDEV team](https://ddev.com/support-ddev/)**

@@ -5,11 +5,11 @@ description: "Experimental DDEV add-on to tightly integrate a project with an up
 user: ddev
 repo: ddev-upsun
 repo_id: 1040999015
-ddev_version_constraint: ">= v1.24.8"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2025-08-19
-updated_at: 2025-10-23
+updated_at: 2025-12-01
 workflow_status: success
 stars: 2
 ---
