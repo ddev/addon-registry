@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2025-11-03
+updated_at: 2025-12-05
 workflow_status: disabled
 stars: 3
 ---
@@ -35,7 +35,7 @@ A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Dr
 - **Theme Development** - Node.js/NPM integration with build tools
 - **E2E Testing** - Cypress integration with user management
 - **Performance Tools** - Critical CSS generation and optimization
-- **Service Integration** - PHPMyAdmin, Redis/Memcached, and Solr support
+- **Service Integration** - Redis/Memcached and Solr support
 
 ---
 
