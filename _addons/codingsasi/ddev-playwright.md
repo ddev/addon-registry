@@ -11,7 +11,7 @@ type: contrib
 created_at: 2024-12-31
 updated_at: 2025-12-05
 workflow_status: success
-stars: 0
+stars: 1
 ---
 
 # ddev-playwright

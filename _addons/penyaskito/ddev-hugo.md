@@ -9,12 +9,12 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-04-26
-updated_at: 2024-10-24
+updated_at: 2025-12-10
 workflow_status: success
 stars: 1
 ---
 
-[![tests](https://github.com/penyaskito/ddev-hugo/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-hugo/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/penyaskito/ddev-hugo/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-hugo/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
 # ddev-hugo <!-- omit in toc -->
 
@@ -30,7 +30,7 @@ In DDEV addons can be installed from the command line using the `ddev add-on get
 ## Getting started
 
 1. Create your ddev project with `ddev config --omit-containers=db --docroot public`
-2. Run `ddev add-on get https://github.com/penyaskito/ddev-hugo` (or `ddev get https://github.com/penyaskito/ddev-hugo` if your version of DDEV is older than 1.23.5)
+2. Run `ddev add-on get penyaskito/ddev-hugo` (or `ddev get https://github.com/penyaskito/ddev-hugo` if your version of DDEV is older than 1.23.5)
 3. Run `ddev exec hugo`
 4. Run `ddev launch`
 
