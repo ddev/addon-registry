@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             outerWindow: 1,
             item: "<li><a class='page' href='javascript:;' tabindex='4'></a></li>",
         },
-        page: 27,
+        page: 30,
     });
 
     // Scroll to bottom on page click
