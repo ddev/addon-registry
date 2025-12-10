@@ -11,7 +11,7 @@ type: contrib
 created_at: 2023-05-01
 updated_at: 2025-11-17
 workflow_status: success
-stars: 22
+stars: 23
 ---
 
 [![tests](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml)
