@@ -1,0 +1,54 @@
+---
+title: ddev/ddev-python2
+github_url: https://github.com/ddev/ddev-python2
+description: "Python 2 for older npm builds with node-gyp inside DDEV"
+user: ddev
+repo: ddev-python2
+repo_id: 849742328
+ddev_version_constraint: ">= v1.24.10"
+dependencies: []
+type: official
+created_at: 2024-08-30
+updated_at: 2025-12-10
+workflow_status: success
+stars: 8
+---
+
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/ddev/ddev-python2/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-python2/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-python2)](https://github.com/ddev/ddev-python2/commits)
+[![release](https://img.shields.io/github/v/release/ddev/ddev-python2)](https://github.com/ddev/ddev-python2/releases/latest)
+
+# DDEV Python 2
+
+## Overview
+
+[Python 2](https://www.python.org/doc/sunset-python-2/) has reached its end of life.
+
+This add-on integrates legacy Python 2 inside the `ddev-webserver` into your [DDEV](https://ddev.com/) project.
+
+It is only needed if your `npm` setup requires Python 2 to build dependencies.
+
+## Installation
+
+```bash
+ddev add-on get ddev/ddev-python2
+ddev restart
+```
+
+After installation, make sure to commit the `.ddev` directory to version control.
+
+## Usage
+
+| Command | Description |
+| ------- | ----------- |
+| `ddev exec python` | Run Python 2.7.18 inside the `web` container.<br>Installed at `/usr/local/bin/python` |
+| `ddev exec pip` | Run pip 20.0.2 inside the `web` container.<br>Installed at `/usr/local/bin/pip` |
+
+This add-on also installs the `build-essential` package, which is usually required for the `npm build`, see [config.python2.yaml](https://github.com/ddev/ddev-python2/blob/main/./config.python2.yaml). Remove or replace the contents of this file if you only need Python 2.
+
+## Credits
+
+**Contributed by [@stasadev](https://github.com/stasadev)**
+
+**Maintained by the [DDEV team](https://ddev.com/support-ddev/)**
