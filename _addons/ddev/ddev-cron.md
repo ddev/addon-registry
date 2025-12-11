@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-05-19
-updated_at: 2025-07-16
+updated_at: 2025-12-10
 workflow_status: success
 stars: 31
 ---
@@ -139,6 +139,15 @@ Every minute, it writes the current time (UTC timezone) to `./time.log`.
 
 ```cron
 * * * * * /var/www/html/cron.sh
+```
+
+### Magento 2 / Mage-OS cron
+
+- Create a `./.ddev/web-build/magento.cron` file
+- Add the following code to run the Magento scheduler every minute.
+
+```cron
+* * * * * php /var/www/html/bin/magento cron:run
 ```
 
 ### TYPO3 scheduler
