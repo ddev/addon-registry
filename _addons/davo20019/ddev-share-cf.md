@@ -11,7 +11,7 @@ type: contrib
 created_at: 2025-10-14
 updated_at: 2025-11-05
 workflow_status: unknown
-stars: 7
+stars: 8
 ---
 
 # ddev-share-cf
