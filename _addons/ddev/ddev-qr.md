@@ -10,7 +10,7 @@ dependencies: []
 type: official
 created_at: 2024-06-21
 updated_at: 2025-10-10
-workflow_status: disabled
+workflow_status: success
 stars: 2
 ---
 

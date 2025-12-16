@@ -5,11 +5,11 @@ description: "RabbitMQ message broker, queue manager for DDEV"
 user: ddev
 repo: ddev-rabbitmq
 repo_id: 706339942
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2023-10-17
-updated_at: 2025-08-26
+updated_at: 2025-12-15
 workflow_status: failure
 stars: 9
 ---
@@ -110,12 +110,18 @@ You can access the RabbitMQ service through its AMQP protocol inside any DDEV co
 To change the Docker image:
 
 ```bash
-ddev dotenv set .ddev/.env.rabbitmq --rabbitmq-docker-image="rabbitmq:4-management-alpine"
+ddev dotenv set .ddev/.env.rabbitmq --rabbitmq-docker-image="rabbitmq:4-management"
 ddev add-on get ddev/ddev-rabbitmq
 ddev restart
 ```
 
 Make sure to commit the `.ddev/.env.rabbitmq` file to version control.
+
+All customization options (use with caution):
+
+| Variable | Flag | Default |
+| -------- | ---- | ------- |
+| `RABBITMQ_DOCKER_IMAGE` | `--rabbitmq-docker-image` | `rabbitmq:4-management` |
 
 ## Examples
 
