@@ -1,7 +1,7 @@
 ---
 title: jcandan/ddev-ai-agent
 github_url: https://github.com/jcandan/ddev-ai-agent
-description: "A DDEV add-on to spin up a simple, opinionated, customizable n8n/supabase AI Agent workflow stack with sensible defaults."
+description: "A DDEV add-on to spin up a simple, opinionated, customizable n8n AI Agent workflow stack with sensible defaults."
 user: jcandan
 repo: ddev-ai-agent
 repo_id: 1089834277

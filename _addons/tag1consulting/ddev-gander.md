@@ -9,7 +9,7 @@ ddev_version_constraint: ""
 dependencies: ["ddev/ddev-selenium-standalone-chrome"]
 type: contrib
 created_at: 2023-11-23
-updated_at: 2025-11-10
+updated_at: 2025-12-19
 workflow_status: disabled
 stars: 6
 ---

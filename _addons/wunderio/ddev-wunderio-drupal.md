@@ -9,7 +9,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-11-11
-updated_at: 2025-11-28
+updated_at: 2025-12-18
 workflow_status: unknown
 stars: 0
 ---
@@ -43,15 +43,12 @@ URL will become example.com.ddev.site.
    ddev add-on get wunderio/ddev-wunderio-drupal && ddev restart
    ```
 
-3. Optionally if you have GrumPHP installed, update grumphp.yml:
+3. Optionally if you have GrumPHP installed:
 
-   ```
-   grumphp:
-     git_hook_variables:
-       EXEC_GRUMPHP_COMMAND: 'ddev php'
-   ```
+   - **Default setup (recommended):** In many setups the default `php` used by GrumPHP works out of the box and you **do not need any custom `EXEC_GRUMPHP_COMMAND`** in `grumphp.yml`.
+   - **If you previously added a custom `EXEC_GRUMPHP_COMMAND` for DDEV/Lando:** You can safely remove the entire `git_hook_variables` section from `grumphp.yml` and then re‑initialise the hooks so they use the default configuration.
 
-   and then re-init the hook:
+   After adjusting `grumphp.yml`, re‑init the hook:
 
    ```bash
    ddev grumphp git:init
@@ -130,6 +127,21 @@ URL will become example.com.ddev.site.
   ```bash
   ddev yq
   ```
+- `commit`: Generates AI-powered commit messages from staged changes using the configured API.
+  The command analyzes your staged changes and branch name to generate commit messages following
+  the project's commit message format (ticket/issue ID prefix, present tense, imperative mood).
+  Requires `OPENAI_API_URL` and `OPENAI_API_KEY` environment variables to be configured via DDEV global config.
+  ```bash
+  ddev commit
+  ```
+  **Setup:** Configure the API credentials in DDEV global config (applies to all projects) and restart your DDEV project:
+  ```bash
+  ddev config global --web-environment-add="OPENAI_API_URL=https://your-api-url"
+  ddev config global --web-environment-add="OPENAI_API_KEY=your-api-key"
+  ddev restart
+  ```
+
+  **Note:** The global config is stored in `~/.ddev/global_config.yaml`. You can edit this file directly if you prefer, then restart your DDEV project.
 
 ### Enhanced Configuration
 
