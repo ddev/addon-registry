@@ -1,8 +1,8 @@
 ---
-title: jackd248/ddev-typo3-multi-version-extension
-github_url: https://github.com/jackd248/ddev-typo3-multi-version-extension
+title: konradmichalik/ddev-typo3-multi-version-extension
+github_url: https://github.com/konradmichalik/ddev-typo3-multi-version-extension
 description: "🧱 Provides a multi-version TYPO3 environment for develop and test your TYPO3 extension. "
-user: jackd248
+user: konradmichalik
 repo: ddev-typo3-multi-version-extension
 repo_id: 944430541
 ddev_version_constraint: ">= v1.24.3"
@@ -69,7 +69,7 @@ ddev install all
 ddev install 12
 ```
 
-![Screencast](https://raw.githubusercontent.com/jackd248/ddev-typo3-multi-version-extension/main/./images/screencast.gif)
+![Screencast](https://raw.githubusercontent.com/konradmichalik/ddev-typo3-multi-version-extension/main/./images/screencast.gif)
 
 For a detailed console output, use the following command:
 
@@ -86,10 +86,10 @@ By default, a blank TYPO3 instance will be installed for each version. They are 
 
 Use this sitepackage to test the features of your main extension. You can adjust it to your needs in `Tests/Acceptance/Fixtures/packages/sitepackage/`.
 
-If you need more extensions for your setup, you can place them in the `Tests/Acceptance/Fixtures/packages` directory or adjust the `ddev install` command. Within the e.g. the [.install-12](https://github.com/jackd248/ddev-typo3-multi-version-extension/blob/main/commands/web/.install-12) file, you can adjust the `composer require` command to fit your needs.
+If you need more extensions for your setup, you can place them in the `Tests/Acceptance/Fixtures/packages` directory or adjust the `ddev install` command. Within the e.g. the [.install-12](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/commands/web/.install-12) file, you can adjust the `composer require` command to fit your needs.
 
 > [!NOTE]
-> You may not need all TYPO3 versions? You can remove the unwanted versions from the `TYPO3_VERSIONS` variable in [.ddev/docker-compose.typo3-setup.yaml](https://github.com/jackd248/ddev-typo3-multi-version-extension/blob/main/docker-compose.typo3-setup.yaml).
+> You may not need all TYPO3 versions? You can remove the unwanted versions from the `TYPO3_VERSIONS` variable in [.ddev/docker-compose.typo3-setup.yaml](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/docker-compose.typo3-setup.yaml).
 
 If you need additional data for the automatic installation process, place TYPO3 xml export files or sql files in the `Tests/Acceptance/Fixtures/` directory.
 

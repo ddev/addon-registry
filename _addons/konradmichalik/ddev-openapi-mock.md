@@ -1,8 +1,8 @@
 ---
-title: jackd248/ddev-openapi-mock
-github_url: https://github.com/jackd248/ddev-openapi-mock
+title: konradmichalik/ddev-openapi-mock
+github_url: https://github.com/konradmichalik/ddev-openapi-mock
 description: "🔌 Provides a fake OpenAPI interface for local developing & testing. "
-user: jackd248
+user: konradmichalik
 repo: ddev-openapi-mock
 repo_id: 1031875939
 ddev_version_constraint: ">= v1.24.3"
