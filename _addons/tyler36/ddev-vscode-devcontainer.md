@@ -5,12 +5,14 @@ description: "Open a DDEV container in VSCode"
 user: tyler36
 repo: ddev-vscode-devcontainer
 repo_id: 623859832
+default_branch: main
+tag_name: 1.2.2
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2023-04-05
 updated_at: 2025-06-30
-workflow_status: success
+workflow_status: disabled
 stars: 6
 ---
 

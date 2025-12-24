@@ -5,6 +5,8 @@ description: "Apache Solr server setup for search indexing in DDEV"
 user: ddev
 repo: ddev-solr
 repo_id: 656057518
+default_branch: main
+tag_name: 0.8.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

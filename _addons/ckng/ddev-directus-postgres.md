@@ -5,6 +5,8 @@ description: "Directus with PostgreSQL (and Redis) addon for DDEV"
 user: ckng
 repo: ddev-directus-postgres
 repo_id: 945850419
+default_branch: master
+tag_name: 1.0.1
 ddev_version_constraint: ""
 dependencies: ["redis"]
 type: contrib

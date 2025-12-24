@@ -5,6 +5,8 @@ description: "A db command for DDEV to rename tables prefix of WordPress install
 user: biati-digital
 repo: ddev-wp-rename-tables-prefix
 repo_id: 697222678
+default_branch: main
+tag_name: v1.0.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

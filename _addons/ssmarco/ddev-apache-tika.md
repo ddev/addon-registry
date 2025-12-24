@@ -5,6 +5,8 @@ description: "DDEV Apache Tika"
 user: ssmarco
 repo: ddev-apache-tika
 repo_id: 762886290
+default_branch: main
+tag_name: 0.0.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "This add-on integrates Tailscale into your DDEV project. Unlike te
 user: atj4me
 repo: ddev-tailscale-router
 repo_id: 950788832
+default_branch: main
+tag_name: v3.0.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

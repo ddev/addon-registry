@@ -5,6 +5,8 @@ description: "Containerized Cucumber/Playwright testing with minimalistic settin
 user: shogathu
 repo: ddev-e2e-testing
 repo_id: 1093565608
+default_branch: main
+tag_name: 0.5
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

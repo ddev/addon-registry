@@ -5,6 +5,8 @@ description: "Run Ollama in DDEV"
 user: stinis87
 repo: ddev-ollama
 repo_id: 933817805
+default_branch: main
+tag_name: 1.0.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

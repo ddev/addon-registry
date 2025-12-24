@@ -5,6 +5,8 @@ description: "A simple, extensible node.js websocket server"
 user: andy-blum
 repo: ddev-websocket
 repo_id: 972679449
+default_branch: main
+tag_name: 0.0.2-alpha
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

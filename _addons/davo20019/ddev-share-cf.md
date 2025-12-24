@@ -5,6 +5,8 @@ description: "Share your DDEV sites publicly using Cloudflare Tunnel (free alter
 user: davo20019
 repo: ddev-share-cf
 repo_id: 1076286664
+default_branch: main
+tag_name: v1.4.2
 ddev_version_constraint: ">= v1.22.3"
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Meilisearch is a flexible and powerful user-focused search engine 
 user: kevinquillen
 repo: ddev-meilisearch
 repo_id: 748725801
+default_branch: main
+tag_name: v1.0.4
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

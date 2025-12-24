@@ -5,6 +5,8 @@ description: "RabbitMQ message broker, queue manager for DDEV"
 user: ddev
 repo: ddev-rabbitmq
 repo_id: 706339942
+default_branch: main
+tag_name: 0.2.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

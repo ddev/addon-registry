@@ -5,6 +5,8 @@ description: "ClamAV integration for DDEV"
 user: fwust
 repo: ddev-clamav
 repo_id: 710824160
+default_branch: main
+tag_name: 1.1.4
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

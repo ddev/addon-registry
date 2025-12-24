@@ -5,6 +5,8 @@ description: "DDEV Addon to install the PHP-SPX performance package "
 user: fullfatthings
 repo: ddev-spx
 repo_id: 868948247
+default_branch: main
+tag_name: v0.0.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

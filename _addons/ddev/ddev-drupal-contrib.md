@@ -5,6 +5,8 @@ description: "Contrib module development environment for Drupal projects on DDEV
 user: ddev
 repo: ddev-drupal-contrib
 repo_id: 634259708
+default_branch: main
+tag_name: 1.1.5
 ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: official

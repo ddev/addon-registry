@@ -5,6 +5,8 @@ description: "FrankenPHP server (generic webserver) for PHP built on top of Cadd
 user: ddev
 repo: ddev-frankenphp
 repo_id: 998879403
+default_branch: main
+tag_name: v1.0.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

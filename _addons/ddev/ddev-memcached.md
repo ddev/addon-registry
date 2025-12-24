@@ -5,6 +5,8 @@ description: "High-performance Memcached caching service for DDEV"
 user: ddev
 repo: ddev-memcached
 repo_id: 449470423
+default_branch: main
+tag_name: v1.1.8
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

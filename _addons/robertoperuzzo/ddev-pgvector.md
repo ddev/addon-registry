@@ -5,6 +5,8 @@ description: "The Postgres vector database service for DDEV"
 user: robertoperuzzo
 repo: ddev-pgvector
 repo_id: 1039907838
+default_branch: main
+tag_name: 0.0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

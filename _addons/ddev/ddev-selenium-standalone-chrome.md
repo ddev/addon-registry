@@ -5,6 +5,8 @@ description: "Headless Chrome browser testing with Selenium for DDEV"
 user: ddev
 repo: ddev-selenium-standalone-chrome
 repo_id: 563535124
+default_branch: main
+tag_name: 2.1.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

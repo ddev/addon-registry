@@ -5,6 +5,8 @@ description: "DDEV Aljibe (ddev-aljibe) is an add-on for DDEV to develop Drupal 
 user: Metadrop
 repo: ddev-aljibe
 repo_id: 817303007
+default_branch: main
+tag_name: v2.4.4
 ddev_version_constraint: ">= v1.24.1"
 dependencies: []
 type: contrib

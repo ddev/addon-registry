@@ -5,6 +5,8 @@ description: "Firebird database for DDEV"
 user: feuertelegraph
 repo: ddev-firebird
 repo_id: 674353134
+default_branch: main
+tag_name: v0.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

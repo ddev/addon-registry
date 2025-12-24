@@ -5,6 +5,8 @@ description: "Alfresco Community Edition integration for DDEV"
 user: wazum
 repo: ddev-alfresco
 repo_id: 1070787060
+default_branch: main
+tag_name: 1.0.0
 ddev_version_constraint: ">= v1.21.0"
 dependencies: []
 type: contrib

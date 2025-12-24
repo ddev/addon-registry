@@ -5,6 +5,8 @@ description: "Update ddev web container for dotnet development"
 user: FreelyGive
 repo: ddev-dotnet
 repo_id: 1049119383
+default_branch: main
+tag_name: 0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

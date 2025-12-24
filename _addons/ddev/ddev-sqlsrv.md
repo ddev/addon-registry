@@ -5,6 +5,8 @@ description: "Microsoft SQL Server database support for DDEV"
 user: ddev
 repo: ddev-sqlsrv
 repo_id: 618290272
+default_branch: main
+tag_name: v1.1.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

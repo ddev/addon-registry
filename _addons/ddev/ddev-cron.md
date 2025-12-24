@@ -5,6 +5,8 @@ description: "Run scheduled tasks and cron jobs inside web container for DDEV"
 user: ddev
 repo: ddev-cron
 repo_id: 493892311
+default_branch: main
+tag_name: 1.9.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

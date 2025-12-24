@@ -5,6 +5,8 @@ description: "DDEV SFTP Server Addon"
 user: iljapolanskis
 repo: ddev-sftp
 repo_id: 1028210891
+default_branch: main
+tag_name: 1.0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

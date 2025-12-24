@@ -5,6 +5,8 @@ description: "A ddev addon that sets up laravel api + nextjs frontend in an empt
 user: patbsh
 repo: ddev-laravel-nextjs
 repo_id: 1020470173
+default_branch: main
+tag_name: 1.0.0
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: contrib

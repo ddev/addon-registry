@@ -5,6 +5,8 @@ description: "ddev addon to rename a project"
 user: iamntz
 repo: ddev-rename-project
 repo_id: 663521436
+default_branch: main
+tag_name: v1.0.3
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

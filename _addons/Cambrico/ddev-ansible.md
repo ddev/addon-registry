@@ -5,6 +5,8 @@ description: "A DDEV addon to seamlessly install and manage Ansible within your 
 user: Cambrico
 repo: ddev-ansible
 repo_id: 892347556
+default_branch: main
+tag_name: v1.1.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

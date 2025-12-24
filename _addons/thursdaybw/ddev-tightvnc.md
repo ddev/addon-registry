@@ -5,6 +5,8 @@ description: "TightVNC server for DDEV"
 user: thursdaybw
 repo: ddev-tightvnc
 repo_id: 818857936
+default_branch: main
+tag_name: v1.0.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

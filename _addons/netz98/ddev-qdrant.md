@@ -5,6 +5,8 @@ description: "ddev qdrant"
 user: netz98
 repo: ddev-qdrant
 repo_id: 811850723
+default_branch: main
+tag_name: 1.0.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

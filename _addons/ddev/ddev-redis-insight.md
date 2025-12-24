@@ -5,6 +5,8 @@ description: "Redis Insight Web UI for use with DDEV Redis service"
 user: ddev
 repo: ddev-redis-insight
 repo_id: 1023853846
+default_branch: main
+tag_name: v1.0.2
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["ddev/ddev-redis"]
 type: official

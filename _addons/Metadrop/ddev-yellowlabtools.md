@@ -5,6 +5,8 @@ description: "Ddev addon to run yellowlabs tools cli"
 user: Metadrop
 repo: ddev-yellowlabtools
 repo_id: 1103805997
+default_branch: main
+tag_name: v1.0.1
 ddev_version_constraint: ">= v1.23.0"
 dependencies: []
 type: contrib

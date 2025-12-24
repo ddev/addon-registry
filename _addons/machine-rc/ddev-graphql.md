@@ -5,6 +5,8 @@ description: "GraphQL service for ddev stack"
 user: machine-rc
 repo: ddev-graphql
 repo_id: 812082669
+default_branch: main
+tag_name: 0.1.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

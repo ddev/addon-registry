@@ -5,6 +5,8 @@ description: "PDFreactor service for DDEV"
 user: blankse
 repo: ddev-pdfreactor
 repo_id: 474439706
+default_branch: main
+tag_name: v1.0.7
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

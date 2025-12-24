@@ -5,6 +5,8 @@ description: ""
 user: codemonauts
 repo: ddev-s3-http-proxy
 repo_id: 815170269
+default_branch: main
+tag_name: 1.0.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Incredibly fast JavaScript runtime, bundler, test runner, and pack
 user: OpenForgeProject
 repo: ddev-bun
 repo_id: 690646909
+default_branch: main
+tag_name: 1.1.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

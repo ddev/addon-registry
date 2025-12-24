@@ -5,6 +5,8 @@ description: "A small DDEV addon for dynamically generating hostnames based on D
 user: lpeabody
 repo: ddev-drupal-multisite-hostnames
 repo_id: 950388191
+default_branch: main
+tag_name: 0.2
 ddev_version_constraint: ">= v1.24.2"
 dependencies: []
 type: contrib

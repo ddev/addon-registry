@@ -5,6 +5,8 @@ description: ""
 user: opixido
 repo: ddev-addon-phploy
 repo_id: 967426305
+default_branch: master
+tag_name: 0.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

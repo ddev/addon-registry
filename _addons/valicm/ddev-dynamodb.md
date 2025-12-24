@@ -5,6 +5,8 @@ description: "DynamoDB container for DDEV"
 user: valicm
 repo: ddev-dynamodb
 repo_id: 696750542
+default_branch: main
+tag_name: v1.0.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

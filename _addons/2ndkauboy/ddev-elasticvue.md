@@ -5,6 +5,8 @@ description: "Elasticvue service for DDEV"
 user: 2ndkauboy
 repo: ddev-elasticvue
 repo_id: 803841353
+default_branch: main
+tag_name: 1.1.0
 ddev_version_constraint: ""
 dependencies: ["ddev/ddev-elasticsearch"]
 type: contrib

@@ -5,6 +5,8 @@ description: "A DDEV add-on to spin up a simple, opinionated, customizable n8n A
 user: jcandan
 repo: ddev-ai-agent
 repo_id: 1089834277
+default_branch: alpha
+tag_name: 1.0.0-alpha.5
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

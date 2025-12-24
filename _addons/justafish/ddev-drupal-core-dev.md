@@ -5,6 +5,8 @@ description: "ddev addon for core development"
 user: justafish
 repo: ddev-drupal-core-dev
 repo_id: 706601727
+default_branch: main
+tag_name: v1.2.3
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

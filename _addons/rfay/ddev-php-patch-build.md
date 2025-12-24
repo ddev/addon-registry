@@ -5,6 +5,8 @@ description: "Build a patch version of PHP for use with DDEV"
 user: rfay
 repo: ddev-php-patch-build
 repo_id: 692610647
+default_branch: main
+tag_name: v0.5.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib

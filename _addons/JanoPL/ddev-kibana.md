@@ -5,6 +5,8 @@ description: "Kibana add-on for DDEV"
 user: JanoPL
 repo: ddev-kibana
 repo_id: 530812551
+default_branch: main
+tag_name: v1.7.3
 ddev_version_constraint: ""
 dependencies: ["ddev/ddev-elasticsearch"]
 type: contrib

@@ -5,6 +5,8 @@ description: "1Password-focussed DDEV add-on to use the host SSH agent in the we
 user: anotherjames
 repo: ddev-1password
 repo_id: 996810365
+default_branch: main
+tag_name: 0.2.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

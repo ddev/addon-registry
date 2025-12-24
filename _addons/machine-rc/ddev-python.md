@@ -5,6 +5,8 @@ description: "DDEV addon for python"
 user: machine-rc
 repo: ddev-python
 repo_id: 827981230
+default_branch: main
+tag_name: 0.0.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

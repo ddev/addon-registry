@@ -5,6 +5,8 @@ description: "New Relic integration for DDEV"
 user: tbkot
 repo: ddev-newrelic
 repo_id: 1044927356
+default_branch: main
+tag_name: 0.1.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Grafana Stack addon for DDEV: Grafana (GUI), Tempo (tracing, OpenT
 user: MurzNN
 repo: ddev-grafana
 repo_id: 621377265
+default_branch: main
+tag_name: v0.4.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

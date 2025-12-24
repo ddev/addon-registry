@@ -5,6 +5,8 @@ description: "NVM (Node Version Manager) integration for DDEV"
 user: ddev
 repo: ddev-nvm
 repo_id: 1098933186
+default_branch: main
+tag_name: v1.0.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

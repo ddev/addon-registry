@@ -5,6 +5,8 @@ description: "Wunderio’s DDEV add-on template for Drupal projects, providing c
 user: wunderio
 repo: ddev-wunderio-drupal
 repo_id: 1094069257
+default_branch: main
+tag_name: 0.4.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

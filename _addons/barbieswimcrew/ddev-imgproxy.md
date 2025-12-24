@@ -5,6 +5,8 @@ description: "imgproxy add-on for DDEV"
 user: barbieswimcrew
 repo: ddev-imgproxy
 repo_id: 884199243
+default_branch: main
+tag_name: v1.0.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

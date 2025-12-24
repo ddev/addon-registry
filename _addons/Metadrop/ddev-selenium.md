@@ -5,6 +5,8 @@ description: "Provide selenium setup with a default chrome node, with possibilit
 user: Metadrop
 repo: ddev-selenium
 repo_id: 719059276
+default_branch: main
+tag_name: v1.2.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Integrate Playwright tests into your ddev app"
 user: Lullabot
 repo: ddev-playwright
 repo_id: 635031324
+default_branch: main
+tag_name: 0.5.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

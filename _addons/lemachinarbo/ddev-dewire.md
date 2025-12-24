@@ -5,6 +5,8 @@ description: "Installs ProcessWire and deploys your site to production, staging,
 user: lemachinarbo
 repo: ddev-dewire
 repo_id: 1016438066
+default_branch: main
+tag_name: v0.1.6
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Install ssh server on the web container"
 user: hanoii
 repo: ddev-sshd
 repo_id: 673792487
+default_branch: main
+tag_name: v1.0.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

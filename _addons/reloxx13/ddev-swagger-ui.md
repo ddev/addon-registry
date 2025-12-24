@@ -5,6 +5,8 @@ description: "Swagger UI add-on for DDEV"
 user: reloxx13
 repo: ddev-swagger-ui
 repo_id: 693512516
+default_branch: main
+tag_name: 1.0.3
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

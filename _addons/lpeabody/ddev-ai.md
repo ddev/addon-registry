@@ -5,6 +5,8 @@ description: "DDEV add-on to make AI-related services available in the environme
 user: lpeabody
 repo: ddev-ai
 repo_id: 1018102141
+default_branch: main
+tag_name: 1.0-beta3
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

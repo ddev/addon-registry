@@ -5,12 +5,14 @@ description: "DDEV addon providing site commands and tools for scaffolding, buil
 user: colinstillwell
 repo: ddev-site-devkit
 repo_id: 1061687339
+default_branch: main
+tag_name: 6.13.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-09-22
 updated_at: 2025-10-23
-workflow_status: success
+workflow_status: disabled
 stars: 0
 ---
 

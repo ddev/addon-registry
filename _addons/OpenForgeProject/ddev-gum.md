@@ -5,6 +5,8 @@ description: "A tool for glamorous shell scripts 🎀 like DDEV web commands"
 user: OpenForgeProject
 repo: ddev-gum
 repo_id: 691401674
+default_branch: main
+tag_name: 1.2.3
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

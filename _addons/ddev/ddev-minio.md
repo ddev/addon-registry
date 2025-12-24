@@ -5,6 +5,8 @@ description: "MinIO S3-compatible object storage solution for DDEV"
 user: ddev
 repo: ddev-minio
 repo_id: 678091119
+default_branch: main
+tag_name: v2.2.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

@@ -5,6 +5,8 @@ description: "Gotenberg service for DDEV."
 user: echavaillaz
 repo: ddev-gotenberg
 repo_id: 633840053
+default_branch: main
+tag_name: 1.0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

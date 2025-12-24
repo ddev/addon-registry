@@ -5,6 +5,8 @@ description: ""
 user: Farkie
 repo: ddev-redis-insight
 repo_id: 988642656
+default_branch: main
+tag_name: 0.03
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

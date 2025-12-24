@@ -5,6 +5,8 @@ description: "Enable ionCube PHP loaders for encoded files in DDEV"
 user: ddev
 repo: ddev-ioncube
 repo_id: 697741707
+default_branch: main
+tag_name: v1.4.2
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

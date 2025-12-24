@@ -5,6 +5,8 @@ description: "Tools to streamline CiviCRM workflows with seamless integration an
 user: vinugawade
 repo: ddev-civicrm-cli-tools
 repo_id: 908624626
+default_branch: main
+tag_name: v1.0.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

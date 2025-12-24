@@ -5,6 +5,8 @@ description: "MongoDB NoSQL database support for DDEV"
 user: ddev
 repo: ddev-mongo
 repo_id: 475054747
+default_branch: main
+tag_name: v2.2.1
 ddev_version_constraint: ">= v1.24.4"
 dependencies: []
 type: official

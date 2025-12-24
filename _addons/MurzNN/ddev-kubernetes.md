@@ -5,6 +5,8 @@ description: "Adds Kubernetes tools (kubectl, krew plugins) to DDEV projects"
 user: MurzNN
 repo: ddev-kubernetes
 repo_id: 951743461
+default_branch: main
+tag_name: v1.0.0
 ddev_version_constraint: ">= v1.24.2"
 dependencies: []
 type: contrib

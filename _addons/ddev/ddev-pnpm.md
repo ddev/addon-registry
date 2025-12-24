@@ -5,6 +5,8 @@ description: "Fast, disk space efficient pnpm package manager for DDEV"
 user: ddev
 repo: ddev-pnpm
 repo_id: 716421197
+default_branch: main
+tag_name: v1.1.3
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
