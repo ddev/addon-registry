@@ -3,7 +3,7 @@
 
 official:
   label: Official
-  description: Official add-on supported by DDEV
+  description: View all official add-ons
 
 contrib:
   label: Contrib
