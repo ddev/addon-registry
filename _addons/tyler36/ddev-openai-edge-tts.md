@@ -5,6 +5,8 @@ description: "An OpenAI-compatible text-to-speech (TTS) API service for DDEV"
 user: tyler36
 repo: ddev-openai-edge-tts
 repo_id: 1048287216
+default_branch: main
+tag_name: 0.2
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

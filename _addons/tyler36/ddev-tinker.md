@@ -5,6 +5,8 @@ description: "An addon for DDEV that providers a single command to access a runt
 user: tyler36
 repo: ddev-tinker
 repo_id: 627772582
+default_branch: main
+tag_name: 1.5
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

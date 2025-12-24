@@ -5,6 +5,8 @@ description: "MySQL logical backup tool for DDEV"
 user: stasadev
 repo: ddev-mydumper
 repo_id: 846094357
+default_branch: main
+tag_name: v1.0.4
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

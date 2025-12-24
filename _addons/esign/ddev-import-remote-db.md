@@ -5,6 +5,8 @@ description: "Import a remote MySQL database into your local DDEV database."
 user: esign
 repo: ddev-import-remote-db
 repo_id: 1046928858
+default_branch: main
+tag_name: 0.1.3
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

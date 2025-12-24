@@ -5,6 +5,8 @@ description: "Lighthouse ddev addon based on patrickhulce/lhci-client image"
 user: Metadrop
 repo: ddev-lighthouse
 repo_id: 782495515
+default_branch: main
+tag_name: v3.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

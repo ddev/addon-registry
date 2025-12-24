@@ -5,6 +5,8 @@ description: "This repository provides a DDEV add-on that configures a Drupal de
 user: kanopi
 repo: ddev-kanopi-drupal
 repo_id: 1034499133
+default_branch: main
+tag_name: 1.2.4
 ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib

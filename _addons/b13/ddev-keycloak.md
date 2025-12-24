@@ -5,6 +5,8 @@ description: "Adds a Keycloak service to ddev"
 user: b13
 repo: ddev-keycloak
 repo_id: 735703787
+default_branch: main
+tag_name: 0.0.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

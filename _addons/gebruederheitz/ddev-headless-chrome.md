@@ -5,6 +5,8 @@ description: "Setup a running headless chrome service for ddev"
 user: gebruederheitz
 repo: ddev-headless-chrome
 repo_id: 594352605
+default_branch: main
+tag_name: 1.0.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

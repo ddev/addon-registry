@@ -5,6 +5,8 @@ description: "A DDEV add-on for Drupal Experience Builder module development and
 user: drupal-xb
 repo: ddev-drupal-xb-dev
 repo_id: 827380616
+default_branch: main
+tag_name: v0.0.24
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

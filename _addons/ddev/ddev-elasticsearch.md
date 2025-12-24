@@ -5,6 +5,8 @@ description: "Elasticsearch full-text search and analytics engine for DDEV"
 user: ddev
 repo: ddev-elasticsearch
 repo_id: 470760591
+default_branch: main
+tag_name: v0.3.3
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

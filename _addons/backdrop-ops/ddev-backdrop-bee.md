@@ -5,6 +5,8 @@ description: "Install bee for Backdrop sites on ddev."
 user: backdrop-ops
 repo: ddev-backdrop-bee
 repo_id: 873926344
+default_branch: main
+tag_name: 1.0.7
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

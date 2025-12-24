@@ -5,6 +5,8 @@ description: "🧱 Provides a multi-version TYPO3 environment for develop and te
 user: konradmichalik
 repo: ddev-typo3-multi-version-extension
 repo_id: 944430541
+default_branch: main
+tag_name: 0.2.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

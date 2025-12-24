@@ -5,6 +5,8 @@ description: "Stream any metrics to one dashboard, in real-time."
 user: tyler36
 repo: ddev-netdata
 repo_id: 1042591911
+default_branch: main
+tag_name: 0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Aljibe ddev addon to add pa11y service"
 user: Metadrop
 repo: ddev-pa11y
 repo_id: 783100470
+default_branch: main
+tag_name: v1.2.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

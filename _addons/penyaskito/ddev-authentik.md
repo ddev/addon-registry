@@ -5,6 +5,8 @@ description: "Authentik identity provider add-on for DDEV"
 user: penyaskito
 repo: ddev-authentik
 repo_id: 826853007
+default_branch: main
+tag_name: v0.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

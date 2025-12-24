@@ -5,6 +5,8 @@ description: ""
 user: d34dman
 repo: ddev-notification-server
 repo_id: 1003743764
+default_branch: main
+tag_name: 1.0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: ["redis"]
 type: contrib

@@ -5,6 +5,8 @@ description: "Integrate claude code into your ddev setup to run AI assistant in 
 user: FreelyGive
 repo: ddev-claude-code
 repo_id: 958030426
+default_branch: main
+tag_name: 1.0.3
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

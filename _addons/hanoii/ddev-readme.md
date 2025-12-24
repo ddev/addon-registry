@@ -5,6 +5,8 @@ description: "An opinionated README formatter"
 user: hanoii
 repo: ddev-readme
 repo_id: 769217362
+default_branch: main
+tag_name: v1.0.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

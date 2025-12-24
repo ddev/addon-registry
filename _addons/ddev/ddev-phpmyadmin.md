@@ -5,6 +5,8 @@ description: "Web-based phpMyAdmin interface for MySQL, MariaDB in DDEV"
 user: ddev
 repo: ddev-phpmyadmin
 repo_id: 653879988
+default_branch: main
+tag_name: v1.0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

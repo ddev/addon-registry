@@ -5,6 +5,8 @@ description: "Platform.sh integration for project syncing and workflows in DDEV"
 user: ddev
 repo: ddev-platformsh
 repo_id: 489460881
+default_branch: main
+tag_name: v0.8.2
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

@@ -5,6 +5,8 @@ description: "ddev addon for Hugo static site generator https://gohugo.io https:
 user: penyaskito
 repo: ddev-hugo
 repo_id: 792500483
+default_branch: main
+tag_name: v0.0.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

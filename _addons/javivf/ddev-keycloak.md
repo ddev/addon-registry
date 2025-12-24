@@ -5,6 +5,8 @@ description: "Keycloak service for DDEV"
 user: javivf
 repo: ddev-keycloak
 repo_id: 682633589
+default_branch: main
+tag_name: 
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

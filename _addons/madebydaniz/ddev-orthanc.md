@@ -5,6 +5,8 @@ description: "Orthanc service for DDEV"
 user: madebydaniz
 repo: ddev-orthanc
 repo_id: 719515566
+default_branch: main
+tag_name: 0.0.4
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Apache Solr (standalone) search integration for TYPO3 on DDEV"
 user: ddev
 repo: ddev-typo3-solr
 repo_id: 762432120
+default_branch: main
+tag_name: 1.1.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

@@ -5,6 +5,8 @@ description: "NextJS Drupal Frontend application for ddev stack "
 user: machine-rc
 repo: ddev-frontend-nextjs
 repo_id: 812351367
+default_branch: master
+tag_name: 0.0.5
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

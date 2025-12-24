@@ -5,6 +5,8 @@ description: "A DDEV addon to seamlessly install and manage MySQL Shell within y
 user: Cambrico
 repo: ddev-mysqlshell
 repo_id: 939360133
+default_branch: main
+tag_name: v1.1.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

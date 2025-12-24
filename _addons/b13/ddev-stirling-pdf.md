@@ -5,6 +5,8 @@ description: "Adds Stirling PDF to ddev"
 user: b13
 repo: ddev-stirling-pdf
 repo_id: 782224570
+default_branch: main
+tag_name: 0.0.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

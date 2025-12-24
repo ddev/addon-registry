@@ -5,6 +5,8 @@ description: "Elastic Enterprise Search service for DDEV"
 user: ssmarco
 repo: ddev-enterprise-search
 repo_id: 750137374
+default_branch: main
+tag_name: 0.0.4
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

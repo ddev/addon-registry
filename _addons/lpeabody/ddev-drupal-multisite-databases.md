@@ -5,6 +5,8 @@ description: "Simple DDEV addon which ensures a database is created for every mu
 user: lpeabody
 repo: ddev-drupal-multisite-databases
 repo_id: 950744576
+default_branch: main
+tag_name: 0.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

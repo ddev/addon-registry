@@ -5,6 +5,8 @@ description: "DDEV integration with Teleport and tsh."
 user: froboy
 repo: ddev-tsh
 repo_id: 1025009597
+default_branch: main
+tag_name: v0.1.4
 ddev_version_constraint: ">= v1.24.3"
 dependencies: ["MurzNN/ddev-kubernetes"]
 type: contrib

@@ -5,6 +5,8 @@ description: "Start a Laravel queue worker automatically in DDEV"
 user: tyler36
 repo: ddev-laravel-queue
 repo_id: 500674839
+default_branch: main
+tag_name: 1.0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

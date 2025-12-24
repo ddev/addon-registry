@@ -5,6 +5,8 @@ description: "Provide taskfile.dev for ddev projects"
 user: gebruederheitz
 repo: ddev-taskfile
 repo_id: 594339485
+default_branch: main
+tag_name: 1.2.3
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

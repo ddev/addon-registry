@@ -5,6 +5,8 @@ description: "Python 2 for older npm builds with node-gyp inside DDEV"
 user: ddev
 repo: ddev-python2
 repo_id: 849742328
+default_branch: main
+tag_name: v1.1.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

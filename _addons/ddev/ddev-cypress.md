@@ -5,6 +5,8 @@ description: "Cypress E2E testing for use with DDEV"
 user: ddev
 repo: ddev-cypress
 repo_id: 473510790
+default_branch: main
+tag_name: 1.11.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

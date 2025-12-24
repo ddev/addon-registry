@@ -5,6 +5,8 @@ description: "Helper to log \"slow\" queries"
 user: tyler36
 repo: ddev-dbslow
 repo_id: 751181760
+default_branch: main
+tag_name: 0.3
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

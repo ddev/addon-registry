@@ -5,6 +5,8 @@ description: "Installs wkhtmltopdf and wkhtmltoimage, with patched Qt, into the 
 user: skeemer
 repo: ddev-wkhtmltox
 repo_id: 578401670
+default_branch: main
+tag_name: 1.2.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

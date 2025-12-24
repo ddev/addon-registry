@@ -5,6 +5,8 @@ description: ".NET service for ddev stack "
 user: machine-rc
 repo: ddev-dotnet
 repo_id: 812302710
+default_branch: main
+tag_name: 0.0.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "A11yWatch ddev addon"
 user: a11ywatch
 repo: ddev-a11ywatch
 repo_id: 596553504
+default_branch: main
+tag_name: v0.18
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

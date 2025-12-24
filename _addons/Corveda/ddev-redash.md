@@ -5,6 +5,8 @@ description: "DDEV addon for Redash"
 user: Corveda
 repo: ddev-redash
 repo_id: 1111123801
+default_branch: main
+tag_name: v0.9-beta
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

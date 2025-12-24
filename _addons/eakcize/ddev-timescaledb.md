@@ -5,6 +5,8 @@ description: "TimeScaleDB with Mongo and MySQL FDWs"
 user: eakcize
 repo: ddev-timescaledb
 repo_id: 681120658
+default_branch: master
+tag_name: v1.2.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

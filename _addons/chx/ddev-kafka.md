@@ -5,6 +5,8 @@ description: "Integrates Apache Kafka with ddev"
 user: chx
 repo: ddev-kafka
 repo_id: 1030394978
+default_branch: main
+tag_name: 0.3
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

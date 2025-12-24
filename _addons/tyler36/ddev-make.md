@@ -5,6 +5,8 @@ description: "A DDEV helper to run `Makefile`s in the web container."
 user: tyler36
 repo: ddev-make
 repo_id: 962418405
+default_branch: main
+tag_name: v0.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

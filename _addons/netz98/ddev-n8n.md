@@ -5,6 +5,8 @@ description: "ddev addon to run n8n low-code platform (middleware)"
 user: netz98
 repo: ddev-n8n
 repo_id: 641881943
+default_branch: main
+tag_name: 4.0.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

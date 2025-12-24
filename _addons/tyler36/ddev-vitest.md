@@ -5,6 +5,8 @@ description: "A helper add-on for projects using Vitest"
 user: tyler36
 repo: ddev-vitest
 repo_id: 894807367
+default_branch: main
+tag_name: v0.4
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

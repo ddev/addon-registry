@@ -5,6 +5,8 @@ description: "A simple DDEV addon that add Directus on your project"
 user: MelaineGerard
 repo: ddev-directus
 repo_id: 774272156
+default_branch: main
+tag_name: 1.1.3
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

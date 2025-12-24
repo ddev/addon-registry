@@ -5,6 +5,8 @@ description: ""
 user: T14D3
 repo: ddev-rapunzelutils
 repo_id: 930204303
+default_branch: master
+tag_name: 0.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Adminer web-based MySQL, MariaDB, PostgreSQL database browser for 
 user: ddev
 repo: ddev-adminer
 repo_id: 468763817
+default_branch: main
+tag_name: v1.1.4
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

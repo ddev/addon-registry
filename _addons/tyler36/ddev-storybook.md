@@ -5,6 +5,8 @@ description: "Helpers for DDEV and Storybook"
 user: tyler36
 repo: ddev-storybook
 repo_id: 746948704
+default_branch: main
+tag_name: 0.4
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

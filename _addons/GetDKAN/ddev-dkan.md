@@ -5,6 +5,8 @@ description: "DDEV add-on for DKAN."
 user: GetDKAN
 repo: ddev-dkan
 repo_id: 514395308
+default_branch: main
+tag_name: 1.2.7
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

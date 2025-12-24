@@ -5,6 +5,8 @@ description: "Lightweight DDEV addon for Playwright testing - runs in web contai
 user: codingsasi
 repo: ddev-playwright
 repo_id: 910614336
+default_branch: main
+tag_name: v1.0.6
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Manticoresearch add-on for DDEV"
 user: bricebou
 repo: ddev-manticoresearch
 repo_id: 768156076
+default_branch: main
+tag_name: v0.0.4
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

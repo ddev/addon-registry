@@ -5,6 +5,8 @@ description: "Redis cache and data store service for DDEV"
 user: ddev
 repo: ddev-redis
 repo_id: 452397673
+default_branch: main
+tag_name: v2.2.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

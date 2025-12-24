@@ -5,6 +5,8 @@ description: "Experimental DDEV add-on to tightly integrate a project with an up
 user: ddev
 repo: ddev-upsun
 repo_id: 1040999015
+default_branch: main
+tag_name: v0.3.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official

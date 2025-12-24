@@ -5,6 +5,8 @@ description: "ddev addon to provide a backstopjs container for visual regression
 user: Metadrop
 repo: ddev-backstopjs
 repo_id: 709536102
+default_branch: main
+tag_name: v2.8.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "DDEV add-on for the MySQL Toolkit (MTK)"
 user: weitzman
 repo: ddev-mtk
 repo_id: 1009684755
+default_branch: main
+tag_name: 1.0.0-rc2
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

@@ -5,6 +5,8 @@ description: "Typesense is a modern, privacy-friendly, open source search engine
 user: lussoluca
 repo: ddev-typesense
 repo_id: 947892943
+default_branch: main
+tag_name: v0.0.2
 ddev_version_constraint: ">= v1.24.2"
 dependencies: []
 type: contrib

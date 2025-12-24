@@ -5,6 +5,8 @@ description: "Run GitHub Copilot inside your DDEV project."
 user: tyler36
 repo: ddev-copilot
 repo_id: 1086871647
+default_branch: main
+tag_name: v0.2.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib

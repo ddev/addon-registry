@@ -5,6 +5,8 @@ description: "Helper command to generate qr-codes for DDEV, DDEV share and Gitpo
 user: ddev
 repo: ddev-qr
 repo_id: 818052769
+default_branch: main
+tag_name: v0.3.5
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official

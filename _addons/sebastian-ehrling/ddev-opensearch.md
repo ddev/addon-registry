@@ -5,6 +5,8 @@ description: "Opensearch add-on for DDEV"
 user: sebastian-ehrling
 repo: ddev-opensearch
 repo_id: 501578857
+default_branch: main
+tag_name: v0.1.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

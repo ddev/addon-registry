@@ -5,6 +5,8 @@ description: "ddev addon to provide a mkdocs container for project documentation
 user: Metadrop
 repo: ddev-mkdocs
 repo_id: 719213199
+default_branch: main
+tag_name: v3.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
