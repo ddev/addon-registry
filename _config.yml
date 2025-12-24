@@ -12,8 +12,8 @@ title: DDEV Add-on Registry
 baseurl: ""
 repository: ddev/addon-registry
 
-# to purge old cache for js and css files
-clear_cache_date: 20251224
+# to purge old cache for JS and CSS files
+clear_cache_date: 20251225
 
 description: >-
   A registry of DDEV add-ons where users can discover,
