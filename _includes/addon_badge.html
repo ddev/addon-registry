@@ -2,12 +2,18 @@
     {% assign type_id = type_pair[0] %}
     {% assign type = type_pair[1] %}
     {% unless include.addon.type contains type_id %}{% continue %}{% endunless %}
-    <object>
-        <a href="{{ addon.github_url }}" target="_blank" tabindex="-1" style="text-decoration: none;">
-            <span class="badge" title="{{ type.description | replace: '\n', ' ' }}" aria-label="{{ type.description | replace: '\n', ' ' }}">
-                {{ type.label }}
-                <span class="github-icon github-icon-15" aria-hidden="true"></span>
-            </span>
-        </a>
-    </object>
+    {% if addon.user == 'ddev' %}
+        <object>
+            <a href="{{ site.baseurl }}/addons/{{ addon.user }}/" tabindex="-1" style="text-decoration: none;">
+                <span class="badge" title="{{ type.description | replace: '\n', ' ' }}" aria-label="{{ type.description | replace: '\n', ' ' }}">
+                    {{ type.label }}
+                    <img src="{{ site.baseurl }}/assets/logo.svg" alt="" style="height: 15px; width: 15px;" aria-hidden="true">
+                </span>
+            </a>
+        </object>
+    {% else %}
+        <span class="badge" title="{{ type.description | replace: '\n', ' ' }}" aria-label="{{ type.description | replace: '\n', ' ' }}" onclick="return false;" style="cursor: default;">
+            {{ type.label }}
+        </span>
+    {% endif %}
 {% endfor %}
