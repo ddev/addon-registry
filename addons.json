@@ -1,4 +1,16 @@
 ---
 ---
 {%- assign sorted_addons = site.addons | sort_natural -%}
-[{%- for addon in sorted_addons -%}{%- if addon.group -%}{%- continue -%}{%- endif -%}{"title":{{ addon.title | jsonify }},"github_url":{{ addon.github_url | jsonify }},"description":{{ addon.description | jsonify }},"user":{{ addon.user | jsonify }},"repo":{{ addon.repo | jsonify }},"repo_id":{{ addon.repo_id | jsonify }},"ddev_version_constraint":{{ addon.ddev_version_constraint | jsonify }},"dependencies":{{ addon.dependencies | jsonify }},"type":{{ addon.type | jsonify }},"created_at":{{ addon.created_at | jsonify }},"updated_at":{{ addon.updated_at | jsonify }},"workflow_status":{{ addon.workflow_status | jsonify }},"stars":{{ addon.stars | to_integer }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+{%- assign total_addons = "" | split: "" -%}
+{%- assign official_addons = "" | split: "" -%}
+{%- assign contrib_addons = "" | split: "" -%}
+{%- for addon in sorted_addons -%}
+  {%- if addon.group -%}{%- continue -%}{%- endif -%}
+  {%- assign total_addons = total_addons | push: addon -%}
+  {%- if addon.user == 'ddev' -%}
+    {%- assign official_addons = official_addons | push: addon -%}
+  {%- else -%}
+    {%- assign contrib_addons = contrib_addons | push: addon -%}
+  {%- endif -%}
+{%- endfor -%}
+{"updated_datetime":{{ site.time | date_to_xmlschema | jsonify }},"total_addons_count":{{ total_addons | size }},"official_addons_count":{{ official_addons | size }},"contrib_addons_count":{{ contrib_addons | size }},"addons":[{%- for addon in total_addons -%}{"title":{{ addon.title | jsonify }},"github_url":{{ addon.github_url | jsonify }},"description":{{ addon.description | jsonify }},"user":{{ addon.user | jsonify }},"repo":{{ addon.repo | jsonify }},"repo_id":{{ addon.repo_id | jsonify }},"default_branch":{{ addon.default_branch | jsonify }},"tag_name":{{ addon.tag_name | jsonify }},"ddev_version_constraint":{{ addon.ddev_version_constraint | jsonify }},"dependencies":{{ addon.dependencies | jsonify }},"type":{{ addon.type | jsonify }},"created_at":{{ addon.created_at | jsonify }},"updated_at":{{ addon.updated_at | jsonify }},"workflow_status":{{ addon.workflow_status | jsonify }},"stars":{{ addon.stars | to_integer }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]}

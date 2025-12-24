@@ -207,6 +207,27 @@ func getScheduledWorkflowStatus(repo *github.Repository) string {
 	return "disabled"
 }
 
+// getLatestTag retrieves the latest release tag name from the repository
+func getLatestTag(repo *github.Repository) string {
+	ctx, client := GetGitHubClient()
+
+	// Try to get the latest release first
+	release, _, err := client.Repositories.GetLatestRelease(ctx, repo.Owner.GetLogin(), repo.GetName())
+	if err == nil && release != nil {
+		return release.GetTagName()
+	}
+
+	// If no release, try to get the latest tag
+	tags, _, err := client.Repositories.ListTags(ctx, repo.Owner.GetLogin(), repo.GetName(), &github.ListOptions{
+		PerPage: 1,
+	})
+	if err != nil || len(tags) == 0 {
+		return ""
+	}
+
+	return tags[0].GetName()
+}
+
 // =============================================================================
 // FILE GENERATION FUNCTIONS
 // =============================================================================
@@ -255,22 +276,24 @@ func generateAddonMarkdown(repo *github.Repository) error {
 		addonType = "official"
 	}
 	newContent := fmt.Sprintf(`---
-title: %s
-github_url: %s
-description: "%s"
-user: %s
-repo: %s
-repo_id: %d
-ddev_version_constraint: "%s"
-dependencies: %s
-type: %s
-created_at: %s
-updated_at: %s
-workflow_status: %s
-stars: %d
+title: %[1]s
+github_url: %[2]s
+description: "%[3]s"
+user: %[4]s
+repo: %[5]s
+repo_id: %[6]d
+default_branch: %[7]s
+tag_name: %[8]s
+ddev_version_constraint: "%[9]s"
+dependencies: %[10]s
+type: %[11]s
+created_at: %[12]s
+updated_at: %[13]s
+workflow_status: %[14]s
+stars: %[15]d
 ---
 
-%s
+%[16]s
 `,
 		repo.GetFullName(),
 		repo.GetHTMLURL(),
@@ -278,6 +301,8 @@ stars: %d
 		org,
 		repoName,
 		repo.GetID(),
+		repo.GetDefaultBranch(),
+		getLatestTag(repo),
 		installYaml.DdevVersionConstraint,
 		dependencies,
 		addonType,
