@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2025-06-09
-updated_at: 2025-12-30
+updated_at: 2026-01-02
 workflow_status: success
 stars: 14
 ---
@@ -41,6 +41,12 @@ ddev add-on get ddev/ddev-frankenphp
 ddev restart
 ```
 
+(Optional) To rebuild FrankenPHP without cache, use:
+
+```bash
+ddev utility rebuild
+```
+
 After installation, make sure to commit the `.ddev` directory to version control.
 
 ## Usage
@@ -52,11 +58,6 @@ After installation, make sure to commit the `.ddev` directory to version control
 | `ddev exec frankenphp -v` | Check installed FrankenPHP version |
 | `ddev php -m`             | View installed PHP extensions      |
 | `ddev logs -f`            | View FrankenPHP logs               |
-
-> [!TIP]
-> FrankenPHP is updated automatically when you update DDEV.
->
-> To update it manually, run `ddev utility rebuild`.
 
 ## Advanced Customization
 
