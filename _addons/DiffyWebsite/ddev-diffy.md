@@ -6,12 +6,12 @@ user: DiffyWebsite
 repo: ddev-diffy
 repo_id: 832381294
 default_branch: main
-tag_name: 0.0.13
+tag_name: 0.0.14
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-22
-updated_at: 2025-05-05
+updated_at: 2026-01-04
 workflow_status: disabled
 stars: 1
 ---
