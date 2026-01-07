@@ -591,7 +591,12 @@ footer {
 
     .footer-content {
         justify-content: center;
-        flex-direction: column;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .footer-content > * {
+        width: 100%;
     }
 }
 
