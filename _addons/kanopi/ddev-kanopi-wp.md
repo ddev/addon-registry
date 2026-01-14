@@ -6,12 +6,12 @@ user: kanopi
 repo: ddev-kanopi-wp
 repo_id: 1037631023
 default_branch: main
-tag_name: 1.2.12
+tag_name: 1.2.13
 ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-13
-updated_at: 2026-01-12
+updated_at: 2026-01-13
 workflow_status: disabled
 stars: 1
 ---
