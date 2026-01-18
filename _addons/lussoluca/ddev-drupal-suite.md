@@ -6,12 +6,12 @@ user: lussoluca
 repo: ddev-drupal-suite
 repo_id: 1018045221
 default_branch: main
-tag_name: 0.0.13
+tag_name: 0.0.14
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-07-11
-updated_at: 2025-09-09
+updated_at: 2026-01-17
 workflow_status: success
 stars: 3
 ---
