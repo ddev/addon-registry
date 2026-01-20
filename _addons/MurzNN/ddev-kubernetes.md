@@ -13,7 +13,7 @@ type: contrib
 created_at: 2025-03-20
 updated_at: 2025-05-27
 workflow_status: disabled
-stars: 2
+stars: 3
 ---
 
 [![tests](https://github.com/MurzNN/ddev-kubernetes/actions/workflows/tests.yml/badge.svg)](https://github.com/MurzNN/ddev-kubernetes/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
