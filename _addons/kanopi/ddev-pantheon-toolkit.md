@@ -1,7 +1,7 @@
 ---
 title: kanopi/ddev-pantheon-toolkit
 github_url: https://github.com/kanopi/ddev-pantheon-toolkit
-description: "A DDEV add-on providing commands to manage supporting organizations across Pantheon sites based on their upstream."
+description: "A DDEV add-on providing commands to manage supporting organizations, sites, and people on Pantheon."
 user: kanopi
 repo: ddev-pantheon-toolkit
 repo_id: 1135788933
