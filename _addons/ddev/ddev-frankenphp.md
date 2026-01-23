@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-frankenphp
 repo_id: 998879403
 default_branch: main
-tag_name: v1.1.3
+tag_name: v1.1.4
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2025-06-09
-updated_at: 2026-01-19
+updated_at: 2026-01-23
 workflow_status: success
 stars: 15
 ---
