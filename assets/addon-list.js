@@ -142,6 +142,9 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Replace "/" with space so "owner/repo" becomes separate terms
+        searchTerm = searchTerm.replace(/\//g, ' ');
+
         const terms = searchTerm.trim().split(/\s+/);
 
         addonList.filter(function(item) {
@@ -150,7 +153,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Check if ALL terms match (either in name or description)
             for (let term of terms) {
-                const termLower = term.toLowerCase();
+                let termLower = term.toLowerCase();
+
+                // Strip all 'ddev-' or 'ddev' prefixes (e.g., "ddev/ddev-redis" -> "redis")
+                termLower = termLower.replace(/ddev-?/g, '');
+
+                // Skip empty terms after stripping
+                if (!termLower) continue;
 
                 // Try exact match first (faster)
                 if (name.includes(termLower) || description.includes(termLower)) {
