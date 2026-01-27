@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-12-26
 updated_at: 2025-04-25
 workflow_status: success
-stars: 3
+stars: 4
 ---
 
 # 🚀 DDEV CiviCRM CLI Tools Add-on
