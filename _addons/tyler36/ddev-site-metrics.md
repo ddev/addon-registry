@@ -6,12 +6,12 @@ user: tyler36
 repo: ddev-site-metrics
 repo_id: 975849693
 default_branch: main
-tag_name: v0.10
+tag_name: v0.11
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-05-01
-updated_at: 2025-06-25
+updated_at: 2026-01-27
 workflow_status: failure
 stars: 0
 ---
