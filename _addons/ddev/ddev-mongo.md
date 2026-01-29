@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-mongo
 repo_id: 475054747
 default_branch: main
-tag_name: v2.2.1
-ddev_version_constraint: ">= v1.24.4"
+tag_name: v2.3.0
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-03-28
-updated_at: 2025-09-15
+updated_at: 2026-01-28
 workflow_status: success
 stars: 7
 ---
@@ -91,7 +91,7 @@ services:
 To change the Docker image:
 
 ```bash
-ddev dotenv set .ddev/.env.mongo --mongo-docker-image=mongo:5-focal
+ddev dotenv set .ddev/.env.mongo --mongo-docker-image=mongo:latest
 ddev add-on get ddev/ddev-mongo
 ddev restart
 ```
@@ -102,7 +102,7 @@ All customization options (use with caution):
 
 | Variable | Flag | Default |
 | -------- | ---- | ------- |
-| `MONGO_DOCKER_IMAGE` | `--mongo-docker-image` | `mongo:5-focal` |
+| `MONGO_DOCKER_IMAGE` | `--mongo-docker-image` | `mongo:latest` |
 | `MONGO_EXPRESS_DOCKER_IMAGE` | `--mongo-express-docker-image` | `mongo-express:1.0` |
 
 ## Credits
