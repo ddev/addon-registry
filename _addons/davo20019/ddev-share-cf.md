@@ -6,13 +6,13 @@ user: davo20019
 repo: ddev-share-cf
 repo_id: 1076286664
 default_branch: main
-tag_name: v1.4.2
+tag_name: v1.4.3
 ddev_version_constraint: ">= v1.22.3"
 dependencies: []
 type: contrib
 created_at: 2025-10-14
-updated_at: 2026-01-31
-workflow_status: unknown
+updated_at: 2026-02-01
+workflow_status: success
 stars: 9
 ---
 
@@ -34,7 +34,8 @@ This DDEV addon provides a simple command to share your local DDEV sites publicl
 - 🆓 **Completely free** - No rate limits, no paid plans needed
 - 🔒 **Secure** - No need to open ports on your firewall
 - ⚡ **Fast** - Powered by Cloudflare's global network
-- 🎯 **Zero configuration** - No account or API tokens required
+- 🎯 **Zero configuration** - No account or API tokens required for quick tunnels
+- 🔗 **Stable URLs** - Optional named tunnels for persistent custom-domain URLs
 - 💻 **Cross-platform** - Works on macOS, Linux, and Windows/WSL2
 
 ## Requirements
@@ -124,7 +125,72 @@ The tunnel URL changes each time you run the command (similar to `ddev share`).
 | **Speed** | Good | Excellent (Cloudflare CDN) |
 | **Account required** | Yes | No |
 | **Setup** | Configure token | Zero config |
-| **URL persistence** | Changes each time | Changes each time |
+| **URL persistence** | Changes each time | Changes each time (or stable with named tunnels) |
+
+## Named Tunnels (Stable URLs)
+
+By default, `ddev share-cf` creates a temporary quick tunnel with a random URL that changes each time. If you need a **stable, persistent URL** on your own domain, you can use **named tunnels**.
+
+### Requirements for named tunnels
+
+- A free [Cloudflare account](https://dash.cloudflare.com/sign-up)
+- **A domain with its nameservers pointed to Cloudflare** — This is required because the `cloudflared tunnel login` command asks you to select a zone (domain) from your account. If you don't have any domains in Cloudflare, you won't be able to complete the authentication step and cannot use named tunnels. You can [add a domain to Cloudflare for free](https://developers.cloudflare.com/fundamentals/setup/manage-domains/add-site/).
+
+> **Don't have a domain in Cloudflare?** No problem — quick tunnels (`ddev share-cf` with no flags) work without any account or domain. Named tunnels are only needed if you want a stable URL on your own domain.
+
+### Setup (one-time)
+
+#### 1. Authenticate with Cloudflare
+
+```bash
+ddev share-cf --login
+```
+
+This opens your browser to authorize `cloudflared` with your Cloudflare account. A certificate is saved to `~/.cloudflared/cert.pem`.
+
+#### 2. Create a tunnel and DNS route
+
+```bash
+ddev share-cf --create-tunnel my-project --hostname dev.example.com
+```
+
+This creates a named tunnel and adds a CNAME record on your Cloudflare domain pointing to the tunnel. DNS propagation may take a few minutes.
+
+You can also create the tunnel without a hostname and add DNS later:
+
+```bash
+ddev share-cf --create-tunnel my-project
+```
+
+### Daily usage
+
+Once set up, start the tunnel with:
+
+```bash
+ddev share-cf --tunnel my-project
+```
+
+Your site will be available at `https://dev.example.com` (or whatever hostname you configured) every time.
+
+### Cleanup
+
+To delete a named tunnel:
+
+```bash
+ddev share-cf --delete-tunnel my-project
+```
+
+> **Note:** This deletes the tunnel from Cloudflare but does not remove the DNS record. You can remove CNAME records from the [Cloudflare dashboard](https://dash.cloudflare.com/).
+
+### Named tunnels vs quick tunnels
+
+| | Quick tunnel | Named tunnel |
+|---|---|---|
+| **URL** | Random `*.trycloudflare.com` | Your own domain |
+| **Persistence** | Changes each time | Stable across sessions |
+| **Account** | Not required | Cloudflare account + domain |
+| **Setup** | None | One-time login + create |
+| **Best for** | Quick demos, testing | Webhooks, client previews, CI |
 
 ## Use Cases
 
