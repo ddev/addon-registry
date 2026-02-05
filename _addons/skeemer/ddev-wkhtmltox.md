@@ -6,14 +6,14 @@ user: skeemer
 repo: ddev-wkhtmltox
 repo_id: 578401670
 default_branch: main
-tag_name: 1.2.0
+tag_name: 1.3.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2022-12-15
-updated_at: 2025-04-15
-workflow_status: disabled
-stars: 3
+updated_at: 2026-02-04
+workflow_status: success
+stars: 4
 ---
 
 [![tests](https://github.com/skeemer/ddev-wkhtmltox/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/skeemer/ddev-wkhtmltox/actions/workflows/tests.yml?query=branch%3Amain)
