@@ -13,7 +13,7 @@ type: contrib
 created_at: 2025-12-18
 updated_at: 2025-12-21
 workflow_status: unknown
-stars: 0
+stars: 1
 ---
 
 # ddev-claudecode-native

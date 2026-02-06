@@ -6,14 +6,14 @@ user: drupal-xb
 repo: ddev-drupal-xb-dev
 repo_id: 827380616
 default_branch: main
-tag_name: v0.0.24
+tag_name: v0.0.26
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-11
-updated_at: 2025-10-05
+updated_at: 2026-02-05
 workflow_status: disabled
-stars: 20
+stars: 21
 ---
 
 # DDEV Drupal Canvas Development Environment
@@ -51,7 +51,7 @@ cd ~/Sites/xb-dev
 ddev config --project-type=drupal11 --docroot=web
 
 # Create the Drupal project.
-ddev composer create drupal/recommended-project:11.x@dev --no-install
+ddev composer create-project drupal/recommended-project:11.x@dev --no-install
 
 # Install the add-on.
 ddev add-on get drupal-xb/ddev-drupal-xb-dev
