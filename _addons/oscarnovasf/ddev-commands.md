@@ -6,20 +6,18 @@ user: oscarnovasf
 repo: ddev-commands
 repo_id: 1151587694
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-06
-updated_at: 2026-02-06
-workflow_status: unknown
-stars: 0
+updated_at: 2026-02-07
+workflow_status: success
+stars: 1
 ---
 
 DDEV - Herramientas para Drupal
 ===
-
->Nombre de máquina: ddev-drupal-tools
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/oscarnovasf/ddev-commands/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/oscarnovasf/ddev-commands/actions/workflows/tests.yml?query=branch%3Amain)
@@ -35,10 +33,10 @@ DDEV - Herramientas para Drupal
 Conjunto de comandos personalizados para [DDEV][ddev] que facilitan el flujo de
 trabajo en proyectos [Drupal][drupal].
 
-Este addon proporciona **8 comandos** que cubren las necesidades más comunes
+Este addon proporciona **9 comandos** que cubren las necesidades más comunes
 del desarrollo en Drupal: limpieza de caché, ejecución de tests, análisis
-estático de código, refactorización automática, comprobación de enlaces rotos
-y métricas de código.
+estático de código, refactorización automática, compilación de SCSS,
+comprobación de enlaces rotos y métricas de código.
 
 ---
 
@@ -53,7 +51,7 @@ y métricas de código.
   - `phpstan/phpstan` para el comando `phpstan`.
   - `phpunit/phpunit` para el comando `phpunit`.
   - `rector/rector` y `palantirnet/drupal-rector` para el comando `rector`.
-  - `phpro/grumphp` para el comando `grumphp`.
+  - `phpro/grumphp-shim` para el comando `grumphp`.
 - Redis (opcional): el comando `cr` limpia Redis automáticamente si está
   disponible.
 
@@ -149,8 +147,23 @@ Características:
 - Comprueba enlaces externos.
 - Timeout de 10 segundos por enlace.
 - 30 hilos en paralelo.
-- Genera un informe en `html/reporte-<nombre-del-sitio>.html`.
+- Genera un informe en `reporte-<nombre-del-sitio>.html` en la raíz del proyecto.
 - Ignora enlaces `mailto:` y archivos CSS/JS.
+
+### `ddev sass` — Compilación de SCSS
+
+Compila los archivos SCSS de un theme custom a CSS comprimido. Detecta
+automáticamente los themes que contienen una carpeta `scss/` y permite
+seleccionar cuál compilar mediante un menú interactivo.
+
+```bash
+ddev sass
+```
+
+Opciones de modo:
+- **Compilar** — compila una vez y termina.
+- **Watch** — se queda escuchando cambios en los archivos SCSS y recompila
+  automáticamente.
 
 ### `ddev lineas` — Métricas de código
 
@@ -180,7 +193,8 @@ ddev-commands/
 │       ├── linkchecker      # Enlaces rotos
 │       ├── phpstan          # Análisis estático
 │       ├── phpunit          # Tests unitarios
-│       └── rector           # Refactorización
+│       ├── rector           # Refactorización
+│       └── sass             # Compilación SCSS
 ├── web-build/
 │   └── Dockerfile.ddev-drupal-tools
 ├── config.drupal-tools.yaml
@@ -201,8 +215,8 @@ ddev restart
 
 [mi-web]: https://oscarnovas.com "for developers"
 
-[version]: v1.0.0
-[version-badge]: https://img.shields.io/badge/Versión-1.0.0-blue.svg
+[version]: v1.1.0
+[version-badge]: https://img.shields.io/badge/Versión-1.1.0-blue.svg
 
 [license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"
@@ -223,5 +237,5 @@ ddev restart
 [phpstan]: https://phpstan.org/
 [rector]: https://getrector.com/
 [drupal-rector]: https://github.com/palantirnet/drupal-rector
-[grumphp]: https://github.com/phpro/grumphp
+[grumphp]: https://github.com/phpro/grumphp-shim
 [cloc]: https://github.com/AlDanial/cloc
