@@ -1,8 +1,8 @@
 ---
-title: drupal-xb/ddev-drupal-xb-dev
-github_url: https://github.com/drupal-xb/ddev-drupal-xb-dev
+title: drupal-canvas/ddev-drupal-xb-dev
+github_url: https://github.com/drupal-canvas/ddev-drupal-xb-dev
 description: "A DDEV add-on for Drupal Experience Builder module development and evaluation"
-user: drupal-xb
+user: drupal-canvas
 repo: ddev-drupal-xb-dev
 repo_id: 827380616
 default_branch: main
@@ -124,7 +124,7 @@ Configure XQuartz to allow connections from the host:
 - Check the "Allow connections from network clients" checkbox.
 - Log out and back in or restart your machine for the change to take effect.
 
-![XQuartz Preferences dialog](https://raw.githubusercontent.com/drupal-xb/ddev-drupal-xb-dev/main/resources/xquartz-settings.png)
+![XQuartz Preferences dialog](https://raw.githubusercontent.com/drupal-canvas/ddev-drupal-xb-dev/main/resources/xquartz-settings.png)
 
 ### Usage
 
