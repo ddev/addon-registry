@@ -6,12 +6,12 @@ user: oscarnovasf
 repo: ddev-commands
 repo_id: 1151587694
 default_branch: main
-tag_name: v1.1.0
+tag_name: v1.1.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-06
-updated_at: 2026-02-07
+updated_at: 2026-02-09
 workflow_status: success
 stars: 1
 ---
@@ -215,8 +215,8 @@ ddev restart
 
 [mi-web]: https://oscarnovas.com "for developers"
 
-[version]: v1.1.0
-[version-badge]: https://img.shields.io/badge/Versión-1.1.0-blue.svg
+[version]: v1.1.1
+[version-badge]: https://img.shields.io/badge/Versión-1.1.1-blue.svg
 
 [license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"
