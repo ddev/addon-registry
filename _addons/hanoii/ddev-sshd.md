@@ -6,18 +6,18 @@ user: hanoii
 repo: ddev-sshd
 repo_id: 673792487
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-08-02
-updated_at: 2025-04-28
+updated_at: 2026-02-10
 workflow_status: disabled
 stars: 4
 ---
 
-[![tests](https://github.com/hanoii/ddev-sshd/actions/workflows/tests.yml/badge.svg)](https://github.com/hanoii/ddev-sshd/actions/workflows/tests.yml)
-![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/hanoii/ddev-sshd/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/hanoii/ddev-sshd/actions/workflows/tests.yml)
+![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 
 # ddev-sshd <!-- omit in toc -->
 
