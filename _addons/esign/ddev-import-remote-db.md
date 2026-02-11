@@ -6,12 +6,12 @@ user: esign
 repo: ddev-import-remote-db
 repo_id: 1046928858
 default_branch: main
-tag_name: 0.1.3
+tag_name: 0.2.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-08-29
-updated_at: 2025-09-25
+updated_at: 2026-02-10
 workflow_status: disabled
 stars: 1
 ---
@@ -45,7 +45,7 @@ After installation, make sure to commit the `.ddev` directory to version control
 #### Import a remote MySQL database
 
 ```bash
-ddev import-remote-db --host <host> --user <user> --database <database> [--port <port>] [--ssh-host <ssh_host>] [--ssh-user <ssh_user>] [--password <password>]
+ddev import-remote-db --host <host> --user <user> --database <database> [--port <port>] [--ssh-host <ssh_host>] [--ssh-user <ssh_user>] [--password <password>] [--target-db <target_db>]
 ```
 
 **Flags:**
@@ -59,17 +59,30 @@ ddev import-remote-db --host <host> --user <user> --database <database> [--port 
 | `--ssh-host` | SSH host for tunneling | No |
 | `--ssh-user` | SSH username | No |
 | `--password` | MySQL password | No (will prompt if not provided) |
+| `--target-db` | Target DDEV database name (default: db) | No |
 
-**Example:**
+**Examples:**
 
+Import a remote database into the default `db` database:
 ```bash
 ddev import-remote-db --host db.example.com --user dbuser --database dbname --port 3307 --ssh-host ssh.example.com --ssh-user remoteuser --password mypass
+```
+
+Import a remote database named `production_app_2024` into a local DDEV database named `db`:
+```bash
+ddev import-remote-db --host db.example.com --user dbuser --database production_app_2024 --target-db db
+```
+
+Import multiple remote databases into different target databases:
+```bash
+ddev import-remote-db --host db.example.com --user dbuser --database production_app_2024 --target-db db1
+ddev import-remote-db --host db.example.com --user dbuser --database legacy_records --target-db db2
 ```
 
 #### Import a remote MySQL database using 1Password
 
 ```bash
-ddev import-remote-db-1pw <1pw-item-uuid>
+ddev import-remote-db-1pw <1pw-item-uuid> [--target-db <target_db>]
 ```
 
 This command uses the [1Password CLI](https://developer.1password.com/docs/cli/get-started/) to securely fetch database credentials from your 1Password vault.
@@ -79,6 +92,12 @@ This command uses the [1Password CLI](https://developer.1password.com/docs/cli/g
 2. The script will fetch the database credentials and (optionally) SSH details from the 1Password item.
 3. You will be asked if SSH is required. If so, you can provide SSH host/user if not present in the item.
 4. The script will run `ddev import-remote-db` with the fetched credentials.
+
+**Flags:**
+
+| Flag | Description | Required |
+|------|-------------|----------|
+| `--target-db` | Target DDEV database name (default: db) | No |
 
 **1Password Item Fields:**
 
@@ -93,10 +112,16 @@ The script will look for the following fields in your 1Password item (it tries m
 | SSH Host | `SSH_HOST` | No (prompted if SSH required) |
 | SSH Username | `SSH_USER` | No (prompted if SSH required) |
 
-**Example:**
+**Examples:**
 
+Import into the default `db` database:
 ```bash
 ddev import-remote-db-1pw 0198f64f-5ac6-79a5-8238-750890b87ce5
+```
+
+Import into a custom target database:
+```bash
+ddev import-remote-db-1pw 0198f64f-5ac6-79a5-8238-750890b87ce5 --target-db db1
 ```
 
 **Note:** The 1Password CLI (`op`) must be installed and you must be signed in. The script will check for this and prompt you if not.
