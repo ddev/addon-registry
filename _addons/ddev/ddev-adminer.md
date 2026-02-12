@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-adminer
 repo_id: 468763817
 default_branch: main
-tag_name: v1.2.0
+tag_name: v1.3.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-03-11
-updated_at: 2026-01-20
+updated_at: 2026-02-11
 workflow_status: success
 stars: 17
 ---
@@ -48,6 +48,21 @@ After installation, make sure to commit the `.ddev` directory to version control
 | `ddev describe` | View service status and used ports for Adminer |
 | `ddev logs -s adminer` | Check Adminer logs |
 
+### SQLite
+
+When connecting to an SQLite database, the project files are available under the `/mnt/ddev_app` mount, in the example below, `test.sqlite` is located in the project root:
+
+```bash
+ddev dotenv set .ddev/.env.adminer \
+    --adminer-default-driver=sqlite \
+    --adminer-default-username="" \
+    --adminer-default-password="" \
+    --adminer-default-server="" \
+    --adminer-default-db=/mnt/ddev_app/test.sqlite
+```
+
+Make sure the owner of the SQLite database file is the same as the user which adminer is running as.
+
 ## Advanced Customization
 
 To change the design:
@@ -65,7 +80,7 @@ To add more plugins:
 
 ```bash
 # plugins: https://www.adminer.org/en/plugins/
-ddev dotenv set .ddev/.env.adminer --adminer-plugins="tables-filter edit-calendar"
+ddev dotenv set .ddev/.env.adminer --adminer-plugins="ddev-passwordless-login tables-filter edit-calendar"
 ddev add-on get ddev/ddev-adminer
 ddev restart
 ```
@@ -86,7 +101,7 @@ All customization options (use with caution):
 | `ADMINER_DEFAULT_USERNAME` | `--adminer-default-username` | `db` |
 | `ADMINER_DESIGN` | `--adminer-design` | `` |
 | `ADMINER_DOCKER_IMAGE` | `--adminer-docker-image` | `adminer:standalone` |
-| `ADMINER_PLUGINS` | `--adminer-plugins` | `tables-filter` |
+| `ADMINER_PLUGINS` | `--adminer-plugins` | `ddev-passwordless-login tables-filter` |
 
 ## Credits
 
