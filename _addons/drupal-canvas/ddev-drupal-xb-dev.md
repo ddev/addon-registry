@@ -1,7 +1,7 @@
 ---
 title: drupal-canvas/ddev-drupal-xb-dev
 github_url: https://github.com/drupal-canvas/ddev-drupal-xb-dev
-description: "A DDEV add-on for Drupal Experience Builder module development and evaluation"
+description: "A DDEV add-on for Drupal Canvas module development and evaluation"
 user: drupal-canvas
 repo: ddev-drupal-xb-dev
 repo_id: 827380616
@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-11
-updated_at: 2026-02-05
+updated_at: 2026-02-11
 workflow_status: success
 stars: 21
 ---
@@ -54,7 +54,7 @@ ddev config --project-type=drupal11 --docroot=web
 ddev composer create-project drupal/recommended-project:11.x@dev --no-install
 
 # Install the add-on.
-ddev add-on get drupal-xb/ddev-drupal-xb-dev
+ddev add-on get drupal-canvas/ddev-drupal-xb-dev
 
 # Perform one-time setup operations.
 ddev xb-setup
