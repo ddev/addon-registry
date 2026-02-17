@@ -7,16 +7,19 @@ repo: ddev-dblog
 repo_id: 741654296
 default_branch: main
 tag_name: v1.0.2
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
 created_at: 2024-01-10
-updated_at: 2024-11-16
-workflow_status: success
+updated_at: 2026-02-16
+workflow_status: failure
 stars: 2
 ---
 
-[![tests](https://github.com/ChromaticHQ/ddev-dblog/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-dblog/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/ddev/ddev-dblog/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-dblog/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-dblog)](https://github.com/ddev/ddev-dblog/commits)
+[![release](https://img.shields.io/github/v/release/ddev/ddev-dblog)](https://github.com/ddev/ddev-dblog/releases/latest)
 
 # DDEV dblog <!-- omit in toc -->
 **Contributed and maintained by [Chromatic](https://www.chromatichq.com).**
@@ -43,12 +46,6 @@ For DDEV v1.23.5 or above run
 
 ```sh
 ddev add-on get chromatichq/ddev-dblog
-```
-
-For earlier versions of DDEV run
-
-```sh
-ddev get chromatichq/ddev-dblog
 ```
 
 ## Using dblog

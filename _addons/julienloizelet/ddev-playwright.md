@@ -6,12 +6,12 @@ user: julienloizelet
 repo: ddev-playwright
 repo_id: 598383514
 default_branch: main
-tag_name: v2.5.0
+tag_name: v2.6.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2023-02-07
-updated_at: 2025-11-14
+updated_at: 2026-02-16
 workflow_status: success
 stars: 15
 ---
@@ -34,7 +34,7 @@ stars: 15
   - [Quick start](#quick-start)
   - [Customization](#customization)
     - [Playwright testing directory](#playwright-testing-directory)
-    - [Docker image](#docker-image)
+    - [Docker image and KASMVNC version](#docker-image-and-kasmvnc-version)
     - [`.env` file](#env-file)
   - [Add-on commands](#add-on-commands)
     - [Install Playwright from a `package.json` file](#install-playwright-from-a-packagejson-file)
@@ -106,9 +106,10 @@ services:
 You could also edit the value directly in the `docker-compose.playwright.yaml` file, but you risk losing your changes every time you do a `ddev add-on get julienloizelet/ddev-playwright` (unless you delete the `#ddev-generated` line at the beginning of the file).
 
 
-#### Docker image
+#### Docker image and KASMVNC version
 
 To change the Docker image, you can set the `PLAYWRIGHT_DOCKER_IMAGE` variable in the `.ddev/.env.playwright` file.
+To change the KasmVNC version, you can set the `KASMVNC_VERSION` variable in the `.ddev/.env.playwright` file.
 
 For example, to use the `mcr.microsoft.com/playwright:v1.46.0-focal-amd64` image, run the following command:
 
@@ -125,6 +126,7 @@ All customization options (use with caution):
 | Variable                  | Flag                        | Default |
 |---------------------------|-----------------------------| ------- |
 | `PLAYWRIGHT_DOCKER_IMAGE` | `--playwright-docker-image` | `mcr.microsoft.com/playwright:focal` |
+| `KASMVNC_VERSION` | `--kasmvnc-version` | `1.4.0` |
 
 #### `.env` file
 
