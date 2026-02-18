@@ -6,12 +6,12 @@ user: wunderio
 repo: ddev-wunderio-drupal
 repo_id: 1094069257
 default_branch: main
-tag_name: 0.4.1
+tag_name: 0.5.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-11-11
-updated_at: 2025-12-18
+updated_at: 2026-02-17
 workflow_status: unknown
 stars: 0
 ---
@@ -72,7 +72,7 @@ URL will become example.com.ddev.site.
 - To update the add-on to the latest version:
 
   ```bash
-  ddev add-on get wunderio/ddev-wunderio-drupal --update
+  ddev add-on get wunderio/ddev-wunderio-drupal
   ```
 
 ## Features

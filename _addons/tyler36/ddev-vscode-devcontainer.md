@@ -7,11 +7,11 @@ repo: ddev-vscode-devcontainer
 repo_id: 623859832
 default_branch: main
 tag_name: 1.2.2
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2023-04-05
-updated_at: 2025-06-30
+updated_at: 2026-02-17
 workflow_status: success
 stars: 6
 ---
