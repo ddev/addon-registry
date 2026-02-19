@@ -6,12 +6,12 @@ user: UltraBob
 repo: ddev-drupal-code-quality
 repo_id: 1124009554
 default_branch: main
-tag_name: v0.9.5-beta
+tag_name: v1.0.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-28
-updated_at: 2026-02-15
+updated_at: 2026-02-18
 workflow_status: success
 stars: 0
 ---
@@ -162,6 +162,12 @@ The template points PHP tooling at `.ddev/drupal-code-quality/tooling/bin` and J
     by `.cspell.json` `ignorePaths`. Narrow the scan by passing explicit paths.
   - `.cspell-project-words.txt` is created by the installer (empty) and updated
     by `ddev cspell-suggest` when you accept suggested words.
+- PHPCS / PHPCBF default scope:
+  - When a project `.phpcs.xml` is installed by the add-on, `ddev phpcs` and
+    `ddev phpcbf` with no path default to scanning the configured docroot.
+  - The generated ruleset excludes `__DOCROOT__/core/**`, `**/contrib/**`,
+    `**/node_modules/**`, and `__DOCROOT__/sites/*/files/**`.
+  - You can still pass explicit paths to narrow runs.
 - PHPStan baseline:
   - Generate a baseline with `ddev phpstan --generate-baseline`.
   - This writes `phpstan-baseline.neon` at the project root; the wrapper will

@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-selenium-standalone-chrome
 repo_id: 563535124
 default_branch: main
-tag_name: 2.1.1
+tag_name: 2.1.2
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-11-08
-updated_at: 2026-01-05
+updated_at: 2026-02-18
 workflow_status: success
 stars: 39
 ---

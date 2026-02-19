@@ -1,18 +1,18 @@
 ---
-title: OpenForgeProject/ddev-skills
-github_url: https://github.com/OpenForgeProject/ddev-skills
-description: "Manage Ai Skills from skills.sh via .env file"
+title: OpenForgeProject/ddev-ai-agent-skills-manager
+github_url: https://github.com/OpenForgeProject/ddev-ai-agent-skills-manager
+description: "Manage Ai Skills from skills.sh via .env.skills file"
 user: OpenForgeProject
-repo: ddev-skills
+repo: ddev-ai-agent-skills-manager
 repo_id: 1160063128
 default_branch: main
-tag_name: v1.2.0
+tag_name: v1.3.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2026-02-17
-updated_at: 2026-02-17
-workflow_status: unknown
+updated_at: 2026-02-18
+workflow_status: success
 stars: 0
 ---
 
@@ -45,14 +45,7 @@ ddev restart
 
 ## Configuration
 
-1.  **Create the configuration file**:
-    Navigate to your project's `.ddev` directory and create a file named `.env.skills`. You can also copy the sample file provided:
-
-    ```bash
-    cp .ddev/.env.skills.sample .ddev/.env.skills
-    ```
-
-2.  **Add your skills**:
+1.  **Add your skills**:
     Edit `.ddev/.env.skills` and add the skills you want to install. The format is `SkillName="GitRepoURL"`.
 
     **Example `.ddev/.env.skills`:**

@@ -6,12 +6,12 @@ user: fwust
 repo: ddev-clamav
 repo_id: 710824160
 default_branch: main
-tag_name: 1.1.4
+tag_name: 1.2.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-27
-updated_at: 2025-09-17
+updated_at: 2026-02-18
 workflow_status: success
 stars: 1
 ---
@@ -31,7 +31,7 @@ stars: 1
 [ClamAV®](https://www.clamav.net/) is an open-source antivirus engine for detecting trojans, viruses, malware & other malicious threats.
 
 This add-on allows you to run [ClamAV](https://www.clamav.net/) through the DDEV web service.
-The docker image used : [nfrastack/clamav](https://hub.docker.com/r/nfrastack/clamav).
+The docker image used : [clamav/clamav:1.5.1](https://hub.docker.com/r/clamav/clamav).
 
 ## Getting Started
 
