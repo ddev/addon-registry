@@ -6,12 +6,12 @@ user: UltraBob
 repo: ddev-drupal-code-quality
 repo_id: 1124009554
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.0.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-28
-updated_at: 2026-02-18
+updated_at: 2026-02-19
 workflow_status: success
 stars: 0
 ---
@@ -21,7 +21,7 @@ stars: 0
 [![last commit](https://img.shields.io/github/last-commit/UltraBob/ddev-drupal-code-quality)](https://github.com/UltraBob/ddev-drupal-code-quality/commits)
 ![GitHub Release](https://img.shields.io/github/v/release/UltraBob/ddev-drupal-code-quality?include_prereleases)
 
-# ddev-drupal-code-quality
+# DDEV Drupal Code Quality
 
 ## Overview
 
@@ -155,6 +155,21 @@ The template points PHP tooling at `.ddev/drupal-code-quality/tooling/bin` and J
 - ESLint config mode:
   - `ESLINT_CONFIG_MODE=nearest` (default) groups by nearest config file.
   - `ESLINT_CONFIG_MODE=fixed` forces `.eslintrc.passing.json`.
+- ESLint warning visibility (GitLab CI parity):
+  - `DCQ_ESLINT_QUIET=1` (default) adds `--quiet` to `ddev eslint` and
+    `ddev eslint-fix`, so warnings are suppressed.
+  - Set `DCQ_ESLINT_QUIET=0` to include warnings in CLI output. Persist this in
+    `.ddev/config.yaml` (or `.ddev/config.yml`):
+    ```yaml
+    web_environment:
+      - DCQ_ESLINT_QUIET=0
+    ```
+  - VS Code uses its own setting for extension diagnostics. Set
+    `"eslint.quiet": false` in `.vscode/settings.json` to include warnings in
+    the IDE.
+  - Installer behavior: `overwrite` regenerates IDE settings from template;
+    `merge` only adds missing keys and will not change an existing
+    `eslint.quiet` value.
 - CSpell parity:
   - Run `ddev exec php /mnt/ddev_config/drupal-code-quality/tooling/scripts/prepare-cspell.php -s .prepared` once and
     replace `.cspell.json` after reviewing the diff.
@@ -179,7 +194,7 @@ The template points PHP tooling at `.ddev/drupal-code-quality/tooling/bin` and J
   - If no project `phpstan.neon*` exists, the wrapper uses the GitLab template
     config shipped with the add-on.
 - PHPStan level:
-- GitLab CI template defaults use level 0. The installer can set a local default level (0-10).
+  - GitLab CI template defaults use level 0. The installer can set a local default level (0-10).
 
 ## Installer environment variables
 
@@ -187,6 +202,9 @@ The template points PHP tooling at `.ddev/drupal-code-quality/tooling/bin` and J
 - `DCQ_NONINTERACTIVE=true`: disable prompts; if no overrides are set, applies
   the recommended settings automatically.
 - `DCQ_PHPSTAN_LEVEL`: set `phpstan.neon` level (0-10) without prompting.
+- `DCQ_ESLINT_QUIET`: `1`/unset to suppress ESLint warnings by default
+  (GitLab CI parity), `0` to include warnings. This can be set in
+  `.ddev/config.yaml` under `web_environment`.
 - `DCQ_INSTALL_DEPS`: `install`/`true` to auto-install missing `drupal/core-dev`,
   `skip`/`false` to skip, or unset to prompt when interactive.
 - `DCQ_INSTALL_NODE_DEPS`: `root` to install JS deps in the project root (creates

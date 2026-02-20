@@ -6,19 +6,19 @@ user: codingsasi
 repo: ddev-playwright
 repo_id: 910614336
 default_branch: main
-tag_name: v1.0.6
+tag_name: v1.0.7
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-12-31
-updated_at: 2025-12-05
+updated_at: 2026-02-19
 workflow_status: disabled
 stars: 1
 ---
 
 # ddev-playwright
 
-[![tests](https://github.com/codingsasi/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/codingsasi/ddev-playwright/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg) [![ddev-get registry](https://img.shields.io/badge/ddev--get-registry-blue)](https://ddev.readthedocs.io/en/stable/users/extend/additional-services/) ![release](https://img.shields.io/github/v/release/codingsasi/ddev-playwright?label=latest%20release)
+[![tests](https://github.com/codingsasi/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/codingsasi/ddev-playwright/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg) [![ddev-get registry](https://img.shields.io/badge/ddev--get-registry-blue)](https://ddev.readthedocs.io/en/stable/users/extend/additional-services/) ![release](https://img.shields.io/github/v/release/codingsasi/ddev-playwright?label=latest%20release)
 
 This is a DDEV addon that provides a Playwright testing environment for your DDEV projects.
 
@@ -48,6 +48,23 @@ After installation, browsers are already installed. You can verify the installat
 ddev install-playwright
 
 ```
+
+### Customizing the Test Directory
+
+By default, Playwright tests are installed in the `tests/playwright` directory. You can customize this location by setting the `PLAYWRIGHT_TEST_DIR` environment variable in your `.ddev/config.yaml`:
+
+```yaml
+web_environment:
+  - PLAYWRIGHT_TEST_DIR=test  # Use "test" instead of "tests"
+```
+
+After changing this setting, run:
+
+```bash
+ddev restart
+```
+
+**Note:** If you change this after initial installation, you'll need to manually move your existing Playwright directory to the new location.
 
 ## Usage
 
@@ -80,7 +97,7 @@ test('basic test', async ({ page }) => {
 ### Running in --ui mode (outside ddev container)
 ```bash
 # From project root
-cd test/playwright # Go into playwright folder
+cd tests/playwright # Go into playwright folder (or "test/playwright" if you customized PLAYWRIGHT_TEST_DIR)
 nvm use 22
 npm ci
 npx playwright install # Works best on Windows, Mac and Ubuntu (and possibly other Debian based distros). I had trouble with Fedora/Manjaro but not impossible.
@@ -145,4 +162,23 @@ Feel free to submit issues or pull requests with improvements.
 
 ## Notes
 
-This is a very lightweight playwright ddev addon, if you want a more advanced playwright integration into ddev, use "https://github.com/Lullabot/ddev-playwright" or "https://github.com/julienloizelet/ddev-playwright". They have a VNC running inside ddev that is capable of --ui. Using my add-on, if you want the --ui to work, you'll have to run it outside of ddev which is quite easy. See the global-setup.ts and global-teardown.ts files. See more about UI mode here: https://playwright.dev/docs/test-ui-mode.
+This is a very lightweight playwright ddev addon, if you want a more advanced playwright integration into ddev, use [Lullabot's playwright ddev addon](https://github.com/Lullabot/ddev-playwright) or [Julien Loizelet's ddev addon](https://github.com/julienloizelet/ddev-playwright). They have a VNC running inside ddev that is capable of --ui. Using my add-on, if you want the --ui to work, you'll have to run it outside of ddev which is quite easy. See the global-setup.ts and global-teardown.ts files. See more about UI mode here: https://playwright.dev/docs/test-ui-mode.
+
+### Node.js Version Management
+
+As of DDEV v1.25.0, nvm is no longer included by default. DDEV now recommends using the [`nodejs_version`](https://docs.ddev.com/en/stable/users/configuration/config/#nodejs_version) configuration option in your `.ddev/config.yaml` for managing Node.js versions:
+
+```yaml
+# Set a specific Node.js version
+nodejs_version: 22
+
+# Or use auto-detection from .nvmrc, .node-version, or package.json
+nodejs_version: auto
+```
+
+This might cause problems if you need to use an older version of node for your Drupal theme or sass compilations or partially decoupled front-end (react, vue, etc). My recommendation is to install [ddev-nvm addon](https://github.com/ddev/ddev-nvm) and use nvm to manage multiple versions:
+
+```bash
+ddev add-on get ddev/ddev-nvm
+ddev restart
+```
