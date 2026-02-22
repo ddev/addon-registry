@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: official
 created_at: 2022-04-15
-updated_at: 2025-08-04
+updated_at: 2026-02-21
 workflow_status: success
 stars: 40
 ---
@@ -200,7 +200,7 @@ Please see [Browsersync documentation](https://browsersync.io/docs) for more det
 This error usually occurs when the watcher server is not running.
 Run `ddev browsersync` to start the server.
 
-### Typo3 No site configuration found / 404 Error
+### TYPO3 No site configuration found / 404 Error
 
 Solution: The base URL (`base` in the TYPO3 site's `config.yaml` (like `config/sites/main/config.yaml` should specify `http` even though the frontend is configured for `https`. This can also be solved by commenting out the default `base` line.
 ```yaml
