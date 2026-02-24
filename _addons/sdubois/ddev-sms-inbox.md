@@ -6,7 +6,7 @@ user: sdubois
 repo: ddev-sms-inbox
 repo_id: 1153838207
 default_branch: main
-tag_name: 
+tag_name: v0.1.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
