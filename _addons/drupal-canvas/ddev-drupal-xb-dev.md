@@ -6,14 +6,14 @@ user: drupal-canvas
 repo: ddev-drupal-xb-dev
 repo_id: 827380616
 default_branch: main
-tag_name: v0.0.26
+tag_name: v0.0.28
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-11
-updated_at: 2026-02-11
+updated_at: 2026-02-25
 workflow_status: success
-stars: 21
+stars: 22
 ---
 
 # DDEV Drupal Canvas Development Environment
@@ -105,8 +105,11 @@ Update the Drupal Canvas module clone just like you would any other Git repo. No
 ## Cypress
 
 Drupal Canvas uses [Cypress](https://www.cypress.io/) for front-end testing. It is currently only supported on macOS.
+Linux and Windows with WSL2 might work with the instructions below.
 
 ### Setup
+
+#### macOS
 
 > Carefully follow the below XQuartz configuration steps after installing it. Failure to do so will result in frustrating, difficult to debug problems.
 
@@ -125,6 +128,13 @@ Configure XQuartz to allow connections from the host:
 - Log out and back in or restart your machine for the change to take effect.
 
 ![XQuartz Preferences dialog](https://raw.githubusercontent.com/drupal-canvas/ddev-drupal-xb-dev/main/resources/xquartz-settings.png)
+
+#### Windows
+
+> **Note:** This is experimental and officially unsupported. Members of the community who use Windows may be able to provide unofficial support. See [Support \& community](#support--community). Be sure to thank them. They're giving up their personal time to help you.
+
+Install [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv) in the default "C:/Program Files" location.
+You might need to restart your system afterwards.
 
 ### Usage
 
@@ -154,9 +164,9 @@ ddev cypress component
 
 ## FAQ & known issues
 
-### Can I use Cypress on Linux or Windows?
+### Can I use Cypress on Windows or Linux?
 
-No, not currently; and there are no plans at present to support it. See [Support & community](#support--community) above if you want to make a case for it.
+Windows and Linux are not officially supported, however, some people have reported it working on Windows + WSL2. See [Windows setup](#windows), and Linux. By all means, see [Support & community](#support--community) to share your experience so we can improve these docs.
 
 ### What if Cypress fails to start?
 

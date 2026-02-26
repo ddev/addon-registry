@@ -6,12 +6,12 @@ user: FreelyGive
 repo: ddev-claude-code
 repo_id: 958030426
 default_branch: main
-tag_name: 1.0.3
+tag_name: 1.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2025-03-31
-updated_at: 2025-07-18
+updated_at: 2026-02-25
 workflow_status: unknown
 stars: 10
 ---

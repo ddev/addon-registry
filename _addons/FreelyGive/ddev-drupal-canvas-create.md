@@ -6,12 +6,12 @@ user: FreelyGive
 repo: ddev-drupal-canvas-create
 repo_id: 1160806001
 default_branch: main
-tag_name: 0.1.0
+tag_name: 0.2.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2026-02-18
-updated_at: 2026-02-18
+updated_at: 2026-02-25
 workflow_status: unknown
 stars: 0
 ---
