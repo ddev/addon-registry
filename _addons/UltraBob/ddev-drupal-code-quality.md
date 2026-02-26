@@ -13,7 +13,7 @@ type: contrib
 created_at: 2025-12-28
 updated_at: 2026-02-21
 workflow_status: success
-stars: 1
+stars: 2
 ---
 
 [![tests](https://github.com/UltraBob/ddev-drupal-code-quality/actions/workflows/tests.yml/badge.svg)](https://github.com/UltraBob/ddev-drupal-code-quality/actions/workflows/tests.yml)

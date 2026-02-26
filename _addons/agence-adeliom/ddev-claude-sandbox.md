@@ -11,14 +11,14 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-04
-updated_at: 2026-02-24
+updated_at: 2026-02-25
 workflow_status: failure
 stars: 0
 ---
 
 # DDEV Claude Sandbox
 
-A DDEV addon for sandboxing Claude Code in professional team environments with built-in security features: URL allow list and .env protection.
+A DDEV addon that runs Claude Code inside a native sandbox (bubblewrap) with kernel-level isolation, network control, and file protection.
 
 ## Installation
 
@@ -35,14 +35,18 @@ ddev restart
 ddev claude
 ```
 
+Claude runs in `acceptEdits` mode with full sandbox isolation. Bash commands are auto-allowed when sandboxed.
+
 ### Execute commands with secrets
 
-Run commands that need environment variables from `.env.local`:
+Protected files (`.env.local`, etc.) are blocked from Claude's Read/Edit tools. When you need to run commands that require those secrets:
 
 ```bash
 ddev agent-env php bin/console app:call-api
 ddev agent-env printenv | grep API_KEY
 ```
+
+`ddev agent-env` loads the full environment (including `.env.local`) and executes the command, keeping secrets out of Claude's context.
 
 ## Configuration
 
@@ -50,14 +54,11 @@ Override defaults in `.ddev/config.local.yaml`:
 
 ```yaml
 web_environment:
-  # Disable URL allow list feature
-  - CLAUDE_URL_ALLOWLIST_ENABLED=false
-
-  # Disable .env protection
-  - CLAUDE_ENV_PROTECTION_ENABLED=false
-
   # Customize protected files (comma-separated patterns)
   - CLAUDE_PROTECTED_FILES=.env.local,.env.*.local,credentials.json
+
+  # Add project-specific allowed domains (comma-separated)
+  - CLAUDE_ALLOWED_DOMAINS=api.example.com,*.internal.dev
 ```
 
 Then restart: `ddev restart`
@@ -66,31 +67,31 @@ Then restart: `ddev restart`
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `CLAUDE_URL_ALLOWLIST_ENABLED` | `true` | Auto-approve domains after first authorization |
-| `CLAUDE_ENV_PROTECTION_ENABLED` | `true` | Block Claude from reading .env files |
-| `CLAUDE_PROTECTED_FILES` | `.env.local,.env.*.local` | File patterns to protect |
+| `CLAUDE_PROTECTED_FILES` | `.env.local,.env.*.local` | File patterns denied in Read/Edit |
+| `CLAUDE_ALLOWED_DOMAINS` | _(empty)_ | Additional domains to allow through sandbox network |
 
-## Benefits
+## Security
 
-### Security Features
+### Native Sandbox (bubblewrap)
 
-**URL Allow list/Disallow list** - Control which domains Claude can access:
-- First access to a new domain prompts for user approval
-- Approved domains are automatically allowed for future requests
-- Refused domains can be disallowed (Claude will call `~/.claude/hooks/url-disallowlist-add.sh <domain>`)
-- Disallowed domains are auto-rejected, but Claude can still access other domains
-- Lists persist in `.ddev/claude/url-list.json`
+Claude Code runs inside a bubblewrap sandbox providing:
+- **Kernel-level process isolation** - filesystem and network restrictions enforced by the OS
+- **Network allowlist** - only pre-approved domains are reachable (Anthropic API, GitHub, npm, Packagist, Composer, Symfony)
+- **Auto-allowed bash** - shell commands run freely inside the sandbox without prompts (`autoAllowBashIfSandboxed`)
+- **Docker excluded** - `docker` commands are excluded from the sandbox to avoid conflicts with DDEV
 
-**Environment Protection** - Keep secrets safe:
-- Claude cannot read `.env.local` or other protected files
-- Use `ddev agent-env <command>` when you need secrets loaded
-- Configurable file patterns for custom protection
+### File Protection
 
-### Developer Experience
+Protected files are enforced via `permissions.deny` rules in `settings.json`:
+- `Read(<pattern>)` and `Edit(<pattern>)` deny rules block Claude from accessing sensitive files
+- Default: `.env.local` and `.env.*.local` (with recursive `**/` variants)
+- Use `ddev agent-env <command>` when you need to run commands with secrets loaded
 
-- **Persistent configuration** - Claude settings survive container restarts
-- **Native binary** - No Node.js overhead, faster startup
-- **Team-ready** - Security controls for professional environments
+### Persistent Configuration
+
+- Claude credentials (`.credentials.json`) survive container restarts via symlink to project volume
+- Claude config (`.claude.json`) also persisted
+- Settings are regenerated on each `ddev restart` from environment variables
 
 ## Contributing
 
@@ -98,18 +99,18 @@ Then restart: `ddev restart`
 
 ```
 ddev-claude-sandbox/
-├── install.yaml                 # Addon manifest
-├── config.claude-sandbox.yaml   # DDEV hooks and environment
+├── install.yaml                    # Addon manifest
+├── config.claude-sandbox.yaml      # DDEV hooks and environment
 ├── web-build/
-│   └── Dockerfile.claude-sandbox
+│   └── Dockerfile.claude-sandbox   # Installs claude, jq, bubblewrap, socat
 ├── claude/
-│   └── hooks/                   # Security hooks (tracked by git)
+│   └── .gitignore
 ├── commands/web/
-│   ├── claude
-│   └── agent-env
+│   ├── claude                      # ddev claude entrypoint
+│   └── agent-env                   # ddev agent-env entrypoint
 ├── scripts/
-│   ├── setup-claude.sh
-│   └── generate-claude-settings.php
+│   ├── setup-claude.sh             # Post-start setup (symlinks, persistence)
+│   └── generate-claude-settings.sh # Generates settings.json with jq
 └── tests/
     └── test.bats
 ```
@@ -150,12 +151,16 @@ bats ./tests/test.bats --show-output-of-passing-tests --verbose-run
 | `install from directory` | Basic addon installation |
 | `claude command is available` | Claude binary works |
 | `agent-env command works` | Secrets wrapper executes |
-| `setup script creates hook files` | Hooks generated correctly |
-| `settings.json is generated` | Hook configuration created |
-| `url allow list can be disabled` | Feature toggle works |
-| `env protection can be disabled` | Feature toggle works |
 | `claude config directory exists` | Config directory created |
-| `protected files pattern is configurable` | Custom patterns work |
+| `credentials are persisted and symlinked` | Credentials survive restarts |
+| `claude config is persisted and symlinked` | Config survives restarts |
+| `settings.json has sandbox enabled` | Sandbox + autoAllowBashIfSandboxed |
+| `bubblewrap is installed` | bwrap binary available |
+| `settings.json has deny rules for protected files` | Read/Edit deny rules |
+| `settings.json has allowed domains` | Network allowlist present |
+| `protected files pattern is configurable` | Custom deny rules from env var |
+| `custom allowed domains can be added` | Extra domains via env var |
+| `install from release` | Install from GitHub release |
 
 ### CI/CD
 

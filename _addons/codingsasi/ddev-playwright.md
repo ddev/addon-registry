@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-12-31
 updated_at: 2026-02-23
 workflow_status: success
-stars: 1
+stars: 3
 ---
 
 # ddev-playwright
