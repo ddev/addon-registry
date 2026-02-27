@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-07-11
 updated_at: 2026-02-25
 workflow_status: success
-stars: 22
+stars: 23
 ---
 
 # DDEV Drupal Canvas Development Environment
