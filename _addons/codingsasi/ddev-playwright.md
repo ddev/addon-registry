@@ -6,12 +6,12 @@ user: codingsasi
 repo: ddev-playwright
 repo_id: 910614336
 default_branch: main
-tag_name: v1.0.8
+tag_name: v1.0.9
 ddev_version_constraint: ""
 dependencies: ["ddev/ddev-nvm"]
 type: contrib
 created_at: 2024-12-31
-updated_at: 2026-02-23
+updated_at: 2026-02-27
 workflow_status: success
 stars: 3
 ---

@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2022-12-15
-updated_at: 2026-02-04
+updated_at: 2026-02-27
 workflow_status: success
 stars: 4
 ---
@@ -22,7 +22,9 @@ stars: 4
 
 # DDEV-WKHTMLTOX
 
-*DEPRECATED*: The wkhtmltopdf project has been set to read-only as of Jan 2023 and the releases project, for distro packages, in Aug 2023. This addon won't work once DDEV switches to Debian Trixie as there probably won't be a build available.
+*DEPRECATED*: The wkhtmltopdf project has been set to read-only as of Jan 2023, and the releases project, for distro packages, in Aug 2023. 
+
+This add-on still works with the latest DDEV release, but you should consider using another more supported tool, such as [Spatie Browsershot](https://github.com/spatie/browsershot). 
 
 ## Intro
 
