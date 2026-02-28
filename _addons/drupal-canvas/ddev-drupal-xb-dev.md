@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-11
-updated_at: 2026-02-25
+updated_at: 2026-02-27
 workflow_status: success
 stars: 23
 ---
@@ -26,9 +26,11 @@ This creates and configures a DDEV project for local [Drupal Canvas](https://www
 - [Installation](#installation)
 - [Usage](#usage)
 - [Updating](#updating)
-- [Cypress](#cypress)
-  - [Setup](#setup)
-  - [Usage](#usage-1)
+- [Automatic tests](#automatic-tests)
+  - [PHPUnit tests](#phpunit)
+  - [Cypress](#cypress)
+    - [Setup](#setup)
+    - [Running Cypress tests](#running-cypress-tests)
 - [Support \& community](#support--community)
 - [FAQ \& known issues](#faq--known-issues)
   - [Can I use Cypress on Linux or Windows?](#can-i-use-cypress-on-linux-or-windows)
@@ -102,14 +104,32 @@ ddev | grep xb-
 
 Update the Drupal Canvas module clone just like you would any other Git repo. No tools are currently provided for updating Core.
 
-## Cypress
+## Automatic tests
+
+### PHPUnit
+
+For PHPUnit based tests (`Unit`, `Kernel`, `Functional`, and `FunctionalJavascript`), the `xb-phpunit` command is provided.
+The test file must be passed relative to the canvas module root.
+
+```shell
+ddev xb-phpunit tests/src/Functional/CanvasConfigEntityHttpApiTest.php
+```
+
+Whatever extra argument `phpunit` accepts can be used:
+
+```shell
+ddev xb-phpunit tests/src/Functional/CanvasConfigEntityHttpApiTest.php --filter testJavascriptComponent
+
+```
+
+### Cypress
 
 Drupal Canvas uses [Cypress](https://www.cypress.io/) for front-end testing. It is currently only supported on macOS.
 Linux and Windows with WSL2 might work with the instructions below.
 
-### Setup
+#### Setup
 
-#### macOS
+##### macOS
 
 > Carefully follow the below XQuartz configuration steps after installing it. Failure to do so will result in frustrating, difficult to debug problems.
 
@@ -129,14 +149,14 @@ Configure XQuartz to allow connections from the host:
 
 ![XQuartz Preferences dialog](https://raw.githubusercontent.com/drupal-canvas/ddev-drupal-xb-dev/main/resources/xquartz-settings.png)
 
-#### Windows
+##### Windows
 
 > **Note:** This is experimental and officially unsupported. Members of the community who use Windows may be able to provide unofficial support. See [Support \& community](#support--community). Be sure to thank them. They're giving up their personal time to help you.
 
 Install [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv) in the default "C:/Program Files" location.
 You might need to restart your system afterwards.
 
-### Usage
+#### Running Cypress tests
 
 Run Cypress tests interactively:
 
