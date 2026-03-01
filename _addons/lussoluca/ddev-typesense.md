@@ -6,12 +6,12 @@ user: lussoluca
 repo: ddev-typesense
 repo_id: 947892943
 default_branch: main
-tag_name: v0.0.2
+tag_name: 0.0.3
 ddev_version_constraint: ">= v1.24.2"
 dependencies: []
 type: contrib
 created_at: 2025-03-13
-updated_at: 2025-06-03
+updated_at: 2026-02-28
 workflow_status: success
 stars: 0
 ---
@@ -24,7 +24,7 @@ Uses the current stable release of the Typesense Docker image.
 
 With DDEV installed, run this command:
 
-`ddev get lussoluca/ddev-typesense`
+`ddev add-on get lussoluca/ddev-typesense`
 
 ## Configuration
 
