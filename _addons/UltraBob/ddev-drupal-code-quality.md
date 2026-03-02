@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-28
-updated_at: 2026-02-21
+updated_at: 2026-03-01
 workflow_status: success
 stars: 2
 ---
@@ -53,9 +53,30 @@ ddev add-on get UltraBob/ddev-drupal-code-quality
 
 # Or, for local development
 ddev add-on get /path/to/ddev-drupal-code-quality
-
-ddev restart
 ```
+
+## Related add-ons and overlap
+
+There is overlap with other Drupal-focused DDEV add-ons. The key difference is
+the project type each one is designed for.
+
+| Add-on | Best for | Typical project layout |
+| --- | --- | --- |
+| `UltraBob/ddev-drupal-code-quality` | Full Drupal website projects where your site repo already contains Drupal code and custom code. | Existing site/project repo; installs code-quality configs and IDE shims in-place. |
+| `ddev/ddev-drupal-contrib` | Drupal contrib module/theme development where the contrib project is the center of the repo. | Contrib project repo with Drupal scaffolded around it (symlink workflow). |
+| `justafish/ddev-drupal-core-dev` / `joachim-n/ddev-drupal-core-dev` | Drupal core development. | Drupal core checkout or core-dev project template. |
+
+### Practical guidance
+
+- Use the add-on that matches your project type (full-site, contrib, or core).
+- These add-ons overlap in commands/configs and are generally not intended to
+  be combined in one project.
+- If you are developing contrib modules/themes, prefer
+  `ddev/ddev-drupal-contrib`.
+- If you are developing Drupal core, prefer `ddev-drupal-core-dev` (see above
+  forks).
+- If you are working on a full website project and want local checks aligned
+  with Drupal.org GitLab template defaults, use this add-on.
 
 ## Repository structure
 
