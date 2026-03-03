@@ -6,14 +6,14 @@ user: stefpe
 repo: ddev-dbgate
 repo_id: 1168331665
 default_branch: main
-tag_name: 0.0.1
+tag_name: 0.0.3
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2026-02-27
-updated_at: 2026-02-27
+updated_at: 2026-03-02
 workflow_status: success
-stars: 0
+stars: 1
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
@@ -40,12 +40,13 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Command | Description |
 | ------- | ----------- |
+| `ddev dbgate` | Launch Dbgate in the browser |
 | `ddev describe` | View service status and used ports for Dbgate |
 | `ddev logs -s dbgate` | Check Dbgate logs |
 
 After starting, Dbgate will be available at:
-- `http://dbgate.project.ddev.site:3000`
-- `https://dbgate.project.ddev.site:3001`
+- `http://dbgate.project.ddev.site:8048`
+- `https://dbgate.project.ddev.site:8049`
 
 ## Advanced Customization
 
