@@ -6,12 +6,12 @@ user: FreelyGive
 repo: ddev-playwright-cli
 repo_id: 1160089818
 default_branch: main
-tag_name: 0.2.1
+tag_name: 0.3.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2026-02-17
-updated_at: 2026-02-25
+updated_at: 2026-03-04
 workflow_status: success
 stars: 0
 ---
