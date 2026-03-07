@@ -6,12 +6,12 @@ user: kanopi
 repo: ddev-kanopi-drupal
 repo_id: 1034499133
 default_branch: main
-tag_name: 1.2.4
+tag_name: 1.2.5
 ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2026-02-26
+updated_at: 2026-03-06
 workflow_status: disabled
 stars: 3
 ---

@@ -6,12 +6,12 @@ user: happiness
 repo: ddev-codebase
 repo_id: 1061634936
 default_branch: main
-tag_name: 1.0.0
+tag_name: 1.1.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2025-09-22
-updated_at: 2026-03-05
+updated_at: 2026-03-06
 workflow_status: unknown
 stars: 0
 ---
@@ -28,6 +28,45 @@ ddev add-on get happiness/ddev-codebase
 ```
 
 ## PhpStorm Integration
+
+### MCP Server
+
+Configure a MCP server at _Tools > AI Assistant > Model Context Protocol (MCP)_
+with the following config:
+
+```json
+{
+  "mcpServers": {
+    "codebase": {
+      "command": "ddev",
+      "args": [
+        "exec",
+        "php",
+        ".ddev/codebase/scripts/CodebaseMCPServer.class.php"
+      ]
+    }
+  }
+}
+```
+
+Also set the correct working directory (project root) and server level (project). 
+
+The MCP-server provides the following tools:
+
+* list_tickets
+* get_ticket
+* get_ticket_notes
+* get_ticket_statuses
+* get_ticket_priorities
+* get_ticket_categories
+* get_ticket_types
+* create_ticket
+* update_ticket
+* get_milestones
+* get_project_activity
+* get_project_users
+
+### Task Server
 
 Configure a task server at _Tools > Tasks > Servers_, add a _Generic_ server with the
 following config:

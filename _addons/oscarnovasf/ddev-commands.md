@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-06
-updated_at: 2026-02-09
+updated_at: 2026-03-06
 workflow_status: success
 stars: 1
 ---
@@ -34,9 +34,14 @@ Conjunto de comandos personalizados para [DDEV][ddev] que facilitan el flujo de
 trabajo en proyectos [Drupal][drupal].
 
 Este addon proporciona **9 comandos** que cubren las necesidades más comunes
-del desarrollo en Drupal: limpieza de caché, ejecución de tests, análisis
-estático de código, refactorización automática, compilación de SCSS,
-comprobación de enlaces rotos y métricas de código.
+del desarrollo en Drupal:
+- limpieza de caché
+- ejecución de tests
+- análisis estático de código
+- refactorización automática
+- compilación de SCSS
+- comprobación de enlaces rotos
+- métricas de código
 
 ---
 
@@ -185,6 +190,8 @@ Analiza las carpetas:
 ```
 ddev-commands/
 ├── commands/
+│   ├── host/
+│   │   └── run              # Abrir el proyecto en el Explorador por defecto
 │   └── web/
 │       ├── behat            # Pruebas funcionales
 │       ├── cr               # Limpieza de caché + Redis
