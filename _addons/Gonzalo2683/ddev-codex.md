@@ -6,12 +6,12 @@ user: Gonzalo2683
 repo: ddev-codex
 repo_id: 1136411338
 default_branch: master
-tag_name: v1.0.0
+tag_name: v1.1.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-01-17
-updated_at: 2026-01-17
+updated_at: 2026-03-07
 workflow_status: unknown
 stars: 0
 ---
@@ -40,7 +40,7 @@ Since Codex runs inside a container, the standard browser authentication won't w
 
 **Step 1:** Enable device code authorization in ChatGPT settings
 
-Go to [ChatGPT Settings > Security](https://chatgpt.com/settings) and enable **"Enable device code authorization for Codex"**.
+Go to [ChatGPT Settings > Security](https://chatgpt.com/settings#settings) and enable **"Enable device code authorization for Codex"**.
 
 **Step 2:** Run the login command
 
