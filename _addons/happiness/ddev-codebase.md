@@ -6,7 +6,7 @@ user: happiness
 repo: ddev-codebase
 repo_id: 1061634936
 default_branch: main
-tag_name: 1.1.3
+tag_name: 1.1.4
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
