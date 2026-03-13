@@ -11,12 +11,16 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2025-09-22
-updated_at: 2026-03-09
+updated_at: 2026-03-12
 workflow_status: unknown
 stars: 0
 ---
 
 # ddev-codebase
+
+**Deprecated**: This project is deprecated. Please see [Codebase MCP Server](https://github.com/petertornstrand/codebase-mcp-server)
+for a replacement for the MCP server part. The task server will not be replaced as I
+do not use it.
 
 This is a DDEV add-on for [Codebase](https://www.codebasehq.com), a project managment
 software.
