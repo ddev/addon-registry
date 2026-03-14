@@ -6,12 +6,12 @@ user: Lullabot
 repo: ddev-playwright
 repo_id: 635031324
 default_branch: main
-tag_name: 0.5.0
+tag_name: v0.5.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-05-01
-updated_at: 2026-03-12
+updated_at: 2026-03-13
 workflow_status: success
 stars: 28
 ---
@@ -25,6 +25,7 @@ _Example test validating phpinfo(), slowed down for the demo._
 
 * [What is ddev-playwright?](#what-is-ddev-playwright)
 * [Getting started](#getting-started)
+* [SQLite tmpfs mount](#sqlite-tmpfs-mount)
 * [Contributing](#contributing)
 
 ## What is ddev-playwright?
@@ -42,19 +43,33 @@ Highlights include:
 
 ## Getting started
 
+The full setup workflow is:
+
+1. **Install the addon** and commit the generated configuration.
+2. **Initialize Playwright** inside the container (creates `package.json`, config, etc.).
+4. **Run `ddev install-playwright`** to rebuild the web service with browser dependencies.
+
+> **Tip:** Re-run `ddev restart` any time you update the Playwright
+> version in `test/playwright/package.json` so the matching browser binaries are
+> installed.
+
 ```console
+# 1. Install the addon.
 ddev add-on get Lullabot/ddev-playwright
 git add .
 git add -f .ddev/config.playwright.yml
+
+# 2. Initialize Playwright (choose npm or yarn).
 mkdir -p test/playwright
-# To install with npm.
 ddev exec -d /var/www/html/test/playwright npm init playwright@latest
-# Or yarn.
-ddev exec -d /var/www/html/test/playwright yarn create playwright
+# Or yarn:
+# ddev exec -d /var/www/html/test/playwright yarn create playwright
 
 # Add ignoreHTTPSErrors: true in test/playwright/playwright.config.ts to support HTTPS in tests.
-# Now, install playwright dependencies and cache them for later.
+
+# 3. Install Playwright browser dependencies and cache them.
 ddev install-playwright
+
 # To run playwright's test command.
 ddev playwright test
 # To run with the UI.
@@ -74,6 +89,15 @@ The following services are exposed with this addon:
 |-------------------------|-----------------------------------|--------------------------------------------------------------------------------------------|
 | KasmVNC                 | https://\<PROJECT>.ddev.site:8444 | Username is your local username. Password is `secret`.                                     |
 | Playwright Test Reports | https://\<PROJECT>.ddev.site:9324 | This port is changed from the default to not conflict with running Playwright on the host. |
+
+## SQLite tmpfs mount
+
+This addon mounts `/tmp/sqlite` as a tmpfs (in-memory) volume. The
+[`@lullabot/playwright-drupal`](https://www.npmjs.com/package/@lullabot/playwright-drupal)
+package uses this path for per-test SQLite database copies, and keeping
+the I/O in memory significantly improves parallel test performance. Feel free to use it for your own database driven tests.
+
+Because tmpfs is volatile, `ddev restart` will clear the volume.
 
 ## Contributing
 
