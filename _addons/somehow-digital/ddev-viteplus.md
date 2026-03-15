@@ -6,19 +6,19 @@ user: somehow-digital
 repo: ddev-viteplus
 repo_id: 1181005932
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.0.2
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: contrib
 created_at: 2026-03-13
-updated_at: 2026-03-13
-workflow_status: unknown
-stars: 1
+updated_at: 2026-03-14
+workflow_status: success
+stars: 2
 ---
 
-# Vite+ for DDEV
+# Vite+ for `DDEV`
 
-DDEV addon that provides a Vite+ service and commands to run inside your DDEV project.
+DDEV addon that provides [`Vite+`](https://viteplus.dev) commands to run inside your DDEV project.
 
 ## What is Vite+?
 
@@ -35,35 +35,50 @@ ddev restart
 
 ## Commands
 
-- **`ddev vp <args...>`**
-
-Examples:
-
-```bash
-ddev vp install
-ddev vp dev
-```
+- **`ddev vp`**
 
 ## URLs
 
 The dev server container exposes Vite on:
 
-- **HTTPS**: `https://<project>.ddev.site:3000`
+- **HTTPS**: `https://<project>.ddev.site:5173/`
 
-**Configuration**: Add this to your `vite.config.js`:
+**Internal Container Access**: From other DDEV containers (e.g., PHP/web container), use:
+- `http://viteplus:5173/`
 
+## Configuration
+
+### Craft CMS
+
+When using the [Vite Plugin](https://plugins.craftcms.com/vite), configure as follows:
+
+**config/vite.php**
+```php
+<?php
+
+use craft\helpers\App;
+
+return [
+    'useDevServer' => Craft::$app->config->general->devMode,
+    'checkDevServer' => true,
+    'devServerInternal' => 'http://viteplus:5173',
+    'devServerPublic' => App::env('DEFAULT_SITE_URL') . ':5173',
+    'serverPublic' => '/dist/',
+    'includeReactRefreshShim' => false,
+    'includeModulePreloadShim' => false,
+    'manifestPath' => '@webroot/dist/.vite/manifest.json',
+];
+```
+
+**vite.config.js**
 ```js
-// vite.config.js
 export default {
   server: {
     host: '0.0.0.0',
-    port: 3000,
+    port: 5173,
     allowedHosts: [
-      'viteplus'
-    ]
-  }
+      'viteplus',
+    ],
+  },
 }
 ```
-
-**Internal Container Access**: From other DDEV containers (e.g., PHP/web container), use:
-- `http://viteplus:3000`
