@@ -11,10 +11,12 @@ ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
 created_at: 2026-03-14
-updated_at: 2026-03-14
+updated_at: 2026-03-16
 workflow_status: failure
 stars: 0
 ---
+
+![Adeliom](https://raw.githubusercontent.com/agence-adeliom/ddev-php-debugger/main/./adeliom.jpg)
 
 # ddev-php-debugger
 
@@ -24,7 +26,7 @@ Xdebug adds ~324% overhead even when loaded but inactive. php-debugger strips pr
 
 ## Requirements
 
-- DDEV >= v1.24.0
+- DDEV >= v1.23.5
 - PHP 8.2 or later
 - Any architecture: pre-built binaries for amd64, compiles from source on arm64 (Apple Silicon)
 
