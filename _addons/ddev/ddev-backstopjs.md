@@ -1,25 +1,25 @@
 ---
-title: mmunz/ddev-backstopjs
-github_url: https://github.com/mmunz/ddev-backstopjs
+title: ddev/ddev-backstopjs
+github_url: https://github.com/ddev/ddev-backstopjs
 description: "ddev addon to provide a backstopjs container for visual regression testing"
-user: mmunz
+user: ddev
 repo: ddev-backstopjs
 repo_id: 594003686
 default_branch: main
 tag_name: v1.0.6
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
+type: official
 created_at: 2023-01-27
-updated_at: 2026-02-05
+updated_at: 2026-03-16
 workflow_status: success
 stars: 14
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
-[![tests](https://github.com/mmunz/ddev-backstopjs/actions/workflows/tests.yml/badge.svg)](https://github.com/mmunz/ddev-backstopjs/actions/workflows/tests.yml)
-[![last commit](https://img.shields.io/github/last-commit/mmunz/ddev-backstopjs)](https://github.com/mmunz/ddev-backstopjs/commits)
-[![release](https://img.shields.io/github/v/release/mmunz/ddev-backstopjs)](https://github.com/mmunz/ddev-backstopjs/releases/latest)
+[![tests](https://github.com/ddev/ddev-backstopjs/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-backstopjs/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-backstopjs)](https://github.com/ddev/ddev-backstopjs/commits)
+[![release](https://img.shields.io/github/v/release/ddev/ddev-backstopjs)](https://github.com/ddev/ddev-backstopjs/releases/latest)
 
 ## ddev-backstopjs
 
@@ -34,7 +34,7 @@ config and for links to a more advanced example config.
 Install this addon with
 
 ```shell
-ddev add-on get mmunz/ddev-backstopjs
+ddev add-on get ddev/ddev-backstopjs
 ```
 
 After that you need to restart the ddev project:
@@ -99,8 +99,8 @@ open tests/backstop/backstop_data/_mytestproject_/html_report/index.html
 
 ## Changes to the original docker image
 
-The backstopjs docker image is extended with some functions using a custom docker build, see [Dockerfile](https://github.com/mmunz/ddev-backstopjs/blob/main/backstopBuild/Dockerfile)
-and uses a custom [entrypoint](https://github.com/mmunz/ddev-backstopjs/blob/main/backstopBuild/entrypoint.sh).
+The backstopjs docker image is extended with some functions using a custom docker build, see [Dockerfile](https://github.com/ddev/ddev-backstopjs/blob/main/backstopBuild/Dockerfile)
+and uses a custom [entrypoint](https://github.com/ddev/ddev-backstopjs/blob/main/backstopBuild/entrypoint.sh).
 
 In the Dockerfile the following is added/changed:
 
@@ -136,7 +136,13 @@ See: [ddev FAQ: Can different projects communicate with each other?](https://dde
 Per default the backstop directory containing backstop config etc. is expected in your project directory (besides the
 .ddev folder) in the directory *tests/backstop*.
 
-If you want to change that edit the file [docker-compose.backstop.yaml](https://github.com/mmunz/ddev-backstopjs/blob/main/docker-compose.backstop.yaml) and
+If you want to change that edit the file [docker-compose.backstop.yaml](https://github.com/ddev/ddev-backstopjs/blob/main/docker-compose.backstop.yaml) and
 change the line in volumes to the path you want to use, move the files to the new directory and restart ddev.
 
 Make sure to remove the #ddev-generated line from the file to prevent ddev from making changes to it.
+
+## Credits
+
+**Contributed and maintained by [@mmunz](https://github.com/mmunz)**
+
+**Maintained by the [DDEV team](https://ddev.com/support-ddev/)**

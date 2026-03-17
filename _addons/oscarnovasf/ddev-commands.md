@@ -6,12 +6,12 @@ user: oscarnovasf
 repo: ddev-commands
 repo_id: 1151587694
 default_branch: main
-tag_name: v1.1.1
+tag_name: v1.1.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-06
-updated_at: 2026-03-06
+updated_at: 2026-03-16
 workflow_status: success
 stars: 1
 ---
@@ -33,8 +33,9 @@ DDEV - Herramientas para Drupal
 Conjunto de comandos personalizados para [DDEV][ddev] que facilitan el flujo de
 trabajo en proyectos [Drupal][drupal].
 
-Este addon proporciona **9 comandos** que cubren las necesidades más comunes
+Este addon proporciona **10 comandos** que cubren las necesidades más comunes
 del desarrollo en Drupal:
+- apertura del sitio en el navegador con login automático
 - limpieza de caché
 - ejecución de tests
 - análisis estático de código
@@ -75,6 +76,16 @@ ddev restart
 ---
 
 ## Comandos disponibles
+
+### `ddev run` — Abrir el sitio en el navegador
+
+Abre el sitio Drupal en el navegador utilizando un enlace de inicio de sesión
+único generado con `drush uli`. Permite acceder directamente como administrador
+sin necesidad de introducir credenciales.
+
+```bash
+ddev run
+```
 
 ### `ddev cr` — Limpieza de caché
 
@@ -191,7 +202,7 @@ Analiza las carpetas:
 ddev-commands/
 ├── commands/
 │   ├── host/
-│   │   └── run              # Abrir el proyecto en el Explorador por defecto
+│   │   └── run              # Abrir el sitio en el navegador con login automático
 │   └── web/
 │       ├── behat            # Pruebas funcionales
 │       ├── cr               # Limpieza de caché + Redis
@@ -222,8 +233,8 @@ ddev restart
 
 [mi-web]: https://oscarnovas.com "for developers"
 
-[version]: v1.1.1
-[version-badge]: https://img.shields.io/badge/Versión-1.1.1-blue.svg
+[version]: v1.1.2
+[version-badge]: https://img.shields.io/badge/Versión-1.1.2-blue.svg
 
 [license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"
