@@ -6,14 +6,14 @@ user: amateescu
 repo: ddev-drupal-dev
 repo_id: 1183388555
 default_branch: main
-tag_name: v1.0.0
+tag_name: 1.0.2
 ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: contrib
 created_at: 2026-03-16
-updated_at: 2026-03-18
-workflow_status: failure
-stars: 0
+updated_at: 2026-03-19
+workflow_status: success
+stars: 1
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
@@ -30,6 +30,17 @@ Other add-ons target either core or contrib in isolation. This one is for when y
 Extra dependencies (contrib modules, Drush, dev tools) are managed through a `composer.local.json` overlay, keeping core's `composer.json` and `composer.lock` untouched.
 
 ## Installation
+
+Clone Drupal core and configure DDEV to use it as the project root:
+
+```bash
+git clone https://git.drupalcode.org/project/drupal.git drupal-dev
+cd drupal-dev
+ddev config --project-type=drupal12
+ddev start
+```
+
+Then install the add-on:
 
 ```bash
 ddev add-on get amateescu/ddev-drupal-dev
@@ -129,7 +140,7 @@ An `.envrc` file is created during installation. If you have [direnv](https://di
 direnv allow
 ```
 
-This sets the `COMPOSER` env var and sources the shell helpers, so `composer`, `drush`, `php` and `phpunit` all delegate to DDEV automatically when you're in the project directory.
+This sets the `COMPOSER` env var on the host so that running `composer` directly on the host uses the overlay. Note that direnv cannot export shell functions, so you still need the shell helpers above for `composer`, `drush`, `php` and `phpunit` delegation.
 
 ## Command reference
 

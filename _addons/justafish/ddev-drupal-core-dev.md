@@ -6,12 +6,12 @@ user: justafish
 repo: ddev-drupal-core-dev
 repo_id: 706601727
 default_branch: main
-tag_name: v1.2.3
+tag_name: v1.2.4
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-18
-updated_at: 2025-06-12
+updated_at: 2026-03-19
 workflow_status: failure
 stars: 29
 ---
