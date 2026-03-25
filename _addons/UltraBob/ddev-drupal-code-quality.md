@@ -6,12 +6,12 @@ user: UltraBob
 repo: ddev-drupal-code-quality
 repo_id: 1124009554
 default_branch: main
-tag_name: v1.0.3
+tag_name: v1.0.4
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-28
-updated_at: 2026-03-23
+updated_at: 2026-03-24
 workflow_status: success
 stars: 4
 ---
@@ -251,6 +251,31 @@ The template points PHP tooling at `.ddev/drupal-code-quality/tooling/bin` and J
 - `DCQ_INSTALL_IDE_SETTINGS`: `merge` to add missing VS Code settings and
   extension recommendations, `overwrite` to back up and replace, `skip` to
   handle manually, or unset to prompt.
+
+## Maintaining upstream configs
+
+The add-on ships config files sourced from Drupal core and the Drupal GitLab CI
+templates. A sync script checks for upstream changes:
+
+```bash
+# Check for upstream config changes (report only)
+./scripts/sync-upstream-configs.sh
+
+# Apply changes to local asset files
+./scripts/sync-upstream-configs.sh --update
+
+# Override upstream branches
+./scripts/sync-upstream-configs.sh --branch-core=11.x --branch-templates=main
+```
+
+After applying updates, run the full test suite to validate configs still work:
+
+```bash
+DCQ_FULL_TESTS=1 bats --jobs 4 ./tests/test.bats
+```
+
+A weekly GitHub Actions workflow (`upstream-config-check.yml`) automatically
+checks for upstream drift and opens an issue when changes are detected.
 
 ## Uninstall
 
