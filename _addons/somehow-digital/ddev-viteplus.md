@@ -13,7 +13,7 @@ type: contrib
 created_at: 2026-03-13
 updated_at: 2026-03-15
 workflow_status: success
-stars: 2
+stars: 3
 ---
 
 # Vite+ for `DDEV`
