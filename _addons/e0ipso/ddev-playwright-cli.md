@@ -6,12 +6,12 @@ user: e0ipso
 repo: ddev-playwright-cli
 repo_id: 1161565491
 default_branch: main
-tag_name: v1.2.0
+tag_name: v1.2.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2026-02-19
-updated_at: 2026-03-24
+updated_at: 2026-03-25
 workflow_status: failure
 stars: 3
 ---
