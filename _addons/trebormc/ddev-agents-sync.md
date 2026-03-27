@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-agents-sync
 repo_id: 1191720964
 default_branch: main
-tag_name: v1.0.1
+tag_name: v1.0.3
 ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-03-25
+updated_at: 2026-03-26
 workflow_status: unknown
 stars: 0
 ---

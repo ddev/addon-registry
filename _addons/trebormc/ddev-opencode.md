@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-opencode
 repo_id: 1191702047
 default_branch: main
-tag_name: v1.0.1
+tag_name: v1.0.3
 ddev_version_constraint: ">= v1.23.5"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-03-25
+updated_at: 2026-03-26
 workflow_status: unknown
 stars: 0
 ---
@@ -30,19 +30,14 @@ Agents, rules, and skills for Drupal development are automatically synced from [
 # 1. Install the add-on
 ddev add-on get trebormc/ddev-opencode
 
-# 2. Set up your API credentials
-mkdir -p ~/opencode-auth
-cp share/auth.json.example ~/opencode-auth/auth.json
-# Edit ~/opencode-auth/auth.json with your API tokens
-
-# 3. Point to your auth directory
-ddev dotenv set .ddev/.env.opencode \
-  --host-opencode-auth-dir="$HOME/opencode-auth/"
-
-# 4. Restart DDEV
+# 2. Restart DDEV
 ddev restart
 
-# 5. Launch OpenCode
+# 3. Set up credentials (choose one)
+# Option A: If ddev-claude-code is installed, OAuth credentials are synced automatically
+# Option B: Create auth.json manually (see Authentication section below)
+
+# 4. Launch OpenCode
 ddev opencode
 ```
 
@@ -65,7 +60,13 @@ This automatically installs all dependencies:
 
 ## Authentication
 
-Create an `auth.json` file in the directory pointed to by `HOST_OPENCODE_AUTH_DIR`:
+**Option A -- Automatic sync from Claude Code (recommended):**
+
+If [ddev-claude-code](https://github.com/trebormc/ddev-claude-code) is installed, OAuth credentials are synced automatically every 60 seconds. Just run `ddev claude-code claude login` once and OpenCode will pick up the credentials.
+
+**Option B -- Manual `auth.json`:**
+
+Create `~/.ddev/opencode/auth/auth.json`:
 
 ```json
 {
@@ -78,16 +79,20 @@ Create an `auth.json` file in the directory pointed to by `HOST_OPENCODE_AUTH_DI
 }
 ```
 
-Credentials are stored in a shared directory on the host (`~/opencode-auth/` by default), so you only need to configure them **once** -- all your DDEV projects share the same credentials automatically.
+Credentials are stored in a shared directory on the host (`~/.ddev/opencode/auth/` by default), so you only need to configure them **once** -- all your DDEV projects share the same credentials automatically.
 
 ## Configuration
 
 After installation, environment variables are in `.ddev/.env.opencode`:
 
 ```bash
-# Directory containing auth.json with your API keys.
+# Shared OpenCode directory for credentials and config.
 # Shared across ALL DDEV projects. Change only if you need a custom location.
-HOST_OPENCODE_AUTH_DIR=${HOME}/opencode-auth/
+# Subdirectories: auth/ (credentials), config/ (opencode.json, custom overrides)
+HOST_OPENCODE_DIR=${HOME}/.ddev/opencode
+
+# Claude Code config directory (for automatic OAuth credential sync)
+HOST_CLAUDE_CONFIG_DIR=${HOME}/.ddev/claude-code
 
 # Timezone
 TZ=UTC
@@ -120,13 +125,7 @@ See [Model Token System](https://github.com/trebormc/ddev-agents-sync#model-toke
 
 ### Local config override
 
-If you want to use a custom `opencode.json` (e.g., to add a LiteLLM proxy or change global permissions), set `HOST_OPENCODE_CONFIG_DIR` in `.ddev/.env.opencode`:
-
-```bash
-HOST_OPENCODE_CONFIG_DIR=${HOME}/my-opencode-config/
-```
-
-Place your `opencode.json` in that directory. It takes precedence over the default from the agent repository. Agents, rules, and skills are always loaded from the synced volume regardless of this setting.
+To use a custom `opencode.json` (e.g., to add a LiteLLM proxy or change global permissions), place it in `~/.ddev/opencode/config/opencode.json`. It takes precedence over the default from the agent repository. Agents, rules, and skills are always loaded from the synced volume regardless.
 
 ## Architecture
 

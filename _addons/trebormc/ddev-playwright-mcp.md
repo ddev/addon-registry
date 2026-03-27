@@ -6,7 +6,7 @@ user: trebormc
 repo: ddev-playwright-mcp
 repo_id: 1191701790
 default_branch: main
-tag_name: v1.0.1
+tag_name: v1.0.2
 ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
