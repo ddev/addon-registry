@@ -6,12 +6,12 @@ user: rfay
 repo: ddev-php-patch-build
 repo_id: 692610647
 default_branch: main
-tag_name: v0.5.0
+tag_name: v0.5.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2023-09-17
-updated_at: 2025-12-02
+updated_at: 2026-03-27
 workflow_status: failure
 stars: 1
 ---
