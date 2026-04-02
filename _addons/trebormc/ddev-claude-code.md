@@ -6,13 +6,13 @@ user: trebormc
 repo: ddev-claude-code
 repo_id: 1191702322
 default_branch: main
-tag_name: v1.0.8
+tag_name: v1.0.17
 ddev_version_constraint: ">= v1.23.5"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-03-26
-workflow_status: unknown
+updated_at: 2026-04-01
+workflow_status: failure
 stars: 0
 ---
 
@@ -31,11 +31,7 @@ ddev add-on get trebormc/ddev-claude-code
 # 2. Restart DDEV
 ddev restart
 
-# 3. Authenticate (choose one)
-ddev claude-code claude login          # OAuth (recommended)
-# OR set API key in .ddev/.env.claude-code
-
-# 4. Launch Claude Code
+# 3. Launch Claude Code (authenticate on first run)
 ddev claude-code
 ```
 
@@ -58,22 +54,9 @@ This automatically installs all dependencies:
 
 ## Authentication
 
-Credentials are stored in a shared directory on the host (`~/.ddev/claude-code/` by default), so you only need to authenticate **once** -- all your DDEV projects share the same session automatically.
+Run `ddev claude-code` and follow the prompts. Claude Code handles OAuth and API key authentication natively -- no custom commands or manual file editing needed.
 
-**Option A: OAuth login (recommended for Claude Pro/Team/Enterprise subscribers)**
-
-```bash
-ddev claude-code claude login
-```
-
-This opens a browser for OAuth authentication. Credentials persist across `ddev restart`, new projects, and machine reboots.
-
-**Option B: API key**
-
-```bash
-ddev dotenv set .ddev/.env.claude-code --anthropic-api-key=sk-ant-your-key-here
-ddev restart
-```
+Credentials are stored in a shared directory on the host (`~/.ddev/claude-code/` by default), so you only need to authenticate **once** -- all your DDEV projects share the same session automatically. Credentials persist across `ddev restart`, new projects, and machine reboots.
 
 ## Configuration
 
@@ -83,9 +66,6 @@ After installation, environment variables are in `.ddev/.env.claude-code`:
 # Shared config directory -- credentials, settings, and session data.
 # Shared across ALL DDEV projects. Change only if you need a custom location.
 HOST_CLAUDE_CONFIG_DIR=${HOME}/.ddev/claude-code
-
-# API key (alternative to OAuth login)
-#ANTHROPIC_API_KEY=sk-ant-...
 
 # Timezone
 TZ=UTC
@@ -137,8 +117,32 @@ Claude Code communicates with the web container via `docker exec` (through the m
 | Command | Description |
 |---------|-------------|
 | `ddev claude-code` | Start Claude Code interactive session |
+| `ddev claude-code tui` | Start interactive session (same as above) |
+| `ddev claude-code tui Fix login bug` | Start interactive session with a custom tab title |
 | `ddev claude-code shell` | Open a bash shell in the container |
 | `ddev claude-code <command>` | Run any command in the container |
+
+### Tab title for multi-project workflows
+
+When working on multiple DDEV projects at the same time, it can be hard to tell which terminal belongs to which project. The `tui` subcommand sets the terminal tab title to **`project-name - custom text`**, so you can identify each terminal at a glance.
+
+The project name (`DDEV_SITENAME`) is always included automatically. If you add extra text after `tui`, it appears as a label -- useful for describing the task you are working on in that terminal.
+
+```bash
+# Tab title: "mysite - Claude Code"
+ddev claude-code
+
+# Tab title: "mysite - Claude Code"  (explicit tui, same result)
+ddev claude-code tui
+
+# Tab title: "mysite - Fix login redirect bug"
+ddev claude-code tui Fix login redirect bug
+
+# Tab title: "mysite - TASK-42 migrate users"
+ddev claude-code tui TASK-42 migrate users
+```
+
+This way, if you have three terminals open (two projects, two tasks), each tab shows exactly where you are and what you are doing.
 
 ### Shell Helpers
 
@@ -175,35 +179,19 @@ AGENTS_REPOS=https://github.com/trebormc/drupal-ai-agents.git,https://github.com
 
 See [Model Token System](https://github.com/trebormc/ddev-agents-sync#model-token-system) for details on changing agent models globally.
 
-## Desktop Notifications
+## Desktop Notifications (optional)
 
-Claude Code can send desktop notifications when sessions finish. Add a stop hook to `.claude/settings.json`:
-
-```json
-{
-  "hooks": {
-    "stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "curl -s -X POST http://host.docker.internal:5454/notify -H 'Content-Type: application/json' -d '{\"title\":\"Claude Code\",\"message\":\"Session finished\"}'"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-Then start the notification bridge on your host:
+Claude Code can send desktop notifications when sessions finish. First, install the [ai-notify-bridge](https://github.com/trebormc/ai-notify-bridge) on your host (one-time setup):
 
 ```bash
-./scripts/start-notify-bridge.sh
+curl -fsSL https://raw.githubusercontent.com/trebormc/ai-notify-bridge/main/install.sh | bash
 ```
 
-See the [DDEV AI workspace](https://github.com/trebormc/ddev-ai-workspace) for full notification setup details.
+Notification hooks are pre-configured in `settings.json` when you install the add-on. They include the project name and TUI task label automatically. Example notification title: `[mysite] Fix login bug`.
+
+If you already have a `settings.json` from a previous install, add the hooks manually. See the [install.yaml](https://github.com/trebormc/ddev-claude-code/blob/main/install.yaml) for the exact hook configuration.
+
+If the bridge is not installed or not running, the curl call fails silently with no impact on Claude Code.
 
 ## Autonomous Execution
 

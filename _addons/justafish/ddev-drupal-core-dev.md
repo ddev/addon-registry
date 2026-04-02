@@ -13,7 +13,7 @@ type: contrib
 created_at: 2023-10-18
 updated_at: 2026-03-24
 workflow_status: success
-stars: 29
+stars: 30
 ---
 
 # ddev-core-dev

@@ -6,13 +6,13 @@ user: trebormc
 repo: ddev-opencode
 repo_id: 1191702047
 default_branch: main
-tag_name: v1.0.3
+tag_name: v1.0.21
 ddev_version_constraint: ">= v1.23.5"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-03-26
-workflow_status: unknown
+updated_at: 2026-04-01
+workflow_status: failure
 stars: 0
 ---
 
@@ -60,26 +60,9 @@ This automatically installs all dependencies:
 
 ## Authentication
 
-**Option A -- Automatic sync from Claude Code (recommended):**
+Run `ddev opencode` and follow the prompts. OpenCode handles authentication natively -- no custom commands or manual file editing needed.
 
-If [ddev-claude-code](https://github.com/trebormc/ddev-claude-code) is installed, OAuth credentials are synced automatically every 60 seconds. Just run `ddev claude-code claude login` once and OpenCode will pick up the credentials.
-
-**Option B -- Manual `auth.json`:**
-
-Create `~/.ddev/opencode/auth/auth.json`:
-
-```json
-{
-  "anthropic": {
-    "type": "oauth",
-    "access": "sk-ant-oat01-YOUR_ACCESS_TOKEN",
-    "refresh": "sk-ant-ort01-YOUR_REFRESH_TOKEN",
-    "expires": 0
-  }
-}
-```
-
-Credentials are stored in a shared directory on the host (`~/.ddev/opencode/auth/` by default), so you only need to configure them **once** -- all your DDEV projects share the same credentials automatically.
+Credentials are stored in a shared directory on the host (`~/.ddev/opencode/auth/` by default), so you only need to authenticate **once** -- all your DDEV projects share the same credentials automatically.
 
 ## Configuration
 
@@ -90,9 +73,6 @@ After installation, environment variables are in `.ddev/.env.opencode`:
 # Shared across ALL DDEV projects. Change only if you need a custom location.
 # Subdirectories: auth/ (credentials), config/ (opencode.json, custom overrides)
 HOST_OPENCODE_DIR=${HOME}/.ddev/opencode
-
-# Claude Code config directory (for automatic OAuth credential sync)
-HOST_CLAUDE_CONFIG_DIR=${HOME}/.ddev/claude-code
 
 # Timezone
 TZ=UTC
@@ -153,9 +133,32 @@ OpenCode communicates with the web container via `docker exec` (through the moun
 | Command | Description |
 |---------|-------------|
 | `ddev opencode` | Launch the OpenCode TUI |
-| `ddev opencode tui [title]` | Launch TUI with a custom tab title |
+| `ddev opencode tui` | Launch TUI (same as above) |
+| `ddev opencode tui Fix login bug` | Launch TUI with a custom tab title |
 | `ddev opencode shell` | Open a bash shell in the container |
 | `ddev opencode <command>` | Run any command in the container |
+
+### Tab title for multi-project workflows
+
+When working on multiple DDEV projects at the same time, it can be hard to tell which terminal belongs to which project. The `tui` subcommand sets the terminal tab title to **`project-name - custom text`**, so you can identify each terminal at a glance.
+
+The project name (`DDEV_SITENAME`) is always included automatically. If you add extra text after `tui`, it appears as a label -- useful for describing the task you are working on in that terminal.
+
+```bash
+# Tab title: "mysite - OpenCode"
+ddev opencode
+
+# Tab title: "mysite - OpenCode"  (explicit tui, same result)
+ddev opencode tui
+
+# Tab title: "mysite - Fix login redirect bug"
+ddev opencode tui Fix login redirect bug
+
+# Tab title: "mysite - TASK-42 migrate users"
+ddev opencode tui TASK-42 migrate users
+```
+
+This way, if you have three terminals open (two projects, two tasks), each tab shows exactly where you are and what you are doing.
 
 ### Shell Helpers
 
@@ -169,17 +172,17 @@ Inside the container (via `ddev opencode shell`), these helper functions are ava
 | `web-shell` | Open an interactive shell in the web container |
 | `bd` | Run Beads task tracking commands |
 
-## Desktop Notifications
+## Desktop Notifications (optional)
 
-OpenCode can send desktop notifications when tasks complete or need attention. If you use [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents), the notification configuration is included by default.
+OpenCode can send desktop notifications when tasks complete or need attention. Notifications are pre-configured via `opencode-notifier.json` (ships with [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents)) -- no setup needed inside the container.
 
-To receive notifications, start the notification bridge on your host:
+To receive notifications, install the [ai-notify-bridge](https://github.com/trebormc/ai-notify-bridge) on your host (one-time setup):
 
 ```bash
-./scripts/start-notify-bridge.sh
+curl -fsSL https://raw.githubusercontent.com/trebormc/ai-notify-bridge/main/install.sh | bash
 ```
 
-See the [DDEV AI workspace](https://github.com/trebormc/ddev-ai-workspace) for full notification setup details.
+If the bridge is not installed or not running, OpenCode works normally -- notification calls fail silently with no impact.
 
 ## Autonomous Execution
 
