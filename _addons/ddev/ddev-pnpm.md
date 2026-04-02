@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-pnpm
 repo_id: 716421197
 default_branch: main
-tag_name: v1.1.3
-ddev_version_constraint: ">= v1.24.3"
+tag_name: v1.2.0
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2023-11-09
-updated_at: 2025-11-19
+updated_at: 2026-04-01
 workflow_status: success
 stars: 8
 ---
