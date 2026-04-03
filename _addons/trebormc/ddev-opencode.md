@@ -6,13 +6,13 @@ user: trebormc
 repo: ddev-opencode
 repo_id: 1191702047
 default_branch: main
-tag_name: v1.0.21
+tag_name: v1.0.28
 ddev_version_constraint: ">= v1.23.5"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-01
-workflow_status: failure
+updated_at: 2026-04-02
+workflow_status: disabled
 stars: 0
 ---
 
@@ -62,7 +62,7 @@ This automatically installs all dependencies:
 
 Run `ddev opencode` and follow the prompts. OpenCode handles authentication natively -- no custom commands or manual file editing needed.
 
-Credentials are stored in a shared directory on the host (`~/.ddev/opencode/auth/` by default), so you only need to authenticate **once** -- all your DDEV projects share the same credentials automatically.
+Credentials are stored in a shared file on the host (`~/.ddev/opencode/auth.json` by default), so you only need to authenticate **once** -- all your DDEV projects share the same credentials automatically.
 
 ## Configuration
 
@@ -71,7 +71,7 @@ After installation, environment variables are in `.ddev/.env.opencode`:
 ```bash
 # Shared OpenCode directory for credentials and config.
 # Shared across ALL DDEV projects. Change only if you need a custom location.
-# Subdirectories: auth/ (credentials), config/ (opencode.json, custom overrides)
+# Files: auth.json (credentials), config/ (opencode.json, custom overrides)
 HOST_OPENCODE_DIR=${HOME}/.ddev/opencode
 
 # Timezone
