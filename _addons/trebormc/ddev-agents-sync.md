@@ -6,13 +6,13 @@ user: trebormc
 repo: ddev-agents-sync
 repo_id: 1191720964
 default_branch: main
-tag_name: v1.0.3
+tag_name: v1.0.28
 ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-03-26
-workflow_status: failure
+updated_at: 2026-04-02
+workflow_status: disabled
 stars: 0
 ---
 
@@ -133,10 +133,10 @@ The `.env.agents` file in the agent repository defines the mapping:
 
 ```bash
 # OpenCode models (provider/model-id format)
-OC_MODEL_SMART=anthropic/claude-opus-4-6
-OC_MODEL_NORMAL=anthropic/claude-sonnet-4-5
-OC_MODEL_CHEAP=anthropic/claude-haiku-4-5
-OC_MODEL_APPLIER=anthropic/claude-haiku-4-5
+OC_MODEL_SMART=opencode/kimi-k2.5
+OC_MODEL_NORMAL=opencode/minimax-m2.5
+OC_MODEL_CHEAP=opencode/gpt-5-nano
+OC_MODEL_APPLIER=opencode/gpt-5-nano
 
 # Claude Code models (native aliases)
 CC_MODEL_SMART=opus

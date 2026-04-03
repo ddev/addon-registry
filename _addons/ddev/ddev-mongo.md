@@ -6,13 +6,13 @@ user: ddev
 repo: ddev-mongo
 repo_id: 475054747
 default_branch: main
-tag_name: v2.3.2
+tag_name: v2.3.3
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-03-28
-updated_at: 2026-02-11
-workflow_status: success
+updated_at: 2026-04-02
+workflow_status: failure
 stars: 7
 ---
 

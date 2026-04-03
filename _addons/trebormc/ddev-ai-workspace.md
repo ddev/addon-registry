@@ -6,13 +6,13 @@ user: trebormc
 repo: ddev-ai-workspace
 repo_id: 1191725908
 default_branch: main
-tag_name: v1.0.13
+tag_name: v1.0.28
 ddev_version_constraint: ">= v1.23.5"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync", "trebormc/ddev-opencode", "trebormc/ddev-claude-code", "trebormc/ddev-ralph"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-01
-workflow_status: failure
+updated_at: 2026-04-02
+workflow_status: disabled
 stars: 1
 ---
 
@@ -94,34 +94,25 @@ This installs all AI development tools and their dependencies automatically:
 - **ddev-claude-code** -- Claude Code CLI
 - **ddev-ralph** -- Autonomous orchestrator
 
-### 2. Configure authentication
-
-```bash
-ddev ai-setup
-```
-
-The interactive wizard guides you through configuring authentication. Credentials are stored in shared directories on your host -- configure once, all DDEV projects share them automatically:
-
-| Tool | Shared directory | Contains |
-|------|-----------------|----------|
-| Claude Code | `~/.ddev/claude-code/` | OAuth credentials, settings, MCP config |
-| OpenCode | `~/.ddev/opencode/` | API credentials (`auth/`), config overrides (`config/`) |
-
-### 3. Start using it
+### 2. Start using it
 
 ```bash
 ddev restart
 
-# Interactive AI development
+# Interactive AI development (each tool guides you through authentication on first launch)
 ddev opencode
 ddev claude-code
 
 # Autonomous task execution
 ddev ralph --backend opencode
-
-# Desktop notifications (optional, Linux)
-ddev ai-notify start
 ```
+
+Credentials are stored in shared directories on your host -- configure once, all DDEV projects share them automatically:
+
+| Tool | Shared directory | Contains |
+|------|-----------------|----------|
+| Claude Code | `~/.ddev/claude-code/` | OAuth credentials, settings, MCP config |
+| OpenCode | `~/.ddev/opencode/` | API credentials (`auth/`), config overrides (`config/`) |
 
 ## Individual Installation
 
