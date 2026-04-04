@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-playwright-mcp
 repo_id: 1191701790
 default_branch: main
-tag_name: v1.0.28
+tag_name: v1.0.37
 ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-02
+updated_at: 2026-04-03
 workflow_status: disabled
 stars: 0
 ---
@@ -74,6 +74,13 @@ ddev restart
 - **Use HTTP** (not HTTPS) when navigating to your DDEV site from Playwright to avoid SSL certificate issues in local environments.
 - The MCP server runs in **shared browser context** mode -- cookies and sessions persist across requests.
 - Screenshots output directory: `/tmp/playwright-output` (mapped to `./screenshots/` on host).
+
+## Uninstallation
+
+```bash
+ddev add-on remove ddev-playwright-mcp
+ddev restart
+```
 
 ## Part of DDEV AI Workspace
 

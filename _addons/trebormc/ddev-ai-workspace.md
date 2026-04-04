@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-ai-workspace
 repo_id: 1191725908
 default_branch: main
-tag_name: v1.0.28
+tag_name: v1.0.37
 ddev_version_constraint: ">= v1.23.5"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync", "trebormc/ddev-opencode", "trebormc/ddev-claude-code", "trebormc/ddev-ralph"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-02
+updated_at: 2026-04-03
 workflow_status: disabled
 stars: 1
 ---
@@ -63,7 +63,7 @@ A set of DDEV add-ons and configurations that bring AI-powered development tools
           ^ HTTP POST (curl)
           │ http://host.docker.internal:5454/notify
     ┌─────┴──────────────────┐
-    │  Notification Bridge   │  <- scripts/start-notify-bridge.sh
+    │  Notification Bridge   │  <- ai-notify-bridge (standalone)
     │  (host, port 5454)     │     notify-send + paplay
     └────────────────────────┘
 ```
@@ -100,8 +100,8 @@ This installs all AI development tools and their dependencies automatically:
 ddev restart
 
 # Interactive AI development (each tool guides you through authentication on first launch)
-ddev opencode
-ddev claude-code
+ddev opencode    # or: ddev oc
+ddev claude-code # or: ddev cc
 
 # Autonomous task execution
 ddev ralph --backend opencode
@@ -112,7 +112,7 @@ Credentials are stored in shared directories on your host -- configure once, all
 | Tool | Shared directory | Contains |
 |------|-----------------|----------|
 | Claude Code | `~/.ddev/claude-code/` | OAuth credentials, settings, MCP config |
-| OpenCode | `~/.ddev/opencode/` | API credentials (`auth/`), config overrides (`config/`) |
+| OpenCode | `~/.ddev/opencode/` | API credentials (`auth.json`), config overrides (`config/`) |
 
 ## Individual Installation
 
@@ -169,6 +169,15 @@ This workspace contains 8 independent git repositories. Each can be installed in
 | Repository | Description |
 |------------|-------------|
 | [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 13 specialized agents, 4 rule sets, 15 skills, and model token config (`.env.agents`) for Drupal development. Agent `.md` files use fat frontmatter compatible with both tools. Not a DDEV add-on -- synced automatically via ddev-agents-sync. |
+
+## Uninstallation
+
+```bash
+ddev add-on remove ddev-ai-workspace
+ddev restart
+```
+
+To remove individual add-ons, see each add-on's README for specific uninstall instructions.
 
 ## Disclaimer
 
