@@ -6,7 +6,7 @@ user: trebormc
 repo: ddev-beads
 repo_id: 1191702569
 default_branch: main
-tag_name: v1.0.28
+tag_name: v1.0.37
 ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
@@ -97,6 +97,13 @@ ddev bd prime                              # Get context
 | P1 | High -- important features |
 | P2 | Medium -- normal tasks |
 | P3 | Low -- nice-to-haves |
+
+## Uninstallation
+
+```bash
+ddev add-on remove ddev-beads
+ddev restart
+```
 
 ## Part of DDEV AI Workspace
 

@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-agents-sync
 repo_id: 1191720964
 default_branch: main
-tag_name: v1.0.28
+tag_name: v1.0.37
 ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-02
+updated_at: 2026-04-03
 workflow_status: disabled
 stars: 0
 ---
@@ -81,7 +81,7 @@ On ddev start:
   │  3. Read .env.agents (model alias → real model name mapping)     │
   │                                                                  │
   │  4. Generate /agents-opencode/                                   │
-  │     - envsubst: ${MODEL_CHEAP} → anthropic/claude-haiku-4-5     │
+  │     - envsubst: ${MODEL_CHEAP} → opencode/gpt-5-nano            │
   │     - Keeps OpenCode frontmatter (mode, tools object, permission)│
   │     - Removes allowed_tools line                                 │
   │     - Copies opencode.json.example, notifier config, etc.       │
@@ -108,9 +108,9 @@ The output directories are Docker named volumes (`ddev-{sitename}-agents-opencod
 
 Files are copied from each repo in order. The merge is a simple file-level override:
 
-- `agent/*.md` -- merged (later repos can add or override agents)
-- `skills/*/SKILL.md` -- merged (later repos can add or override skills)
-- `rules/*.md` -- merged (later repos can add or override rules)
+- `.claude/agents/*.md` -- merged (later repos can add or override agents)
+- `.claude/skills/*/SKILL.md` -- merged (later repos can add or override skills)
+- `.claude/rules/*.md` -- merged (later repos can add or override rules)
 - `.env.agents` -- overridden by the last repo that provides it
 - `CLAUDE.md`, `opencode.json.example` -- overridden by the last repo
 
@@ -122,10 +122,10 @@ Agent `.md` files use **model tokens** instead of hardcoded model names. This al
 
 | Token | Default (OpenCode) | Default (Claude Code) | Use for |
 |-------|--------------------|-----------------------|---------|
-| `${MODEL_SMART}` | `anthropic/claude-opus-4-6` | `opus` | Quality gates, planning, research |
-| `${MODEL_NORMAL}` | `anthropic/claude-sonnet-4-5` | `sonnet` | General-purpose tasks |
-| `${MODEL_CHEAP}` | `anthropic/claude-haiku-4-5` | `haiku` | Fast, cost-effective agents |
-| `${MODEL_APPLIER}` | `anthropic/claude-haiku-4-5` | `haiku` | Mechanical code application |
+| `${MODEL_SMART}` | `opencode/kimi-k2.5` | `opus` | Quality gates, planning, research |
+| `${MODEL_NORMAL}` | `opencode/minimax-m2.5` | `sonnet` | General-purpose tasks |
+| `${MODEL_CHEAP}` | `opencode/gpt-5-nano` | `haiku` | Fast, cost-effective agents |
+| `${MODEL_APPLIER}` | `opencode/gpt-5-nano` | `haiku` | Mechanical code application |
 
 ### How tokens are resolved
 
@@ -224,6 +224,13 @@ Manually trigger a sync without restarting DDEV:
 
 ```bash
 ddev agents-update
+```
+
+## Uninstallation
+
+```bash
+ddev add-on remove ddev-agents-sync
+ddev restart
 ```
 
 ## Part of DDEV AI Workspace
