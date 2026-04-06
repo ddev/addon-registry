@@ -6,12 +6,12 @@ user: owenbush
 repo: decodie-ddev
 repo_id: 1195669181
 default_branch: main
-tag_name: 1.0.0
+tag_name: 1.1.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-03-30
-updated_at: 2026-04-03
+updated_at: 2026-04-05
 workflow_status: unknown
 stars: 0
 ---
@@ -89,5 +89,5 @@ ddev restart
 - [owenbush/decodie](https://github.com/owenbush/decodie) -- Main Decodie site
 - [owenbush/decodie-ui](https://github.com/owenbush/decodie-ui) -- The learning companion UI
 - [owenbush/decodie-skill](https://github.com/owenbush/decodie-skill) -- Claude Code commands for generating and analyzing learning entries
-- [owenbush/decodie-vscode](https://github.com/owenbush/decodie-vscode) -- VSCode extension with sidebar entry browser and right-click analysis
+- [owenbush/decodie-vscode](https://github.com/owenbush/decodie-vscode) -- VSCode extension with sidebar entry browser and right-click analysis. [Install from Marketplace](https://marketplace.visualstudio.com/items?itemName=owenbush.decodie-vscode).
 - [owenbush/decodie-core](https://github.com/owenbush/decodie-core) -- Shared data layer (types, parser, reference resolver)
