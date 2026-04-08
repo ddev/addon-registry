@@ -11,12 +11,12 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-10
-updated_at: 2025-01-13
+updated_at: 2026-04-08
 workflow_status: disabled
 stars: 3
 ---
 
-[![tests](https://github.com/penyaskito/ddev-authentik/actions/workflows/tests.yml/badge.svg)](https://github.com/penyaskito/ddev-authentik/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/penyaskito/ddev-authentik/actions/workflows/tests.yml/badge.svg)](https://github.com/penyaskito/ddev-authentik/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 
 # ddev-authentik <!-- omit in toc -->
 
