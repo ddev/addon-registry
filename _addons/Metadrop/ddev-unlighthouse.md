@@ -6,12 +6,12 @@ user: Metadrop
 repo: ddev-unlighthouse
 repo_id: 811929881
 default_branch: main
-tag_name: v1.7.1
+tag_name: v1.8.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-06-07
-updated_at: 2025-11-05
+updated_at: 2026-04-09
 workflow_status: disabled
 stars: 10
 ---
