@@ -13,7 +13,7 @@ type: contrib
 created_at: 2026-03-25
 updated_at: 2026-04-03
 workflow_status: disabled
-stars: 1
+stars: 2
 ---
 
 # DDEV AI -- AI-Assisted Drupal Development
