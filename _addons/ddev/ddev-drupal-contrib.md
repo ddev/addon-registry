@@ -11,9 +11,9 @@ ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: official
 created_at: 2023-04-29
-updated_at: 2025-11-17
+updated_at: 2026-04-14
 workflow_status: success
-stars: 130
+stars: 131
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
@@ -35,14 +35,13 @@ DDEV integration for developing Drupal contrib projects. As a general philosophy
 
 ```sh
 # Configure DDEV for Drupal, or use interactive mode.
-ddev config --project-type=drupal --docroot=web --php-version=8.3 --corepack-enable
+ddev config --project-type=drupal11 --docroot=web
 ddev add-on get ddev/ddev-drupal-contrib
 ddev start
 ddev poser
 ddev symlink-project
 # Detect expected Drupal and PHP versions.
 ddev config --update
-ddev restart
 ```
 
 ## Update
