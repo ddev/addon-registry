@@ -13,7 +13,7 @@ type: contrib
 created_at: 2025-03-07
 updated_at: 2025-08-27
 workflow_status: success
-stars: 4
+stars: 5
 ---
 
 <div align="center">
