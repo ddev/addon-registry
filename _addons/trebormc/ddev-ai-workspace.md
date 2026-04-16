@@ -6,76 +6,79 @@ user: trebormc
 repo: ddev-ai-workspace
 repo_id: 1191725908
 default_branch: main
-tag_name: v1.0.37
-ddev_version_constraint: ">= v1.23.5"
+tag_name: v1.0.39
+ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync", "trebormc/ddev-opencode", "trebormc/ddev-claude-code", "trebormc/ddev-ralph"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-03
-workflow_status: disabled
+updated_at: 2026-04-15
+workflow_status: success
 stars: 3
 ---
 
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![last commit](https://img.shields.io/github/last-commit/trebormc/ddev-ai-workspace)](https://github.com/trebormc/ddev-ai-workspace/commits)
+[![release](https://img.shields.io/github/v/release/trebormc/ddev-ai-workspace)](https://github.com/trebormc/ddev-ai-workspace/releases/latest)
+
 # DDEV AI -- AI-Assisted Drupal Development
 
-A set of DDEV add-ons and configurations that bring AI-powered development tools into your Drupal project. Run OpenCode or Claude Code in dedicated containers, automate tasks with Ralph, and use 13 specialized Drupal agents -- all inside your existing DDEV environment.
+A set of DDEV add-ons and configurations that bring AI-powered development tools into your **Drupal** project. Run OpenCode or Claude Code in dedicated containers, automate tasks with Ralph, and use 13 specialized Drupal agents. All inside your existing DDEV environment.
+
+> **Built for Drupal.** This workspace is designed specifically for Drupal 10/11 development. AI agents understand Drupal APIs, coding standards, caching, render arrays, and the module/theme ecosystem out of the box.
+>
+> Created by [Robert Menetray](https://menetray.com) · Sponsored by [DruScan](https://druscan.com) — Drupal site auditing and monitoring tools.
 
 ## Prerequisites
 
-- [DDEV](https://ddev.readthedocs.io/) >= v1.23.5
+- [DDEV](https://ddev.readthedocs.io/) >= v1.24.10
 - An API key (Anthropic, OpenAI, or a LiteLLM proxy)
 
 ## Architecture
 
 ```
-    ┌────────────────────────────────────────────────────────────┐
-    │                         DDEV Network                       │
-    │                                                            │
-    │  ┌────────────────┐   ┌──────────────┐  ┌──────────────┐  │
-    │  │   OpenCode     │   │     Web      │  │  Playwright  │  │
-    │  │  (interactive) │──>│   (PHP)      │  │     MCP      │  │
-    │  │ ddev-opencode  │   │   (Drupal)   │  │  (Chromium)  │  │
-    │  └────────┬───────┘   └──────────────┘  └──────────────┘  │
-    │           │              ^  docker exec      ^  HTTP MCP   │
-    │  ┌────────┼───────┐     │                   │              │
-    │  │  Claude Code   │─────┘───────────────────┘              │
-    │  │  (interactive) │                                        │
-    │  │ ddev-claude-   │                                        │
-    │  │   code         │                                        │
-    │  └────────┬───────┘                                        │
-    │           │              ^  docker exec      ^  HTTP MCP   │
-    │  ┌────────┼───────┐     │                   │              │
-    │  │    Ralph       │─────┘───────────────────┘              │
-    │  │  (orchestrator)│  docker exec --backend opencode|claude │
-    │  │ ddev-ralph     │                                        │
-    │  └────────────────┘                                        │
-    │                                                            │
-    │  ┌────────────────┐  ┌────────────────┐                    │
-    │  │  Agents Sync   │  │    Beads       │                    │
-    │  │  (git pull +   │  │  (bd tasks)    │                    │
-    │  │   envsubst)    │  │  → .beads/     │                    │
-    │  │  → /agents-    │  │               │                    │
-    │  │    opencode    │  │               │                    │
-    │  │  → /agents-    │  │               │                    │
-    │  │    claude     │  │               │                    │
-    │  └────────────────┘  └────────────────┘                    │
-    └────────────────────────────────────────────────────────────┘
-          ^ HTTP POST (curl)
-          │ http://host.docker.internal:5454/notify
-    ┌─────┴──────────────────┐
-    │  Notification Bridge   │  <- ai-notify-bridge (standalone)
-    │  (host, port 5454)     │     notify-send + paplay
-    └────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│                        DDEV Network                          │
+│                                                              │
+│  ┌────────────┐   ┌────────────┐   ┌────────────┐            │
+│  │   Beads    │   │   Agents   │   │ Playwright │            │
+│  │  (tasks)   │   │    Sync    │   │    MCP     │            │
+│  │            │   │ (git+conf) │   │ (Chromium) │            │
+│  └─────┬──────┘   └──────┬─────┘   └─────┬──────┘            │
+│        │                 │               │                   │
+│        │  bd commands    │  volumes      │  HTTP MCP         │
+│        ▼                 ▼               ▼                   │
+│  ┌────────────────────────────────────────────────────┐      │
+│  │              OpenCode  ·  Claude Code              │      │
+│  │           (interactive AI development)             │      │
+│  └───────────────────────┬────────────────────────────┘      │
+│             ▲            │                                   │
+│  docker exec│            │ docker exec                       │
+│             │            ▼                                   │
+│  ┌──────────┴──┐   ┌──────────────┐                          │
+│  │    Ralph    │   │     Web      │                          │
+│  │(orchestrator│   │   (Drupal)   │                          │
+│  │  overnight) │   │  PHP, Drush  │                          │
+│  └─────────────┘   └──────────────┘                          │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+        │  HTTP POST (optional)
+        ▼
+ ┌──────────────┐
+ │ Notify Bridge│  Host (port 5454)
+ └──────────────┘
 ```
 
 **How the pieces fit together:**
-- **ddev-opencode** / **ddev-claude-code** -- Interactive AI development (TUI, shell)
-- **ddev-ralph** -- Autonomous execution (overnight runs, delegates via `docker exec`)
-- **ddev-agents-sync** -- Auto-syncs AI agent repos, resolves model tokens, generates tool-specific configs
-- **ddev-beads** -- Git-backed task tracking shared by all AI containers
-- **ddev-playwright-mcp** -- Shared headless browser for all containers
-- **drupal-ai-agents** -- Agent definitions, rules, skills, and model token config for both tools
-- **Notification bridge** -- Desktop notifications from containers to your host
+
+| Container | Role | Used by |
+|-----------|------|---------|
+| **Beads** | Git-backed task tracking (.beads/) | OpenCode, Claude Code, Ralph |
+| **Agents Sync** | Syncs agent repos, resolves model tokens | OpenCode, Claude Code (via volumes) |
+| **Playwright MCP** | Headless Chromium for screenshots and browser testing | OpenCode, Claude Code |
+| **OpenCode** | Interactive AI development (TUI) | Connects to Web, Playwright, Beads |
+| **Claude Code** | Interactive AI development (TUI) | Connects to Web, Playwright, Beads |
+| **Ralph** | Autonomous orchestrator (overnight runs) | Delegates to OpenCode or Claude Code |
+| **Web** | PHP, Drupal, Drush, Composer | Receives commands from AI containers |
 
 ## Quick Start
 
@@ -87,12 +90,12 @@ ddev add-on get trebormc/ddev-ai-workspace
 ```
 
 This installs all AI development tools and their dependencies automatically:
-- **ddev-playwright-mcp** -- Headless browser
-- **ddev-beads** -- Task tracking
-- **ddev-agents-sync** -- Agent configuration sync
-- **ddev-opencode** -- OpenCode CLI
-- **ddev-claude-code** -- Claude Code CLI
-- **ddev-ralph** -- Autonomous orchestrator
+- **ddev-playwright-mcp**: Headless browser
+- **ddev-beads**: Task tracking
+- **ddev-agents-sync**: Agent configuration sync
+- **ddev-opencode**: OpenCode CLI
+- **ddev-claude-code**: Claude Code CLI
+- **ddev-ralph**: Autonomous orchestrator
 
 ### 2. Start using it
 
@@ -107,12 +110,29 @@ ddev claude-code # or: ddev cc
 ddev ralph --backend opencode
 ```
 
-Credentials are stored in shared directories on your host -- configure once, all DDEV projects share them automatically:
+Credentials are stored in shared directories on your host. Configure once and all DDEV projects share them automatically:
 
 | Tool | Shared directory | Contains |
 |------|-----------------|----------|
 | Claude Code | `~/.ddev/claude-code/` | OAuth credentials, settings, MCP config |
 | OpenCode | `~/.ddev/opencode/` | API credentials (`auth.json`), config overrides (`config/`) |
+
+## Why both OpenCode and Claude Code?
+
+The workspace installs both AI tools because they serve different purposes and complement each other well.
+
+**Claude Code** is the most popular AI coding tool today. It works with an Anthropic subscription (Max plan), which gives access to the most capable models (Opus, Sonnet). This subscription can only be used inside Claude Code, not in other tools. It is the best option for complex tasks like architecture decisions, large refactors, or multi-file changes.
+
+**OpenCode** is an open-source alternative that connects to multiple AI providers. It works great with free APIs for people who are getting started or want to keep costs low. The free models are less capable, so they work best for simpler tasks. OpenCode also supports paid APIs (Anthropic, OpenAI) and services like OpenCode Zen, which gives access to API models at a lower cost.
+
+In practice, having both tools in the same project gives you flexibility:
+
+- Use **Claude Code** for complex tasks where you need the best models.
+- Use **OpenCode** for simpler tasks where a free or cheaper model is enough.
+- If one provider is down, you can switch to the other without losing your workflow.
+- You are not locked into a single vendor.
+
+You can install only one of them if you prefer (see Individual Installation below). The workspace installs both by default so you can choose based on the task at hand.
 
 ## Individual Installation
 
@@ -154,7 +174,7 @@ This workspace contains 8 independent git repositories. Each can be installed in
 |------------|-------------|---------------|
 | [ddev-opencode](https://github.com/trebormc/ddev-opencode) | [OpenCode](https://opencode.ai) AI CLI in a dedicated container. Interactive TUI and shell for AI-powered Drupal development. | ddev-playwright-mcp, ddev-beads, ddev-agents-sync |
 | [ddev-claude-code](https://github.com/trebormc/ddev-claude-code) | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (Anthropic CLI) in a dedicated container. Interactive AI development with OAuth or API key auth. | ddev-playwright-mcp, ddev-beads, ddev-agents-sync |
-| [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to OpenCode or Claude Code via `docker exec`, tracks progress with Beads -- ideal for overnight unattended runs. | ddev-playwright-mcp, ddev-beads |
+| [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to OpenCode or Claude Code via `docker exec` and tracks progress with Beads. Ideal for overnight unattended runs. | ddev-playwright-mcp, ddev-beads |
 
 ### Shared Dependencies (auto-installed)
 
@@ -168,7 +188,7 @@ This workspace contains 8 independent git repositories. Each can be installed in
 
 | Repository | Description |
 |------------|-------------|
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 13 specialized agents, 4 rule sets, 15 skills, and model token config (`.env.agents`) for Drupal development. Agent `.md` files use fat frontmatter compatible with both tools. Not a DDEV add-on -- synced automatically via ddev-agents-sync. |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 13 specialized agents, 4 rule sets, 15 skills, and model token config (`.env.agents`) for Drupal development. Agent `.md` files use fat frontmatter compatible with both tools. Not a DDEV add-on (synced automatically via ddev-agents-sync). |
 
 ## Uninstallation
 
@@ -181,11 +201,9 @@ To remove individual add-ons, see each add-on's README for specific uninstall in
 
 ## Disclaimer
 
-This project is an independent initiative by [Robert Menetray](https://menetray.com) and is **not affiliated with, endorsed by, or sponsored by** Anthropic (Claude Code), OpenCode, Beads, Playwright, Microsoft, or DDEV. These are third-party tools integrated here for convenience.
+This project is an independent initiative by [Robert Menetray](https://menetray.com), sponsored by [DruScan](https://druscan.com). It is **not affiliated with, endorsed by, or sponsored by** Anthropic (Claude Code), OpenCode, Beads, Playwright, Microsoft, or DDEV. These are third-party tools integrated here for convenience.
 
 AI-generated code may contain errors, security issues, or unintended behavior. **Always review AI-generated changes before deploying to production.** Unattended autonomous execution (e.g., Ralph Loop) should be followed by a thorough human review. The author assumes no responsibility for damages caused by the use or misuse of these configurations or the code they produce.
-
-For more information, visit [menetray.com](https://menetray.com). For Drupal site auditing tools that complement this project, see [DruScan](https://druscan.com).
 
 ## License
 

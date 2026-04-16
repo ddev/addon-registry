@@ -6,25 +6,45 @@ user: trebormc
 repo: ddev-playwright-mcp
 repo_id: 1191701790
 default_branch: main
-tag_name: v1.0.37
-ddev_version_constraint: ">= v1.23.5"
+tag_name: v1.0.39
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-03
-workflow_status: disabled
+updated_at: 2026-04-15
+workflow_status: success
 stars: 0
 ---
 
-[![tests](https://github.com/trebormc/ddev-playwright-mcp/actions/workflows/tests.yml/badge.svg)](https://github.com/trebormc/ddev-playwright-mcp/actions/workflows/tests.yml)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/trebormc/ddev-playwright-mcp/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/trebormc/ddev-playwright-mcp/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/trebormc/ddev-playwright-mcp)](https://github.com/trebormc/ddev-playwright-mcp/commits)
+[![release](https://img.shields.io/github/v/release/trebormc/ddev-playwright-mcp)](https://github.com/trebormc/ddev-playwright-mcp/releases/latest)
 
 # ddev-playwright-mcp
 
-A DDEV add-on that provides a [Playwright MCP](https://github.com/anthropics/playwright-mcp) server for headless browser automation via the Model Context Protocol.
+A DDEV add-on that provides a [Playwright MCP](https://github.com/anthropics/playwright-mcp) server for headless browser automation via the Model Context Protocol. It gives AI agents a real Chromium browser to interact with your Drupal site: navigate pages, fill forms, take screenshots, and verify UI state programmatically.
+
+> **Part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace)** — a modular ecosystem of DDEV add-ons for AI-powered Drupal development. Install the full stack with one command: `ddev add-on get trebormc/ddev-ai-workspace`
+>
+> Created by [Robert Menetray](https://menetray.com) · Sponsored by [DruScan](https://druscan.com)
 
 > **Note:** This add-on is typically installed automatically as a dependency of [ddev-opencode](https://github.com/trebormc/ddev-opencode), [ddev-claude-code](https://github.com/trebormc/ddev-claude-code), or [ddev-ralph](https://github.com/trebormc/ddev-ralph). You rarely need to install it directly.
 
-## Installation
+## Quick Start
+
+The **recommended way** to install this add-on is through the [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace), which installs all tools and dependencies with a single command:
+
+```bash
+ddev add-on get trebormc/ddev-ai-workspace
+ddev restart
+```
+
+This add-on is also **automatically installed** as a dependency when you install [ddev-opencode](https://github.com/trebormc/ddev-opencode), [ddev-claude-code](https://github.com/trebormc/ddev-claude-code), or [ddev-ralph](https://github.com/trebormc/ddev-ralph). You rarely need to install it directly.
+
+### Standalone installation
+
+If you need to install it individually (requires familiarity with the DDEV add-on ecosystem):
 
 ```bash
 ddev add-on get trebormc/ddev-playwright-mcp
@@ -36,9 +56,9 @@ ddev restart
 This add-on runs a **Playwright MCP server** as a DDEV service with headless Chromium. It exposes an MCP endpoint at `http://playwright-mcp:8931/mcp` accessible from other containers in the DDEV network.
 
 Use cases:
-- **AI-driven development** -- Let AI agents (OpenCode, Claude Code) interact with your site through a real browser
-- **Visual testing** -- Take screenshots and verify UI state programmatically
-- **Browser automation** -- Automate form submissions, navigation, and interactions
+- **AI-driven development**: Let AI agents (OpenCode, Claude Code) interact with your site through a real browser
+- **Visual testing**: Take screenshots and verify UI state programmatically
+- **Browser automation**: Automate form submissions, navigation, and interactions
 
 ## Usage
 
@@ -72,7 +92,7 @@ ddev restart
 ## Tips
 
 - **Use HTTP** (not HTTPS) when navigating to your DDEV site from Playwright to avoid SSL certificate issues in local environments.
-- The MCP server runs in **shared browser context** mode -- cookies and sessions persist across requests.
+- The MCP server runs in **shared browser context** mode. Cookies and sessions persist across requests.
 - Screenshots output directory: `/tmp/playwright-output` (mapped to `./screenshots/` on host).
 
 ## Uninstallation
@@ -98,7 +118,7 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 
 ## Disclaimer
 
-This project is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors -- always review changes before deploying to production. See [menetray.com](https://menetray.com) for more information and [DruScan](https://druscan.com) for Drupal auditing tools.
+This project is an independent initiative by [Robert Menetray](https://menetray.com), sponsored by [DruScan](https://druscan.com). It is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors. Always review changes before deploying to production.
 
 ## License
 

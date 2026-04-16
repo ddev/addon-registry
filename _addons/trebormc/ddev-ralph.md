@@ -6,21 +6,28 @@ user: trebormc
 repo: ddev-ralph
 repo_id: 1191701553
 default_branch: main
-tag_name: v1.0.37
-ddev_version_constraint: ">= v1.23.5"
+tag_name: v1.0.39
+ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-03
-workflow_status: disabled
+updated_at: 2026-04-15
+workflow_status: success
 stars: 0
 ---
 
-[![tests](https://github.com/trebormc/ddev-ralph/actions/workflows/tests.yml/badge.svg)](https://github.com/trebormc/ddev-ralph/actions/workflows/tests.yml)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/trebormc/ddev-ralph/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/trebormc/ddev-ralph/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/trebormc/ddev-ralph)](https://github.com/trebormc/ddev-ralph/commits)
+[![release](https://img.shields.io/github/v/release/trebormc/ddev-ralph)](https://github.com/trebormc/ddev-ralph/releases/latest)
 
 # ddev-ralph
 
-A DDEV add-on that provides **Ralph Loop**, an autonomous AI task orchestrator for Drupal development. Ralph delegates work to [OpenCode](https://opencode.ai) or [Claude Code](https://docs.anthropic.com/en/docs/claude-code) containers via `docker exec`, running AI agents in a loop with [Beads](https://github.com/steveyegge/beads) task tracking -- perfect for overnight unattended execution.
+A DDEV add-on that provides **Ralph Loop**, an autonomous AI task orchestrator for **Drupal** development. Ralph delegates work to [OpenCode](https://opencode.ai) or [Claude Code](https://docs.anthropic.com/en/docs/claude-code) containers via `docker exec`, running AI agents in a loop with [Beads](https://github.com/steveyegge/beads) task tracking. Perfect for overnight unattended execution.
+
+> **Part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace)** — a modular ecosystem of DDEV add-ons for AI-powered Drupal development. Install the full stack with one command: `ddev add-on get trebormc/ddev-ai-workspace`
+>
+> Created by [Robert Menetray](https://menetray.com) · Sponsored by [DruScan](https://druscan.com)
 
 **Important:** Ralph is a lightweight orchestrator. It does **not** include AI tools itself. You must have at least one backend installed first:
 - [ddev-opencode](https://github.com/trebormc/ddev-opencode) for the OpenCode backend
@@ -28,17 +35,32 @@ A DDEV add-on that provides **Ralph Loop**, an autonomous AI task orchestrator f
 
 ## Quick Start
 
+The **recommended way** to install Ralph is through the [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace), which installs all tools (Ralph, OpenCode, Claude Code, and all dependencies) with a single command:
+
+```bash
+ddev add-on get trebormc/ddev-ai-workspace
+ddev restart
+ddev ralph --backend opencode
+```
+
+### Standalone installation
+
+If you prefer to install Ralph individually, you need at least one AI backend installed first. This requires familiarity with the DDEV add-on ecosystem and its dependencies:
+
 ```bash
 # 1. Install a backend (pick one or both)
 ddev add-on get trebormc/ddev-opencode
 # or
 ddev add-on get trebormc/ddev-claude-code
 
-# 2. Install Ralph
+# 2. Install Ralph (auto-installs ddev-playwright-mcp and ddev-beads)
 ddev add-on get trebormc/ddev-ralph
 ddev restart
+```
 
-# 3. Create a requirements file
+### Example: run Ralph with a requirements file
+
+```bash
 cat > requirements.md << 'EOF'
 # My Feature
 
@@ -55,18 +77,8 @@ Create a custom Drupal module that does X.
 - PHPCS no errors
 EOF
 
-# 4. Run Ralph
 ddev ralph --backend opencode
 ```
-
-## Installation
-
-```bash
-ddev add-on get trebormc/ddev-ralph
-ddev restart
-```
-
-This automatically installs [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) (browser automation) and [ddev-beads](https://github.com/trebormc/ddev-beads) (task tracking) as dependencies.
 
 ## Usage
 
@@ -242,7 +254,7 @@ All test generation prompts reference the specialized skills from [drupal-ai-age
 └──────────────────────────────────────────────────────────┘
 ```
 
-Ralph only contains bash, jq, and docker CLI. All AI execution happens in the dedicated OpenCode or Claude Code containers, and task tracking runs in the Beads container -- all via `docker exec`. This keeps each component independently maintainable.
+Ralph only contains bash, jq, and docker CLI. All AI execution happens in the dedicated OpenCode or Claude Code containers, and task tracking runs in the Beads container (all via `docker exec`). This keeps each component independently maintainable.
 
 ## Exit Codes
 
@@ -275,7 +287,7 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 
 ## Disclaimer
 
-This project is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors -- always review changes before deploying to production. See [menetray.com](https://menetray.com) for more information and [DruScan](https://druscan.com) for Drupal auditing tools.
+This project is an independent initiative by [Robert Menetray](https://menetray.com), sponsored by [DruScan](https://druscan.com). It is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors. Always review changes before deploying to production.
 
 ## License
 

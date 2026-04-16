@@ -6,12 +6,12 @@ user: konradmichalik
 repo: ddev-typo3-multi-version-extension
 repo_id: 944430541
 default_branch: main
-tag_name: 0.2.1
+tag_name: 0.3.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-03-07
-updated_at: 2025-08-27
+updated_at: 2026-04-15
 workflow_status: success
 stars: 5
 ---
@@ -22,9 +22,9 @@ ddev-typo3-multi-version-extension
 ===============================
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
-[![tests](https://github.com/jackd248/ddev-typo3-multi-version-extension/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/jackd248/ddev-typo3-multi-version-extension/actions/workflows/tests.yml?query=branch%3Amain)
-[![last commit](https://img.shields.io/github/last-commit/jackd248/ddev-typo3-multi-version-extension)](https://github.com/jackd248/ddev-typo3-multi-version-extension/commits)
-[![release](https://img.shields.io/github/v/release/jackd248/ddev-typo3-multi-version-extension)](https://github.com/jackd248/ddev-typo3-multi-version-extension/releases/latest)
+[![tests](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/konradmichalik/ddev-typo3-multi-version-extension)](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/commits)
+[![release](https://img.shields.io/github/v/release/konradmichalik/ddev-typo3-multi-version-extension)](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/releases/latest)
 </div>
 
 ## What is `ddev-typo3-multi-version-extension`?
@@ -36,6 +36,7 @@ ddev-typo3-multi-version-extension is a DDEV add-on that provides a multi-versio
 - TYPO3 11.5
 - TYPO3 12.4
 - TYPO3 13.4
+- TYPO3 14.2
 
 ## Requirements
 
@@ -54,7 +55,7 @@ ddev config --project-type=php --docroot=public --webserver-type=apache-fpm --pr
 Install the add-on with the following command:
 
 ```shell
-ddev add-on get jackd248/ddev-typo3-multi-version-extension && ddev restart
+ddev add-on get konradmichalik/ddev-typo3-multi-version-extension && ddev restart
 ```
 
 After the installation, you can use the following command to open the intro page:
@@ -145,4 +146,4 @@ The TYPO3 instances are located in the `.Build/` directory. The main extension i
     └── ...
 ```
 
-**Contributed and maintained by `@jackd248`**
+**Contributed and maintained by `@konradmichalik`**
