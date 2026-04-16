@@ -6,45 +6,58 @@ user: trebormc
 repo: ddev-agents-sync
 repo_id: 1191720964
 default_branch: main
-tag_name: v1.0.37
-ddev_version_constraint: ">= v1.23.5"
+tag_name: v1.0.39
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-03
-workflow_status: disabled
+updated_at: 2026-04-15
+workflow_status: success
 stars: 0
 ---
 
-[![tests](https://github.com/trebormc/ddev-agents-sync/actions/workflows/tests.yml/badge.svg)](https://github.com/trebormc/ddev-agents-sync/actions/workflows/tests.yml)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/trebormc/ddev-agents-sync/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/trebormc/ddev-agents-sync/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/trebormc/ddev-agents-sync)](https://github.com/trebormc/ddev-agents-sync/commits)
+[![release](https://img.shields.io/github/v/release/trebormc/ddev-agents-sync)](https://github.com/trebormc/ddev-agents-sync/releases/latest)
 
 # ddev-agents-sync
 
 A DDEV add-on that automatically syncs AI agent repositories and generates tool-specific configurations for [OpenCode](https://github.com/trebormc/ddev-opencode) and [Claude Code](https://github.com/trebormc/ddev-claude-code).
 
-On every `ddev start`, this container clones or updates the configured repositories, resolves model aliases, and produces two separate agent directories -- one optimized for each AI tool.
+> **Part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace)** — a modular ecosystem of DDEV add-ons for AI-powered Drupal development. Install the full stack with one command: `ddev add-on get trebormc/ddev-ai-workspace`
+>
+> Created by [Robert Menetray](https://menetray.com) · Sponsored by [DruScan](https://druscan.com)
+
+**What problem does this solve?** AI tools like OpenCode and Claude Code each expect agent configurations in a different format. This add-on lets you write agents once (using a shared "fat frontmatter" format) and automatically generates the correct configuration for each tool. It also resolves model tokens, so the same agent definition can use different models depending on the tool.
+
+On every `ddev start`, this container clones or updates the configured repositories, resolves model aliases, and produces two separate agent directories (one optimized for each AI tool).
 
 ## Quick Start
 
+The **recommended way** to install this add-on is through the [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace), which installs all tools and dependencies with a single command:
+
 ```bash
-# Install the add-on (default: syncs trebormc/drupal-ai-agents)
+ddev add-on get trebormc/ddev-ai-workspace
+ddev restart
+```
+
+This add-on is also **automatically installed** as a dependency when you install [ddev-opencode](https://github.com/trebormc/ddev-opencode) or [ddev-claude-code](https://github.com/trebormc/ddev-claude-code). You rarely need to install it directly.
+
+### Standalone installation
+
+If you need to install it individually (requires familiarity with the DDEV add-on ecosystem):
+
+```bash
 ddev add-on get trebormc/ddev-agents-sync
 ddev restart
 ```
 
-That's it. OpenCode and Claude Code will automatically pick up the synced agents.
+OpenCode and Claude Code will automatically pick up the synced agents.
 
 ## Prerequisites
 
 - [DDEV](https://ddev.readthedocs.io/) >= v1.23.5
-
-## Installation
-
-```bash
-ddev add-on get trebormc/ddev-agents-sync
-```
-
-This add-on is automatically installed as a dependency of [ddev-opencode](https://github.com/trebormc/ddev-opencode) and [ddev-claude-code](https://github.com/trebormc/ddev-claude-code).
 
 ## Configuration
 
@@ -108,11 +121,11 @@ The output directories are Docker named volumes (`ddev-{sitename}-agents-opencod
 
 Files are copied from each repo in order. The merge is a simple file-level override:
 
-- `.claude/agents/*.md` -- merged (later repos can add or override agents)
-- `.claude/skills/*/SKILL.md` -- merged (later repos can add or override skills)
-- `.claude/rules/*.md` -- merged (later repos can add or override rules)
-- `.env.agents` -- overridden by the last repo that provides it
-- `CLAUDE.md`, `opencode.json.example` -- overridden by the last repo
+- `.claude/agents/*.md`: merged (later repos can add or override agents)
+- `.claude/skills/*/SKILL.md`: merged (later repos can add or override skills)
+- `.claude/rules/*.md`: merged (later repos can add or override rules)
+- `.env.agents`: overridden by the last repo that provides it
+- `CLAUDE.md`, `opencode.json.example`: overridden by the last repo
 
 ## Model Token System
 
@@ -249,7 +262,7 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 
 ## Disclaimer
 
-This project is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors -- always review changes before deploying to production. See [menetray.com](https://menetray.com) for more information and [DruScan](https://druscan.com) for Drupal auditing tools.
+This project is an independent initiative by [Robert Menetray](https://menetray.com), sponsored by [DruScan](https://druscan.com). It is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors. Always review changes before deploying to production.
 
 ## License
 

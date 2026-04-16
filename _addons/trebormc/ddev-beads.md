@@ -6,30 +6,54 @@ user: trebormc
 repo: ddev-beads
 repo_id: 1191702569
 default_branch: main
-tag_name: v1.0.37
-ddev_version_constraint: ">= v1.23.5"
+tag_name: v1.0.39
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-02
-workflow_status: disabled
+updated_at: 2026-04-15
+workflow_status: success
 stars: 0
 ---
 
-[![tests](https://github.com/trebormc/ddev-beads/actions/workflows/tests.yml/badge.svg)](https://github.com/trebormc/ddev-beads/actions/workflows/tests.yml)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/trebormc/ddev-beads/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/trebormc/ddev-beads/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/trebormc/ddev-beads)](https://github.com/trebormc/ddev-beads/commits)
+[![release](https://img.shields.io/github/v/release/trebormc/ddev-beads)](https://github.com/trebormc/ddev-beads/releases/latest)
 
 # ddev-beads
 
 A DDEV add-on that provides [Beads](https://github.com/steveyegge/beads) (bd), a git-backed task tracker for AI agents, in a dedicated container. Other AI containers (OpenCode, Claude Code, Ralph) delegate task tracking to this container via `docker exec`.
 
+> **Part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace)** — a modular ecosystem of DDEV add-ons for AI-powered Drupal development. Install the full stack with one command: `ddev add-on get trebormc/ddev-ai-workspace`
+>
+> Created by [Robert Menetray](https://menetray.com) · Sponsored by [DruScan](https://druscan.com)
+
+**Why a separate container?** Task tracking runs in its own container so that all AI tools (OpenCode, Claude Code, Ralph) share the same task state without conflicts. Each container accesses Beads via a lightweight `bd` wrapper that delegates to `docker exec`, keeping the task data centralized in the project's `.beads/` directory.
+
 ## Quick Start
 
+The **recommended way** to install this add-on is through the [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace), which installs all tools and dependencies with a single command:
+
 ```bash
-# Install the add-on
+ddev add-on get trebormc/ddev-ai-workspace
+ddev restart
+```
+
+This add-on is also **automatically installed** as a dependency when you install [ddev-opencode](https://github.com/trebormc/ddev-opencode), [ddev-claude-code](https://github.com/trebormc/ddev-claude-code), or [ddev-ralph](https://github.com/trebormc/ddev-ralph). You rarely need to install it directly.
+
+### Standalone installation
+
+If you need to install it individually (requires familiarity with the DDEV add-on ecosystem):
+
+```bash
 ddev add-on get trebormc/ddev-beads
 ddev restart
+```
 
-# Use from host
+### Usage
+
+```bash
 ddev bd ready
 ddev bd create "Implement feature X" -p 1
 ddev bd close bd-abc --reason "Done"
@@ -37,15 +61,7 @@ ddev bd close bd-abc --reason "Done"
 
 ## Prerequisites
 
-- [DDEV](https://ddev.readthedocs.io/) >= v1.23.5
-
-## Installation
-
-```bash
-ddev add-on get trebormc/ddev-beads
-```
-
-This add-on is automatically installed as a dependency when you install [ddev-opencode](https://github.com/trebormc/ddev-opencode), [ddev-claude-code](https://github.com/trebormc/ddev-claude-code), or [ddev-ralph](https://github.com/trebormc/ddev-ralph).
+- [DDEV](https://ddev.readthedocs.io/) >= v1.24.10
 
 ## Architecture
 
@@ -93,10 +109,10 @@ ddev bd prime                              # Get context
 
 | Level | Meaning |
 |-------|---------|
-| P0 | Critical -- blockers, security |
-| P1 | High -- important features |
-| P2 | Medium -- normal tasks |
-| P3 | Low -- nice-to-haves |
+| P0 | Critical (blockers, security) |
+| P1 | High (important features) |
+| P2 | Medium (normal tasks) |
+| P3 | Low (nice-to-haves) |
 
 ## Uninstallation
 
@@ -121,7 +137,7 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 
 ## Disclaimer
 
-This project is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors -- always review changes before deploying to production. See [menetray.com](https://menetray.com) for more information and [DruScan](https://druscan.com) for Drupal auditing tools.
+This project is an independent initiative by [Robert Menetray](https://menetray.com), sponsored by [DruScan](https://druscan.com). It is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors. Always review changes before deploying to production.
 
 ## License
 

@@ -11,9 +11,9 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-28
-updated_at: 2026-03-25
+updated_at: 2026-04-15
 workflow_status: success
-stars: 12
+stars: 13
 ---
 
 [![tests](https://github.com/UltraBob/ddev-drupal-code-quality/actions/workflows/tests.yml/badge.svg)](https://github.com/UltraBob/ddev-drupal-code-quality/actions/workflows/tests.yml)

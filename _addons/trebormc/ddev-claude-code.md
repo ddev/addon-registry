@@ -6,64 +6,83 @@ user: trebormc
 repo: ddev-claude-code
 repo_id: 1191702322
 default_branch: main
-tag_name: v1.0.37
-ddev_version_constraint: ">= v1.23.5"
+tag_name: v1.0.39
+ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-03
-workflow_status: disabled
+updated_at: 2026-04-15
+workflow_status: success
 stars: 0
 ---
 
-[![tests](https://github.com/trebormc/ddev-claude-code/actions/workflows/tests.yml/badge.svg)](https://github.com/trebormc/ddev-claude-code/actions/workflows/tests.yml)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/trebormc/ddev-claude-code/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/trebormc/ddev-claude-code/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/trebormc/ddev-claude-code)](https://github.com/trebormc/ddev-claude-code/commits)
+[![release](https://img.shields.io/github/v/release/trebormc/ddev-claude-code)](https://github.com/trebormc/ddev-claude-code/releases/latest)
 
 # ddev-claude-code
 
-A DDEV add-on that runs [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (Anthropic's official CLI) in a dedicated container for AI-powered Drupal development.
+A DDEV add-on that runs [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (Anthropic's official CLI) in a dedicated container for AI-powered **Drupal** development.
+
+> **Part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace)** — a modular ecosystem of DDEV add-ons for AI-powered Drupal development. Install the full stack with one command: `ddev add-on get trebormc/ddev-ai-workspace`
+>
+> Created by [Robert Menetray](https://menetray.com) · Sponsored by [DruScan](https://druscan.com)
+
+## Why this add-on?
+
+There are [several DDEV add-ons for Claude Code](https://addons.ddev.com/?search=claude) already available. This one was built for a specific use case and differs from the others in a few key ways:
+
+- **Multi-container orchestration.** Designed to work as part of a larger AI workspace where the Claude container connects to sibling containers: a Playwright container for browser testing, a Beads container for task tracking, and access to the web container for running drush, composer, phpunit, and phpstan directly against Drupal.
+- **Minimal and focused.** Does not bundle MCPs or extra tooling inside the container. External tools (Playwright, task tracking) run in their own dedicated containers, keeping the Claude container lightweight.
+- **TUI wrapper with tab titles.** Includes a terminal wrapper that sets custom tab titles (`project-name - task label`), which is useful when juggling multiple agents or projects across several terminals.
+- **Desktop notifications.** Supports optional host notifications (via [ai-notify-bridge](https://github.com/trebormc/ai-notify-bridge)) when sessions or tasks complete.
+- **Autonomous execution ready.** Pairs with [ddev-ralph](https://github.com/trebormc/ddev-ralph) for autonomous task loops (planning, executing, and closing tasks overnight).
+
+If you need a standalone Claude Code container without the multi-container setup, one of the [other add-ons](https://addons.ddev.com/?search=claude) may be a better fit.
 
 ## Quick Start
 
+The **recommended way** to install this add-on is through the [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace), which installs all tools and dependencies with a single command:
+
 ```bash
-# 1. Install the add-on
-ddev add-on get trebormc/ddev-claude-code
-
-# 2. Restart DDEV
+ddev add-on get trebormc/ddev-ai-workspace
 ddev restart
-
-# 3. Launch Claude Code (authenticate on first run)
 ddev claude-code  # or: ddev cc
 ```
 
-## Prerequisites
+### Standalone installation
 
-- [DDEV](https://ddev.readthedocs.io/) >= v1.23.5
-- An Anthropic API key or OAuth session
-
-## Installation
+If you only need Claude Code without the rest of the workspace, you can install it individually. This requires familiarity with the DDEV add-on ecosystem and its dependencies:
 
 ```bash
 ddev add-on get trebormc/ddev-claude-code
 ddev restart
+ddev claude-code  # or: ddev cc
 ```
 
-This automatically installs all dependencies:
-- [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) -- auto-syncs AI agents from git (provides CLAUDE.md)
-- [ddev-beads](https://github.com/trebormc/ddev-beads) -- task tracking
-- [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) -- browser automation
+This automatically installs the required dependencies:
+- [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync): auto-syncs AI agents from git (provides CLAUDE.md)
+- [ddev-beads](https://github.com/trebormc/ddev-beads): task tracking
+- [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp): browser automation
+
+## Prerequisites
+
+- [DDEV](https://ddev.readthedocs.io/) >= v1.24.10
+- An Anthropic API key or OAuth session
 
 ## Authentication
 
-Run `ddev claude-code` and follow the prompts. Claude Code handles OAuth and API key authentication natively -- no custom commands or manual file editing needed.
+Run `ddev claude-code` and follow the prompts. Claude Code handles OAuth and API key authentication natively. No custom commands or manual file editing needed.
 
-Credentials are stored in a shared directory on the host (`~/.ddev/claude-code/` by default), so you only need to authenticate **once** -- all your DDEV projects share the same session automatically. Credentials persist across `ddev restart`, new projects, and machine reboots.
+Credentials are stored in a shared directory on the host (`~/.ddev/claude-code/` by default), so you only need to authenticate **once**. All your DDEV projects share the same session automatically. Credentials persist across `ddev restart`, new projects, and machine reboots.
 
 ## Configuration
 
 After installation, environment variables are in `.ddev/.env.claude-code`:
 
 ```bash
-# Shared config directory -- credentials, settings, and session data.
+# Shared config directory (credentials, settings, and session data).
 # Shared across ALL DDEV projects. Change only if you need a custom location.
 HOST_CLAUDE_CONFIG_DIR=${HOME}/.ddev/claude-code
 
@@ -75,7 +94,7 @@ TZ=UTC
 
 ### Permissions
 
-The installer creates a default `settings.json` with `bypassPermissions` mode -- all permission prompts are disabled since Claude Code runs inside an isolated DDEV container.
+The installer creates a default `settings.json` with `bypassPermissions` mode. All permission prompts are disabled since Claude Code runs inside an isolated DDEV container.
 
 To change this, edit `~/.ddev/claude-code/settings.json`:
 
@@ -127,7 +146,7 @@ Claude Code communicates with the web container via `docker exec` (through the m
 
 When working on multiple DDEV projects at the same time, it can be hard to tell which terminal belongs to which project. The `tui` subcommand sets the terminal tab title to **`project-name - custom text`**, so you can identify each terminal at a glance.
 
-The project name (`DDEV_SITENAME`) is always included automatically. If you add extra text after `tui`, it appears as a label -- useful for describing the task you are working on in that terminal.
+The project name (`DDEV_SITENAME`) is always included automatically. If you add extra text after `tui`, it appears as a label. Useful for describing the task you are working on in that terminal.
 
 ```bash
 # Tab title: "mysite - Claude Code"
@@ -167,7 +186,7 @@ When [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) is install
 
 Agent `.md` files use model tokens (like `${MODEL_CHEAP}`) that are resolved to Claude Code aliases (like `haiku`) during sync. See [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) for the full list of agents, tokens, and customization options.
 
-You can place your own `CLAUDE.md` in your Drupal project root -- it won't be overwritten if it already exists.
+You can place your own `CLAUDE.md` in your Drupal project root. It won't be overwritten if it already exists.
 
 ### Customizing agents and models
 
@@ -221,7 +240,7 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 
 ## Disclaimer
 
-This project is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors -- always review changes before deploying to production. See [menetray.com](https://menetray.com) for more information and [DruScan](https://druscan.com) for Drupal auditing tools.
+This project is an independent initiative by [Robert Menetray](https://menetray.com), sponsored by [DruScan](https://druscan.com). It is not affiliated with Anthropic, OpenCode, Beads, Playwright, Microsoft, or DDEV. AI-generated code may contain errors. Always review changes before deploying to production.
 
 ## License
 
