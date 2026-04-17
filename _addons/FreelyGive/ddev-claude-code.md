@@ -13,7 +13,7 @@ type: contrib
 created_at: 2025-03-31
 updated_at: 2026-03-04
 workflow_status: unknown
-stars: 14
+stars: 15
 ---
 
 # ddev-claude-code <!-- omit in toc -->

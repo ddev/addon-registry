@@ -12,7 +12,7 @@ dependencies: ["ddev/ddev-redis"]
 type: official
 created_at: 2025-07-21
 updated_at: 2025-11-27
-workflow_status: success
+workflow_status: disabled
 stars: 2
 ---
 
