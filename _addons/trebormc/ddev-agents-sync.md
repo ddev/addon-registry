@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-agents-sync
 repo_id: 1191720964
 default_branch: main
-tag_name: v1.0.39
+tag_name: v1.0.45
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-15
+updated_at: 2026-04-18
 workflow_status: disabled
 stars: 0
 ---
@@ -57,7 +57,7 @@ OpenCode and Claude Code will automatically pick up the synced agents.
 
 ## Prerequisites
 
-- [DDEV](https://ddev.readthedocs.io/) >= v1.23.5
+- [DDEV](https://ddev.readthedocs.io/) >= v1.24.10
 
 ## Configuration
 
@@ -103,7 +103,7 @@ On ddev start:
   │     - envsubst: ${MODEL_CHEAP} → haiku                          │
   │     - Converts frontmatter to Claude Code format                 │
   │     - Renames allowed_tools → tools (CSV)                        │
-  │     - Removes mode, temperature, permission blocks               │
+  │     - Removes mode, temperature, maxSteps, tools, permission     │
   │                                                                  │
   │  6. Sleep (stay alive for depends_on)                            │
   └──────────────────────────────────────────────────────────────────┘
@@ -227,7 +227,7 @@ Agent system prompt content...
 
 During sync:
 - **For OpenCode**: the `allowed_tools:` line is removed. Everything else stays.
-- **For Claude Code**: `mode:`, `temperature:`, `tools:` (object), and `permission:` are removed. `allowed_tools:` is renamed to `tools:`.
+- **For Claude Code**: `mode:`, `temperature:`, `maxSteps:`, `tools:` (object), and `permission:` are removed. `allowed_tools:` is renamed to `tools:`.
 
 ## Commands
 
@@ -257,8 +257,9 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 | [ddev-claude-code](https://github.com/trebormc/ddev-claude-code) | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI container for interactive development. | Auto-installs this add-on |
 | [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to OpenCode or Claude Code. | Does not require this add-on |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker shared by all AI containers. | Sibling dependency |
+| [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container for AI agents. | Sibling dependency |
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser for browser automation and visual testing. | Sibling dependency |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 13 agents, 4 rules, 14 skills for Drupal development. Default repo synced by this add-on. | Content synced by this add-on |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 10 agents, 12 rules, 24 skills for Drupal development. Default repo synced by this add-on. | Content synced by this add-on |
 
 ## Disclaimer
 

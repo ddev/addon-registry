@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-playwright-mcp
 repo_id: 1191701790
 default_branch: main
-tag_name: v1.0.39
+tag_name: v1.0.45
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-15
+updated_at: 2026-04-18
 workflow_status: disabled
 stars: 0
 ---
@@ -93,7 +93,7 @@ ddev restart
 
 - **Use HTTP** (not HTTPS) when navigating to your DDEV site from Playwright to avoid SSL certificate issues in local environments.
 - The MCP server runs in **shared browser context** mode. Cookies and sessions persist across requests.
-- Screenshots output directory: `/tmp/playwright-output` (mapped to `./screenshots/` on host).
+- Screenshots output directory: `/var/www/html/screenshots` (mapped to `./screenshots/` on host).
 
 ## Uninstallation
 
@@ -114,7 +114,8 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 | [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to OpenCode or Claude Code. | Auto-installs this add-on |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker shared by all AI containers. | Sibling dependency |
 | [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) | Auto-syncs AI agent repositories into a shared Docker volume. | Sibling dependency |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 13 agents, 4 rules, 14 skills for Drupal development. Includes Playwright browser testing skill. | Uses this for visual testing |
+| [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container for AI agents. | Sibling dependency |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 10 agents, 12 rules, 24 skills for Drupal development. Includes Playwright browser testing skill. | Uses this for visual testing |
 
 ## Disclaimer
 

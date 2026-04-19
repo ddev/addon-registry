@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-claude-code
 repo_id: 1191702322
 default_branch: main
-tag_name: v1.0.39
+tag_name: v1.0.45
 ddev_version_constraint: ">= v1.24.10"
-dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
+dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-15
+updated_at: 2026-04-18
 workflow_status: disabled
 stars: 0
 ---
@@ -63,6 +63,7 @@ ddev claude-code  # or: ddev cc
 
 This automatically installs the required dependencies:
 - [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync): auto-syncs AI agents from git (provides CLAUDE.md)
+- [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh): SSH access to web container
 - [ddev-beads](https://github.com/trebormc/ddev-beads): task tracking
 - [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp): browser automation
 
@@ -116,7 +117,7 @@ Since it lives in the shared config directory, permission changes apply to all D
 ┌─────────────────────────────────────────────────┐
 │              DDEV Docker Network                 │
 │                                                  │
-│  ┌──────────────┐  docker exec  ┌────────────┐  │
+│  ┌──────────────┐     SSH       ┌────────────┐  │
 │  │  Claude Code │──────────────>│    Web     │  │
 │  │  Container   │               │  (Drupal)  │  │
 │  └──────┬───────┘               └────────────┘  │
@@ -129,7 +130,7 @@ Since it lives in the shared config directory, permission changes apply to all D
 └─────────────────────────────────────────────────┘
 ```
 
-Claude Code communicates with the web container via `docker exec` (through the mounted Docker socket), giving it full CLI access to drush, composer, phpunit, phpstan, and any other tool in the web container. Playwright MCP is accessed over HTTP for browser automation and visual testing.
+Claude Code communicates with the web container via SSH (`ssh web`), giving it full CLI access to drush, composer, phpunit, phpstan, and any other tool in the web container. SSH keys are auto-generated per project in `.ddev/.agent-ssh-keys/`. Playwright MCP is accessed over HTTP for browser automation and visual testing.
 
 ## Commands
 
@@ -172,6 +173,8 @@ Inside the container (via `ddev claude-code shell`), these helper functions are 
 |--------|-------------|
 | `drush` | Run drush commands in the web container |
 | `composer` | Run composer in the web container |
+| `phpunit` | Run PHPUnit tests in the web container |
+| `phpstan` | Run PHPStan analysis in the web container |
 | `web-exec` | Execute any command in the web container |
 | `web-shell` | Open an interactive shell in the web container |
 | `bd` | Run Beads task tracking commands |
@@ -180,7 +183,7 @@ Inside the container (via `ddev claude-code shell`), these helper functions are 
 
 When [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) is installed (auto-installed as dependency), Claude Code automatically gets:
 
-- **13 specialized agents** in `.claude/agents/` (drupal-dev, three-judges, etc.)
+- **10 specialized agents** in `.claude/agents/` (drupal-dev, code-review, etc.)
 - **CLAUDE.md** with Drupal development instructions in the project root
 - **Rules and skills** for Drupal development workflows
 
@@ -232,11 +235,12 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 |------------|-------------|--------------|
 | [ddev-ai-workspace](https://github.com/trebormc/ddev-ai-workspace) | Meta add-on that installs the full AI development stack with one command. | Workspace |
 | [ddev-opencode](https://github.com/trebormc/ddev-opencode) | [OpenCode](https://opencode.ai) AI CLI container for interactive development. | Alternative AI tool |
-| [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to this container or OpenCode via `docker exec`. | Uses this as backend |
+| [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to this container or OpenCode via SSH. | Uses this as backend |
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser for browser automation and visual testing. | Auto-installed dependency |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker shared by all AI containers. | Auto-installed dependency |
 | [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) | Auto-syncs AI agent repositories into a shared Docker volume. Provides CLAUDE.md. | Auto-installed dependency |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 13 agents, 4 rules, 14 skills for Drupal development. Synced automatically via ddev-agents-sync. | Agent configuration |
+| [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container. Generates per-project keys, installs sshd. | Auto-installed dependency |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 10 agents, 12 rules, 24 skills for Drupal development. Synced automatically via ddev-agents-sync. | Agent configuration |
 
 ## Disclaimer
 
