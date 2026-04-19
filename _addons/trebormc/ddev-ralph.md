@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-ralph
 repo_id: 1191701553
 default_branch: main
-tag_name: v1.0.39
+tag_name: v1.0.45
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-15
+updated_at: 2026-04-18
 workflow_status: disabled
 stars: 0
 ---
@@ -23,7 +23,7 @@ stars: 0
 
 # ddev-ralph
 
-A DDEV add-on that provides **Ralph Loop**, an autonomous AI task orchestrator for **Drupal** development. Ralph delegates work to [OpenCode](https://opencode.ai) or [Claude Code](https://docs.anthropic.com/en/docs/claude-code) containers via `docker exec`, running AI agents in a loop with [Beads](https://github.com/steveyegge/beads) task tracking. Perfect for overnight unattended execution.
+A DDEV add-on that provides **Ralph Loop**, an autonomous AI task orchestrator for **Drupal** development. Ralph delegates work to [OpenCode](https://opencode.ai) or [Claude Code](https://docs.anthropic.com/en/docs/claude-code) containers via SSH, running AI agents in a loop with [Beads](https://github.com/steveyegge/beads) task tracking. Perfect for overnight unattended execution.
 
 > **Part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace)** — a modular ecosystem of DDEV add-ons for AI-powered Drupal development. Install the full stack with one command: `ddev add-on get trebormc/ddev-ai-workspace`
 >
@@ -96,7 +96,7 @@ ddev ralph --backend opencode --prompt my-tasks.md
 ddev ralph --backend claude --no-replan
 
 # Override model
-ddev ralph --backend opencode -m anthropic/claude-sonnet-4-5
+ddev ralph --backend opencode -m anthropic/claude-sonnet-4-6
 
 # Maximum speed overnight run
 ddev ralph --backend claude -i 500 -d 0
@@ -232,15 +232,15 @@ All test generation prompts reference the specialized skills from [drupal-ai-age
 │                    DDEV Docker Network                    │
 │                                                          │
 │  ┌─────────────┐                                         │
-│  │   Ralph     │  docker exec     ┌──────────────┐      │
+│  │   Ralph     │     SSH          ┌──────────────┐      │
 │  │ (orchestr.) │─────────────────>│  OpenCode    │      │
 │  │             │       OR         │  Container   │      │
 │  │ bash + jq   │─────────────────>│──────────────│      │
-│  │ docker CLI  │                  │ Claude Code  │      │
+│  │ SSH client  │                  │ Claude Code  │      │
 │  │             │                  │  Container   │      │
 │  └─────────────┘                  └──────────────┘      │
 │        │                                │                │
-│        │ docker exec                    │ docker exec    │
+│        │ SSH                            │ SSH            │
 │        v                                v                │
 │   ┌──────────┐                   ┌──────────────┐       │
 │   │  Beads   │                   │     Web      │       │
@@ -254,7 +254,7 @@ All test generation prompts reference the specialized skills from [drupal-ai-age
 └──────────────────────────────────────────────────────────┘
 ```
 
-Ralph only contains bash, jq, and docker CLI. All AI execution happens in the dedicated OpenCode or Claude Code containers, and task tracking runs in the Beads container (all via `docker exec`). This keeps each component independently maintainable.
+Ralph only contains bash, jq, and an SSH client. All AI execution happens in the dedicated OpenCode or Claude Code containers, and task tracking runs in the Beads container (all via SSH). SSH keys are auto-generated per project in `.ddev/.agent-ssh-keys/`. This keeps each component independently maintainable.
 
 ## Exit Codes
 
@@ -283,6 +283,7 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser for browser automation and visual testing. | Auto-installed dependency |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker. Ralph uses it for task planning and progress tracking. | Auto-installed dependency |
 | [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) | Auto-syncs AI agent repositories into a shared Docker volume. | Not a direct dependency |
+| [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container. Generates per-project keys, installs sshd. | Installed by ddev-opencode/claude-code |
 | [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 10 agents, 12 rules, 24 skills for Drupal development. Includes `ralph-planner` and `drupal-test-generator` agents. | Agent configuration |
 
 ## Disclaimer
