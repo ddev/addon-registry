@@ -6,12 +6,12 @@ user: konradmichalik
 repo: ddev-typo3-multi-version-extension
 repo_id: 944430541
 default_branch: main
-tag_name: 0.3.0
+tag_name: 0.3.1
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-03-07
-updated_at: 2026-04-15
+updated_at: 2026-04-20
 workflow_status: success
 stars: 5
 ---
@@ -94,7 +94,16 @@ If you need more extensions for your setup, you can place them in the `Tests/Acc
 > [!NOTE]
 > You may not need all TYPO3 versions? You can remove the unwanted versions from the `TYPO3_VERSIONS` variable in [.ddev/docker-compose.typo3-setup.yaml](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/docker-compose.typo3-setup.yaml).
 
-If you need additional data for the automatic installation process, place TYPO3 xml export files or sql files in the `Tests/Acceptance/Fixtures/` directory.
+### Fixtures
+
+During installation, fixture data from `Tests/Acceptance/Fixtures/` is automatically imported. The following types are supported:
+
+| Type | Location | Description |
+|------|----------|-------------|
+| XML | `Tests/Acceptance/Fixtures/*.xml` | TYPO3 export files, imported via `impexp:import` |
+| SQL | `Tests/Acceptance/Fixtures/*.sql` | Raw SQL files, imported directly into the database |
+| Site config | `Tests/Acceptance/Fixtures/sites/<site-name>/` | Site configuration directories copied to `config/sites/`. Use `VERSION_PLACEHOLDER` in `config.yaml` to insert the TYPO3 version automatically. |
+| Shell scripts | `Tests/Acceptance/Fixtures/*.sh` | Executed during setup (failures are logged but don't abort the installation) |
 
 ## 📊 Usage
 

@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-04-26
 updated_at: 2026-04-08
 workflow_status: success
-stars: 1
+stars: 2
 ---
 
 [![tests](https://github.com/penyaskito/ddev-hugo/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-hugo/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
