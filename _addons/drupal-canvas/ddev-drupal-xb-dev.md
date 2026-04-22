@@ -6,7 +6,7 @@ user: drupal-canvas
 repo: ddev-drupal-xb-dev
 repo_id: 827380616
 default_branch: main
-tag_name: v0.0.29
+tag_name: v0.0.30
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

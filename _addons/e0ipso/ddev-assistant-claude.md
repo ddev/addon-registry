@@ -6,12 +6,12 @@ user: e0ipso
 repo: ddev-assistant-claude
 repo_id: 1132377741
 default_branch: main
-tag_name: v1.2.0
+tag_name: v1.2.1
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: contrib
 created_at: 2026-01-11
-updated_at: 2026-04-13
+updated_at: 2026-04-21
 workflow_status: success
 stars: 4
 ---
