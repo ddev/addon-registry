@@ -12,8 +12,8 @@ dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc
 type: contrib
 created_at: 2026-03-25
 updated_at: 2026-04-18
-workflow_status: disabled
-stars: 14
+workflow_status: success
+stars: 16
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
