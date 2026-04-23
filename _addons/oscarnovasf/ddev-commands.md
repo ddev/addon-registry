@@ -6,12 +6,12 @@ user: oscarnovasf
 repo: ddev-commands
 repo_id: 1151587694
 default_branch: main
-tag_name: v1.1.2
+tag_name: v1.2.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-06
-updated_at: 2026-03-16
+updated_at: 2026-04-22
 workflow_status: success
 stars: 1
 ---
@@ -33,10 +33,11 @@ DDEV - Herramientas para Drupal
 Conjunto de comandos personalizados para [DDEV][ddev] que facilitan el flujo de
 trabajo en proyectos [Drupal][drupal].
 
-Este addon proporciona **10 comandos** que cubren las necesidades más comunes
+Este addon proporciona **11 comandos** que cubren las necesidades más comunes
 del desarrollo en Drupal:
 - apertura del sitio en el navegador con login automático
 - limpieza de caché
+- backup de base de datos
 - ejecución de tests
 - análisis estático de código
 - refactorización automática
@@ -85,6 +86,22 @@ sin necesidad de introducir credenciales.
 
 ```bash
 ddev run
+```
+
+### `ddev backup` — Backup de base de datos
+
+Crea un backup de la base de datos en la carpeta `_backups/` del proyecto.
+Antes de exportar, ejecuta `drush cr` para volcar la caché.
+
+```bash
+ddev backup
+```
+
+El archivo generado sigue el formato `{proyecto}_{fecha}.sql.gz`:
+
+```bash
+# Resultado ejemplo
+# drupal_2026.04.22_22.49.sql.gz
 ```
 
 ### `ddev cr` — Limpieza de caché
@@ -202,6 +219,7 @@ Analiza las carpetas:
 ddev-commands/
 ├── commands/
 │   ├── host/
+│   │   ├── backup            # Backup de base de datos
 │   │   └── run              # Abrir el sitio en el navegador con login automático
 │   └── web/
 │       ├── behat            # Pruebas funcionales
@@ -233,8 +251,8 @@ ddev restart
 
 [mi-web]: https://oscarnovas.com "for developers"
 
-[version]: v1.1.2
-[version-badge]: https://img.shields.io/badge/Versión-1.1.2-blue.svg
+[version]: v1.2.0
+[version-badge]: https://img.shields.io/badge/Versión-1.2.0-blue.svg
 
 [license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"

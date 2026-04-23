@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-phpmyadmin
 repo_id: 653879988
 default_branch: main
-tag_name: v1.0.2
+tag_name: v1.0.3
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2023-06-15
-updated_at: 2026-03-11
+updated_at: 2026-04-22
 workflow_status: success
 stars: 20
 ---
