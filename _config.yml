@@ -13,7 +13,7 @@ baseurl: ""
 repository: ddev/addon-registry
 
 # to purge old cache for JS and CSS files
-clear_cache_date: 20260123
+clear_cache_date: 20260424
 
 description: >-
   A registry of DDEV add-ons where users can discover,
