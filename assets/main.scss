@@ -643,3 +643,51 @@ pre {
     display: inline;
     margin-left: 0.5rem;
 }
+
+.markdown-alert {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    color: inherit;
+    border-left: .25em solid #30363d;
+
+    > :first-child { margin-top: 0; }
+    > :last-child { margin-bottom: 0; }
+
+    .markdown-alert-title {
+        display: flex;
+        font-weight: 500;
+        align-items: center;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+    }
+
+    svg {
+        margin-right: 0.5rem !important;
+        path { fill: currentColor; }
+    }
+
+    &.markdown-alert-note {
+        border-left-color: #4493f8;
+        .markdown-alert-title { color: #4493f8; }
+    }
+
+    &.markdown-alert-important {
+        border-left-color: #ab7df8;
+        .markdown-alert-title { color: #ab7df8; }
+    }
+
+    &.markdown-alert-warning {
+        border-left-color: #9e6a03;
+        .markdown-alert-title { color: #d29922; }
+    }
+
+    &.markdown-alert-tip {
+        border-left-color: #238636;
+        .markdown-alert-title { color: #3fb950; }
+    }
+
+    &.markdown-alert-caution {
+        border-left-color: #da3633;
+        .markdown-alert-title { color: #f85149; }
+    }
+}
