@@ -1,8 +1,12 @@
 <div class="description">
-    A registry of <a href="https://docs.ddev.com/en/stable/users/extend/additional-services/" target="_blank" title="Learn more about DDEV add-ons" aria-label="Learn more about DDEV add-ons">DDEV add-ons</a>
-    where users can discover, explore, and leave comments on available add-ons.<br />
-    If you have an add-on but don't see it listed here, add the <code>ddev-get</code>
-    <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics" target="_blank" title="Learn more about GitHub topics" aria-label="Learn more about GitHub topics">topic</a> to your GitHub repository.
+    <p>
+        A registry of <a href="https://docs.ddev.com/en/stable/users/extend/additional-services/" target="_blank" title="Learn more about DDEV add-ons" aria-label="Learn more about DDEV add-ons">DDEV add-ons</a>
+        where users can discover, explore, and leave comments on available add-ons.
+    </p>
+    <p>
+        Add the <code>ddev-get</code> <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics" target="_blank" title="Learn more about GitHub topics" aria-label="Learn more about GitHub topics">topic</a> to your GitHub repo to list it here.
+        To build your own, see <a href="https://docs.ddev.com/en/stable/users/extend/creating-add-ons/" target="_blank" title="Creating DDEV Add-ons" aria-label="Creating DDEV Add-ons">Creating DDEV Add-ons</a> and the <a href="https://ddev.com/blog/ddev-add-on-maintenance-guide/" target="_blank" title="DDEV Add-on Maintenance Guide" aria-label="DDEV Add-on Maintenance Guide">maintenance guide</a>.
+    </p>
 </div>
 
 {%- assign official_addons = site.addons | where_exp: "addon", "addon.group == nil" | where_exp: "addon", "addon.user == 'ddev'" | sort: "repo" -%}
@@ -68,7 +72,7 @@
                             </object>
                         </div>
                         <div class="footer-item">
-                            <span class="stars">⭐ {{ addon.stars | to_integer }}</span>
+                            <object><a href="{{ addon.github_url }}" class="stars" tabindex="-1" target="_blank" title="Find it useful? Star it on GitHub!" style="color: inherit; text-decoration: none;">⭐ {{ addon.stars | to_integer }}</a></object>
                         </div>
                     </div>
                 </a>
