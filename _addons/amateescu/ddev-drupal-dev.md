@@ -6,14 +6,14 @@ user: amateescu
 repo: ddev-drupal-dev
 repo_id: 1183388555
 default_branch: main
-tag_name: 1.0.5
+tag_name: 1.0.7
 ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: contrib
 created_at: 2026-03-16
-updated_at: 2026-04-21
+updated_at: 2026-04-24
 workflow_status: success
-stars: 4
+stars: 5
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
@@ -53,11 +53,12 @@ ddev composer install
 Use `ddev add-module` to clone a contrib module for development:
 
 ```bash
-ddev auth ssh                   # forward SSH keys (needed once per session)
 ddev add-module token
 ddev add-module token 2.0.x     # specific branch
 ddev add-module --https token   # or use HTTPS (no push access)
 ```
+
+The clone runs on your host, so it uses your host SSH keys directly; no `ddev auth ssh` needed.
 
 This clones the module into `modules/contrib/`, registers it as a path repository in `composer.local.json`, and runs `composer require`, all in one step.
 
