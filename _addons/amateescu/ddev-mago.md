@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-03-10
-updated_at: 2026-04-11
+updated_at: 2026-04-25
 workflow_status: success
 stars: 3
 ---
@@ -49,16 +49,16 @@ The mago binary is automatically updated to the latest release on every `ddev st
 
 ## Pinning a Mago version
 
-To pin a specific version, add `MAGO_VERSION` to `web_environment` in your `.ddev/config.yaml`:
+To pin a specific version, add `DDEV_MAGO_VERSION` to `web_environment` in your `.ddev/config.yaml`:
 
 ```yaml
 web_environment:
-  - MAGO_VERSION=1.14.1
+  - DDEV_MAGO_VERSION=1.24.0
 ```
 
 Then restart: `ddev restart`
 
-To unpin and go back to the latest version, remove the `MAGO_VERSION` entry and restart.
+To unpin and go back to the latest version, remove the `DDEV_MAGO_VERSION` entry and restart.
 
 ## Configuration
 
