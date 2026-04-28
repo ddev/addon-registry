@@ -6,12 +6,12 @@ user: UltraBob
 repo: ddev-drupal-code-quality
 repo_id: 1124009554
 default_branch: main
-tag_name: v1.0.5
+tag_name: v1.0.6
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-28
-updated_at: 2026-04-15
+updated_at: 2026-04-27
 workflow_status: success
 stars: 14
 ---
@@ -169,10 +169,9 @@ The template points PHP tooling at `.ddev/drupal-code-quality/tooling/bin` and J
   - `dcq-reports/` is created at the project root when running `checks`
     or the `*-fix` commands (logs + patch previews).
   - Add `dcq-reports/` to `.gitignore` if you do not want to track it.
-- ESLint toolchain selection:
-  - `ESLINT_TOOLCHAIN=auto` (default) prefers root toolchain when root configs exist.
-  - `ESLINT_TOOLCHAIN=core` forces Drupal core JS toolchain.
-  - `ESLINT_TOOLCHAIN=root` forces project root toolchain.
+- ESLint toolchain: Node tooling is installed at the project root only
+  (see `docs/decisions/node-deps-root-only-2026-01-22.md`). All wrappers resolve
+  tools from `node_modules/` at the project root.
 - ESLint config mode:
   - `ESLINT_CONFIG_MODE=nearest` (default) groups by nearest config file.
   - `ESLINT_CONFIG_MODE=fixed` prefers `.eslintrc.passing.json`, then
@@ -276,6 +275,34 @@ DCQ_FULL_TESTS=1 bats --jobs 4 ./tests/test.bats
 
 A weekly GitHub Actions workflow (`upstream-config-check.yml`) automatically
 checks for upstream drift and opens an issue when changes are detected.
+
+## Troubleshooting
+
+### Stylelint crashes with "RangeError: Invalid string length"
+
+On projects with a very large number of Stylelint violations (2000+), the
+default `string` formatter may crash because it builds a single table string
+that exceeds Node.js memory limits. This is a
+[known stylelint limitation](https://github.com/stylelint/stylelint/issues/4133).
+
+**Workaround:** Use the `compact` formatter, which outputs one line per warning
+and does not hit the string length limit:
+
+```bash
+ddev stylelint --formatter compact
+```
+
+### Stylelint crashes with "findLastIndex is not a function"
+
+This means your DDEV container is running Node.js 16 or earlier.
+`Array.prototype.findLastIndex` requires Node.js 18+. Update your DDEV config:
+
+```yaml
+# .ddev/config.yaml
+nodejs_version: "20"
+```
+
+Then run `ddev restart`.
 
 ## Uninstall
 

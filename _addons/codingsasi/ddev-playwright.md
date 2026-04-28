@@ -12,7 +12,7 @@ dependencies: ["ddev/ddev-nvm"]
 type: contrib
 created_at: 2024-12-31
 updated_at: 2026-02-27
-workflow_status: failure
+workflow_status: success
 stars: 3
 ---
 
