@@ -11,8 +11,8 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2026-02-24
-updated_at: 2026-02-25
-workflow_status: success
+updated_at: 2026-04-27
+workflow_status: disabled
 stars: 0
 ---
 
@@ -48,7 +48,20 @@ gh auth token
 | `ddev exec gh --version`                    | Check the installed version              |
 | `ddev exec gh --help`                       | View available commands                  |
 
-The full documentation about GH CLI can be gound at the [GH CLI documentation page](https://cli.github.com/).
+The full documentation about GH CLI can be found at the [GH CLI documentation page](https://cli.github.com/).
+
+## Telemetry
+
+GH CLI telemetry is **disabled by default** in this add-on via the `GH_TELEMETRY=false` environment variable.
+
+To enable telemetry, add the following to your project's `.ddev/config.yaml`:
+
+```yaml
+web_environment:
+  - GH_TELEMETRY=true
+```
+
+Then run `ddev restart` for the change to take effect.
 
 ## Credits
 

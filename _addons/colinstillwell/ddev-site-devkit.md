@@ -6,12 +6,12 @@ user: colinstillwell
 repo: ddev-site-devkit
 repo_id: 1061687339
 default_branch: main
-tag_name: 6.15.0
+tag_name: 7.0.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-09-22
-updated_at: 2026-03-23
+updated_at: 2026-04-27
 workflow_status: success
 stars: 0
 ---
@@ -64,7 +64,8 @@ There are two types of commands provided by this add-on:
 | `devkit-file-copy`                    | Copy a file from source to destination within the project, skipping if it already exists |
 | `devkit-log`                          | Print a formatted log message                                                            |
 | `devkit-minio-create-bucket`          | Create a MinIO bucket if it does not exist, and set its policy                           |
-| `devkit-prompt`                       | Prompt the user for input                                                                |
+| `devkit-prompt-confirm`               | Prompt the user for a yes/no confirmation                                                |
+| `devkit-prompt-file`                  | Prompt the user to choose a file from a directory                                        |
 | `devkit-script-run`                   | Run a script on the host or in a specified service                                       |
 | `devkit-typesense-delete-collections` | Delete Typesense collections                                                             |
 

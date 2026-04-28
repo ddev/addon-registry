@@ -6,13 +6,13 @@ user: natereprogle
 repo: ddev-datagrip
 repo_id: 1110121901
 default_branch: main
-tag_name: 2025.2.5a
+tag_name: 2026.04.27
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-04
-updated_at: 2026-03-30
-workflow_status: disabled
+updated_at: 2026-04-27
+workflow_status: success
 stars: 3
 ---
 
@@ -41,9 +41,10 @@ After installation, make sure to commit the .ddev directory to version control.
 | Argument | Description |
 |----------|-------------|
 | `--database [database]` | Specify the database to connect to |
-| `--reset` | Resets the DataGrip project, including configuration and generated schemas. A manual refresh will be required upon next launch of DataGrip |
+| `--reset` | Resets the Add-On's configuration, stored UUID, and the DataGrip project, including configuration and generated schemas. A new UUID is generated after reset. A manual refresh will be required upon next launch of DataGrip |
 | `--auto-refresh [time in minutes]` | Enables auto-refresh in DataGrip. This only works if the datasource has been refreshed at least once. Minimum of 0.1 minutes (6 seconds), set to 0 to disable. Default is 1 minute |
-| `--pg-pass` | Only applicable for DDEV projects using Postgres. This will utilize pgpass (`~/.pgpass`) instead of User & Password for connecting to the Postgres database. It is required to provide this argument each time you want to authenticate with pgpass. Omitting this will default back to User & Password |
+| `--pg-pass` | Only applicable for DDEV projects using Postgres. This will utilize pgpass (`~/.pgpass`) instead of User & Password for connecting to the Postgres database. It is required to provide this argument each time you want to authenticate with pgpass unless configured to use pgpass by default via `ddev datagrip config` |
+| `--no-defaults` | Ignores the defaults in the user configuration file |
 | `--help` | Get command help |
 
 Connect to your local default DDEV database
@@ -56,7 +57,7 @@ Connect to your local DDEV database using a specific database name
 ddev datagrip --database my-db
 ```
 
-Reset your datagrip configuration and datasource (note this will require you to manually refresh the datasource onced datagrip is launched)
+Reset the Add-On, which will remove any user-generated configuration, regenerate the data source UUID, and wipe and recreate the DataGrip project (note this will require you to manually refresh the datasource once DataGrip is launched).
 ```sh
 ddev datagrip --reset
 ```
@@ -71,17 +72,70 @@ Use pgpass when connecting to a Postgres DB
 ddev datagrip --pg-pass
 ```
 
-# Update Philosphy
-JetBrains reserves the right to change how DataGrip is configured at any time, and this configuration may or may not be backwards compatible with older versions. Therefore, this Add-On will only ever be developed & tested on the latest version of DataGrip (**including** EAP versions). Personally, I have tested this Add-On with DataGrip 2025.2.5 and later – including 2026.1 – with success.
+Ignore the user-defined default settings and launch with the Add-On's default settings
+```sh
+ddev datagrip --no-defaults
+```
 
-The version of this Add-On will reflect the minimum version of DataGrip this Add-On supports. Meaning, if you see the add-on is on version `2025.2.5`, that means the Add-On is tested and confirmed to support all DataGrip versions 2025.2.5 and later.
+## Configuration
+As of Add-On version 2025.2.5b, the Add-On supports configuration. Available configurations options are:
+| Option | Type | Usage | Hardcoded Fallback |
+|--------|------|-------|--------------------|
+| `pg-pass` | bool | Whether to use `~/.pgpass` for Postgres auth (equivalent to passing `--pg-pass` every time) | `false` |
+| `default-database` | string | Default database to connect to (equivalent to passing `--database <name>`) | `"db"` |
+| `auto-refresh` | number | Refresh interval in minutes (equivalent to `--auto-refresh <n>`) | `1` |
+| `datagrip-version` | string | Pin the DataGrip version used to select the configuration script. Set this if auto-detection fails or detects the wrong installation (e.g. multiple DataGrip versions installed) | *(auto-detected)* |
 
-A letter or extra decimal may be appended to the version when necessary to publish an update. For example, `2025.2.5a` or `2025.2.5.1` both target a minimum version of `2025.2.5`. Anything after the date can be safely ignored in terms of compatibility.
+### Version detection
 
-> [!NOTE]
-> An exception to this is EAP versions of DataGrip. If the Add-On version ends with `EAP` (case-insensitive), this indicates that the applicable version of the Add-On only supports a minimum of that EAP version of DataGrip. 
-> 
-> For example `2025.2.5eap`, `2025.2.5EAP`, and `2025.2.5.1EAP` all require DataGrip version `2025.2.5 EAP` (If such a version existed, which it does not). `2025.2.5EAP.1`, `2025.2.5EAPa`, and `2025.2.5EAP123` do not require the EAP version as they do not end with `EAP`.
+The Add-On automatically detects your installed DataGrip version by scanning JetBrains Toolbox's `state.json`, well-known installation paths, and the `datagrip` binary on your `PATH`. If detection succeeds, no configuration is needed.
+
+If detection fails (DataGrip is installed in a non-standard location, or the Add-On can't read the install metadata), the command will exit with an error and tell you to set the version manually:
+
+```sh
+ddev datagrip config set datagrip-version 2025.2.5
+```
+
+If you have multiple DataGrip installations and the wrong one is detected, the configured value always takes precedence. A warning is shown if the configured version differs from the detected version so you can `unset` it once the detection issue is resolved:
+
+```sh
+ddev datagrip config unset datagrip-version
+```
+
+This Add-On will create between 1 and 2 configuration files, depending on if any user-defined defaults are provided
+1. `.ddev/datagrip/config.yaml` -- This file is always generated and only contains the `uuid` of the data source (generated on first run). Any subsequent execution of the `ddev datagrip` command will use this UUID. **This should never be modified manually**. If the UUID must be regenerated for any reason, pass `--reset` (note this will reset all configuration and remove any project files, including SQL scripts and scratch files). 
+2. `.ddev/datagrip/.user-config.yaml` -- This file is generated only when a user directly sets a default via `ddev datagrip config set <key> <value>`. As well, a `.gitignore` is generated next to this file which ignores it so it is not commited to the repo. This allows for the `uuid` to be commited, but user preferences to remain local. This file and the `.gitignore` will remain even if all options are unset. They are removed if `--reset` is provided.
+
+Configuration can be modified by the user by using the `ddev datagrip config <subcommand> [args]` command. Use `ddev datagrip config` to learn what configuration options are available and how to view and/or modify them.
+
+# Update Philosophy
+JetBrains reserves the right to change how DataGrip is configured at any time. To support both old and new DataGrip versions simultaneously, this Add-On uses a version manifest (`commands/host/datagrip-lib/versions.json`) that maps DataGrip version ranges to version-specific configuration scripts in `commands/host/datagrip-lib/versions/`.
+
+When you run `ddev datagrip`, the Add-On detects your installed DataGrip version and selects the highest manifest entry whose version is ≤ your installed version. For example, with a manifest of `2025.2.5` and `2026.1`, a user on DataGrip 2025.3.0 gets the `2025.2.5` script, while a user on 2026.1 or newer gets the `2026.1` script. Versions below the oldest supported entry are routed to `unsupported.sh`, which exits with an error.
+
+New entries are added to the manifest only when JetBrains changes the DataGrip configuration format in a way that requires it. Versions that work identically to a prior release continue to use the existing script without any changes to the manifest.
+
+## Adding support for a new DataGrip version
+
+1. **Check whether the XML format changed.** Open the new DataGrip version, connect to a DDEV project manually, and compare the generated `.idea/dataSources.xml` and `.idea/dataSources.local.xml` against the template in `commands/host/datagrip-lib/versions/2025.2.5.sh`. If the structure is identical, no new script is needed — the existing entry already covers the new version via the "highest matching minimum" rule.
+
+2. **If the format changed**, create a new script at `commands/host/datagrip-lib/versions/<version>.sh` (e.g. `2026.1.sh`). Copy the nearest existing script as a starting point and update the XML template to match what DataGrip now expects.
+
+3. **Add an entry to `commands/host/datagrip-lib/versions.json`** using the new DataGrip version as the key and the script filename as the value:
+   ```json
+   {
+       "2026.1": "2026.1.sh",
+       "2025.2.5": "2025.2.5.sh",
+       "<2025.2.5": "unsupported.sh"
+   }
+   ```
+   Keys are matched from highest to lowest, so order within the JSON object does not affect behaviour — but keeping them in descending order makes the file easier to read.
+
+4. **Add the new script to `install.yaml`** under `project_files` and add a `chmod +x` line for it in `post_install_actions`.
+
+5. **Update `unsupported.sh`** if the minimum supported DataGrip version has changed, so the error message reflects the new floor.
+
+Add-On releases use **CalVer** (`YYYY.0M.0D`), where the version is simply the date the release was published - for example, `2026.04.27`. This makes it easy to tell how recent a release is without implying anything about DataGrip compatibility. If more than one release is published on the same day, a numeric suffix is appended: `2026.04.27.1`, `2026.04.27.2`, and so on.
 
 # Known Issues & Limitations
 ## Initial Data Refresh

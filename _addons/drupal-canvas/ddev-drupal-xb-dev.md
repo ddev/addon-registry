@@ -6,12 +6,12 @@ user: drupal-canvas
 repo: ddev-drupal-xb-dev
 repo_id: 827380616
 default_branch: main
-tag_name: v0.0.30
+tag_name: v0.0.32
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-07-11
-updated_at: 2026-04-25
+updated_at: 2026-04-27
 workflow_status: failure
 stars: 23
 ---
@@ -141,13 +141,27 @@ brew install xquartz
 
 Configure XQuartz to allow connections from the host:
 
+```shell
+defaults write org.xquartz.X11 nolisten_tcp -bool false
+```
+
+If you haven't opened XQuartz yet, it will pick up the setting on its first launch — `xb-cypress` / `xb-playwright` will start it for you.
+
+> **Security note:** allowing network clients causes XQuartz to listen on TCP (port 6000) while running. `xb-cypress` and `xb-playwright` also run `xhost +` before launching tests, which disables X access control for the session — any local process could then connect to the X server and observe its state. Only apply this setting if that tradeoff is acceptable on your machine.
+
+<details markdown="1">
+<summary markdown="span">Prefer to configure this from the XQuartz UI?</summary>
+
 - Open XQuartz.
 - Open Preferences ("XQuartz" > "Settings..." from the menu or `⌘,`).
 - Go to the "Security" tab.
 - Check the "Allow connections from network clients" checkbox.
-- Log out and back in or restart your machine for the change to take effect.
 
 ![XQuartz Preferences dialog](https://raw.githubusercontent.com/drupal-canvas/ddev-drupal-xb-dev/main/resources/xquartz-settings.png)
+
+Then restart XQuartz (quit and reopen, or log out and back in) for the change to take effect.
+
+</details>
 
 ##### Windows
 
