@@ -6,12 +6,12 @@ user: xima-media
 repo: ddev-playwright
 repo_id: 1223285826
 default_branch: main
-tag_name: 3.0.1
+tag_name: 3.0.4
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-04-28
-updated_at: 2026-04-28
+updated_at: 2026-04-29
 workflow_status: unknown
 stars: 0
 ---
@@ -23,287 +23,88 @@ stars: 0
 
 # ddev-playwright
 
-**Table of Contents**
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Basic usage](#basic-usage)
-  - [Quick start](#quick-start)
-  - [Customization](#customization)
-    - [Playwright testing directory](#playwright-testing-directory)
-    - [Docker image and KASMVNC version](#docker-image-and-kasmvnc-version)
-    - [`.env` file](#env-file)
-  - [Add-on commands](#add-on-commands)
-    - [Install Playwright from a `package.json` file](#install-playwright-from-a-packagejson-file)
-    - [Init a Playwright project from scratch](#init-a-playwright-project-from-scratch)
-    - [Run a Playwright command](#run-a-playwright-command)
-  - [VNC server](#vnc-server)
-  - [Other commands](#other-commands)
-- [Technical notes](#technical-notes)
-  - [`.npmrc` file and `.ddev/homeadditions`](#npmrc-file-and-ddevhomeadditions)
-- [Thanks](#thanks)
-- [Contribute](#contribute)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Introduction
-
-[Playwright](https://playwright.dev) was created to accommodate the needs of end-to-end testing.
-
-This DDEV add-on allows you to use Playwright in a separate `playwright` service.
+This fork uses the [xima-media/playwright](https://github.com/xima-media/typo3-docker/pkgs/container/playwright) docker image, which bundles the playwright dependencies.
 
 ## Installation
 
-Run:
-
 ```bash
 ddev add-on get xima-media/ddev-playwright
 ```
 
-Then restart your project
+## Quickstart
+
+Generate example `playwright.config.js` in your project root directory with this command:
 
 ```bash
-ddev restart
+ddev playwright-init
 ```
 
-## Basic usage
+(@TODO #2)
 
-### Quick start
+## Usage
 
-- Create a `tests/Playwright` folder in your project root directory (Only required for this "quick start").
-- `ddev playwright test`
+* `ddev playwright test`
+* `ddev playwright show-report`
 
-### Customization
+## Extras
 
-#### Playwright testing directory
+This add-on installs `mariadb-client` into the ddev image to populate test fixtures from inside the container. Configure [globalSetup](https://playwright.dev/docs/test-global-setup-teardown#option-2-configure-globalsetup-and-globalteardown) to truncate and load sql files + copy files.
 
-Each command of this add-on runs inside the `PLAYWRIGHT_TEST_DIR` directory of the Playwright container.
-
-By default, `tests/Playwright` is used as `PLAYWRIGHT_TEST_DIR` value, but you can override this value to suit your
-need by creating a `docker-compose.override.yaml` (or any `docker-compose.<some-good-name>.yaml` file) in
-the `.ddev` root directory with the following content:
-
-```yaml
-services:
-  playwright:
-    environment:
-      - PLAYWRIGHT_TEST_DIR=your/playwright/directory/path
+```ts
+// playwright.config.js
+export default defineConfig({
+  globalSetup: "./Tests/Playwright/global-setup.ts",
+  ...
+})
 ```
 
-If you want to use the root directory of your project, you can use the following value:
+Example setup
+ * Truncate + import sql in the format `Tests/Fixtures/<tablename>.sql`.
+ * Copy directory `Tests/Fixtures/Files` to a fixed path.
 
-```yaml
-services:
-  playwright:
-    environment:
-      - PLAYWRIGHT_TEST_DIR=./
-```
+```ts
+// global-setup.ts
+import {execSync} from 'child_process';
+import * as path from 'path';
+import * as fs from 'fs';
 
-You could also edit the value directly in the `docker-compose.playwright.yaml` file, but you risk losing your changes every time you do a `ddev add-on get xima-media/ddev-playwright` (unless you delete the `#ddev-generated` line at the beginning of the file).
+const DB_HOST = 'db';
+const DB_USER = 'db';
+const DB_PASS = 'db';
+const DB_NAME = 'db';
 
+const FIXTURE_PATH = '/var/www/html/Tests/Fixtures';
 
-#### Docker image and KASMVNC version
+function mysql(sql: string): void {
+  execSync(`mysql -h${DB_HOST} -u${DB_USER} -p${DB_PASS} ${DB_NAME}`, {input: sql, stdio: ['pipe', 'inherit', 'inherit']});
+}
 
-To change the Docker image, you can set the `PLAYWRIGHT_DOCKER_IMAGE` variable in the `.ddev/.env.playwright` file.
-To change the KasmVNC version, you can set the `KASMVNC_VERSION` variable in the `.ddev/.env.playwright` file.
+function mysqlFile(filePath: string): void {
+  execSync(`mysql -h${DB_HOST} -u${DB_USER} -p${DB_PASS} ${DB_NAME} < "${filePath}"`, {shell: '/bin/bash', stdio: 'inherit'});
+}
 
-For example, to use the `mcr.microsoft.com/playwright:v1.46.0-focal-amd64` image, run the following command:
+export default async function globalSetup(): Promise<void> {
+  console.log('Setting up test fixtures...');
 
-```bash
-ddev dotenv set .ddev/.env.playwright --playwright-docker-image=mcr.microsoft.com/playwright:v1.46.0-focal-amd64
-ddev add-on get xima-media/ddev-playwright
-ddev restart
-```
+  const tables = fs.readdirSync(FIXTURE_PATH)
+    .filter(f => f.endsWith('.sql'))
+    .map(f => path.basename(f, '.sql'));
 
-Make sure to commit the `.ddev/.env.playwright` file to version control.
+  const truncateStatements = tables.map(t => `TRUNCATE TABLE \`${t}\`;`).join(' ');
+  mysql(`SET FOREIGN_KEY_CHECKS = 0; ${truncateStatements} SET FOREIGN_KEY_CHECKS = 1;`);
 
-All customization options (use with caution):
-
-| Variable                  | Flag                        | Default |
-|---------------------------|-----------------------------| ------- |
-| `PLAYWRIGHT_DOCKER_IMAGE` | `--playwright-docker-image` | `mcr.microsoft.com/playwright:focal` |
-| `KASMVNC_VERSION` | `--kasmvnc-version` | `1.4.0` |
-
-#### `.env` file
-
-If there is a `.env.example` file in the `PLAYWRIGHT_TEST_DIR` folder, it will be copied (while running `ddev
-playwright-install` or `ddev playwright-init` ) into a `.env` file (to be used with the `dotenv` package for example).
-
-### Add-on commands
-
-#### Install Playwright from a `package.json` file
-
-- `ddev playwright-install --pm [npm|yarn]`
-
-This command will install `playwright` and all dependencies in a folder defined by the environment variable `PLAYWRIGHT_TEST_DIR` of the `docker-compose.playwright.yaml` file.
-
-You can choose to use `npm` or `yarn` as package manager by using the `--pm` option. By default, `yarn` is used.
-
-**Before running this command**, ensure that you have a `package.json` file in the `PLAYWRIGHT_TEST_DIR` folder.
-
-You will find an example of such a file in the `tests/project_root/tests/Playwright`folder of this repository.
-
-<details markdown="1">
-
-<summary markdown="span">Example of package.json file</summary>
-
-```json
-{
-  "license": "MIT",
-  "dependencies": {
-    "@playwright/test": "^1.34.2",
-    "dotenv": "^16.0.3"
+  for (const table of tables) {
+    const file = path.join(FIXTURE_PATH, `${table}.sql`);
+    console.log(`Importing ${table}.sql...`);
+    mysqlFile(file);
   }
+
+  const filesSource = path.join(FIXTURE_PATH, 'Files');
+  const filesDest = '/var/www/html/public/fileadmin/Files';
+  if (fs.existsSync(filesSource)) {
+    execSync(`cp -r "${filesSource}" "${filesDest}"`, {stdio: 'inherit'});
+  }
+
+  console.log('Fixture setup complete.');
 }
 ```
-
-</details>
-
-You will also find an example of a `playwright.config.js` file.
-
-<details markdown="1">
-<summary markdown="span">Example of playwright.config.js file</summary>
-
-```javascript
-// @ts-check
-const { defineConfig, devices } = require("@playwright/test");
-
-require("dotenv").config({ path: ".env" });
-
-/**
- * @see https://playwright.dev/docs/test-configuration
- */
-module.exports = defineConfig({
-  testDir: "./tests",
-  /* Run tests in files in parallel */
-  fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [[process.env.CI ? "github" : "list"], ["html", { open: "never" }]],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.BASEURL,
-    ignoreHTTPSErrors: true,
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
-  },
-
-  /* Configure projects for major browsers */
-  projects: [
-    {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
-    },
-
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
-    },
-  ],
-});
-```
-
-</details>
-
-#### Init a Playwright project from scratch
-
-- `ddev playwright-init --pm [npm|yarn]`
-
-This command will initialize a Playwright project in the `PLAYWRIGHT_TEST_DIR` as described in the [Playwright documentation](https://playwright.dev/docs/intro#installing-playwright).
-
-You can choose to use `npm` or `yarn` as package manager by using the `--pm` option. By default, `yarn` is used.
-
-**NB:** Please note that this command is interactive and [should not be used in CI context](https://github.com/microsoft/playwright/issues/11843).
-
-#### Run a Playwright command
-
-- `ddev playwright`
-
-You can run all the playwright command with `ddev playwright [command]`.
-
-- To run playwright's test command:
-
-  ```bash
-  ddev playwright test
-  ```
-
-- To run with the Playwright UI tool.
-
-  ```bash
-  ddev playwright test --ui
-  ```
-
-- To run in headed mode.
-
-  ```bash
-  ddev playwright test --headed
-  ```
-
-- To generate playwright report
-
-  ```bash
-  ddev playwright show-report --host 0.0.0.0
-  ```
-
-  and then browse to `https://<PROJECT>.ddev.site:9323`
-
-  ![show report](https://raw.githubusercontent.com/xima-media/ddev-playwright/main/./docs/show-report.jpg)
-
-### VNC server
-
-When running in UI/headed mode, you can use the provided Kasmvnc service by browsing to `https://<PROJECT>.ddev.site:8444`
-
-![kasmvnc](https://raw.githubusercontent.com/xima-media/ddev-playwright/main/./docs/kasmvnc.jpg)
-
-It could be also used to generate playwright code by browsing with the following command:
-
-```bash
-ddev playwright codegen
-```
-
-### Other commands
-
-As for any DDEV additional service, you can use the `ddev exec -s playwright [command]` snippet to run a command in the playwright container.
-
-For example:
-
-- `ddev exec -s playwright yarn install --cwd ./var/www/html/yarn --force`
-- `ddev exec -s playwright yarn --cwd /var/www/html/yarn test "__tests__/1-simple-test.js"`
-
-## Technical notes
-
-### `.npmrc` file and `.ddev/homeadditions`
-
-If you wish to use a specific `.npmrc` file (for private NPM registries for example), you just need to place the `.npmrc` file in the `.ddev/homeadditions` folder of your project. This way, the `ddev playwright-install` command
-will automatically retrieve it.
-
-More generally, all the `.ddev/homeadditions` folder content is copied to `/home/<your-user>` folder when the `playwright`
-container is build.
-
-## Thanks
-
-[Lullabot/ddev-playwright](https://github.com/Lullabot/ddev-playwright) is another way of implementing Playwright as a DDEV add-on. The main difference is that this other add-on embeds Playwright in the Web container. Everyone can choose what suits them best.
-
-We'd like to thank [devianintegral](https://github.com/deviantintegral) for the fruitful discussions we've had and the fact that we are using a few pieces of code taken directly from his repository.
-
-## Contribute
-
-Anyone is welcome to submit a Pull Request to this repository.
-
-For more details on development processes, please read the [developer guide](https://github.com/xima-media/ddev-playwright/blob/main/./docs/DEVELOPER.md).
-
-**Contributed and maintained by [julienloizelet](https://github.com/julienloizelet)**
