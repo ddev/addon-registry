@@ -6,12 +6,12 @@ user: oscarnovasf
 repo: ddev-commands
 repo_id: 1151587694
 default_branch: main
-tag_name: v1.2.0
+tag_name: v1.3.6
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-06
-updated_at: 2026-04-22
+updated_at: 2026-05-01
 workflow_status: failure
 stars: 1
 ---
@@ -213,13 +213,26 @@ Analiza las carpetas:
 
 ---
 
+## Skills para IAs
+
+Este addon incluye una carpeta `.agents/` con "skills" diseñadas para asistentes de IA (como Antigravity, Cursor o Copilot). Estas skills proporcionan contexto, instrucciones y patrones de código específicos para que la IA pueda ayudarte mejor en tareas complejas.
+
+- **Sincronización inteligente**: Durante la instalación o actualización del addon, las nuevas skills se sincronizan automáticamente.
+- **Respeto a lo local**: El proceso utiliza `rsync` para añadir nuevas skills o actualizar las existentes, pero **nunca borrará** archivos que hayas creado tú localmente dentro de `.agents/`.
+
+#### Skills incluidas:
+- **playwright-creator**: Patrones y herramientas para la creación de tests E2E con Playwright en Drupal.
+
+---
+
 ## Estructura del proyecto
 
 ```
 ddev-commands/
+├── agents/                  # Skills, comandos, instrucciones para IA.
 ├── commands/
 │   ├── host/
-│   │   ├── backup            # Backup de base de datos
+│   │   ├── backup           # Backup de base de datos
 │   │   └── run              # Abrir el sitio en el navegador con login automático
 │   └── web/
 │       ├── behat            # Pruebas funcionales
@@ -251,8 +264,8 @@ ddev restart
 
 [mi-web]: https://oscarnovas.com "for developers"
 
-[version]: v1.2.0
-[version-badge]: https://img.shields.io/badge/Versión-1.2.0-blue.svg
+[version]: v1.3.6
+[version-badge]: https://img.shields.io/badge/Versión-1.3.6-blue.svg
 
 [license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"
