@@ -6,12 +6,12 @@ user: massiws
 repo: ddev-bearer
 repo_id: 1156317873
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.0.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-02-12
-updated_at: 2026-02-14
+updated_at: 2026-05-05
 workflow_status: disabled
 stars: 0
 ---
@@ -25,17 +25,30 @@ stars: 0
 
 ## Overview
 
-[Bearer](https://github.com/bearer/bearer) CLI is a static application security testing (SAST) tool.
+This add-on integrates [Bearer](https://github.com/bearer/bearer), a powerful static application security testing (SAST) tool, directly into your [DDEV](https://ddev.com/) project.
 
-It scans your source code and analyzes your data flows to discover, filter and prioritize security and privacy risks, with built in rules to cover the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [CWE Top 25](https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html).
+It allows you to **scan your source code for security and privacy vulnerabilities** without leaving the DDEV workflow. 
+
+### Key Benefits
+
+- **Early Detection**: Discover security vulnerabilities in your codebase during development
+- **Comprehensive Coverage**: Detects risks based on [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [CWE Top 25](https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html) standards
+- **Data Flow Analysis**: Analyzes your source code's data flows to identify security and privacy risks
+- **Flexible Scanning**: Customize scans by severity level, scanner type, and context
+- **Built-in Rules**: Pre-configured rules for common security vulnerabilities
+
+## Main Features
+
+- **Multi-Scanner Support**: Scan for various vulnerability types including secrets, credentials, and OWASP violations
+- **Severity Filtering**: Focus on critical and high-severity issues or customize to your needs
+- **Configurable Rules**: Customize scanning behavior through `bearer.yml` configuration file
+- **Fingerprint-based Ignore Management**: Mark specific findings as false positives and track them with author and comment metadata
+- **Context-Aware Scanning**: Run scans with specific contexts (e.g., health, payment) for targeted analysis
 
 ## Installation
 
 ```bash
-# Install the add-on
 ddev add-on get massiws/ddev-bearer
-
-# Restart DDEV
 ddev restart
 
 # Generates a default config to `bearer.yml`
@@ -43,51 +56,43 @@ ddev bearer init
 ```
 
 After installation, you may want to customize the default configuration settings by editing the `bearer.yml` file:
-see [docs](https://docs.bearer.com/reference/config/) for more information.
+see [Bearer configuration docs](https://docs.bearer.com/reference/config/) for more information.
 
-**Important**: restart DDEV after making changes to the `bearer.yml` file.
+**Important**: Restart DDEV after making changes to the `bearer.yml` file.
 
 Make sure to commit the `.ddev` directory and the `bearer.yml` file to version control.
 
-
 ## Usage
 
-Display available commands and usage information:
-  ```bash
-  ddev bearer
-  ```
+| Command | Description |
+|---------|-------------|
+| `ddev bearer` | Display available commands and usage information |
+| `ddev bearer scan .` | Scan entire project using default configuration in `bearer.yml` |
+| `ddev bearer scan . --severity critical,high` | Scan only for critical and high-severity issues |
+| `ddev bearer scan . --scanner=secrets` | Scan specifically for hardcoded credentials and secrets |
+| `ddev bearer scan <path/to/file> --context=health` | Scan specific file/folder with custom context (health, payment, finance, etc.) |
+| `ddev bearer ignore add <fingerprint> --author "Your Name" --comment "Reason"` | Add fingerprint to ignore file and track with author/comment metadata |
 
-Scan project using default configuration in `bearer.yml`:
-  ```bash
-  ddev bearer scan .
-  ```
+### Tips & Tricks
 
-Scan project only for specified [Severity Levels](https://docs.bearer.com/guides/configure-scan/#limit-severity-levels):
-  ```bash
-  ddev bearer scan . --severity critical,high
-  ```
+**Auto-fill Author in Ignore Commands**: To avoid specifying the author repeatedly, configure your [Git username in DDEV globals](https://docs.ddev.com/en/stable/users/extend/in-container-configuration/#git-configuration):
 
-Scan all project files searching for hardcoded credentials (see [Scanner Types](https://docs.bearer.com/explanations/scanners/):
-  ```bash
-  ddev bearer scan . --scanner=secrets
-  ```
+```bash
+ln -s $HOME/.gitconfig $HOME/.ddev/homeadditions/.gitconfig
+```
 
-Scan a specific file or folder, also adding _context_ (see [Bearer Flags](https://docs.bearer.com/reference/commands/#bearer%20scan-flags))
-  ```bash
-  ddev bearer scan <file/path> --context=health
-  ```
+This will automatically use your Git username for all `ddev bearer ignore` commands.
 
-Ignore a reported risk adding the fingerprint to your ignore file:
-  ```bash
-  ddev bearer ignore add <fingerprint> --author Mish --comment "Possible false positive"
-  ```
-**TIP**: to avoid specify _author_ each time, you may want to configure your [git username in DDEV globals](https://docs.ddev.com/en/stable/users/extend/in-container-configuration/#git-configuration):
-  ```bash
-  ln -s $HOME/.gitconfig $HOME/.ddev/homeadditions/.gitconfig
-  ```
+## Documentation
 
-See Bearer documentation for a complete list of [commands](https://docs.bearer.com/reference/commands) and [flags](https://docs.bearer.com/reference/commands/#bearer%20init-flags).
+For comprehensive information, refer to the [Bearer CLI documentation](https://docs.bearer.com):
+- [All available commands](https://docs.bearer.com/reference/commands)
+- [Flags and options](https://docs.bearer.com/reference/commands/#bearer%20init-flags)
+- [CLI configuration](https://docs.bearer.com/reference/config/)
+- [Scanner types](https://docs.bearer.com/explanations/scanners/)
 
-## Credits
+## Contributing & Support
 
 **Contributed and maintained by [@massiws](https://github.com/massiws)**
+
+For issues, feature requests, or contributions, please visit the [GitHub repository](https://github.com/massiws/ddev-bearer).

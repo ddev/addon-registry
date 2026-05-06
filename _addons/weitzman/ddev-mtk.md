@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-06-27
-updated_at: 2025-10-31
+updated_at: 2026-05-05
 workflow_status: disabled
 stars: 2
 ---
@@ -46,7 +46,7 @@ Notice that you now have an `mtk` service listed in `ddev describe`. At first, t
 ## Usage
 
 1. Generate a SQL Dump file. There are two ways to do this:
-   1. **Use Drush**. Run `ddev drush sql:dump --skip-tables-tables=cache* > dump.sql` to generate a SQL dump file ([docs](https://www.drush.org/latest/commands/sql_dump/)). 
+   1. **Use Drush**. Run `ddev drush sql:dump --skip-tables-list="cache*" > dump.sql` to generate a SQL dump file ([docs](https://www.drush.org/latest/commands/sql_dump/)). 
    1. **Use MTK**. Create a `mtk.yml` file in the root of your project. It can be empty to start. Eventually, populate it as per the [tutorial](https://mtk.skpr.io/docs/tutorial#configuration-file), for slimming and sanitization. Run `ddev exec mtk dump db > dump.sql` to generate the SQL dump file.
 1. Generate a Docker image with your data inside. Use the `dump.sql` from above when building and pushing your database image to a container registry like [Docker Hub](https://hub.docker.com/) or [Gitlab Container Registry](https://docs.gitlab.com/user/packages/container_registry/). Minimalist docs are in the [database image section of the tutorial](https://mtk.skpr.io/docs/database-image). Here is a build+push command that worked for me `docker buildx build -t cr.lab.example.com/webteam/help/database:latest --provenance=false --platform=linux/arm64,linux/amd64 --push .`.
     - Build the image in a scratch folder thats outside your DDEV project.
@@ -74,7 +74,7 @@ Notice that you now have an `mtk` service listed in `ddev describe`. At first, t
 1. `ddev restart`. Your site is now using the `mtk` service instead of `db`.Verify that the site works by running `ddev drush st` (look for _Drupal bootstrap: Successful_). Run `ddev launch` to verify that a browser request also succeeds.
 1. _Optional_. Omit the standard `db` service since your site no longer uses it. `ddev config --omit-containers db && ddev restart`
 1. Commit the `.ddev` directory and settings.php change to version control so your teammates start using the `mtk` service.
-1. Set up a CI job to refresh your database image on a weekly or nightly basis. The job should push to the same tag every time (e.g. `latest`). 
+1. [Set up a CI job](https://github.com/weitzman/ddev-mtk/blob/main/docs/.gitlab-ci.yml) to refresh your database image on a weekly or nightly basis. The job should push to the same tag every time (e.g. `latest`). 
 
 ## CI, Preview Environments, and more.
 
