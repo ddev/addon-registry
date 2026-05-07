@@ -12,7 +12,7 @@ dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc
 type: contrib
 created_at: 2026-03-25
 updated_at: 2026-04-18
-workflow_status: disabled
+workflow_status: success
 stars: 0
 ---
 
