@@ -12,7 +12,7 @@ dependencies: ["ddev/ddev-selenium-standalone-chrome"]
 type: contrib
 created_at: 2023-11-23
 updated_at: 2026-05-06
-workflow_status: failure
+workflow_status: success
 stars: 6
 ---
 

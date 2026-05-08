@@ -13,7 +13,7 @@ type: contrib
 created_at: 2023-03-30
 updated_at: 2025-07-04
 workflow_status: disabled
-stars: 8
+stars: 9
 ---
 
 [![tests](https://github.com/MurzNN/ddev-grafana/actions/workflows/tests.yml/badge.svg)](https://github.com/MurzNN/ddev-grafana/actions/workflows/tests.yml)
