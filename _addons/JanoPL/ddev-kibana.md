@@ -6,17 +6,17 @@ user: JanoPL
 repo: ddev-kibana
 repo_id: 530812551
 default_branch: main
-tag_name: v1.7.3
+tag_name: v2.0.0
 ddev_version_constraint: ""
 dependencies: ["ddev/ddev-elasticsearch"]
 type: contrib
 created_at: 2022-08-30
-updated_at: 2025-09-07
-workflow_status: failure
+updated_at: 2026-05-10
+workflow_status: success
 stars: 1
 ---
 
-[![tests](https://github.com/janopl/ddev-kibana/actions/workflows/tests.yml/badge.svg)](https://github.com/janopl/ddev-kibana/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/janopl/ddev-kibana/actions/workflows/tests.yml/badge.svg)](https://github.com/janopl/ddev-kibana/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 
 ## Instalation
 
