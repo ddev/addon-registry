@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-selenium-standalone-chrome
 repo_id: 563535124
 default_branch: main
-tag_name: 2.1.2
+tag_name: 2.1.3
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-11-08
-updated_at: 2026-05-11
+updated_at: 2026-05-14
 workflow_status: success
 stars: 39
 ---
@@ -41,6 +41,30 @@ ddev composer require drupal/core-dev
 ```
 
 After installation, make sure to commit the `.ddev` directory to version control.
+
+### (optional) Configuring W3C compliance mode
+
+By default, WebDriver W3C compliance is enabled (`DRUPAL_TEST_WEBDRIVER_W3C=true`). This controls the `w3c` flag in both `MINK_DRIVER_ARGS_WEBDRIVER` and `DTT_MINK_DRIVER_ARGS`.
+
+If you are running tests on Drupal < 11, you may need to disable W3C mode to avoid WebDriver curl errors (HTTP 400) during test runs. You have a few ways to override it:
+
+**Using `ddev dotenv`** (recommended, keeps it out of version control):
+
+```bash
+ddev dotenv set .ddev/.env.web --drupal-test-webdriver-w3c false
+ddev restart
+```
+
+**Using `.ddev/config.yaml`** (commit this if the whole team needs the same setting):
+
+```yaml
+web_environment:
+  - DRUPAL_TEST_WEBDRIVER_W3C=false
+```
+
+Then run `ddev restart`.
+
+> **Note:** Only disable W3C mode if your tests are failing with HTTP 400 curl errors from the WebDriver endpoint. See [issue #76](https://github.com/ddev/ddev-selenium-standalone-chrome/issues/76) for the original bug report.
 
 ### Optional steps
 
