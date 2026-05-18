@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-typo3-solr
 repo_id: 762432120
 default_branch: main
-tag_name: 1.3.0
+tag_name: 1.3.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2024-02-23
-updated_at: 2026-05-12
+updated_at: 2026-05-17
 workflow_status: success
 stars: 12
 ---
