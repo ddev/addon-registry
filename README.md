@@ -46,7 +46,7 @@ Here's a breakdown of where important content and configuration files live:
 - **`.bundle`**: Contains config for local bundler.
 - **`.ddev`**: The DDEV configuration directory.
 - **`.github`**: The GitHub workflows that handle the deployment process.
-- **`_addons`**: Custom Jekyll collection that holds all the add-ons fetched from the community.
+- **`_addons`**: Custom Jekyll collection that holds all the add-ons with the `ddev-get` topic. Stored on the [`history` branch](https://github.com/ddev/addon-registry/commits/history/).
 - **`_data`**: User-defined Jekyll data types.
 - **`_includes`**: HTML partials used across the site.
 - **`_layouts`**: The layout templates for Jekyll pages.
@@ -57,3 +57,5 @@ Here's a breakdown of where important content and configuration files live:
 - **`_config.yml`**: The main configuration file for the Jekyll site.
 - **`addons.json`**: A JSON representation of all the DDEV add-ons.
 - **`index.html`**: The homepage of the registry.
+
+The [`history` branch](https://github.com/ddev/addon-registry/commits/history/) stores daily snapshots of `_addons` committed by CI.
