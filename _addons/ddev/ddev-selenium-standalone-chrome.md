@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-selenium-standalone-chrome
 repo_id: 563535124
 default_branch: main
-tag_name: 2.1.3
+tag_name: 2.2.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2022-11-08
-updated_at: 2026-05-14
+updated_at: 2026-05-18
 workflow_status: success
 stars: 39
 ---
@@ -25,9 +25,21 @@ stars: 39
 
 ## Overview
 
-Makes it easy to run Functional, FunctionalJavascript, and Nightwatch tests in DDEV.
+Makes it easy to run Functional, FunctionalJavascript, Nightwatch, Behat and Drupal Test Traits tests in DDEV.
 
 This service can be used with any project type. The examples below are Drupal-specific. Contributions for docs and tests that show this service working with other project types are appreciated.
+
+## Drupal version compatibility
+
+| Drupal version | Recommended add-on version |
+|---|---|
+| Drupal 11+ | **v2** — `ddev add-on get ddev/ddev-selenium-standalone-chrome` |
+| Drupal 10 | **v1** — `ddev add-on get ddev/ddev-selenium-standalone-chrome --version 1.x` (or pin a specific [v1 tag](https://github.com/ddev/ddev-selenium-standalone-chrome/releases?q=1.x)) |
+
+v2 ships a recent Selenium Grid 4 image and enables W3C compliance mode by default. Drupal 10's WebDriver client is not fully W3C compliant, which causes HTTP 400 errors against newer Grid 4 releases. v1 ships Selenium Grid 4.1.4, which tolerates non-W3C requests and remains compatible with Drupal 10.
+
+> [!NOTE]
+> See [issue #76](https://github.com/ddev/ddev-selenium-standalone-chrome/issues/76) for the full background. If you are on Drupal 11 or later, use v2.
 
 ## Installation
 
@@ -41,30 +53,6 @@ ddev composer require drupal/core-dev
 ```
 
 After installation, make sure to commit the `.ddev` directory to version control.
-
-### (optional) Configuring W3C compliance mode
-
-By default, WebDriver W3C compliance is enabled (`DRUPAL_TEST_WEBDRIVER_W3C=true`). This controls the `w3c` flag in both `MINK_DRIVER_ARGS_WEBDRIVER` and `DTT_MINK_DRIVER_ARGS`.
-
-If you are running tests on Drupal < 11, you may need to disable W3C mode to avoid WebDriver curl errors (HTTP 400) during test runs. You have a few ways to override it:
-
-**Using `ddev dotenv`** (recommended, keeps it out of version control):
-
-```bash
-ddev dotenv set .ddev/.env.web --drupal-test-webdriver-w3c false
-ddev restart
-```
-
-**Using `.ddev/config.yaml`** (commit this if the whole team needs the same setting):
-
-```yaml
-web_environment:
-  - DRUPAL_TEST_WEBDRIVER_W3C=false
-```
-
-Then run `ddev restart`.
-
-> **Note:** Only disable W3C mode if your tests are failing with HTTP 400 curl errors from the WebDriver endpoint. See [issue #76](https://github.com/ddev/ddev-selenium-standalone-chrome/issues/76) for the original bug report.
 
 ### Optional steps
 
@@ -115,25 +103,6 @@ If you want to use the browser provided by this addon to check out the test resu
 You can now connect to `[DDEV SITE URL]:5900` (password: `secret`) in your VNC client.
 
 Note that when using `ports`, only one project at a time can be running with port 5900.
-
-### Behat config example
-
-If you use Behat as a test running, adjust your `behat.yml`
-
-```yaml
-  extensions:
-    Behat\MinkExtension:
-      base_url: http://web
-      selenium2:
-        wd_host: http://selenium-chrome:4444/wd/hub
-        capabilities:
-          chrome:
-            switches:
-              - "--disable-gpu"
-              - "--headless"
-              - "--no-sandbox"
-              - "--disable-dev-shm-usage"
-```
 
 ## Contribute
 

@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-05-11
-updated_at: 2026-05-14
+updated_at: 2026-05-18
 workflow_status: success
 stars: 0
 ---
@@ -60,6 +60,10 @@ All customization options (use with caution):
 | Variable | Flag | Default |
 | -------- | ---- | ------- |
 | `TEMPORALIO_DOCKER_IMAGE` | `--temporalio-docker-image` | `ddev/ddev-utilities:latest` |
+
+## Web UI
+
+The Temporal UI can be found on https://temporalio-ui.sitename.ddev.site/
 
 ## Credits
 

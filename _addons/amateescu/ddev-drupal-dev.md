@@ -6,14 +6,14 @@ user: amateescu
 repo: ddev-drupal-dev
 repo_id: 1183388555
 default_branch: main
-tag_name: 1.1.0
+tag_name: 1.1.1
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: contrib
 created_at: 2026-03-16
-updated_at: 2026-04-25
-workflow_status: success
-stars: 6
+updated_at: 2026-05-19
+workflow_status: cancelled
+stars: 7
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)

@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-claude-code
 repo_id: 1191702322
 default_branch: main
-tag_name: v1.0.46
+tag_name: v1.0.49
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-04-18
+updated_at: 2026-05-19
 workflow_status: disabled
 stars: 0
 ---
@@ -215,6 +215,53 @@ Notification hooks are pre-configured in `settings.json` when you install the ad
 If you already have a `settings.json` from a previous install, add the hooks manually. See the [install.yaml](https://github.com/trebormc/ddev-claude-code/blob/main/install.yaml) for the exact hook configuration.
 
 If the bridge is not installed or not running, the curl call fails silently with no impact on Claude Code.
+
+## Multica integration (optional)
+
+[Multica](https://multica.ai) is a managed-agents platform that lets you assign tasks to AI coding agents from a central web UI. This add-on can run the Multica daemon inside the Claude Code container so a self-hosted Multica server can delegate work to Claude Code in any of your DDEV projects.
+
+The Multica binary is always installed in the container, but the daemon only runs when you opt in by setting a token in `~/.ddev/multica/.env.multica`. With no file or an empty token, the integration stays completely dormant and the container behaves exactly as it does without Multica.
+
+### Enable (once, shared with other AI add-ons)
+
+The Multica configuration lives in `~/.ddev/multica/.env.multica`, a directory shared by every Multica-aware DDEV add-on (this one, [ddev-opencode](https://github.com/trebormc/ddev-opencode), ...). One configuration enables the daemon in all of them — and across every DDEV project on the same host.
+
+```bash
+# One-time setup on your host
+cp ~/.ddev/multica/.env.multica.example ~/.ddev/multica/.env.multica
+$EDITOR ~/.ddev/multica/.env.multica
+# Fill in MULTICA_SERVER_URL, MULTICA_APP_URL, MULTICA_TOKEN
+```
+
+Then in any DDEV project using a Multica-aware add-on:
+
+```bash
+ddev restart
+```
+
+The container's entrypoint detects the token, logs in, and starts the daemon in the background. Each container registers as a separate Multica runtime — Claude Code containers show up as `Claude Code DDEV (<project>)` with device name `ddev-<project>-claude-code`. Watched workspaces are managed from the Multica UI (the daemon auto-subscribes to all your UI workspaces on login).
+
+### Verify
+
+```bash
+ddev claude-code shell
+multica daemon status
+multica agent list
+```
+
+You should also see the runtime appear in the Multica UI under "Agent runtimes".
+
+### Disable
+
+Empty the file (or delete it) and `ddev restart`. The entrypoint will skip the Multica section entirely.
+
+```bash
+: > ~/.ddev/multica/.env.multica
+```
+
+### Token rotation
+
+The Personal Access Token from Multica defaults to a 90-day expiry. When it expires, regenerate it in the Multica UI, update `~/.ddev/multica/.env.multica`, and `ddev restart` each project where you need it.
 
 ## Autonomous Execution
 

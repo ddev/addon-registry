@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-06-07
 updated_at: 2026-04-09
 workflow_status: disabled
-stars: 10
+stars: 11
 ---
 
 [![tests](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
