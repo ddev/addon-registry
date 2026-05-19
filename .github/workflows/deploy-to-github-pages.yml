@@ -171,7 +171,7 @@ jobs:
 
           cd /tmp/history-worktree
           SNAPSHOT_DATE=$(date +%F)
-          git add _addons/
+          git add -f _addons/
           if ! git diff --cached --quiet; then
             LAST_MSG=$(git log -1 --pretty=%s)
             if echo "$LAST_MSG" | grep -q "snapshot ${SNAPSHOT_DATE}"; then

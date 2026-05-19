@@ -1,20 +1,22 @@
 type: php
 docroot: _site
 webserver_type: nginx-fpm
-xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
 hooks:
     post-start:
         - exec: bash -c 'while [ ! -f /var/tmp/bundleinstalldone ]; do sleep 1; done'
         - exec: bash -c 'bundle exec jekyll build --baseurl=""'
-        - exec: echo -e "                                  NOTICE                                        \n
-            =================================================================================\n
-            =================================================================================\n
-            The Jekyll dev container is ready \n LiveReload is available at \e[32m${DDEV_PRIMARY_URL}:4000\e[0m \n
-            To troubleshoot any issues run \e[35mddev describe\e[0m or \e[35mddev logs --follow --time\e[0m\n"
+        - exec: echo -e "                                  NOTICE                                        "
+        - exec: echo -e "================================================================================"
+        - exec: echo -e "The Jekyll dev container is ready"
+        - exec: echo -e "LiveReload is available at \e[32m${DDEV_PRIMARY_URL_WITHOUT_PORT}:4000\e[0m"
+        - exec: echo -e "To troubleshoot any issues run \e[35mddev describe\e[0m or \e[35mddev logs --follow --time\e[0m"
+        - exec: echo -e "================================================================================"
     pre-start:
         - exec-host: ([ -d vendor ] && [ -f Gemfile.lock ]) || echo "The first start may take a minute or two..."
+        - exec-host: git fetch "$(git config branch.$(git branch --show-current).remote 2>/dev/null || git remote | head -1)" history || true
+        - exec-host: git restore --source=FETCH_HEAD --worktree -- _addons/ || echo "Could not restore _addons from history branch"
 omit_containers: [db]
 use_dns_when_possible: true
 web_environment: []
@@ -31,4 +33,5 @@ web_extra_daemons:
     - name: jekyll-dev-daemon
       command: bash -c 'bundle install && touch /var/tmp/bundleinstalldone && bundle exec jekyll serve --host=0.0.0.0 --baseurl="" --livereload --livereload-port=4010'
       directory: /var/www/html
+disable_upload_dirs_warning: true
 ddev_version_constraint: '>= v1.24.10'
