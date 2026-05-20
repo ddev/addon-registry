@@ -13,7 +13,7 @@ type: contrib
 created_at: 2026-01-17
 updated_at: 2026-03-07
 workflow_status: unknown
-stars: 1
+stars: 2
 ---
 
 # ddev-codex

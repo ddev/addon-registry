@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-06-27
-updated_at: 2026-05-14
+updated_at: 2026-05-19
 workflow_status: disabled
 stars: 2
 ---
@@ -93,7 +93,7 @@ Consider speeding up other DB consumers by using the image you published above. 
 ## Workarounds
 
 - Non-functional DDEV commands: 
-  - `export-db`, `import-db`. Use Drush sql commands instead.
+  - `mysql`, `export-db`, `import-db`. Use Drush sql commands instead.
   - `snapshot`. Not usually needed since you can revert your `mtk` Docker service.
 
 ## Credits
