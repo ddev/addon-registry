@@ -1,7 +1,7 @@
 ---
 title: owenbush/decodie-ddev
 github_url: https://github.com/owenbush/decodie-ddev
-description: ""
+description: "A DDEV add-on that integrates the Decodie learning companion into your local development environment."
 user: owenbush
 repo: decodie-ddev
 repo_id: 1195669181
