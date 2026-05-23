@@ -11,12 +11,12 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-05-27
-updated_at: 2025-11-12
+updated_at: 2026-05-22
 workflow_status: disabled
 stars: 4
 ---
 
-[![tests](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-newman/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/Metadrop/ddev-newman)
 
 

@@ -6,7 +6,7 @@ user: SicseDev
 repo: ddev-sicse-toolkit
 repo_id: 1226571373
 default_branch: main
-tag_name: 0.0.1
+tag_name: 
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib

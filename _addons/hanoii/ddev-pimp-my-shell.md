@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-03-25
-updated_at: 2026-05-21
+updated_at: 2026-05-23
 workflow_status: success
 stars: 4
 ---
@@ -89,6 +89,7 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - Some useful [scripts](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/pimp-my-shell/scripts)
 - https://github.com/cli/cli
 - https://github.com/go-task/task
+- https://upterm.dev/
 
 ## Tweaks
 

@@ -6,17 +6,17 @@ user: Metadrop
 repo: ddev-aljibe
 repo_id: 817303007
 default_branch: main
-tag_name: v2.4.6
+tag_name: v2.4.7
 ddev_version_constraint: ">= v1.24.1"
 dependencies: []
 type: contrib
 created_at: 2024-06-19
-updated_at: 2026-03-30
+updated_at: 2026-05-22
 workflow_status: disabled
 stars: 23
 ---
 
-[![tests](https://github.com/Metadrop/ddev-aljibe/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-aljibe/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/Metadrop/ddev-aljibe/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-aljibe/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/Metadrop/ddev-aljibe)
 
 ![Aljibe logo](https://metadrop.net/sites/default/files/2025-09/aljibe-image.png)

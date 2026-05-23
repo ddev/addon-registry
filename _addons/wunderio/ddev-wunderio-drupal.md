@@ -6,12 +6,12 @@ user: wunderio
 repo: ddev-wunderio-drupal
 repo_id: 1094069257
 default_branch: main
-tag_name: 0.5.2
+tag_name: 0.6.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-11-11
-updated_at: 2026-02-23
+updated_at: 2026-05-22
 workflow_status: unknown
 stars: 0
 ---
@@ -30,14 +30,16 @@ scripts to enhance your Drupal development workflow.
 
 ### Steps
 
-1. Initialize your Drupal 10 project. Project name parameter is optional, but
-it's advisable to use domain name as your project name as that's used for
-the subdomain of ddev.site eg if project name is example.com, then localhost
-URL will become example.com.ddev.site.
+1. Initialize your Drupal project. Project name parameter is optional, but
+   it's advisable to use domain name as your project name as that's used for
+   the subdomain of ddev.site eg if project name is example.com, then localhost
+   URL will become example.com.ddev.site.
 
    ```bash
-   ddev config --project-type=drupal10 --docroot=web --project-name=example.com
+   ddev config --project-type=drupal11 --docroot=web --project-name=example.com
    ```
+
+   Choose major version of Drupal based on your actual Drupal (e.g., `10` or `11`).
 
 2. Install Wunderio DDEV Drupal as a DDEV add-on and restart DDEV:
 
@@ -77,66 +79,100 @@ URL will become example.com.ddev.site.
 
 ## Features
 
+For a quick reference in your project's README, add:
+
+```markdown
+This project uses [ddev-wunderio-drupal](https://github.com/wunderio/ddev-wunderio-drupal) DDEV add-on. Run `ddev -h` to see all available commands.
+```
+
 ### Custom DDEV Commands
 
 - `pmu`: Runs drush pmu commands and creates dummy module folders if they don't exist.
   This helps to uninstall module that has gone missing for example during branch
   switching.
+
   ```bash
   ddev pmu module1 module2 ...
   ```
+
 - `twig-debug`: Toggles Drupal Twig debugging on/off. Useful for template development.
+
   ```bash
   ddev twig-debug        # Enable Twig debugging
   ddev twig-debug off    # Disable Twig debugging
   ```
-- `grumphp`: Runs GrumPHP commands
+
+- `grumphp`: Runs GrumPHP commands.
+
   ```bash
   ddev grumphp
   ```
-- `phpunit`: Runs PHPUnit commands
+
+- `phpunit`: Runs PHPUnit commands.
+
   ```bash
   ddev phpunit
   ```
+
 - `regenerate-phpunit-config`: Regenerates fresh PHPUnit configuration. Run this if you don't have phpunit configured in your project.
+
   ```bash
   ddev regenerate-phpunit-config
   ```
+
 - `codecept`: Runs codeception commands.
+
   ```bash
   ddev codecept
   ```
-- `phpcbf`: Runs phpcbf commands
+
+- `phpcbf`: Runs PHPCBF commands.
+
   ```bash
   ddev phpcbf
   ```
-- `phpcs`: Runs PHPcs commands
+
+- `phpcs`: Runs PHPCS commands.
+
   ```bash
   ddev phpcs
   ```
-- `phpstan`: Runs PHPStan commands. Usually, the directory to be scanned is web/modules/custom or a module in the said directory.
+
+- `phpstan`: Runs PHPStan commands. Usually, the directory to be scanned is `web/modules/custom` or a specific module within that directory.
+
   ```bash
   ddev phpstan analyze <directory-or-module-to-be-scanned>
   ```
-- `syncdb`: Synchronizes local database from desired environment.
-  You should have aliases set in drush/sites/self.site.yml
+
+- `syncdb`: Synchronizes local database from a remote environment.
+  Requires aliases in `drush/sites/self.site.yml`.
+
   ```bash
-  ddev syncdb      # Will give error as environment is not set
-  ddev syncdb prod # Will fetch database from production.
+  ddev syncdb <alias>                   # e.g. ddev syncdb prod
+  ddev syncdb prod --backup             # Back up local DB before overwriting
+  ddev syncdb prod --keep-dump          # Keep the downloaded dump file
+  ddev syncdb prod --no-deploy          # Skip running drush deploy after import
+  ddev syncdb prod --backup --keep-dump # Combine flags
   ```
-- `yq`: Runs [yq](https://mikefarah.gitbook.io/yq) commands (YAML processor)
+
+- `yq`: Runs [yq](https://mikefarah.gitbook.io/yq) commands (YAML processor).
   It's available inside DDEV, but we expose it to host because why not :). It's required in syncdb script, but it could prove useful in day to day work.
+
   ```bash
   ddev yq
   ```
+
 - `commit`: Generates AI-powered commit messages from staged changes using the configured API.
   The command analyzes your staged changes and branch name to generate commit messages following
   the project's commit message format (ticket/issue ID prefix, present tense, imperative mood).
   Requires `OPENAI_API_URL` and `OPENAI_API_KEY` environment variables to be configured via DDEV global config.
+
   ```bash
   ddev commit
   ```
+
   **Setup:** Configure the API credentials in DDEV global config (applies to all projects) and restart your DDEV project:
+
   ```bash
   ddev config global --web-environment-add="OPENAI_API_URL=https://your-api-url"
   ddev config global --web-environment-add="OPENAI_API_KEY=your-api-key"
@@ -148,25 +184,25 @@ URL will become example.com.ddev.site.
 ### Enhanced Configuration
 
 1. **Custom DDEV Configuration**
-   - Post-start scripts for both host and web containers - by default it gives you uli link.
-   - Automatic update checks for this package
+   - Post-start scripts for both host and web containers — by default it gives you a `uli` link.
+   - Automatic update checks for this package.
 
 2. **Performance Optimizations**
-   - Special `database_dumps/` directory for Mac users not to mount db dumps
+   - Special `database_dumps/` directory for Mac users not to mount db dumps.
 
 ### Automated Workflows
 
 The project includes several automated workflows:
 
 1. **Database Management**
-   - Post-import database hooks (clears cache, sanitizes database)
-   - Post-restore snapshot hooks (clears cache, sanitizes database)
-   - Database synchronization from production
+   - Post-import and post-restore-snapshot hooks (sanitize database).
+   - Database synchronization from remote environments via `ddev syncdb`.
+   - Run `ddev drush deploy` after import to apply updates, import config, and rebuild caches.
 
 2. **Development Environment Setup**
-   - Automatic composer installation on first start
-   - Post-start hook that run drush uli
-   - Integration with Wunderio's development tools eg grumphp, phpunit
+   - Automatic Composer installation on first start.
+   - Post-start hook that runs `drush uli`.
+   - Integration with Wunderio's development tools, e.g. GrumPHP, PHPUnit.
 
 Both custom commands and hooks are scripts under `~/.ddev/wunderio/core/` folder
 (note it's your host home folder) and you can extend them if you copy particular
@@ -202,48 +238,21 @@ Previously, this package was installed as a Composer plugin and deployed files i
 
 ## Performance Optimization
 
-### Database Operations for Mac Users
+### Database Dumps Directory (macOS)
 
-**Important for Mac users:** When working with database imports and exports on macOS, you should store your database
-dump files in the `database_dumps` directory at the project root. This directory is specially configured in this
-template to provide specific performance benefits.
+Store database dump files in the `database_dumps/` directory at the project root. On macOS this directory is excluded from Mutagen sync, avoiding slow DDEV startups and disk bloat.
 
-```
-project-root/
-├── database_dumps/    <- Place your .sql or .sql.gz files here
-├── web/
-├── .ddev/
-└── ...
-```
-
-**Key benefits:**
-
-1. **Faster DDEV startup times:** When large database files are stored in the standard project directories,
-they can significantly slow down DDEV startup as Mutagen indexes and syncs these files. Using the `database_dumps`
-directory avoids this overhead.
-
-2. **Reduced virtual disk usage:** By excluding database dumps from Mutagen synchronization, your virtual disk
-requires less space, preventing potential disk space issues.
-
-This optimization is configured via `upload_dirs` in `.ddev/config.wunderio.yaml`:
+Configured via `upload_dirs` in `.ddev/config.wunderio.yaml`:
 
 ```yaml
 upload_dirs:
   - ../database_dumps
 ```
 
-**Example usage:**
-```bash
-# Save your database dumps to the database_dumps directory
-cp ~/Downloads/my-database-backup.sql.gz ./database_dumps/
+`ddev syncdb` uses this directory automatically. For manual imports:
 
-# Then import using the path relative to your project
+```bash
 ddev import-db --file=database_dumps/my-database-backup.sql.gz
 ```
 
-This improvement is particularly noticeable in projects with multiple or large database dumps, where
-startup times can be reduced from minutes to seconds.
-
-**Note for Linux users:** While this configuration doesn't provide performance improvements on Linux
-systems (which don't use Mutagen), it's still good practice to store database dumps in the
-dedicated `database_dumps` folder for consistent organization across team environments.
+**Note:** On Linux (no Mutagen) this has no performance effect, but keeps dumps organized consistently across teams.
