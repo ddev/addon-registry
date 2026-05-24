@@ -12,7 +12,7 @@ dependencies: []
 type: contrib
 created_at: 2026-05-17
 updated_at: 2026-05-18
-workflow_status: success
+workflow_status: failure
 stars: 1
 ---
 
