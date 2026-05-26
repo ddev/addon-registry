@@ -13,7 +13,7 @@ type: contrib
 created_at: 2023-05-17
 updated_at: 2025-05-20
 workflow_status: disabled
-stars: 10
+stars: 11
 ---
 
 # DDEV n8n Addon
