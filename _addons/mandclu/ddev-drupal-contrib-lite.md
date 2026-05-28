@@ -6,12 +6,12 @@ user: mandclu
 repo: ddev-drupal-contrib-lite
 repo_id: 1241265276
 default_branch: main
-tag_name: 1.0.0
+tag_name: 1.0.2
 ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: contrib
 created_at: 2026-05-17
-updated_at: 2026-05-26
+updated_at: 2026-05-27
 workflow_status: unknown
 stars: 0
 ---
@@ -38,6 +38,22 @@ DDEV integration for developing Drupal contrib projects. This add-on uses a stan
    equiavelent.
 4. If necessary, use `git checkout` on any imported projects to ensure the
    correct target branch is in use.
+5. Execute the commands below, adjust as needed.
+
+```sh
+# Add this DDEV add-on.
+ddev add-on get mandclu/ddev-drupal-contrib-lite
+# Pull in the add-on dependencies.
+ddev poser
+# Detect expected Drupal and PHP versions.
+ddev config --update
+```
+5. To use eslint locally, there is one additional step:
+
+```sh
+# Use yarn to install node_modules.
+ddev exec "cd web/core && yarn install"
+```
 
 
 ## Commands
@@ -52,6 +68,12 @@ This project provides the following DDEV container commands.
 - `ddev eslint` Run [ESLint](https://github.com/eslint/eslint) on JavaScript files.
 - `ddev stylelint` Run [Stylelint](https://github.com/stylelint/stylelint) on CSS files.
 - `ddev core-version`. Update your codebase to a newer or older version of Drupal core. [More info](#changing-the-drupal-core-version).
+
+All linting and analysis commands (`phpcs`, `phpcbf`, `phpstan`, `phpunit`, `eslint`, `stylelint`, `nightwatch`) accept an optional target as their first argument:
+
+- Omit the target to run against all projects in the configured `$DRUPAL_PROJECTS_PATH`.
+- Pass `.` to run against the current working directory.
+- Pass a specific path to target any directory, e.g. `ddev phpcs web/modules/custom/mymodule`.
 
 ## Codebase layout
 
@@ -128,10 +150,11 @@ Time: 00:13.453, Memory: 4.00 MB
 OK (3 tests, 20 assertions)
 ```
 
-To run a single test class, make sure to use the path relative to the `web` directory. Or use --filter to refer to a test class or method. For example:
+To run a single test class or directory, pass the path as the first argument. Or use `--filter` to refer to a test class or method. For example:
 
 ```
-ddev phpunit --filter MyTest.php
+ddev phpunit web/modules/custom/mymodule
+ddev phpunit web/modules/custom/mymodule/tests/src/Unit/MyTest.php
 ddev phpunit --filter testMyFunction
 ```
 
@@ -148,6 +171,10 @@ ddev phpcbf -q
 ```
 
 3. Mark the file as executable: `chmod +x pre-commit`.
+
+## AGENTS.md
+
+This project contains an AGENTS.md file with instructions on how to use the commands provided. It may be useful to copy some or all of this content into your project's AGENTS.md files, or potentially reference the provided file so that AI agents can access it as needed.
 
 ## Troubleshooting
 

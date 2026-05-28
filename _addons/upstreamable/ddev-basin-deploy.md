@@ -12,7 +12,7 @@ dependencies: ["upstreamable/ddev-basin"]
 type: contrib
 created_at: 2026-03-11
 updated_at: 2026-05-07
-workflow_status: disabled
+workflow_status: success
 stars: 0
 ---
 

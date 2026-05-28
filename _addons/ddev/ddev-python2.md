@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-python2
 repo_id: 849742328
 default_branch: main
-tag_name: v1.1.1
+tag_name: v1.1.2
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2024-08-30
-updated_at: 2025-12-23
+updated_at: 2026-05-27
 workflow_status: success
 stars: 8
 ---
