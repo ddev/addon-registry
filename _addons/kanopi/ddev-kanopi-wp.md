@@ -6,12 +6,12 @@ user: kanopi
 repo: ddev-kanopi-wp
 repo_id: 1037631023
 default_branch: main
-tag_name: 1.2.15
+tag_name: 1.3.0
 ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-13
-updated_at: 2026-03-06
+updated_at: 2026-05-31
 workflow_status: disabled
 stars: 1
 ---
@@ -47,12 +47,12 @@ ddev project-init
 
 ## ✨ Features
 
-- **26+ Custom Commands** - Complete WordPress development workflow
+- **29+ Custom Commands** - Complete WordPress development workflow
 - **Multi-Provider Hosting** - Pantheon, WPEngine, and Kinsta support
 - **Smart Database Refresh** - 12-hour backup age detection
 - **Modern Asset Pipeline** - Webpack with `@wordpress/scripts`
 - **Block Development** - WordPress block scaffolding and tooling
-- **E2E Testing** - Cypress integration with user management
+- **E2E Testing** - Cypress and Playwright integration with user management
 - **Performance Tools** - Critical CSS generation and optimization
 - **Service Integration** - Redis support for Pantheon object caching
 
@@ -84,7 +84,7 @@ ddev project-init
 | `ddev theme-create-block <name>` | Create new WordPress blocks |
 | `ddev wp-open [admin]` | Open site or admin in browser |
 
-[**See all 26+ commands →**](https://kanopi.github.io/ddev-kanopi-wp/commands/)
+[**See all 29+ commands →**](https://kanopi.github.io/ddev-kanopi-wp/commands/)
 
 ## 🌐 Hosting Provider Support
 

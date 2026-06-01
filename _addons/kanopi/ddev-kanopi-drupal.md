@@ -6,12 +6,12 @@ user: kanopi
 repo: ddev-kanopi-drupal
 repo_id: 1034499133
 default_branch: main
-tag_name: 1.4.0
+tag_name: 1.5.0
 ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2026-05-15
+updated_at: 2026-05-31
 workflow_status: disabled
 stars: 3
 ---
@@ -30,12 +30,12 @@ A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Dr
 
 ## ✨ Features
 
-- **27+ Custom Commands** - Complete Drupal development workflow
+- **30+ Custom Commands** - Complete Drupal development workflow
 - **Multi-Provider Hosting** - Pantheon and Acquia support
 - **Smart Database Refresh** - 12-hour backup age detection
 - **Recipe Development** - Drupal 11 recipe creation and management
 - **Theme Development** - Node.js/NPM integration with build tools
-- **E2E Testing** - Cypress integration with user management
+- **E2E Testing** - Cypress and Playwright integration with user management
 - **Performance Tools** - Critical CSS generation and optimization
 - **Service Integration** - Redis/Memcached and Solr support
 
