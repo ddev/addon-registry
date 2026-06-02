@@ -6,7 +6,7 @@ user: upstreamable
 repo: ddev-basin
 repo_id: 1174546726
 default_branch: main
-tag_name: 1.0.0
+tag_name: 1.0.1
 ddev_version_constraint: ">= v1.25.1"
 dependencies: []
 type: contrib
