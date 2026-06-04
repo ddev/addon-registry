@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2025-06-27
-updated_at: 2026-05-26
+updated_at: 2026-06-03
 workflow_status: disabled
 stars: 2
 ---
@@ -83,12 +83,13 @@ Consider speeding up other DB consumers by using the image you published above. 
 
 ## Commands
 
-| Command          | Description                                              |
-|------------------|----------------------------------------------------------|
-| `ddev pulldb`    | Refresh your site's database (i.e. the mtk Docker image) |
-| `ddev exec mtk`  | List tables, sanitize tables, dump a database.           |
-| `ddev sequelace` | Open your site's DB in the Sequel Ace GUI application    |
-| `ddev tableplus` | Open your site's DB in the TablePlus GUI application     |
+| Command          | Description                                           |
+|------------------|-------------------------------------------------------|
+| `ddev resetdb`   | Reset site database (i.e. the mtk Docker image)       |
+| `ddev pulldb`    | Reset and pull database (if a newer one is available) |
+| `ddev exec mtk`  | List tables, sanitize tables, dump a database.        |
+| `ddev sequelace` | Open your site's DB in the Sequel Ace GUI application |
+| `ddev tableplus` | Open your site's DB in the TablePlus GUI application  |
 
 ## Workarounds
 

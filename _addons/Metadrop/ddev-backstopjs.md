@@ -6,17 +6,17 @@ user: Metadrop
 repo: ddev-backstopjs
 repo_id: 709536102
 default_branch: main
-tag_name: v2.8.0
+tag_name: v2.9.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-24
-updated_at: 2026-05-22
+updated_at: 2026-06-03
 workflow_status: disabled
 stars: 8
 ---
 
-[![tests](https://github.com/Metadrop/ddev-backstopjs/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-backstopjs/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/Metadrop/ddev-backstopjs/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-backstopjs/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 
 * [What is DDEV Backstopjs Add-on?](#what-is-ddev-backstopjs-add-on)
 * [Getting started](#getting-started)
@@ -141,6 +141,24 @@ The entrypoint is responsible for:
 
 - Add /etc/hosts entries for all hosts configured in the ddev web container automatically
 - Add sleep command to keep the container running
+
+## Image version
+
+This addon uses a Docker image from [docker-aljibe-tools](https://github.com/Metadrop/docker-aljibe-tools) with a combined tag that encodes both the BackstopJS version and the base image version:
+
+```
+ghcr.io/metadrop/aljibe-tools/backstopjs:6.3.25-base1.0.0
+```
+
+The default version is set in `docker-compose.backstopjs.yaml`. To use a different version, add the following to `.ddev/.env`:
+
+```
+BACKSTOPJS_VERSION=6.3.25-base1.0.0
+```
+
+To update to a newer version, reinstall the addon with `ddev add-on get Metadrop/ddev-backstopjs` or update `BACKSTOPJS_VERSION` in `.ddev/.env` and run `ddev restart`.
+
+Available versions are listed in the [docker-aljibe-tools packages](https://github.com/orgs/metadrop/packages/container/package/aljibe-tools%2Fbackstopjs).
 
 ## Advanced
 

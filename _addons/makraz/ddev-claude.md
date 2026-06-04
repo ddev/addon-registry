@@ -6,56 +6,28 @@ user: makraz
 repo: ddev-claude
 repo_id: 1231065280
 default_branch: main
-tag_name: v0.1.0
+tag_name: v0.2.0
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: contrib
 created_at: 2026-05-06
-updated_at: 2026-05-06
+updated_at: 2026-06-03
 workflow_status: disabled
 stars: 1
 ---
 
-# ddev-claude
+# DDEV Claude
 
-A [DDEV](https://ddev.com) add-on that adds a **sandboxed sidecar
-container** for running [Claude Code](https://docs.claude.com/en/docs/claude-code/overview)
-(Anthropic's AI coding CLI) with `--dangerously-skip-permissions` (YOLO
-mode) safely contained behind an iptables + ipset + dnsmasq firewall.
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/makraz/ddev-claude/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/makraz/ddev-claude/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/makraz/ddev-claude)](https://github.com/makraz/ddev-claude/commits)
+[![release](https://img.shields.io/github/v/release/makraz/ddev-claude)](https://github.com/makraz/ddev-claude/releases/latest)
 
-## What you get
+## Overview
 
-- A `claude` sidecar service built from `node:22-bookworm` with:
-  - Claude Code CLI pre-installed
-  - PHP 8.5 CLI + Composer (run your project's PHP tooling against the
-    bind-mounted code)
-  - Playwright + Chromium (E2E / browser automation)
-  - `chrome-devtools-mcp` and `@playwright/mcp` MCP servers
-  - GitHub CLI (`gh`)
-- An outbound firewall (default-DROP policy) that only allows:
-  - `github.com`, `api.github.com`
-  - `anthropic.com`, `claude.ai`
-  - `registry.npmjs.org`
-  - `packagist.org`, `repo.packagist.org`
-  - `storage.googleapis.com`
-  - The DDEV internal network (so the agent can reach `web`, `db`, etc.)
-- A `ddev claude` command that launches Claude Code in YOLO mode inside
-  the firewalled sidecar, as a non-root `claude` user (uid 1000).
-- Persistent Claude Code auth state via named volumes (`claude-config`,
-  `claude-history`) — survives `ddev restart` and add-on rebuilds.
+This add-on integrates [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), Anthropic's AI coding CLI, into your [DDEV](https://ddev.com) project as a **sandboxed sidecar container**. Claude runs with `--dangerously-skip-permissions` (YOLO mode) safely contained behind an iptables + ipset + dnsmasq firewall, so an agent off the rails cannot exfiltrate your `.env`, your SSH keys, or anything else outside the project tree.
 
-## Why this exists
-
-Running AI coding agents autonomously is productive — until the agent
-hallucinates a `curl | sh` against a compromised server, or an
-adversarial prompt talks it into exfiltrating your `.env` file. This
-add-on removes those risks by constraining the agent's network reach at
-the kernel level (iptables default-DROP) while still letting it fetch
-dependencies from the usual package registries.
-
-With the firewall active, `--dangerously-skip-permissions` becomes safe
-enough for routine use: the worst the agent can do is corrupt your
-working tree, and `git reset --hard` recovers from that.
+The default sidecar is **minimum viable**: Claude Code + firewall on a pre-built `debian:bookworm-slim` base image. Project-specific tools (PHP, gh, Playwright, etc.) are opt-in via a small extras catalog or a Dockerfile escape hatch.
 
 ## Installation
 
@@ -64,145 +36,217 @@ ddev add-on get makraz/ddev-claude
 ddev restart
 ```
 
-Or from a local checkout (development):
+To pin to a specific version (see [Releases](https://github.com/makraz/ddev-claude/releases) for what's available):
 
 ```bash
-ddev add-on get /path/to/ddev-claude
+ddev add-on get makraz/ddev-claude@v0.2.0
 ddev restart
 ```
+
+After `ddev add-on get`, commit the changes to your project's `.ddev/` directory.
 
 ## Usage
 
-```bash
-# Export your Anthropic API key (or use OAuth login on first run)
-export ANTHROPIC_API_KEY=sk-ant-...
+| Command | Description |
+| --- | --- |
+| `ddev claude` | Interactive Claude Code session (YOLO mode, default). |
+| `ddev claude safe` | Same, but **without** `--dangerously-skip-permissions`. |
+| `ddev claude shell` | Drop into bash inside the sidecar (firewall active). |
+| `ddev claude exec <cmd>` | Run one command in the sidecar non-interactively. |
+| `ddev claude rebuild` | Regenerate `.ddev/claude/Dockerfile` after editing `.ddev/claude.yaml`. |
+| `ddev claude help` | Print the help text. |
+| `ddev claude <args>` | Anything else passes through to the `claude` CLI (e.g. `--resume`). |
 
-# Optional: GitHub auth for the gh CLI and the GitHub MCP
-export GITHUB_PERSONAL_ACCESS_TOKEN=ghp_...
+The sidecar is reachable as the `claude` service on the DDEV default network. Auth tokens and settings persist at `.ddev/.claude/` (gitignored by default).
 
-# Start / restart the DDEV stack (first build takes ~5 minutes)
-ddev restart
+### Environment variables
 
-# Launch Claude Code in YOLO mode inside the sandbox
-ddev claude
+Set on your host shell before `ddev start` / `ddev restart`. The sidecar's `docker-compose.claude.yaml` forwards them into the container.
 
-# Opt out of YOLO for a single run
-CLAUDE_SAFE=1 ddev claude
+| Variable | Default | Description |
+| --- | --- | --- |
+| `ANTHROPIC_API_KEY` | _unset_ | API key. Optional — OAuth flow runs on first launch if unset. |
+| `GITHUB_PERSONAL_ACCESS_TOKEN` | _unset_ | Forwarded to the sidecar so the agent can `git push` to private repos. Also exported as `GH_TOKEN` for `gh` and GitHub MCP fragments added via the escape hatch. |
+| `EXTRA_ALLOWED_DOMAINS` | _unset_ | Space-separated extra outbound domains, allow-listed at runtime. Prefer `.ddev/claude.yaml`'s `extra_allowed_domains:` for project-level settings. |
+| `PLAYWRIGHT_BASE_URL` | `https://web` | Pre-set inside the container so Playwright/MCP fragments added via the escape hatch hit the DDEV `web` service by default. Override on the host shell if needed. |
+| `CLAUDE_SAFE` | `0` | Read by the `ddev claude` host command. Set to `1` to opt out of YOLO mode for a single invocation (equivalent to `ddev claude safe`). |
 
-# Pass extra flags through to the claude CLI
-ddev claude --resume
-ddev claude --help
+## Configuration
+
+Per-project configuration lives in `.ddev/claude.yaml` (user-editable):
+
+```yaml
+# Available extras: php
+extras:
+  - php
+
+# Additional outbound domains the runtime firewall should allow.
+extra_allowed_domains:
+  - sentry.io
+  - api.stripe.com
 ```
 
-### Allowing additional outbound domains
+If the file is absent or both lists are empty, the sidecar is built minimum-viable.
 
-Set `EXTRA_ALLOWED_DOMAINS` in your host shell (space-separated) before
-`ddev start` / `ddev restart`:
+### Available extras
 
-```bash
-export EXTRA_ALLOWED_DOMAINS="sentry.io api.stripe.com"
-ddev restart
-ddev claude
+| Extra | What it installs | Adds to firewall allow-list |
+| --- | --- | --- |
+| `php` | PHP 8.5 CLI + Composer + common extensions (bcmath, curl, gd, intl, mbstring, mysql, soap, xml, xsl, zip) via Ondřej Surý's apt repo. | `packagist.org`, `repo.packagist.org` |
+
+Edit `.ddev/claude.yaml`, run `ddev claude rebuild` (or `ddev restart`), and the image is regenerated.
+
+## Advanced Customization
+
+For tooling not in the catalog, drop fragments into `.ddev/claude.local/`:
+
+### GitHub CLI
+
+`.ddev/claude.local/Dockerfile.fragment`:
+
+```dockerfile
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      gnupg lsb-release \
+ && mkdir -p -m 755 /etc/apt/keyrings \
+ && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+      | tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+ && chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+ && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+      > /etc/apt/sources.list.d/github-cli.list \
+ && apt-get update && apt-get install -y --no-install-recommends gh \
+ && rm -rf /var/lib/apt/lists/*
 ```
 
-The firewall's dnsmasq resolves these on demand and adds the resulting
-IPs to the allow-list ipset. You can also persist them inside the
-container at `/etc/firewall/extra-domains.list` (one per line).
+(`github.com` is already in the default allow-list — no `extra-domains.list` entry needed.)
+
+### Node.js + npm (for npm-based MCPs)
+
+`.ddev/claude.local/Dockerfile.fragment`:
+
+```dockerfile
+USER root
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+ && apt-get install -y --no-install-recommends nodejs \
+ && rm -rf /var/lib/apt/lists/*
+```
+
+`.ddev/claude.local/extra-domains.list`:
+
+```
+deb.nodesource.com
+registry.npmjs.org
+```
+
+### Playwright + Chromium
+
+`.ddev/claude.local/Dockerfile.fragment`:
+
+```dockerfile
+USER root
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+RUN mkdir -p "$PLAYWRIGHT_BROWSERS_PATH" \
+ && npx --yes playwright install --with-deps chromium \
+ && npm install -g @playwright/mcp chrome-devtools-mcp \
+ && chmod -R a+rX "$PLAYWRIGHT_BROWSERS_PATH"
+```
+
+`.ddev/claude.local/extra-domains.list`:
+
+```
+storage.googleapis.com
+```
+
+(Requires the Node.js fragment first.)
+
+## Components
+
+A `claude` sidecar built from a pre-built multi-arch base image (`ghcr.io/makraz/ddev-claude-base:<version>`, published from this repo) containing:
+
+- Claude Code CLI (native binary, installed at image build time and version-pinned per release).
+- `git`, `bash`, `sudo`, `curl`, `ca-certificates`.
+- `iptables`, `ipset`, `dnsmasq`, `dnsutils`, `iproute2` for the firewall stack.
+- The unprivileged `claude` user (uid 1000) with a NOPASSWD sudoers entry scoped to `/usr/local/bin/init-firewall.sh`.
+
+An outbound firewall (default-DROP policy) that allows only:
+
+- `github.com`, `api.github.com`
+- `anthropic.com`, `claude.ai`
+- The DDEV internal network (so the agent can reach `web`, `db`, sibling add-ons).
+- Whatever each enabled extra contributes (`.domains` files) and your `.ddev/claude.yaml` adds via `extra_allowed_domains`.
+
+The image tag is pinned to the addon version 1:1. Installing `ddev-claude@<tag>` always pulls `ddev-claude-base:<tag>` — no floating `:latest`. The exact Claude Code build baked into a given image is recorded in the OCI label `io.makraz.ddev-claude.claude-version` and visible via `docker inspect`.
 
 ## Verifying the sandbox
 
 After `ddev claude` starts, run a smoke test inside the session:
 
 ```
-Please run:
-  curl -sS --max-time 5 https://api.github.com           # should succeed
-  curl -sS --max-time 3 https://example.com || echo BLOCKED  # should be BLOCKED
-  sudo iptables -L OUTPUT -n | head -1                   # should say "policy DROP"
+curl -sS --max-time 5 https://api.github.com           # should succeed
+curl -sS --max-time 3 https://example.com || echo BLOCKED  # should be BLOCKED
+sudo iptables -L OUTPUT -n | head -1                   # should say "policy DROP"
 ```
 
-If `example.com` is reachable or the iptables policy is `ACCEPT`, the
-firewall is not active — stop and investigate before trusting the agent
-with autonomous work.
-
-## Architecture
-
-```
-┌─ Host ───────────────────────────────────────────────────────────────┐
-│                                                                      │
-│   ddev claude ──► docker exec ──► ┌─ claude sidecar ──────────────┐  │
-│                                   │  Claude Code CLI              │  │
-│                                   │  PHP 8.5 / Composer           │  │
-│                                   │  Playwright / Chromium        │  │
-│                                   │                               │  │
-│                                   │  iptables default DROP        │  │
-│                                   │  ipset allowed-ipv4 (dynamic) │  │
-│                                   │  ipset allowed-net (ddev net) │  │
-│                                   │  dnsmasq → ipset bridge       │  │
-│                                   │                               │  │
-│                                   │  mounts: /var/www/html (rw)   │  │
-│                                   │          /home/claude/.claude │  │
-│                                   └──────────┬────────────────────┘  │
-│                                              │ ddev default network  │
-│              ┌───────────────────────────────┼──────────────────┐    │
-│              ▼                               ▼                  ▼    │
-│        ┌─ web ──┐                    ┌─ db ────┐         ┌─ other─┐  │
-│        │ nginx  │                    │ mariadb │         │  ddev  │  │
-│        │ php-fpm│                    │         │         │svcs... │  │
-│        └────────┘                    └─────────┘         └────────┘  │
-└──────────────────────────────────────────────────────────────────────┘
-```
+If `example.com` is reachable or the iptables policy is `ACCEPT`, the firewall is not active — stop and investigate before trusting the agent with autonomous work.
 
 ## How the firewall works
 
-`init-firewall.sh` (run as root via NOPASSWD sudoers entry) sets up:
+`init-firewall.sh` (run as root via the NOPASSWD sudoers entry) sets up:
 
 1. **ipsets** — `allowed-ipv4` (hash:ip) and `allowed-net` (hash:net).
-2. **Initial DNS resolution** — `dig` resolves the default + extra
-   domains, populating `allowed-ipv4`.
-3. **dnsmasq** — listens on `127.0.0.1`, upstreams to `127.0.0.11`
-   (Docker's embedded DNS — keeps DDEV service names like `web`/`db`
-   resolvable), `1.1.1.1`, `8.8.8.8`. Each allow-listed domain is bound
-   via `ipset=/<domain>/allowed-ipv4`, so any future resolution
-   automatically extends the allow-list — handles CDN IP rotation.
-4. **iptables** — default policy DROP on INPUT/OUTPUT/FORWARD. ACCEPT
-   only loopback, established/related, DNS (port 53), the two ipsets,
-   the host gateway, and inbound 80/443.
+2. **Initial DNS resolution** — `dig` resolves the default + extra domains, populating `allowed-ipv4`.
+3. **dnsmasq** — listens on `127.0.0.1`, upstreams to `127.0.0.11` (Docker's embedded DNS, so DDEV service names like `web`/`db` resolve), `1.1.1.1`, `8.8.8.8`. Each allow-listed domain is bound via `ipset=/<domain>/allowed-ipv4`, so future resolutions automatically extend the allow-list — handles CDN IP rotation.
+4. **iptables** — default policy DROP on INPUT/OUTPUT/FORWARD. ACCEPT only loopback, established/related, DNS (port 53), the two ipsets, the host gateway, and inbound 80/443.
 5. **IPv6** — dropped entirely.
-6. **Smoke tests** — `curl` reachability checks for github + npm +
-   packagist (must succeed) and `example.com` (must fail).
+6. **Smoke tests** — reachability checks for github (must succeed) and `example.com` (must fail).
+
+## Developing the addon
+
+The published image (`ghcr.io/makraz/ddev-claude-base:<version>`) is built from `image/Dockerfile` by `.github/workflows/publish-image.yml` on every git tag push. To iterate on `image/Dockerfile` without publishing:
+
+```bash
+# Build locally with the tag the addon expects:
+TAG=$(grep -m1 'FROM ghcr.io/.*/ddev-claude-base:' .ddev/claude/Dockerfile.base | sed 's|.*:||')
+docker build -t "ghcr.io/makraz/ddev-claude-base:${TAG}" image/
+
+# ddev restart picks up the local image (Docker's default `missing`
+# pull policy uses local images when present).
+ddev restart
+```
+
+To cut a release:
+
+```bash
+git tag v0.3.0-beta.1            # or v0.3.0 for stable
+git push origin v0.3.0-beta.1
+# publish-image.yml builds + pushes the image to GHCR (~5 min, multi-arch).
+
+gh release create v0.3.0-beta.1 --prerelease --notes-file release-notes.md
+```
 
 ## Known limitations
 
-- **No IPv6**: dropped entirely. Extend `init-firewall.sh` to
-  dual-stack the allow-list if needed.
-- **DNS open on port 53**: required for dnsmasq upstreams; a determined
-  agent could in theory use DNS tunneling for exfiltration. If that's
-  in your threat model, restrict port 53 to the host gateway only.
-- **`.git` and `.env*` are bind-mounted**: the agent can read (and
-  potentially commit) anything in your project directory. Keep secrets
-  out of the working tree, or use `CLAUDE_SAFE=1` for untrusted tasks.
-- **UID 1000 hardcoded**: the `claude` user inside the container is
-  uid 1000. If your host user uses a different uid, file ownership may
-  look strange on the host. Adjust via Dockerfile build args if needed.
-- **PHP 8.5 baked in**: this image is opinionated (Symfony / PHP). If
-  your project doesn't need PHP, you can fork and strip the relevant
-  Dockerfile lines.
+- **No IPv6**: dropped entirely. Extend `init-firewall.sh` if dual-stack is required.
+- **DNS open on port 53**: required for dnsmasq upstreams; a determined agent could in theory use DNS tunneling for exfiltration.
+- **`.git` and `.env*` are bind-mounted**: the agent can read (and potentially commit) anything in your project directory. Keep secrets out of the working tree, or use `CLAUDE_SAFE=1` for untrusted tasks.
+- **UID 1000 hardcoded**: the `claude` user inside the container is uid 1000. If your host user uses a different uid, file ownership may look unusual on `.ddev/.claude/`.
+- **`.ddev/.claude/` holds auth state**: a determined agent could plant configuration there (e.g. a malicious MCP entry in `~/.claude/settings.json`) that runs in the next session. Such code still runs under the same firewall + uid, so it cannot break out, but the persistence vector is real.
 
-## Uninstall
+## Removing
 
 ```bash
 ddev add-on remove claude
 ddev restart
 ```
 
-The named volumes `claude-config` and `claude-history` are preserved so
-that reinstalling the add-on later keeps your Claude Code auth. To
-fully wipe them:
+Add-on-managed files are removed. User-managed files are preserved (delete manually if desired):
 
 ```bash
-docker volume rm ddev-<project>_claude-config ddev-<project>_claude-history
+rm -rf .ddev/claude.yaml .ddev/.claude/ .ddev/claude.local/
 ```
 
-## License
+## Credits
 
-MIT — see [LICENSE](https://github.com/makraz/ddev-claude/blob/main/LICENSE).
+**Contributed and maintained by [@makraz](https://github.com/makraz)**
+
+Firewall sandboxing approach inspired by Anthropic's official Claude Code devcontainer reference.

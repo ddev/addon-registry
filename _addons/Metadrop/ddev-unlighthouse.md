@@ -6,17 +6,17 @@ user: Metadrop
 repo: ddev-unlighthouse
 repo_id: 811929881
 default_branch: main
-tag_name: v1.8.0
+tag_name: v1.9.0
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-06-07
-updated_at: 2026-04-09
+updated_at: 2026-06-03
 workflow_status: success
 stars: 11
 ---
 
-[![tests](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-unlighthouse/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/Metadrop/ddev-unlighthouse)
 
 * [What is DDEV Unlighthouse Add-on?](#what-is-ddev-unlighthouse-add-on)
@@ -77,5 +77,23 @@ Because of CORS restrictions, reports must be accessed via an HTTP server. To do
 Once unlighthouse reports are generated, you can review them to identify areas for improvement in performance, accessibility, and more of your website.
 
 Happy optimization!
+
+## Image version
+
+This addon uses a Docker image from [docker-aljibe-tools](https://github.com/Metadrop/docker-aljibe-tools) with a combined tag that encodes both the Unlighthouse version and the base image version:
+
+```
+ghcr.io/metadrop/aljibe-tools/unlighthouse:0.17.2-base1.0.0
+```
+
+The default version is set in `docker-compose.unlighthouse.yaml`. To use a different version, add the following to `.ddev/.env`:
+
+```
+UNLIGHTHOUSE_VERSION=0.17.2-base1.0.0
+```
+
+To update to a newer version, reinstall the addon with `ddev add-on get Metadrop/ddev-unlighthouse` or update `UNLIGHTHOUSE_VERSION` in `.ddev/.env` and run `ddev restart`.
+
+Available versions are listed in the [docker-aljibe-tools packages](https://github.com/orgs/metadrop/packages/container/package/aljibe-tools%2Funlighthouse).
 
 **Contributed and maintained by [@Metadrop](https://github.com/Metadrop)**
