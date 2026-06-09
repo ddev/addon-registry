@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2024-10-07
-updated_at: 2025-12-26
+updated_at: 2026-06-08
 workflow_status: success
 stars: 0
 ---
@@ -67,7 +67,7 @@ After installation, make sure to commit the `.ddev` directory to version control
 ## Running Automated Tests Locally
 
 * `IBEXA_CLI_TOKEN`, `IBEXA_PROJECT` and `IBEXA_ENVIRONMENT` should exist in the environment
-* `brew tap kaos/shell && brew install bats-assert bats-file`
+* `brew install bats-core bats-core/bats-core/bats-assert bats-core/bats-core/bats-file bats-core/bats-core/bats-support`
 
 ## Credits
 

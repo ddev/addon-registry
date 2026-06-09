@@ -6,12 +6,12 @@ user: Lullabot
 repo: ddev-playwright
 repo_id: 635031324
 default_branch: main
-tag_name: v0.5.3
+tag_name: v0.5.4
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-05-01
-updated_at: 2026-06-07
+updated_at: 2026-06-08
 workflow_status: success
 stars: 31
 ---
