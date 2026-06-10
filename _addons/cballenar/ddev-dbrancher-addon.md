@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-05-22
-updated_at: 2026-05-28
+updated_at: 2026-06-09
 workflow_status: unknown
 stars: 0
 ---
