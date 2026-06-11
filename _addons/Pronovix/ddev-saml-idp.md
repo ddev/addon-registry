@@ -11,9 +11,9 @@ ddev_version_constraint: ">= v1.25.2"
 dependencies: []
 type: contrib
 created_at: 2026-06-04
-updated_at: 2026-06-04
+updated_at: 2026-06-10
 workflow_status: failure
-stars: 0
+stars: 1
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
