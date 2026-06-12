@@ -11,8 +11,8 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-06-07
-workflow_status: success
+updated_at: 2026-06-11
+workflow_status: disabled
 stars: 0
 ---
 
@@ -93,16 +93,28 @@ TZ=UTC
 
 > **Note:** `HOST_CLAUDE_CONFIG_DIR` must point to an existing directory. The installer creates `~/.ddev/claude-code/` automatically. If you change this value, make sure the directory exists before running `ddev restart`.
 
+### Config levels
+
+The container-global `~/.claude/settings.json` (user level inside the container) is rebuilt on every container start by DEEP-MERGING a cascade — every level is merged, higher levels win key by key:
+
+| Priority | Location | Scope |
+|---|---|---|
+| 1 (highest) | `.claude/settings.json` (+ `.claude/settings.local.json`) at the project root | This project only — merged natively by Claude Code on top of the user level |
+| 2 | `~/.ddev/claude-code/settings.json` on the host (optional) | Your config, shared across ALL DDEV projects |
+| 3 (lowest) | Baked into the image | Defaults: `bypassPermissions` mode + desktop notification hooks |
+
+All levels use the same merge semantics as Claude Code's own native settings merge: objects merge recursively, but arrays and scalars are replaced wholesale — so you only need to declare the keys you want to change. A `~/.ddev/claude-code/CLAUDE.md`, if present, overrides the synced orchestrator (markdown is not merged — full replacement).
+
 ### Permissions
 
-The installer creates a default `settings.json` with `bypassPermissions` mode. All permission prompts are disabled since Claude Code runs inside an isolated DDEV container.
+The baked-in defaults set `bypassPermissions` mode — all permission prompts are disabled since Claude Code runs inside an isolated DDEV container.
 
-To change this, edit `~/.ddev/claude-code/settings.json`:
+To change this, create `~/.ddev/claude-code/settings.json` with just the key you want to override:
 
 ```json
 {
   "permissions": {
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "acceptEdits"
   }
 }
 ```
@@ -181,15 +193,15 @@ Inside the container (via `ddev claude-code shell`), these helper functions are 
 
 ## Agents and CLAUDE.md
 
-When [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) is installed (auto-installed as dependency), Claude Code automatically gets:
+When [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) is installed (auto-installed as dependency), Claude Code automatically gets the Drupal configuration at the USER level inside the container (`~/.claude/`), leaving your project files untouched:
 
-- **10 specialized agents** in `.claude/agents/` (drupal-dev, code-review, etc.)
-- **CLAUDE.md** with Drupal development instructions in the project root
-- **Rules and skills** for Drupal development workflows
+- **10 specialized agents** in `~/.claude/agents/` (drupal-dev, code-review, etc.)
+- **Rules** in `~/.claude/rules/` and **skills** in `~/.claude/skills/`
+- **CLAUDE.md** with Drupal development instructions as user-level memory (`~/.claude/CLAUDE.md`). A `~/.ddev/claude-code/CLAUDE.md` on the host, if present, replaces the synced one.
 
 Agent `.md` files use model tokens (like `${MODEL_CHEAP}`) that are resolved to Claude Code aliases (like `haiku`) during sync. See [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) for the full list of agents, tokens, and customization options.
 
-You can place your own `CLAUDE.md` in your Drupal project root. It won't be overwritten if it already exists.
+Your Drupal project can ship its own `CLAUDE.md` and `.claude/` directory (agents, skills, rules) — they are never touched by this add-on, load IN ADDITION to the user-level configuration, and take priority over it.
 
 ### Customizing agents and models
 
@@ -210,9 +222,9 @@ Claude Code can send desktop notifications when sessions finish. First, install 
 curl -fsSL https://raw.githubusercontent.com/trebormc/ai-notify-bridge/main/install.sh | bash
 ```
 
-Notification hooks are pre-configured in `settings.json` when you install the add-on. They include the project name and TUI task label automatically. Example notification title: `[mysite] Fix login bug`.
+Notification hooks ship in the baked-in default settings (see Config levels above), so they are always active and updated with the add-on — no manual setup. They include the project name and TUI task label automatically. Example notification title: `[mysite] Fix login bug`.
 
-If you already have a `settings.json` from a previous install, add the hooks manually. See the [install.yaml](https://github.com/trebormc/ddev-claude-code/blob/main/install.yaml) for the exact hook configuration.
+To disable or customize them, override the `hooks` key in `~/.ddev/claude-code/settings.json` (arrays are replaced wholesale, so your `hooks.Stop` fully replaces the default one).
 
 If the bridge is not installed or not running, the curl call fails silently with no impact on Claude Code.
 

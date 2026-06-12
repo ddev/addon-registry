@@ -1,18 +1,18 @@
 ---
 title: mandclu/ddev-module-developer
 github_url: https://github.com/mandclu/ddev-module-developer
-description: "Sets up a Drupal environment code code validation"
+description: "Sets up a Drupal environment for contrib code validation"
 user: mandclu
 repo: ddev-module-developer
 repo_id: 1251763864
 default_branch: main
-tag_name: 0.1.8
+tag_name: 0.2.0
 ddev_version_constraint: ">= v1.23.0"
 dependencies: []
 type: contrib
 created_at: 2026-05-27
 updated_at: 2026-06-11
-workflow_status: unknown
+workflow_status: failure
 stars: 0
 ---
 
@@ -26,6 +26,19 @@ stars: 0
 DDEV add-on providing code quality validation commands for Drupal module development. The commands and their default configurations [match the Drupal GitLab CI template](https://www.drupal.org/project/gitlab_templates) from the Drupal Association, so code that passes locally will pass in CI.
 
 All tools are installed at container build time — they are available immediately after `ddev restart` with no per-start installation overhead.
+
+
+## Related add-ons and overlap
+
+There is overlap with other Drupal-focused DDEV add-ons. The key difference is
+the project type each one is designed for.
+
+| Add-on                                                       | Best for                                                     | Typical project layout                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [`UltraBob/ddev-drupal-code-quality`](https://github.com/UltraBob/ddev-drupal-code-quality) | Full Drupal website projects where your site repo already contains Drupal code and custom code. | Existing site/project repo; installs code-quality configs and IDE shims in-place. |
+| [`mandclu/ddev-module-developer`](https://github.com/mandclu/ddev-module-developer) | Drupal contrib module/theme development  but compatible with working on multiple projects in a single DDEV environment. | Standard Drupal or Drupal CMS install, with contrib projects cloned in manually or using other strategies like the --prefer-source composer flag. |
+| [`ddev/ddev-drupal-contrib`](https://github.com/ddev/ddev-drupal-contrib) | Drupal contrib module/theme development where the contrib project is the center of the repo. | Contrib project repo with Drupal scaffolded around it (symlink workflow). |
+| [`justafish/ddev-drupal-core-dev`](https://github.com/justafish/ddev-drupal-core-dev) / [`joachim-n/ddev-drupal-core-dev`](https://github.com/joachim-n/ddev-drupal-core-dev) | Drupal core development.                                     | Drupal core checkout or core-dev project template.           |
 
 
 ## Install
@@ -52,6 +65,8 @@ Without this step both commands still work using the bundled fallback configurat
 
 This add-on provides the following DDEV commands, all running inside the web container.
 
+- `ddev checks` — Run all Drupal GitLab CI checks in sequence and print a summary. See [Running all checks](#running-all-checks) below.
+- `ddev parallel-lint` — Run [php-parallel-lint](https://github.com/php-parallel-lint/php-parallel-lint) to check PHP files for syntax errors.
 - `ddev phpcs` — Run [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) against Drupal coding standards.
 - `ddev phpcbf` — Auto-fix phpcs violations using PHP Code Beautifier and Fixer.
 - `ddev phpstan` — Run [PHPStan](https://phpstan.org) static analysis with the Drupal extension.
@@ -65,6 +80,8 @@ This add-on provides the following DDEV commands, all running inside the web con
 Pass a path as the first argument to any command to target a specific file or directory:
 
 ```sh
+ddev checks web/modules/custom/mymodule
+ddev parallel-lint web/modules/custom/mymodule
 ddev phpcs web/modules/custom/mymodule
 ddev phpstan analyse web/modules/custom/mymodule
 ddev phpunit web/modules/custom/mymodule
@@ -77,9 +94,121 @@ Run without a path argument from inside a module directory to target that module
 
 ```sh
 cd web/modules/custom/mymodule
+ddev checks
 ddev phpcs
 ddev phpunit
 ```
+
+### Absolute host paths
+
+In addition to relative paths, every command accepts an **absolute path on the
+host** as an argument and rewrites it to the equivalent path inside the container.
+This is convenient for IDE "external tools", file watchers, and AI agents that
+naturally work with full host paths:
+
+```sh
+ddev phpcs /Users/me/Sites/myproject/web/modules/custom/mymodule
+ddev phpstan analyse /Users/me/Sites/myproject/web/modules/custom/mymodule
+```
+
+This behavior comes from `module-developer/lib/init.sh`, which every command
+sources as its first step (`init.sh` is also the home for any future shared
+utilities). The match is host-root agnostic — because the host project path is not
+known inside the container, it strips leading path components until the remainder
+resolves under the project root, choosing the longest (most specific) match. It is
+a no-op for relative paths, for flags, and for absolute paths that do not resolve
+under the project root.
+
+> [!NOTE]
+> Two limitations follow from matching by suffix:
+> - **Glob wildcards** (e.g. `/abs/path/**/*.css` for `stylelint`) are left
+>   untouched, since the path cannot be matched as it stands. Pass those patterns
+>   relative to the project root instead.
+> - **Coincidental suffixes**: an absolute path that does not exist in the container
+>   but whose trailing component happens to equal a top-level project entry (e.g.
+>   `/unrelated/web` matching the docroot) is rewritten to that entry rather than
+>   passed through. For paths that are not inside the project, pass them relative or
+>   `cd` to them rather than passing an unrelated absolute path.
+
+
+## Running all checks
+
+`ddev checks` runs the same sequence of code quality jobs that the [Drupal GitLab Templates](https://www.drupal.org/project/gitlab_templates) pipeline runs, in the same order:
+
+1. **PHP Lint** (`parallel-lint`) — fast syntax check; catches parse errors before heavier tools run.
+2. **PHP CodeSniffer** — Drupal coding standards.
+3. **PHPStan** — static analysis.
+4. **ESLint** — JavaScript and YAML formatting.
+5. **Stylelint** — CSS/SCSS validation.
+6. **CSpell** — spell checking.
+7. **PHPUnit** — unit and functional tests, but only when all preceding checks pass and the Drupal test bootstrap is installed. Automatically skipped otherwise.
+
+Each tool prints its normal output inline. At the end, a summary shows the result for every check:
+
+```
+══════════════════════════════════════════════════════
+  ✓  PHP Lint
+  ✓  PHP CodeSniffer
+  ✓  PHPStan
+  ✓  ESLint
+  ✓  Stylelint
+  ✓  CSpell
+  -  PHPUnit  (skipped — Drupal test bootstrap not installed)
+
+Result: passed  (1 skipped, 6 passed)
+```
+
+`ddev checks` exits 0 when all checks pass and 1 when any check fails.
+
+
+### Bonus checks
+
+Pass `--bonus` to also run checks that are not part of the Drupal GitLab CI pipeline but are available in this add-on:
+
+```sh
+ddev checks --bonus
+ddev checks --bonus web/modules/custom/mymodule
+```
+
+Bonus checks run after the CI checks and do not affect the phpunit gate. They are treated as hard failures (no `allow_failure` equivalent):
+
+- **PHP Mess Detector** — code quality and complexity metrics.
+- **PHP Compatibility** — detects PHP version compatibility issues.
+
+
+### Warnings and allow_failure
+
+Some projects configure certain CI jobs to allow failure (for example, during a transition period). This add-on respects the same variables the Drupal GitLab CI pipeline uses. Set them in the `variables:` block of your `.gitlab-ci.yml`:
+
+| Variable | Effect |
+|---|---|
+| `_ALL_VALIDATE_ALLOW_FAILURE: "1"` | All CI validation checks show failures as warnings |
+| `_PHPCS_ALLOW_FAILURE: "1"` | phpcs failures show as warnings |
+| `_PHPSTAN_ALLOW_FAILURE: "1"` | phpstan failures show as warnings |
+| `_ESLINT_ALLOW_FAILURE: "1"` | eslint failures show as warnings |
+| `_STYLELINT_ALLOW_FAILURE: "1"` | stylelint failures show as warnings |
+| `_CSPELL_ALLOW_FAILURE: "1"` | cspell failures show as warnings |
+| `_PHPUNIT_ALLOW_FAILURE: "1"` | phpunit failures show as warnings |
+
+When a check is configured to allow failure and it fails, it shows as `⚠` in the summary. If every failure was a warning (no hard failures), `ddev checks` exits 0 with `Result: passed with warnings`.
+
+Per-tool variables take precedence over `_ALL_VALIDATE_ALLOW_FAILURE`, matching how GitLab CI applies these settings.
+
+
+### Skipping checks
+
+`ddev checks` also respects `SKIP_*` variables from `.gitlab-ci.yml`. A skipped check is shown as `-` in the summary and does not affect the exit status:
+
+| Variable | Effect |
+|---|---|
+| `SKIP_COMPOSER_LINT: "1"` | Skips `parallel-lint` |
+| `SKIP_PHPCS: "1"` | Skips `phpcs` |
+| `SKIP_PHPSTAN: "1"` | Skips `phpstan` |
+| `SKIP_ESLINT: "1"` | Skips `eslint` |
+| `SKIP_STYLELINT: "1"` | Skips `stylelint` |
+| `SKIP_CSPELL: "1"` | Skips `cspell` |
+| `SKIP_PHPUNIT: "1"` | Skips `phpunit` |
+
 
 ### PHPUnit prerequisites
 

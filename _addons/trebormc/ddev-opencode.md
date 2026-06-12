@@ -11,8 +11,8 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-06-07
-workflow_status: success
+updated_at: 2026-06-11
+workflow_status: disabled
 stars: 0
 ---
 
@@ -75,7 +75,8 @@ After installation, environment variables are in `.ddev/.env.opencode`:
 ```bash
 # Shared OpenCode directory for credentials and config.
 # Shared across ALL DDEV projects. Change only if you need a custom location.
-# Files: auth.json (credentials), config/ (opencode.json, custom overrides)
+# Files: auth.json (credentials), config/ (optional shared opencode.json /
+# opencode-notifier.json / AGENTS.md overrides + node_modules plugin cache)
 HOST_OPENCODE_DIR=${HOME}/.ddev/opencode
 
 # Timezone
@@ -107,9 +108,18 @@ AGENTS_REPOS=https://github.com/trebormc/drupal-ai-agents.git,https://github.com
 
 See [Model Token System](https://github.com/trebormc/ddev-agents-sync#model-token-system) for the full list of tokens and how to customize them.
 
-### Local config override
+### Config levels
 
-To use a custom `opencode.json` (e.g., to add a LiteLLM proxy or change global permissions), place it in `~/.ddev/opencode/config/opencode.json`. It takes precedence over the default from the agent repository. Agents, rules, and skills are always loaded from the synced volume regardless.
+The container-global `opencode.json` is rebuilt on every container start by DEEP-MERGING a cascade — every level is merged, higher levels win key by key:
+
+| Priority | Location | Scope |
+|---|---|---|
+| 1 (highest) | `opencode.json` at the project root | This project only — merged natively by OpenCode on top of the global config |
+| 2 | `~/.ddev/opencode/config/opencode.json` on the host | Your config, shared across ALL DDEV projects |
+| 3 | Agents volume (synced by `ddev-agents-sync` from the agents repo) | Managed defaults, refreshed by `ddev agents-update` |
+| 4 (lowest) | Baked into the image | Basic fallback so the add-on works without `ddev-agents-sync` |
+
+The same cascade applies to `opencode-notifier.json`. All levels use the same merge semantics: objects merge recursively, but arrays and scalars are replaced wholesale — e.g. an `instructions` array at level 2 fully replaces the one below, so you only need to declare the keys you want to change. `~/.ddev/opencode/config/AGENTS.md` overrides the synced orchestrator (markdown is not merged — full replacement). To customize models globally, prefer `.ddev/.env.agents` (see Model Token System above) over a full level-2 config copy.
 
 ## Architecture
 
