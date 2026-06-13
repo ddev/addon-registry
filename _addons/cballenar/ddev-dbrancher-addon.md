@@ -6,12 +6,12 @@ user: cballenar
 repo: ddev-dbrancher-addon
 repo_id: 1246962531
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.1.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-05-22
-updated_at: 2026-06-09
+updated_at: 2026-06-12
 workflow_status: unknown
 stars: 0
 ---
@@ -49,9 +49,12 @@ ddev add-on get cballenar/ddev-dbrancher-addon
 - `ddev dbranch init [file_path]`: Imports a database dump and runs the Drupal update pipeline (`updb`, `cim`, `cr`). If no `file_path` is provided, it automatically finds the newest `.sql.gz` dump in your customized search directory.
 
 ## Customization
-By default, the `dbranch init` script searches your project root for database dumps. If your team stores database dumps in a specific folder (e.g., `db_dumps/`), you can customize the search directory by creating a `.ddev/dbranch-config` file:
+By default, the addon protects `develop,main,master,HEAD` from being dropped and uses the current directory for database dumps. 
 
-```bash
-# .ddev/dbranch-config
-DUMP_DIR="db_dumps"
+You can customize the search directory and the protected branches by modifying the `.ddev/.dbranch-config` file created during installation:
+
+```ini
+# .ddev/.dbranch-config
+DUMP_DIR="tmp"
+PROTECTED_BRANCHES="develop,main,master,HEAD,production,staging"
 ```

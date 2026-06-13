@@ -6,15 +6,20 @@ user: mxr576
 repo: ddev-pi
 repo_id: 1250983207
 default_branch: main
-tag_name: 1.0.0-alpha3
+tag_name: 1.0.0-alpha4
 ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: contrib
 created_at: 2026-05-27
-updated_at: 2026-06-11
+updated_at: 2026-06-12
 workflow_status: success
 stars: 0
 ---
+
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/mxr576/ddev-pi/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/mxr576/ddev-pi/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/mxr576/ddev-pi)](https://github.com/mxr576/ddev-pi/commits)
+[![release](https://img.shields.io/github/v/release/mxr576/ddev-pi)](https://github.com/mxr576/ddev-pi/releases/latest)
 
 # DDEV add-on for Pi Coding Agent
 
@@ -36,7 +41,7 @@ This DDEV add-on provides a fully containerized, isolated environment for the [P
 ## Installation
 
 ```bash
-ddev addon get mxr576/ddev-pi
+ddev add-on get mxr576/ddev-pi
 ddev restart
 ```
 
@@ -74,7 +79,7 @@ To remove extensions, use `ddev pi remove` (global) or `ddev pi remove -l` (proj
 
 Default configurations are initialized in your project's `.pi/` directory during installation (`settings.json` is copied from the add-on defaults). Modify `settings.json` there to configure providers and agent preferences.
 
-> **Note:** Re-running `ddev addon get` will not overwrite an existing `.pi/` directory. Defaults are only copied when `.pi/` is empty.
+> **Note:** Re-running `ddev add-on get` will not overwrite an existing `.pi/` directory. Defaults are only copied when `.pi/` is empty.
 
 ## Extending DDEV PI
 

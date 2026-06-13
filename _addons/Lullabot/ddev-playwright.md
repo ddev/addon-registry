@@ -11,9 +11,9 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-05-01
-updated_at: 2026-06-08
-workflow_status: success
-stars: 31
+updated_at: 2026-06-12
+workflow_status: failure
+stars: 32
 ---
 
 [![tests](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml/badge.svg)](https://github.com/deviantintegral/ddev-playwright/actions/workflows/tests.yml)
