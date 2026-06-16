@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-07-28
 updated_at: 2025-05-01
 workflow_status: disabled
-stars: 0
+stars: 1
 ---
 
 [![tests](https://github.com/MurzNN/ddev-pgadmin/actions/workflows/tests.yml/badge.svg)](https://github.com/MurzNN/ddev-pgadmin/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)

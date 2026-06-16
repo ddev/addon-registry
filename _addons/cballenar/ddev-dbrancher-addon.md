@@ -6,12 +6,12 @@ user: cballenar
 repo: ddev-dbrancher-addon
 repo_id: 1246962531
 default_branch: main
-tag_name: v1.1.1
+tag_name: v1.1.2
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-05-22
-updated_at: 2026-06-12
+updated_at: 2026-06-15
 workflow_status: unknown
 stars: 0
 ---
