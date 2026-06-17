@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: contrib
 created_at: 2026-05-27
-updated_at: 2026-06-15
+updated_at: 2026-06-16
 workflow_status: success
 stars: 0
 ---
@@ -34,6 +34,9 @@ This DDEV add-on provides a fully containerized, isolated environment for the [P
 - **Offline by default:** Network-dependent features (`PI_OFFLINE=1`, `PI_SKIP_VERSION_CHECK=1`, `PI_TELEMETRY=0`) are disabled by default to keep the container self-contained and avoid unexpected outbound traffic.
 
 For a detailed diagram and breakdown of the system's components and security boundaries, please see the [Architecture document](https://github.com/mxr576/ddev-pi/blob/main/docs/architecture.md).
+
+> [!WARNING]
+> While process isolation is provided by the container, running coding agents on a local read-write workspace carries inherent security risks (such as prompt injection, credential leaks and host-execution escapes). Please see the [Security Advisory](https://github.com/mxr576/ddev-pi/blob/main/docs/SECURITY.md) to understand these risks and learn how to harden your setup.
 
 ## Requirements
 

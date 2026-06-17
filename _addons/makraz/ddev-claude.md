@@ -12,8 +12,8 @@ dependencies: []
 type: contrib
 created_at: 2026-05-06
 updated_at: 2026-06-03
-workflow_status: failure
-stars: 1
+workflow_status: disabled
+stars: 2
 ---
 
 # DDEV Claude
