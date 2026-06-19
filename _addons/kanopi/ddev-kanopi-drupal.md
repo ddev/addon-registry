@@ -13,7 +13,7 @@ type: contrib
 created_at: 2025-08-08
 updated_at: 2026-05-31
 workflow_status: disabled
-stars: 3
+stars: 4
 ---
 
 # DDEV Kanopi Drupal Add-on
