@@ -6,7 +6,7 @@ user: mxr576
 repo: ddev-pi-scrapling
 repo_id: 1271596147
 default_branch: main
-tag_name: 
+tag_name: 1.0.0-alpha1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["mxr576/ddev-pi"]
 type: contrib
