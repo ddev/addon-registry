@@ -12,7 +12,7 @@ dependencies: ["mxr576/ddev-pi"]
 type: contrib
 created_at: 2026-06-16
 updated_at: 2026-06-22
-workflow_status: failure
+workflow_status: success
 stars: 0
 ---
 
