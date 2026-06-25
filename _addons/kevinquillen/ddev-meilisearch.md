@@ -6,12 +6,12 @@ user: kevinquillen
 repo: ddev-meilisearch
 repo_id: 748725801
 default_branch: main
-tag_name: v1.0.4
+tag_name: v1.0.5
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2024-01-26
-updated_at: 2025-04-24
+updated_at: 2026-06-24
 workflow_status: disabled
 stars: 11
 ---
@@ -51,6 +51,25 @@ The default API key for Meilisearch is `ddev`. You can provide your own by
 adding to `.ddev/.env` in your project, and adding the `MEILI_MASTER_KEY` variable:
 
 `MEILI_MASTER_KEY=my_master_key_value`
+
+### Meilisearch image version
+
+By default this add-on uses the `latest` Meilisearch image tag. You can pin a 
+specific version by setting the `MEILISEARCH_TAG` environment variable:
+
+```sh
+ddev dotenv set .ddev/.env.meilisearch --meilisearch-tag v1.48
+ddev restart
+```
+
+This writes `MEILISEARCH_TAG="v1.48"` to `.ddev/.env.meilisearch`, which DDEV 
+loads when starting the service. The value can be any tag published for the 
+[getmeili/meilisearch](https://hub.docker.com/r/getmeili/meilisearch/tags) 
+image. To go back to the latest release, remove the variable (or set it to 
+`latest`) and run `ddev restart`.
+
+See the DDEV documentation on [customizing add-on configuration](https://docs.ddev.com/en/stable/users/extend/using-add-ons/#customizing-add-on-configuration) 
+for more details.
 
 ## Admin Dashboard
 

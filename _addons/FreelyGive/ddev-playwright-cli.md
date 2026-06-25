@@ -6,7 +6,7 @@ user: FreelyGive
 repo: ddev-playwright-cli
 repo_id: 1160089818
 default_branch: main
-tag_name: 0.3.0
+tag_name: 0.5.0
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
