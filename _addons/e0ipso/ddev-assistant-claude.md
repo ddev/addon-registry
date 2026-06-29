@@ -6,12 +6,12 @@ user: e0ipso
 repo: ddev-assistant-claude
 repo_id: 1132377741
 default_branch: main
-tag_name: v1.2.2
+tag_name: v1.3.0
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: contrib
 created_at: 2026-01-11
-updated_at: 2026-06-18
+updated_at: 2026-06-28
 workflow_status: success
 stars: 8
 ---
@@ -52,6 +52,7 @@ After installation, commit the `.ddev` directory to version control.
   - `~/.claude/skills/` — custom skills
   - `~/.claude/hooks/` — event hooks
   - `~/.claude/commands/` — custom slash commands
+- **Seeds host authentication** on start: `~/.claude/.credentials.json` is mounted read-only under `~/.cred-seed/` and copied into the writable runtime path when the container starts. In-container auth can drift until the next `ddev restart`, when credentials are re-seeded from the host
 - **Available everywhere** — `claude` is on `$PATH` for both interactive shells (`ddev ssh`) and non-interactive commands (`ddev exec`)
 
 ## Usage
