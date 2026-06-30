@@ -6,12 +6,12 @@ user: OpenForgeProject
 repo: ddev-tideways
 repo_id: 1276622644
 default_branch: main
-tag_name: 0.1.0
-ddev_version_constraint: ">= v1.24.0"
+tag_name: 0.1.1
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-06-22
-updated_at: 2026-06-22
+updated_at: 2026-06-29
 workflow_status: success
 stars: 1
 ---
