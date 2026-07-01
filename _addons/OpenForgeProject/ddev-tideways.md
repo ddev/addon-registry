@@ -1,7 +1,7 @@
 ---
 title: OpenForgeProject/ddev-tideways
 github_url: https://github.com/OpenForgeProject/ddev-tideways
-description: "Tideways for DDEV"
+description: "Tideways PHP profiler + CLI & APM monitoring add-on for DDEV. Performance optimization, tracing, debugging for WordPress, Drupal, TYPO3, Symfony, Laravel, Shopware, Magento."
 user: OpenForgeProject
 repo: ddev-tideways
 repo_id: 1276622644
