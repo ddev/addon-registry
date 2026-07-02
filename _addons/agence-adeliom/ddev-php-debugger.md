@@ -13,7 +13,7 @@ type: contrib
 created_at: 2026-03-14
 updated_at: 2026-03-16
 workflow_status: disabled
-stars: 0
+stars: 1
 ---
 
 ![Adeliom](https://raw.githubusercontent.com/agence-adeliom/ddev-php-debugger/main/./adeliom.jpg)
