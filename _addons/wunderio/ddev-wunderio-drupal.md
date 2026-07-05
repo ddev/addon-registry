@@ -6,7 +6,7 @@ user: wunderio
 repo: ddev-wunderio-drupal
 repo_id: 1094069257
 default_branch: main
-tag_name: 0.7.0
+tag_name: 0.7.1
 ddev_version_constraint: ">= v1.25.1"
 dependencies: []
 type: contrib
