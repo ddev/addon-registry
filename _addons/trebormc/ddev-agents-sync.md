@@ -6,12 +6,12 @@ user: trebormc
 repo: ddev-agents-sync
 repo_id: 1191720964
 default_branch: main
-tag_name: v1.0.51
+tag_name: v1.0.52
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-06-07
+updated_at: 2026-07-05
 workflow_status: disabled
 stars: 0
 ---
@@ -135,42 +135,56 @@ Agent `.md` files use **model tokens** instead of hardcoded model names. This al
 
 | Token | Default (OpenCode) | Default (Claude Code) | Use for |
 |-------|--------------------|-----------------------|---------|
-| `${MODEL_SMART}` | `opencode/kimi-k2.5` | `opus` | Quality gates, planning, research |
-| `${MODEL_NORMAL}` | `opencode/minimax-m2.5` | `sonnet` | General-purpose tasks |
-| `${MODEL_CHEAP}` | `opencode/gpt-5-nano` | `haiku` | Fast, cost-effective agents |
+| `${MODEL_GENIUS}` | `opencode/glm-5.2` | `opus` | Hardest tasks: important code reviews, architecture |
+| `${MODEL_SMART}` | `opencode/glm-5.2` | `opus` | Quality gates, planning, research |
+| `${MODEL_NORMAL}` | `opencode/deepseek-v4-pro` | `sonnet` | General-purpose tasks |
+| `${MODEL_CHEAP}` | `opencode/deepseek-v4-flash` | `haiku` | Fast, cost-effective agents |
 | `${MODEL_APPLIER}` | `opencode/gpt-5-nano` | `haiku` | Mechanical code application |
+| `${MODEL_VISION}` | `opencode/minimax-m3` | `sonnet` | Image/screenshot interpretation — MUST accept image input |
+
+When an `.env.agents` file does not define them, `GENIUS` falls back to the `SMART` value and `VISION` falls back to the `NORMAL` value, so older override files keep working unchanged. `GENIUS` defaults to the same model as `SMART` — override it with a stronger model when you have one. `VISION` must be a vision-capable model or image analysis agents will not see anything.
 
 ### How tokens are resolved
 
-The `.env.agents` file in the agent repository defines the mapping:
+Token values come from `.env.agents` files, loaded as a variable-level cascade — each level only needs to define the variables it wants to override:
+
+| Priority | Location | Scope |
+|---|---|---|
+| 1 (highest) | `.ddev/.env.agents` in the project | This project only |
+| 2 | `~/.ddev/agents-sync/.env.agents` on the host | ALL your DDEV projects |
+| 3 (lowest) | `.env.agents` in the agents repo | Managed defaults |
+
+The repo default defines the full mapping:
 
 ```bash
 # OpenCode models (provider/model-id format)
-OC_MODEL_SMART=opencode/kimi-k2.5
-OC_MODEL_NORMAL=opencode/minimax-m2.5
-OC_MODEL_CHEAP=opencode/gpt-5-nano
+OC_MODEL_GENIUS=opencode/glm-5.2
+OC_MODEL_SMART=opencode/glm-5.2
+OC_MODEL_NORMAL=opencode/deepseek-v4-pro
+OC_MODEL_CHEAP=opencode/deepseek-v4-flash
 OC_MODEL_APPLIER=opencode/gpt-5-nano
+OC_MODEL_VISION=opencode/minimax-m3
 
 # Claude Code models (native aliases)
+CC_MODEL_GENIUS=opus
 CC_MODEL_SMART=opus
 CC_MODEL_NORMAL=sonnet
 CC_MODEL_CHEAP=haiku
 CC_MODEL_APPLIER=haiku
+CC_MODEL_VISION=sonnet
 ```
 
-During sync, `envsubst` replaces the tokens with the appropriate values for each tool.
+During sync, `envsubst` replaces the tokens with the appropriate values for each tool. Changes take effect after `ddev agents-update && ddev restart`.
 
 ### Changing models
 
 To change which models your agents use:
 
-1. **For all projects**: Fork [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents), edit `.env.agents`, and point `AGENTS_REPOS` to your fork.
+1. **For all projects**: Edit `~/.ddev/agents-sync/.env.agents` on the host (created by the installer) and uncomment/set only the variables you want to change — e.g. point everything to your own LiteLLM models.
 
-2. **Per project**: Create a private repo with just an `.env.agents` file and add it as a second repo:
-   ```bash
-   AGENTS_REPOS=https://github.com/trebormc/drupal-ai-agents.git,https://github.com/your-org/my-model-config.git
-   ```
-   The `.env.agents` from your repo will override the public one.
+2. **Per project**: Edit `.ddev/.env.agents` in the project. It overrides both the host file and the repo defaults, again variable by variable.
+
+3. **Managed defaults for a team**: Fork [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents), edit its `.env.agents`, and point `AGENTS_REPOS` to your fork (or add a private repo with just an `.env.agents` as a second repo in `AGENTS_REPOS` — later repos override earlier ones).
 
 ### Writing agents with tokens
 
@@ -228,6 +242,48 @@ Agent system prompt content...
 During sync:
 - **For OpenCode**: the `allowed_tools:` line is removed. Everything else stays.
 - **For Claude Code**: `mode:`, `temperature:`, `maxSteps:`, `tools:` (object), and `permission:` are removed. `allowed_tools:` is renamed to `tools:`.
+
+## Git Access
+
+By default AI agents are **not allowed to run git write commands** — they
+present a summary of their changes and you commit manually. This is controlled
+**per tool** by two flags in the same `.env.agents` cascade as the model tokens,
+so they follow the same `repo default < ~/.ddev/agents-sync/.env.agents < .ddev/.env.agents`
+priority.
+
+Each flag holds a **comma-separated list of the tools** the capability is
+granted to. Valid tool ids: `opencode`, `claude`. An empty value grants it to
+no tool (the default).
+
+| Flag | Default | Allows (for the listed tools) |
+|------|---------|--------|
+| `GIT_ALLOW_COMMIT` | *(empty)* | `git add`, `git commit` |
+| `GIT_ALLOW_OPERATIONS` | *(empty)* | `git push` (non-force), `pull`, `fetch`, `merge`, `rebase`, `checkout`/`switch`, `reset`, `restore`, `stash`, `tag`, `cherry-pick` |
+
+List a tool in a flag to enable that capability there — for example, let both
+tools commit locally but only Claude Code push:
+
+```bash
+# .ddev/.env.agents (this project) or ~/.ddev/agents-sync/.env.agents (all projects)
+GIT_ALLOW_COMMIT=opencode,claude
+GIT_ALLOW_OPERATIONS=claude
+```
+
+Changes take effect after `ddev agents-update && ddev restart`.
+
+**Always blocked, regardless of the flags:** force-push
+(`git push --force`/`-f`/`--force-with-lease`) and remote-branch deletion
+(`git push --delete`/`-d`) — nothing may rewrite or destroy remote history.
+
+The flags are enforced in **both tools**, not just documented in prompts:
+- **OpenCode** — a tool's resolved flags become `allow`/`deny` values in the
+  generated `opencode.json` `permission.bash` map.
+- **Claude Code** — the sync generates a `settings.generated.json` with a
+  `PreToolUse` hook that denies blocked git commands (Claude Code runs in
+  `bypassPermissions` mode, so the hook is the actual enforcement).
+
+The **git-workflow** rule shipped to each tool is generated from that tool's
+resolved flags, so the prompt text always matches what is technically allowed.
 
 ## Commands
 
