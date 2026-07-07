@@ -6,12 +6,12 @@ user: owenbush
 repo: decodie-ddev
 repo_id: 1195669181
 default_branch: main
-tag_name: 1.2.0
+tag_name: 1.2.1
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-03-30
-updated_at: 2026-07-02
+updated_at: 2026-07-06
 workflow_status: success
 stars: 0
 ---

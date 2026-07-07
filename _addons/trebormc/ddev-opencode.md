@@ -6,7 +6,7 @@ user: trebormc
 repo: ddev-opencode
 repo_id: 1191702047
 default_branch: main
-tag_name: v1.0.52
+tag_name: v1.0.53
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib

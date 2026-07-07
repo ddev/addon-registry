@@ -6,7 +6,7 @@ user: trebormc
 repo: ddev-ai-ssh
 repo_id: 1214319210
 default_branch: main
-tag_name: v1.0.52
+tag_name: v1.0.53
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib

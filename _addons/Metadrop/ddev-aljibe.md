@@ -11,8 +11,8 @@ ddev_version_constraint: ">= v1.24.1"
 dependencies: []
 type: contrib
 created_at: 2024-06-19
-updated_at: 2026-05-22
-workflow_status: failure
+updated_at: 2026-07-06
+workflow_status: disabled
 stars: 23
 ---
 
