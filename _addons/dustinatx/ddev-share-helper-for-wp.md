@@ -6,20 +6,22 @@ user: dustinatx
 repo: ddev-share-helper-for-wp
 repo_id: 1291186960
 default_branch: main
-tag_name: v1.0.1
-ddev_version_constraint: ">= v1.23.5"
+tag_name: v1.0.2
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-07-06
-updated_at: 2026-07-06
-workflow_status: unknown
+updated_at: 2026-07-07
+workflow_status: success
 stars: 0
 ---
 
 # DDEV Share Helper for WordPress
 
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/dustinatx/ddev-share-helper-for-wp/actions/workflows/tests.yml/badge.svg)](https://github.com/dustinatx/ddev-share-helper-for-wp/actions/workflows/tests.yml)
-[![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)](https://github.com/dustinatx/ddev-share-helper-for-wp)
+[![last commit](https://img.shields.io/github/last-commit/dustinatx/ddev-share-helper-for-wp)](https://github.com/dustinatx/ddev-share-helper-for-wp/commits)
+[![release](https://img.shields.io/github/v/release/dustinatx/ddev-share-helper-for-wp)](https://github.com/dustinatx/ddev-share-helper-for-wp/releases/latest)
 
 A [DDEV](https://ddev.com) add-on for WordPress that makes `ddev share` (cloudflared/ngrok tunnels) work out of the box.
 
@@ -55,6 +57,7 @@ add-on deletes the file, which fully removes the plugin.
   `wp-includes/`, as in a default install. Composer-based setups that move
   `wp-content` somewhere else (such as Bedrock, which uses `web/app/`) are
   not currently supported.
+- Multisite installs aren't currently supported.
 - `ddev share` uses [ngrok](https://ngrok.com) by default, which requires a
   free ngrok account and authtoken — see the
   [DDEV sharing docs](https://docs.ddev.com/en/stable/users/topics/sharing/)

@@ -6,14 +6,14 @@ user: rfay
 repo: ddev-php-patch-build
 repo_id: 692610647
 default_branch: main
-tag_name: v0.5.1
+tag_name: v0.5.2
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2023-09-17
-updated_at: 2026-03-27
+updated_at: 2026-07-07
 workflow_status: success
-stars: 1
+stars: 2
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
