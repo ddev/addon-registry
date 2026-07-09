@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-04-07
 updated_at: 2026-06-03
 workflow_status: success
-stars: 7
+stars: 8
 ---
 
 [![tests](https://github.com/Metadrop/ddev-pa11y/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-pa11y/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2030.svg)

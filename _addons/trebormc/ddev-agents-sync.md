@@ -6,13 +6,13 @@ user: trebormc
 repo: ddev-agents-sync
 repo_id: 1191720964
 default_branch: main
-tag_name: v1.0.53
+tag_name: v1.0.55
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-07-05
-workflow_status: disabled
+updated_at: 2026-07-06
+workflow_status: success
 stars: 0
 ---
 
@@ -135,14 +135,17 @@ Agent `.md` files use **model tokens** instead of hardcoded model names. This al
 
 | Token | Default (OpenCode) | Default (Claude Code) | Use for |
 |-------|--------------------|-----------------------|---------|
+| `${MODEL_MAIN}` | `opencode/deepseek-v4-flash` | `sonnet` | The orchestrator: default model of the tool's main conversation loop |
 | `${MODEL_GENIUS}` | `opencode/glm-5.2` | `opus` | Hardest tasks: important code reviews, architecture |
-| `${MODEL_SMART}` | `opencode/glm-5.2` | `opus` | Quality gates, planning, research |
+| `${MODEL_SMART}` | `opencode/glm-5.2` | `opus` | Quality gates, planning, research, delegation advice |
 | `${MODEL_NORMAL}` | `opencode/deepseek-v4-pro` | `sonnet` | General-purpose tasks |
 | `${MODEL_CHEAP}` | `opencode/deepseek-v4-flash` | `haiku` | Fast, cost-effective agents |
 | `${MODEL_APPLIER}` | `opencode/gpt-5-nano` | `haiku` | Mechanical code application |
 | `${MODEL_VISION}` | `opencode/minimax-m3` | `sonnet` | Image/screenshot interpretation — MUST accept image input |
 
-When an `.env.agents` file does not define them, `GENIUS` falls back to the `SMART` value and `VISION` falls back to the `NORMAL` value, so older override files keep working unchanged. `GENIUS` defaults to the same model as `SMART` — override it with a stronger model when you have one. `VISION` must be a vision-capable model or image analysis agents will not see anything.
+When an `.env.agents` file does not define them, `GENIUS` falls back to the `SMART` value, `VISION` falls back to the `NORMAL` value, and `MAIN` falls back to `CHEAP` on OpenCode / `NORMAL` on Claude Code, so older override files keep working unchanged. `GENIUS` defaults to the same model as `SMART` — override it with a stronger model when you have one. `VISION` must be a vision-capable model or image analysis agents will not see anything.
+
+`${MODEL_MAIN}` is special: besides being substituted in configs, the sync injects it as the DEFAULT model of each tool — the top-level `model` in the generated `opencode.json` and the `model` key in the generated Claude Code `settings.generated.json`. The main conversation loop dominates session cost, so it defaults to a cheap tier; expensive models are reserved for the specialist subagents.
 
 ### How tokens are resolved
 
@@ -158,6 +161,7 @@ The repo default defines the full mapping:
 
 ```bash
 # OpenCode models (provider/model-id format)
+OC_MODEL_MAIN=opencode/deepseek-v4-flash
 OC_MODEL_GENIUS=opencode/glm-5.2
 OC_MODEL_SMART=opencode/glm-5.2
 OC_MODEL_NORMAL=opencode/deepseek-v4-pro
@@ -166,6 +170,7 @@ OC_MODEL_APPLIER=opencode/gpt-5-nano
 OC_MODEL_VISION=opencode/minimax-m3
 
 # Claude Code models (native aliases)
+CC_MODEL_MAIN=sonnet
 CC_MODEL_GENIUS=opus
 CC_MODEL_SMART=opus
 CC_MODEL_NORMAL=sonnet

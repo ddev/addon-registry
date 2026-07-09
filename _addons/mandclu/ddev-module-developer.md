@@ -6,7 +6,7 @@ user: mandclu
 repo: ddev-module-developer
 repo_id: 1251763864
 default_branch: main
-tag_name: 0.2.4
+tag_name: 0.2.5
 ddev_version_constraint: ">= v1.23.0"
 dependencies: []
 type: contrib

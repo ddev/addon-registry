@@ -7,11 +7,11 @@ repo: ddev-kanopi-wp
 repo_id: 1037631023
 default_branch: main
 tag_name: 1.3.0
-ddev_version_constraint: ">= v1.22.0"
+ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-13
-updated_at: 2026-05-31
+updated_at: 2026-07-08
 workflow_status: disabled
 stars: 1
 ---
