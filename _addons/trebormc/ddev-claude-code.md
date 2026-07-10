@@ -6,13 +6,13 @@ user: trebormc
 repo: ddev-claude-code
 repo_id: 1191702322
 default_branch: main
-tag_name: v1.0.55
+tag_name: v1.0.57
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-07-06
-workflow_status: success
+updated_at: 2026-07-08
+workflow_status: disabled
 stars: 0
 ---
 
@@ -87,9 +87,15 @@ After installation, environment variables are in `.ddev/.env.claude-code`:
 # Shared across ALL DDEV projects. Change only if you need a custom location.
 HOST_CLAUDE_CONFIG_DIR=${HOME}/.ddev/claude-code
 
+# Self-update Claude Code on every container start (set to false to keep
+# the version baked into the image)
+CLAUDE_CODE_AUTO_UPDATE=true
+
 # Timezone
 TZ=UTC
 ```
+
+> **Note:** the image bakes whatever Claude Code version was latest when it was built, and Docker layer caching freezes it there. With `CLAUDE_CODE_AUTO_UPDATE=true` (the default) the entrypoint runs the native `claude update` on every start (a fast no-op when already current, with the official installer as fallback); offline starts keep the current version.
 
 > **Note:** `HOST_CLAUDE_CONFIG_DIR` must point to an existing directory. The installer creates `~/.ddev/claude-code/` automatically. If you change this value, make sure the directory exists before running `ddev restart`.
 

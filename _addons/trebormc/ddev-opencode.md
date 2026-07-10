@@ -6,13 +6,13 @@ user: trebormc
 repo: ddev-opencode
 repo_id: 1191702047
 default_branch: main
-tag_name: v1.0.55
+tag_name: v1.0.57
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: contrib
 created_at: 2026-03-25
-updated_at: 2026-07-05
-workflow_status: success
+updated_at: 2026-07-08
+workflow_status: disabled
 stars: 0
 ---
 
@@ -79,9 +79,15 @@ After installation, environment variables are in `.ddev/.env.opencode`:
 # opencode-notifier.json / AGENTS.md overrides + node_modules plugin cache)
 HOST_OPENCODE_DIR=${HOME}/.ddev/opencode
 
+# Self-update OpenCode on every container start (set to false to keep
+# the version baked into the image)
+OPENCODE_AUTO_UPDATE=true
+
 # Timezone
 TZ=UTC
 ```
+
+> **Note:** the image bakes whatever OpenCode version was latest when it was built, and Docker layer caching freezes it there. With `OPENCODE_AUTO_UPDATE=true` (the default) the entrypoint checks npm on every start and reinstalls only when a newer version exists; offline starts keep the current version.
 
 ### Agent Configuration
 

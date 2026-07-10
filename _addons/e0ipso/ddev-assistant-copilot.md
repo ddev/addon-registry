@@ -6,12 +6,12 @@ user: e0ipso
 repo: ddev-assistant-copilot
 repo_id: 1283680554
 default_branch: main
-tag_name: v1.0.1
+tag_name: v1.0.2
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: contrib
 created_at: 2026-06-29
-updated_at: 2026-06-29
+updated_at: 2026-07-09
 workflow_status: success
 stars: 1
 ---
@@ -50,8 +50,27 @@ After installation, commit the `.ddev` directory to version control.
 - **Seeds host configuration** on start: your host `~/.config/gh/` and `~/.copilot/` trees are mounted read-only under `~/.cred-seed/`, then mirrored into the writable container directories on every restart:
   - `~/.config/gh/` — GitHub CLI configuration and authentication (e.g. `hosts.yml`)
   - `~/.copilot/` — Copilot CLI configuration (e.g. `config.json`, hooks)
-- **Exports `COPILOT_GITHUB_TOKEN`** on start from `gh auth token`, wired into interactive shells (`.bashrc`, `.profile`) and non-interactive shells (`/etc/bash.env` via `BASH_ENV`)
+- **Exports `COPILOT_GITHUB_TOKEN`** on shell startup from in-container `gh auth token` when available, while preserving any token explicitly injected into the container environment. Interactive shells (`.bashrc`, `.profile`) and non-interactive shells (`/etc/bash.env` via `BASH_ENV`) run the lookup dynamically instead of storing the literal token value. The add-on defaults token lookup to `github.com` and supports an optional configured GitHub username for multi-account setups.
 - **Available everywhere** — `gh` and `copilot` are on `$PATH` for both interactive shells (`ddev ssh`) and non-interactive commands (`ddev exec`)
+
+## Multi-account configuration
+
+The add-on ships with this non-secret default:
+
+```yaml
+web_environment:
+  - DDEV_ASSISTANT_COPILOT_GH_HOSTNAME=github.com
+  # - DDEV_ASSISTANT_COPILOT_GH_USER=your-github-username
+```
+
+Use this when you have multiple GitHub accounts, such as a personal account and
+a work account, authenticated for the same host. Uncomment and set
+`DDEV_ASSISTANT_COPILOT_GH_USER` in your installed
+`.ddev/config.assistant-copilot.yaml` to tell the add-on which account should
+provide `COPILOT_GITHUB_TOKEN`.
+
+If either variable is empty or removed, the add-on does not pass that option to
+`gh auth token`, allowing GitHub CLI's default account/host selection to apply.
 
 ## Usage
 
@@ -76,7 +95,7 @@ You can install Copilot CLI and `gh` inside a DDEV container yourself. This add-
 | **GitHub CLI** | Installed in the image layer via official apt repo; on `$PATH` for every shell | Must install and re-install after image rebuilds |
 | **Copilot CLI** | `npm install -g @github/copilot` on every start into `~/.local/bin` | Must run npm install manually; easy to lose on restart |
 | **Config approach** | Seeds writable container `~/.config/gh/` and `~/.copilot/` from your host config on restart — zero setup if you already use `gh` and Copilot on the host | Must copy or symlink config by hand; stale container files persist |
-| **Authentication** | `COPILOT_GITHUB_TOKEN` exported automatically from `gh auth token` | Must export token manually in every shell type |
+| **Authentication** | `COPILOT_GITHUB_TOKEN` exported automatically from in-container `gh auth token` when available, with optional hostname/user selection and without writing literal tokens into shell startup files | Must export token manually in every shell type |
 | **Non-interactive shells** | `BASH_ENV=/etc/bash.env` ensures `ddev exec` gets PATH and token | `ddev exec` often misses PATH and env vars |
 | **Mount safety** | Pre-start hook ensures host config directories exist before Docker bind-mounts them | Bind-mount fails silently or blocks start if dirs are missing |
 | **Tests / CI** | BATS integration tests, GitHub Actions CI matrix (DDEV stable + HEAD), daily scheduled runs | No automated verification |
