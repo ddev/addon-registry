@@ -6,7 +6,7 @@ user: kanopi
 repo: ddev-kanopi-wp
 repo_id: 1037631023
 default_branch: main
-tag_name: 1.3.0
+tag_name: 1.4.0
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: contrib

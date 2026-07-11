@@ -6,12 +6,12 @@ user: kanopi
 repo: ddev-kanopi-drupal
 repo_id: 1034499133
 default_branch: main
-tag_name: 1.5.0
+tag_name: 1.5.1
 ddev_version_constraint: ">= v1.22.0"
 dependencies: []
 type: contrib
 created_at: 2025-08-08
-updated_at: 2026-05-31
+updated_at: 2026-07-10
 workflow_status: disabled
 stars: 4
 ---
@@ -21,7 +21,7 @@ stars: 4
 [![tests](https://github.com/kanopi/ddev-kanopi-drupal/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kanopi/ddev-kanopi-drupal/actions/workflows/test.yml?query=branch%3Amain)
 [![last commit](https://img.shields.io/github/last-commit/kanopi/ddev-kanopi-drupal)](https://github.com/kanopi/ddev-kanopi-drupal/commits)
 [![release](https://img.shields.io/github/v/release/kanopi/ddev-kanopi-drupal)](https://github.com/kanopi/ddev-kanopi-drupal/releases/latest)
-![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 [![Documentation](https://img.shields.io/badge/docs-mkdocs-blue.svg)](https://kanopi.github.io/ddev-kanopi-drupal/)
 
 A comprehensive DDEV add-on that provides Kanopi's battle-tested workflow for Drupal development. This add-on includes complete tooling for modern Drupal development with multi-provider hosting support.
