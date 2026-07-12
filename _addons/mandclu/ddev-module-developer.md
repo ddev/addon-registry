@@ -11,8 +11,8 @@ ddev_version_constraint: ">= v1.23.0"
 dependencies: []
 type: contrib
 created_at: 2026-05-27
-updated_at: 2026-06-28
-workflow_status: success
+updated_at: 2026-07-11
+workflow_status: failure
 stars: 2
 ---
 
@@ -55,7 +55,7 @@ ddev restart
 4. Optional — for `eslint` and `stylelint` to use Drupal core's own configuration files (the same ones used in CI), install core's JavaScript dependencies:
 
 ```sh
-ddev exec "cd web/core && yarn install"
+ddev core-js-install
 ```
 
 Without this step both commands still work using the bundled fallback configurations.
@@ -77,6 +77,7 @@ This add-on provides the following DDEV commands, all running inside the web con
 - `ddev stylelint` — Run [Stylelint](https://stylelint.io) on CSS/SCSS files.
 - `ddev eslint` — Run [ESLint](https://eslint.org) on JavaScript and YAML files, with Prettier formatting checks.
 - `ddev cspell` — Run [CSpell](https://cspell.org) spell-checking across project files.
+- `ddev core-js-install` — Run `yarn install` in `web/core` so `eslint` and `stylelint` use Drupal core's own configuration files instead of the bundled fallback. See step 4 of [Install](#install) above.
 
 Pass a path as the first argument to any command to target a specific file or directory:
 
@@ -288,6 +289,28 @@ Most tools support an ignore file in the project root:
 - eslint: `.eslintignore`
 - cspell: `ignorePaths` in `.cspell.json`
 
+### Accepting cspell words into the project dictionary
+
+`cspell` has no native autofix — there's nothing in your source files to
+rewrite for a spelling issue. `ddev cspell --accept-words` does **not** fix
+anything; it collects every word CSpell doesn't currently recognize and
+appends any not already present to the project dictionary
+(`.cspell-project-words.txt` by default, or whatever `_CSPELL_DICTIONARY` is
+set to in `.gitlab-ci.yml`), in the directory you ran the command from. The
+file is deduplicated and sorted alphabetically after each run, and is created
+if it doesn't already exist.
+
+```sh
+ddev cspell --accept-words
+ddev cspell --accept-words web/modules/custom/mymodule
+```
+
+Because it accepts every flagged word indiscriminately — including genuine
+typos — always review the resulting diff to `.cspell-project-words.txt`
+before committing. It is intended for triaging a large initial backlog of
+false positives, not as a substitute for fixing real misspellings. For this
+reason it is **not** included in `ddev checks-fixes`.
+
 
 ## Automatically fix coding standard violations
 
@@ -337,6 +360,24 @@ type: drupal
 **ESLint or Stylelint reports missing plugin errors**
 
 The bundled fallback configs use globally installed plugins. If you are pointing ESLint or Stylelint at a custom config that references plugins not installed globally, either install those plugins inside the container or add them to your project's `package.json` and run `yarn install` / `npm install`.
+
+**Updating the add-on doesn't seem to take effect**
+
+`ddev add-on get` will not overwrite a project file that lacks the `#ddev-generated` marker, since that's how it tells apart its own generated files from ones you've customized. If a file was ever installed by a version of this add-on before that marker was added to it (this happened historically for `web-build/Dockerfile`, `.eslintrc.json`, and `.prettierrc.json`), later updates to that file will silently be skipped forever, even though every other file updates normally. `ddev add-on get` reports this case explicitly:
+
+```
+NOT overwriting .ddev/web-build/Dockerfile. The #ddev-generated signature was not found in the file, so it will not be overwritten.
+```
+
+If you see this message, remove the affected file and reinstall so it gets rebuilt with the marker in place, then rebuild the container:
+
+```sh
+rm .ddev/web-build/Dockerfile
+ddev add-on get mandclu/ddev-module-developer
+ddev restart
+```
+
+Once reinstalled, the file carries the marker and future updates apply automatically.
 
 **PHPStan cannot find Drupal classes**
 

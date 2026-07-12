@@ -6,17 +6,17 @@ user: vanWittlaer
 repo: ddev-coolify-shopware
 repo_id: 1293359306
 default_branch: main
-tag_name: v1.2.0
+tag_name: v1.2.1
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: contrib
 created_at: 2026-07-08
-updated_at: 2026-07-10
+updated_at: 2026-07-11
 workflow_status: unknown
 stars: 0
 ---
 
-# ddev-coolify-bootstrap
+# ddev-coolify-shopware
 
 [ddev](https://ddev.com) add-on that turns a Shopware 6 ddev project into a
 **one-shot installer** for a production + staging stack on
@@ -27,9 +27,13 @@ module under the hood. You never run `tofu` yourself.
 ## Install
 
 ```bash
-ddev add-on get vanWittlaer/ddev-coolify-bootstrap
+ddev add-on get vanWittlaer/ddev-coolify-shopware
 ddev restart                      # bakes OpenTofu into the web container
 ```
+
+> The installed command is `ddev coolify-bootstrap` (unchanged) — the add-on
+> repo was renamed from `ddev-coolify-bootstrap` to `ddev-coolify-shopware`
+> for discoverability; the old `add-on get` path still works via GitHub's redirect.
 
 ## Use
 
