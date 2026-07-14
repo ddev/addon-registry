@@ -13,7 +13,7 @@ type: contrib
 created_at: 2026-02-06
 updated_at: 2026-05-01
 workflow_status: disabled
-stars: 1
+stars: 2
 ---
 
 DDEV - Herramientas para Drupal

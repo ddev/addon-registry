@@ -13,7 +13,7 @@ type: contrib
 created_at: 2023-12-25
 updated_at: 2025-09-04
 workflow_status: disabled
-stars: 14
+stars: 15
 ---
 
 # Keycloak Add-On for DDEV

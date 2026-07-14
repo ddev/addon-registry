@@ -6,12 +6,12 @@ user: mxr576
 repo: ddev-pi
 repo_id: 1250983207
 default_branch: main
-tag_name: 1.0.0-alpha6
+tag_name: 1.0.0-beta1
 ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: contrib
 created_at: 2026-05-27
-updated_at: 2026-06-26
+updated_at: 2026-07-13
 workflow_status: success
 stars: 0
 ---
@@ -42,6 +42,7 @@ For a detailed diagram and breakdown of the system's components and security bou
 
 - DDEV >= v1.25.2
 - The [`trebormc/ddev-ai-ssh`](https://github.com/trebormc/ddev-ai-ssh) add-on (installed automatically as a dependency)
+- **Optional:** `python3` installed on the host machine (only required if using the experimental host clipboard integration)
 
 ## Installation
 
@@ -84,6 +85,21 @@ This add-on provides several ways to customize the container environment, manage
 - To extend or customize the container environment and DDEV hooks, see the [Extensibility document](https://github.com/mxr576/ddev-pi/blob/main/docs/extensions.md).
 - To easily install, manage, and configure AI skills, see the [AI Skills document](https://github.com/mxr576/ddev-pi/blob/main/docs/skills.md).
 
+## Experimental Host Clipboard Integration
+
+This add-on features an experimental cross-platform clipboard integration that securely bridges the containerized Pi Coding Agent to your host system's clipboard.
+
+When you use the `/copy` command (or when the agent writes to the clipboard), the content is written to a temporary pending file inside the shared workspace volume (`.ddev/.clipboard_pending`). A lightweight, background Python daemon (`pi/clipboard-helper.py`) running on your host monitors this file, reads and copies its contents to your host's clipboard using native system utilities, and then immediately deletes the file.
+
+### OS Support & Feedback
+
+Since clipboard tools vary depending on your host OS and available terminal utilities, this feature is currently marked as **experimental**. We welcome your feedback, bugs, and success stories for different operating systems!
+
+- **macOS:** Fully supported and tested using native `pbcopy`.
+- **Windows (WSL/native):** Fully supported and tested using `clip.exe` / PowerShell.
+- **Linux (X11/Wayland):** Fully supported and tested using `wl-copy`, `xclip`, or `xsel`.
+
+*If clipboard sharing is not working on your host, check the log file at `.ddev/clipboard.log` for debugging details.*
 
 ## Uninstalling
 
