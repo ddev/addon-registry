@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: contrib
 created_at: 2026-05-27
-updated_at: 2026-07-13
+updated_at: 2026-07-14
 workflow_status: success
 stars: 0
 ---
@@ -89,7 +89,7 @@ This add-on provides several ways to customize the container environment, manage
 
 This add-on features an experimental cross-platform clipboard integration that securely bridges the containerized Pi Coding Agent to your host system's clipboard.
 
-When you use the `/copy` command (or when the agent writes to the clipboard), the content is written to a temporary pending file inside the shared workspace volume (`.ddev/.clipboard_pending`). A lightweight, background Python daemon (`pi/clipboard-helper.py`) running on your host monitors this file, reads and copies its contents to your host's clipboard using native system utilities, and then immediately deletes the file.
+When you use the `/copy` command (or when the agent writes to the clipboard), the content is written to a temporary pending file inside the shared workspace volume (`.ddev/pi/.clipboard_pending`). A lightweight, background Python daemon (`pi/clipboard-helper.py`) running on your host monitors this file, reads and copies its contents to your host's clipboard using native system utilities, and then immediately deletes the file.
 
 ### OS Support & Feedback
 
@@ -99,7 +99,7 @@ Since clipboard tools vary depending on your host OS and available terminal util
 - **Windows (WSL/native):** Fully supported and tested using `clip.exe` / PowerShell.
 - **Linux (X11/Wayland):** Fully supported and tested using `wl-copy`, `xclip`, or `xsel`.
 
-*If clipboard sharing is not working on your host, check the log file at `.ddev/clipboard.log` for debugging details.*
+*If clipboard sharing is not working on your host, check the log file at `.ddev/pi/clipboard.log` for debugging details.*
 
 ## Uninstalling
 

@@ -6,12 +6,12 @@ user: xima-media
 repo: ddev-playwright
 repo_id: 1223285826
 default_branch: main
-tag_name: 3.0.4
+tag_name: 3.1.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-04-28
-updated_at: 2026-06-22
+updated_at: 2026-07-14
 workflow_status: unknown
 stars: 0
 ---
@@ -23,7 +23,7 @@ stars: 0
 
 # ddev-playwright
 
-This fork uses the [xima-media/playwright](https://github.com/xima-media/typo3-docker/pkgs/container/playwright) docker image, which bundles the playwright dependencies.
+This fork uses the [xima-media/playwright-ddev](https://github.com/xima-media/typo3-docker/pkgs/container/playwright-ddev) docker image, which bundles the playwright dependencies together with KasmVNC. Using the prebuilt image speeds up the add-on build and avoids downloading the KasmVNC package from GitHub at build time.
 
 ## Installation
 
