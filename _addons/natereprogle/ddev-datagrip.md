@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-04
-updated_at: 2026-06-02
+updated_at: 2026-07-17
 workflow_status: disabled
 stars: 3
 ---
@@ -109,6 +109,9 @@ This Add-On will create between 1 and 2 configuration files, depending on if any
 Configuration can be modified by the user by using the `ddev datagrip config <subcommand> [args]` command. Use `ddev datagrip config` to learn what configuration options are available and how to view and/or modify them.
 
 ## Auto Refresh
+
+> [!WARNING]
+> Currently broken in DataGrip 2026.2. See [this issue](https://github.com/natereprogle/ddev-datagrip/issues/4) for more info.
 
 If you want to install the LivePlugin plugin, you can do so in DataGrip or by running `ddev datagrip autorefresh`. The `autorefresh` command simply runs `datagrip installPlugins LivePlugin` for you, and tells you a little bit about what it does. A more detailed explanation of why this exists [can be found below](#initial-data-refresh).
 

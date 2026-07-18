@@ -6,12 +6,12 @@ user: amateescu
 repo: ddev-drupal-dev
 repo_id: 1183388555
 default_branch: main
-tag_name: 1.1.2
-ddev_version_constraint: ">= v1.25.0"
+tag_name: 1.1.4
+ddev_version_constraint: ">= v1.25.3"
 dependencies: []
 type: contrib
 created_at: 2026-03-16
-updated_at: 2026-07-16
+updated_at: 2026-07-17
 workflow_status: success
 stars: 8
 ---
@@ -70,7 +70,14 @@ The overlay includes [composer-drupal-lenient](https://github.com/mglaman/compos
 
 ### Switching branches
 
-After switching a module's git branch, update the Composer constraint to match:
+Switch a module to another branch and update its Composer constraint in one step:
+
+```bash
+ddev switch token 2.0.x
+```
+
+If you switched the branch yourself (for example from your IDE), re-sync the
+constraint without touching the checkout:
 
 ```bash
 cd modules/contrib/token && git checkout 2.0.x && cd -
@@ -96,6 +103,16 @@ ddev composer require drupal/pathauto
 ## Working on core
 
 Core's `composer.json` and `composer.lock` are never modified by the overlay. You work on core normally: edit files, run tests, commit, create patches.
+
+### Switching core branches
+
+When you move core to another branch, its `composer.json` may differ, so the overlay needs a re-solve:
+
+```bash
+ddev switch core 11.x
+```
+
+This runs `git switch`, syncs the container, and runs `ddev composer update`. The equivalent by hand is `git switch 11.x && ddev composer update`.
 
 ## Reproducing core's exact dependency versions
 
@@ -131,16 +148,6 @@ ddev phpunit modules/contrib/token              # contrib module tests
 ```
 
 For PostgreSQL, install the [ddev-postgres](https://github.com/ddev/ddev-postgres) add-on first.
-
-## Drupal core CLI
-
-Drupal core 11.4+ ships its own CLI called `dr`. The add-on exposes it as a DDEV command:
-
-```bash
-ddev dr list                           # list available commands
-ddev dr install standard               # install a site
-ddev dr cr                             # rebuild caches
-```
 
 ## Code quality checks
 
@@ -195,11 +202,11 @@ This sets the `COMPOSER` env var on the host so that running `composer` directly
 | Command | Description |
 | ------- | ----------- |
 | `ddev phpunit [path]` | Run PHPUnit tests |
-| `ddev dr [command]` | Run Drupal core's `dr` CLI (core 11.4+) |
 | `ddev phpstan [paths]` | Run PHPStan with core's configuration |
 | `ddev phpcs [paths]` | Run PHP CodeSniffer with core's coding standard |
 | `ddev cspell [globs]` | Run cspell with core's dictionaries |
 | `ddev add-module <name>` | Clone a contrib module for development |
+| `ddev switch <project> <branch>` | Switch core or a module to a branch and update dependencies |
 | `ddev update-module <name>` | Update composer constraint after switching a module's branch |
 | `ddev remove-module <name>` | Remove a previously cloned contrib module |
 
@@ -209,7 +216,7 @@ This sets the `COMPOSER` env var on the host so that running `composer` directly
 2. It requires `wikimedia/composer-merge-plugin`, which pulls in everything from core's `composer.json`.
 3. The `COMPOSER` env var is set to `composer.local.json` inside the DDEV web container, so Composer reads the overlay instead of core's file.
 4. Result: a unified `vendor/` and autoloader with both core's deps and your extras, while core's `composer.json` and `composer.lock` remain untouched.
-5. A custom Composer plugin (`drupal-dev/composer-git-installer`) intercepts installs for `drupal-module`, `drupal-theme`, and `drupal-profile` packages. If a `.git` directory already exists at the install path, the download is skipped and the package is registered in the installed repository so autoloading works correctly.
+5. A custom Composer plugin (`drupal-dev/composer-git-installer`) intercepts installs for `drupal-module`, `drupal-theme`, and `drupal-profile` packages. If a git checkout (including a worktree) already exists at the install path, the download is skipped and the package is registered in the installed repository so autoloading works correctly.
 6. When `extra.drupal-dev.pin-core-lock` is enabled, the same plugin subscribes to Composer's pre-pool-create event and filters the solver's candidate pool against core's `composer.lock`, so shared packages can only resolve to their locked versions.
 
 Only `composer.local.json` and `composer.local.lock` are written (both ignored via `.gitignore`).
