@@ -13,7 +13,7 @@ type: contrib
 created_at: 2026-07-17
 updated_at: 2026-07-17
 workflow_status: unknown
-stars: 0
+stars: 1
 ---
 
 # ddev-cursor
