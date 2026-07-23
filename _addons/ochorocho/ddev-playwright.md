@@ -12,8 +12,8 @@ dependencies: []
 type: contrib
 created_at: 2026-02-28
 updated_at: 2026-07-21
-workflow_status: cancelled
-stars: 1
+workflow_status: success
+stars: 2
 ---
 
 # ddev-playwright <!-- omit in toc -->

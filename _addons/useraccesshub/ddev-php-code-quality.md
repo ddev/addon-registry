@@ -13,7 +13,7 @@ type: contrib
 created_at: 2026-04-23
 updated_at: 2026-05-01
 workflow_status: unknown
-stars: 0
+stars: 1
 ---
 
 # DDEV PHP Code Quality
