@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-06
-updated_at: 2026-07-16
+updated_at: 2026-07-23
 workflow_status: disabled
 stars: 2
 ---
@@ -33,15 +33,15 @@ DDEV - Herramientas para Drupal
 Conjunto de comandos personalizados para [DDEV][ddev] que facilitan el flujo de
 trabajo en proyectos [Drupal][drupal].
 
-Este addon proporciona **11 comandos** que cubren las necesidades más comunes
-del desarrollo en Drupal:
-- apertura del sitio en el navegador con login automático
+Este addon proporciona **varios comandos** que cubren las necesidades más
+comunes del desarrollo en Drupal:
 - limpieza de caché
 - backup de base de datos
 - ejecución de tests
 - análisis estático de código
 - refactorización automática
 - compilación de SCSS
+- traducciones
 - comprobación de enlaces rotos
 - métricas de código
 
@@ -54,7 +54,6 @@ del desarrollo en Drupal:
   `/web/themes/custom`).
 - [Composer][composer] con las dependencias de desarrollo necesarias según los
   comandos que se vayan a utilizar:
-  - `behat/behat` para el comando `behat`.
   - `phpstan/phpstan` para el comando `phpstan`.
   - `phpunit/phpunit` para el comando `phpunit`.
   - `rector/rector` y `palantirnet/drupal-rector` para el comando `rector`.
@@ -77,16 +76,6 @@ ddev restart
 ---
 
 ## Comandos disponibles
-
-### `ddev run` — Abrir el sitio en el navegador
-
-Abre el sitio Drupal en el navegador utilizando un enlace de inicio de sesión
-único generado con `drush uli`. Permite acceder directamente como administrador
-sin necesidad de introducir credenciales.
-
-```bash
-ddev run
-```
 
 ### `ddev backup` — Backup de base de datos
 
@@ -111,19 +100,6 @@ está disponible, también vacía su caché de forma automática.
 
 ```bash
 ddev cr
-```
-
-### `ddev behat` — Pruebas funcionales con Behat
-
-Ejecuta las pruebas funcionales definidas con [Behat][behat]. Acepta todos los
-argumentos que soporta Behat.
-
-```bash
-# Ejecutar todas las pruebas
-ddev behat
-
-# Ejecutar solo las pruebas con un tag específico
-ddev behat --tags=@smoke
 ```
 
 ### `ddev phpunit` — Tests unitarios
@@ -198,6 +174,23 @@ Opciones de modo:
 - **Watch** — se queda escuchando cambios en los archivos SCSS y recompila
   automáticamente.
 
+### `ddev translations_gen` — Traducciones
+
+Genera archivos de traducción (.po) para módulos y temas personalizados que
+tengan `interface translation` en su `.info.yml`. Detecta automáticamente los
+idiomas instalados en Drupal y crea las traducciones para cada uno.
+
+```bash
+# Generar traducciones para todos los módulos y temas detectados
+ddev translations_gen
+
+# Generar traducciones para un módulo específico
+ddev translations_gen -m mi_modulo
+
+# Generar traducciones para un tema específico
+ddev translations_gen -t mi_tema
+```
+
 ### `ddev lineas` — Métricas de código
 
 Cuenta las líneas de código de los módulos y temas custom del proyecto
@@ -211,17 +204,54 @@ Analiza las carpetas:
 - `/web/modules/custom`
 - `/web/themes/custom`
 
----
-
 ## Skills para IAs
 
-Este addon incluye una carpeta `.agents/` con "skills" diseñadas para asistentes de IA (como Antigravity, Cursor o Copilot). Estas skills proporcionan contexto, instrucciones y patrones de código específicos para que la IA pueda ayudarte mejor en tareas complejas.
-
-- **Sincronización inteligente**: Durante la instalación o actualización del addon, las nuevas skills se sincronizan automáticamente.
-- **Respeto a lo local**: El proceso utiliza `rsync` para añadir nuevas skills o actualizar las existentes, pero **nunca borrará** archivos que hayas creado tú localmente dentro de `.agents/`.
+Este addon incluye skills en `assets/agents/` diseñadas para asistentes de IA
+(como Cursor, Copilot, etc.). Durante la instalación se sincronizan
+automáticamente en la carpeta `.agents/` del proyecto usando `rsync`, respetando
+los archivos que hayas creado o modificado localmente.
 
 #### Skills incluidas:
-- **playwright-creator**: Patrones y herramientas para la creación de tests E2E con Playwright en Drupal.
+
+- **drupal-code-search**: Búsqueda de código en todos los módulos contrib de
+  Drupal.org vía API de GitLab. Requiere un token de acceso personal
+  (`DRUPALORG_GITLAB_TOKEN`).
+- **drupal-migration**: Migraciones D7→D10/D11 con Migrate API, CSV, JSON API
+  y plugins personalizados de source/process.
+- **drupal-security**: Prevención de vulnerabilidades en Drupal (XSS, SQL
+  injection, acceso no autorizado) con patrones seguros y checklist de revisión.
+- **git-mr-description**: Genera descripciones de Merge Request para GitLab
+  analizando el diff de la rama contra `develop`.
+- **redmine-task-creator**: Crea definiciones detalladas de tareas Redmine en
+  formato Textile con estimaciones, checklist y contexto del proyecto.
+
+---
+
+## Assets adicionales
+
+### GitHub — Formato de commits
+
+El addon incluye en `assets/github/instructions/` una plantilla de
+instrucciones para generar commits con formato
+[conventional commits](https://www.conventionalcommits.org/):
+
+```
+<type>: #<id> <descripción>
+```
+
+Durante la instalación se sincroniza a `.github/instructions/` del proyecto.
+
+**Para usarlo desde VS Code**:
+
+Debes añadir a tu `settings.json` esta configuración:
+
+```json
+"github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+          "file": ".github/instructions/git-commit.instructions.md"
+    }
+],
+```
 
 ---
 
@@ -229,21 +259,14 @@ Este addon incluye una carpeta `.agents/` con "skills" diseñadas para asistente
 
 ```
 ddev-commands/
-├── agents/                  # Skills, comandos, instrucciones para IA.
+├── assets/
+│   ├── agents/
+│   │   └── skills/          # Skills para asistentes de IA
+│   └── github/
+│       └── instructions/    # Instrucciones para vscode
 ├── commands/
-│   ├── host/
-│   │   ├── backup           # Backup de base de datos
-│   │   └── run              # Abrir el sitio en el navegador con login automático
-│   └── web/
-│       ├── behat            # Pruebas funcionales
-│       ├── cr               # Limpieza de caché + Redis
-│       ├── grumphp          # Análisis de calidad
-│       ├── lineas           # Métricas de código
-│       ├── linkchecker      # Enlaces rotos
-│       ├── phpstan          # Análisis estático
-│       ├── phpunit          # Tests unitarios
-│       ├── rector           # Refactorización
-│       └── sass             # Compilación SCSS
+│   ├── host/                # Comandos para ejecutar en el anfitrión
+│   └── web/                 # Comandos para ejecutar en el contenedor web
 ├── web-build/
 │   └── Dockerfile.ddev-drupal-tools
 ├── config.drupal-tools.yaml
@@ -281,7 +304,6 @@ ddev restart
 [ddev]: https://ddev.readthedocs.io/
 [drupal]: https://www.drupal.org/
 [composer]: https://getcomposer.org/
-[behat]: https://docs.behat.org/
 [phpunit]: https://phpunit.de/
 [phpstan]: https://phpstan.org/
 [rector]: https://getrector.com/

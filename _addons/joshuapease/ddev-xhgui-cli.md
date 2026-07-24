@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.4"
 dependencies: []
 type: contrib
 created_at: 2026-03-04
-updated_at: 2026-07-07
+updated_at: 2026-07-23
 workflow_status: success
 stars: 0
 ---
@@ -24,7 +24,7 @@ stars: 0
 
 Read [XHGui](https://github.com/perftools/xhgui) PHP profiling data from the terminal. Built so that you or your AI coding agents can find slow requests, and the functions behind them, without opening a browser.
 
-<!-- TODO: demo GIF (see release plan Phase 4) -->
+![Terminal demo: ddev xhgui-query listing slow runs, breaking one down with top-functions, tracing PDO::query back to the source with callers](https://raw.githubusercontent.com/joshuapease/ddev-xhgui-cli/main/docs/assets/demo/demo-preview.gif)
 
 ## Why this exists
 
