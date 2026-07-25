@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: contrib
 created_at: 2024-04-03
-updated_at: 2025-08-26
+updated_at: 2026-07-24
 workflow_status: success
 stars: 4
 ---
@@ -64,7 +64,7 @@ const origin = process.env.DDEV_PRIMARY_URL;
 
 export default defineConfig({
     ...
-    // Adjust Vites dev server for DDEV: https://vitejs.dev/config/server-options.html
+    // Adjust Vite's dev server for DDEV: https://vitejs.dev/config/server-options.html
     server: {
         // The following line is require until the release of https://github.com/vitejs/vite/pull/19241
         cors: { origin },
@@ -80,7 +80,7 @@ export default defineConfig({
 1. Start Vite inside the container.
 
 ```shell
-ddev npn run dev
+ddev npm run dev
 ```
 
 ### Automatically start ViteJs
