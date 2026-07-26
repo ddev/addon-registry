@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-01-26
 updated_at: 2026-06-24
 workflow_status: disabled
-stars: 11
+stars: 12
 ---
 
 [![tests](https://github.com/kevinquillen/ddev-meilisearch/actions/workflows/tests.yml/badge.svg)](https://github.com/kevinquillen/ddev-meilisearch/actions/workflows/tests.yml)

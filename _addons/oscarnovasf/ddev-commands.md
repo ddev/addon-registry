@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-02-06
-updated_at: 2026-07-23
+updated_at: 2026-07-25
 workflow_status: disabled
 stars: 2
 ---
@@ -248,7 +248,7 @@ Debes añadir a tu `settings.json` esta configuración:
 ```json
 "github.copilot.chat.commitMessageGeneration.instructions": [
     {
-          "file": ".github/instructions/git-commit.instructions.md"
+        "file": ".github/instructions/git-commit.instructions.md"
     }
 ],
 ```

@@ -8,10 +8,10 @@ repo_id: 1120126527
 default_branch: main
 tag_name: v1.0.0
 ddev_version_constraint: ""
-dependencies: ["MurzNN/ddev-vscode", "MurzNN/ddev-cursor", "MurzNN/ddev-x11"]
+dependencies: ["MurzNN/ddev-vscode", "MurzNN/ddev-cursor", "MurzNN/ddev-playwright"]
 type: contrib
 created_at: 2025-12-20
-updated_at: 2026-07-17
+updated_at: 2026-07-25
 workflow_status: unknown
 stars: 0
 ---

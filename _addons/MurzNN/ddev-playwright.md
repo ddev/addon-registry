@@ -6,12 +6,12 @@ user: MurzNN
 repo: ddev-playwright
 repo_id: 1304882212
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.0.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-07-18
-updated_at: 2026-07-18
+updated_at: 2026-07-25
 workflow_status: unknown
 stars: 1
 ---

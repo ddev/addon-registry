@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2026-07-17
-updated_at: 2026-07-17
+updated_at: 2026-07-25
 workflow_status: unknown
 stars: 1
 ---
@@ -79,7 +79,7 @@ There is another solution to achive the same result without mounting the Unix so
 1. Enable connections from Docker containers to the host's X11 server like this (execute on the host machine):
 
 ```sh
-xhost +local:docker"
+xhost +local:docker
 ```
 
 2. Set the environment varible like this:
