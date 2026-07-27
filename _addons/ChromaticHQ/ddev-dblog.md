@@ -13,7 +13,7 @@ type: contrib
 created_at: 2024-01-10
 updated_at: 2026-02-19
 workflow_status: disabled
-stars: 2
+stars: 1
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)

@@ -12,7 +12,7 @@ dependencies: ["ddev/ddev-redis"]
 type: contrib
 created_at: 2026-06-03
 updated_at: 2026-07-23
-workflow_status: success
+workflow_status: failure
 stars: 0
 ---
 
