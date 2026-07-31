@@ -4,14 +4,14 @@ github_url: https://github.com/kgaut/ddev-drupal-tools
 description: "DDEV add-on: global host commands for Drupal projects — db-import/db-export and db-{prod,preprod}-{dump,get,import} / ssh-{prod,preprod}"
 user: kgaut
 repo: ddev-drupal-tools
-repo_id: 1316435920
+repo_id: 1317094150
 default_branch: main
-tag_name: v0.1.0
+tag_name: v0.1.1
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: contrib
-created_at: 2026-07-29
-updated_at: 2026-07-29
+created_at: 2026-07-30
+updated_at: 2026-07-30
 workflow_status: unknown
 stars: 0
 ---
@@ -52,7 +52,9 @@ DDEV has no real notion of a "global add-on" (open feature request:
 where the **files** are copied, while the installation itself (name, version, file list) is
 recorded **in the project** used as context, in `.ddev/addon-metadata/drupal-tools/manifest.yaml`.
 Don't delete that file — DDEV needs it for updates and removal — but keep it out of version
-control by ignoring `.ddev/addon-metadata/` in the project's root `.gitignore`.
+control by ignoring `.ddev/addon-metadata/drupal-tools/manifest.yaml` in the project's root
+`.gitignore` (ignore just that file, not the whole `addon-metadata/` directory: manifests of
+project-level add-ons are meant to be committed).
 
 ### Update
 

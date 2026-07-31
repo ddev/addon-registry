@@ -6,12 +6,12 @@ user: amateescu
 repo: ddev-drupal-dev
 repo_id: 1183388555
 default_branch: main
-tag_name: 1.1.4
+tag_name: 1.1.5
 ddev_version_constraint: ">= v1.25.3"
 dependencies: []
 type: contrib
 created_at: 2026-03-16
-updated_at: 2026-07-29
+updated_at: 2026-07-30
 workflow_status: success
 stars: 8
 ---
@@ -114,6 +114,8 @@ ddev switch core 11.x
 
 This runs `git switch`, syncs the container, and runs `ddev composer update`. The equivalent by hand is `git switch 11.x && ddev composer update`.
 
+Branches that don't exist locally yet are created from the canonical drupal.org repository. Issue fork remotes carry the same branch names, so a plain `git switch 11.x` fails with "matched multiple remote tracking branches" once you have a few forks fetched; `ddev switch` picks the project repository instead. This works the same way for contrib modules.
+
 ## Reproducing core's exact dependency versions
 
 When reproducing a core bug or validating a patch, you sometimes need the same resolved dependency versions as core's `composer.lock`. By default the overlay's solver runs fresh, so shared packages (Symfony, Guzzle, etc.) may resolve to newer versions than core recorded.
@@ -163,6 +165,8 @@ ddev cspell                            # whole codebase
 ```
 
 `ddev cspell` needs core's node dependencies: `ddev exec 'corepack enable && cd core && yarn install'`.
+
+`ddev phpstan` analyses against the PHP version core declares in `config.platform`, not the container's runtime version, so results match what core's CI reports.
 
 ### Checking a change before committing
 
@@ -264,6 +268,8 @@ ddev composer install
 To upgrade, run `ddev add-on get amateescu/ddev-drupal-dev`.
 
 When upgrading the add-on, your `composer.local.json` is preserved (it contains your modules and custom packages). If a new version of the add-on introduces changes to the base `composer.local.json`, check `.ddev/drupal-dev/composer.local.json` for any new dependencies and add them manually.
+
+Earlier versions mirrored core's `config.platform` into `composer.local.json`, which constrained every package in the overlay to core's minimum PHP version. That setting is removed on the next Composer run. Your `composer.local.lock` also recorded it as `platform-overrides`, so run `ddev composer update` once to solve without it.
 
 ## Comparison with other add-ons
 

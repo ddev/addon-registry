@@ -13,7 +13,7 @@ type: contrib
 created_at: 2026-03-30
 updated_at: 2026-07-06
 workflow_status: success
-stars: 3
+stars: 4
 ---
 
 <p align="center"><img src="assets/decodie-logo.png" alt="Decodie" width="200"></p>
