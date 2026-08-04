@@ -6,13 +6,13 @@ user: avhulst
 repo: ddev-browserless
 repo_id: 1319337407
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.1.0
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: contrib
 created_at: 2026-08-01
-updated_at: 2026-08-02
-workflow_status: failure
+updated_at: 2026-08-03
+workflow_status: success
 stars: 0
 ---
 
@@ -327,11 +327,54 @@ await browser.close();
 > **chromium-only** — `/firefox/playwright` and `/webkit/playwright` return 404.
 > Puppeteer speaks plain CDP and is far more version-tolerant.
 
+## Claude Code plugin
+
+This repository is also a [Claude Code](https://claude.com/claude-code)
+marketplace. It ships one plugin, `ddev-browserless`, containing the
+`browserless-ddev` skill: it teaches the agent to drive this service — verified
+recipes for screenshots, PDFs, rendered HTML, scraping and Lighthouse audits,
+plus the failure modes that are easy to hit blind (a missing `Content-Type`
+yielding 404, a Lighthouse audit failing with 200, your own site needing
+`ignoreHTTPSErrors`).
+
+```bash
+/plugin marketplace add avhulst/ddev-browserless
+/plugin install ddev-browserless@ddev-browserless
+```
+
+The plugin and the add-on are released together and share this repository's
+version tags, so a matching pair is whatever you last installed from the same
+release.
+
+**The skill needs the add-on.** It is not self-contained and assumes:
+
+- the add-on installed and the service started (`ddev browserless on`);
+- the agent running **inside the web container**, where `$BROWSERLESS_URL` and
+  `$BROWSERLESS_TOKEN` are set — it deliberately cannot start the service, since
+  there is no Docker socket there and DDEV's `ddev` shim refuses management
+  commands;
+- `curl`, `jq` and `node` in that container (DDEV's web image ships all three);
+- a git-ignored, project-local directory for output — `var/browserless/` by
+  default.
+
+Installing the plugin without the add-on is harmless: the skill's preflight
+detects the unset `$BROWSERLESS_URL` and says what to install.
+
+Working on the skill itself: see
+[`skills/browserless-ddev/README.md`](https://github.com/avhulst/ddev-browserless/blob/main/skills/browserless-ddev/README.md).
+
 ## Removing the Add-on
 
 ```bash
 ddev add-on remove browserless
 ddev restart
+```
+
+Removing the add-on leaves the Claude Code plugin in place — it is installed
+through a separate channel:
+
+```bash
+/plugin uninstall ddev-browserless@ddev-browserless
 ```
 
 ## Requirements

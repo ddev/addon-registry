@@ -7,11 +7,11 @@ repo: ddev-dblog
 repo_id: 741654296
 default_branch: main
 tag_name: v1.0.2
-ddev_version_constraint: ">= v1.23.5"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2024-01-10
-updated_at: 2026-02-19
+updated_at: 2026-08-03
 workflow_status: disabled
 stars: 1
 ---
