@@ -6,12 +6,12 @@ user: tag1consulting
 repo: ddev-temporalio
 repo_id: 1301945557
 default_branch: main
-tag_name: 0.17
+tag_name: 0.19
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-07-15
-updated_at: 2026-08-03
+updated_at: 2026-08-04
 workflow_status: success
 stars: 0
 ---
