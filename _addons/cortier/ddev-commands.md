@@ -6,13 +6,13 @@ user: cortier
 repo: ddev-commands
 repo_id: 1323461082
 default_branch: main
-tag_name: v1.1.1
+tag_name: v1.1.2
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-08-04
 updated_at: 2026-08-05
-workflow_status: unknown
+workflow_status: success
 stars: 0
 ---
 

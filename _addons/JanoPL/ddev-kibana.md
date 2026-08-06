@@ -6,17 +6,20 @@ user: JanoPL
 repo: ddev-kibana
 repo_id: 530812551
 default_branch: main
-tag_name: v2.0.0
-ddev_version_constraint: ""
+tag_name: v2.1.0
+ddev_version_constraint: ">= v1.24.10"
 dependencies: ["ddev/ddev-elasticsearch"]
 type: contrib
 created_at: 2022-08-30
-updated_at: 2026-05-10
+updated_at: 2026-08-05
 workflow_status: success
 stars: 1
 ---
 
-[![tests](https://github.com/janopl/ddev-kibana/actions/workflows/tests.yml/badge.svg)](https://github.com/janopl/ddev-kibana/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
+[![tests](https://github.com/janopl/ddev-kibana/actions/workflows/tests.yml/badge.svg)](https://github.com/janopl/ddev-kibana/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/janopl/ddev-kibana)](https://github.com/janopl/ddev-kibana/commits)
+[![release](https://img.shields.io/github/v/release/janopl/ddev-kibana)](https://github.com/janopl/ddev-kibana/releases/latest)
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 
 ## Instalation
 
@@ -26,12 +29,6 @@ For DDEV v1.23.5 or above run
 
 ```sh
 ddev add-on get janopl/ddev-kibana
-```
-
-For earlier versions of DDEV run
-
-```sh
-ddev get janopl/ddev-kibana
 ```
 
 ## Configuration

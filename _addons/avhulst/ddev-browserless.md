@@ -1,7 +1,7 @@
 ---
 title: avhulst/ddev-browserless
 github_url: https://github.com/avhulst/ddev-browserless
-description: ""
+description: "DDEV add-on for browserless v2 (Chromium): PDFs, screenshots, scraping and browser automation on demand. Ships a Claude Code skill for driving it."
 user: avhulst
 repo: ddev-browserless
 repo_id: 1319337407
