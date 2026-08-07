@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-05-01
-updated_at: 2026-08-03
+updated_at: 2026-08-07
 workflow_status: success
 stars: 36
 ---
@@ -52,6 +52,14 @@ The full setup workflow is:
 > **Tip:** Re-run `ddev restart` any time you update the Playwright
 > version in `test/playwright/package.json` so the matching browser binaries are
 > installed.
+
+> **Tip:** Tests live in `test/playwright` by default. To use a different
+> path (e.g. `tests/playwright`), add it to `.ddev/.env`:
+> ```
+> PLAYWRIGHT_TEST_DIR=tests/playwright
+> ```
+> then `ddev restart` before initializing Playwright. Substitute your
+> chosen path for `test/playwright` in the commands below.
 
 ```console
 # 1. Install the addon.

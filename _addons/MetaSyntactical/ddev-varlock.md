@@ -1,7 +1,7 @@
 ---
 title: MetaSyntactical/ddev-varlock
 github_url: https://github.com/MetaSyntactical/ddev-varlock
-description: ""
+description: "DDEV add-on that installs the Varlock CLI into the web container"
 user: MetaSyntactical
 repo: ddev-varlock
 repo_id: 1295829552
