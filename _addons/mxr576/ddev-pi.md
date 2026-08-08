@@ -6,13 +6,13 @@ user: mxr576
 repo: ddev-pi
 repo_id: 1250983207
 default_branch: main
-tag_name: 1.0.0-beta2
+tag_name: 1.0.0-beta3
 ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: contrib
 created_at: 2026-05-27
 updated_at: 2026-07-30
-workflow_status: unknown
+workflow_status: success
 stars: 0
 ---
 

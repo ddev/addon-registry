@@ -6,7 +6,7 @@ user: Lullabot
 repo: ddev-playwright
 repo_id: 635031324
 default_branch: main
-tag_name: v0.5.4
+tag_name: v0.5.5
 ddev_version_constraint: ""
 dependencies: []
 type: contrib

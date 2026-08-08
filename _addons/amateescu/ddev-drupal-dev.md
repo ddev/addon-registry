@@ -6,12 +6,12 @@ user: amateescu
 repo: ddev-drupal-dev
 repo_id: 1183388555
 default_branch: main
-tag_name: 1.1.5
+tag_name: 1.1.6
 ddev_version_constraint: ">= v1.25.3"
 dependencies: []
 type: contrib
 created_at: 2026-03-16
-updated_at: 2026-07-30
+updated_at: 2026-08-07
 workflow_status: success
 stars: 8
 ---
