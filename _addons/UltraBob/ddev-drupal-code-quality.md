@@ -6,12 +6,12 @@ user: UltraBob
 repo: ddev-drupal-code-quality
 repo_id: 1124009554
 default_branch: main
-tag_name: v1.0.7
+tag_name: v1.0.8
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2025-12-28
-updated_at: 2026-07-24
+updated_at: 2026-08-08
 workflow_status: success
 stars: 16
 ---
@@ -154,6 +154,13 @@ manually.
 The template points PHP tooling at `.ddev/drupal-code-quality/tooling/bin` and JS tooling at local
 `node_modules`. Override the paths if you prefer a different location.
 
+Note that VS Code does not install the recommended extensions automatically.
+The first time you open the workspace after install, VS Code shows a
+notification that this workspace has extension recommendations — click
+**Show Recommendations** and install the listed extensions so the IDE
+integration works. If you dismissed the notification, open the Extensions view
+and filter by `@recommended` to find them.
+
 ## Requirements
 
 - DDEV project with Drupal core in the configured docroot (default `web/`).
@@ -207,13 +214,33 @@ The template points PHP tooling at `.ddev/drupal-code-quality/tooling/bin` and J
     single source of truth for Prettier scope.
 - PHPCS / PHPCBF default scope:
   - When a project `.phpcs.xml` is installed by the add-on, `ddev phpcs` and
-    `ddev phpcbf` with no path default to scanning the configured docroot.
-  - The generated ruleset excludes `__DOCROOT__/core/**`, `**/contrib/**`,
-    `**/node_modules/**`, and `__DOCROOT__/sites/*/files/**`.
+    `ddev phpcbf` with no path default to scanning `modules`, `themes`,
+    `profiles`, and `sites` under the docroot (the same scope as PHPStan).
+  - The generated ruleset excludes `**/contrib/**`, `**/node_modules/**`,
+    `__DOCROOT__/themes/blank/**` (the starter theme Drupal CMS site
+    templates generate directly under `themes/`), and
+    `__DOCROOT__/sites/*/files/**`.
   - You can still pass explicit paths to narrow runs.
 - PHP parallel lint scope:
   - `ddev php-parallel-lint` remains wrapper-scoped because the tool does not
     provide an equivalent project config file for default target paths.
+- PHPStan default scope:
+  - The installed `phpstan.neon` analyses `modules`, `themes`, `profiles`, and
+    `sites` under the docroot, excluding `contrib` subtrees and
+    `themes/blank` (the starter theme Drupal CMS site templates generate
+    directly under `themes/`). The broad parent directories are deliberate:
+    projects that keep custom code outside `modules/custom` (for example
+    `modules/common/`) are still analysed instead of being silently skipped.
+  - Contrib is excluded with `analyseAndScan`, so calls into contrib code
+    still type-check (phpstan-drupal resolves contrib classes on demand via
+    Drupal's autoloader) without scanning the contrib tree.
+  - This intentionally deviates from the GitLab CI template `paths` values:
+    the templates target contrib repos where the project root is the module
+    under test, while this add-on targets site projects whose custom code is
+    the target. Template parity applies to the rules, not the scan scope.
+  - First adoption on an existing project may surface previously-unseen
+    findings. Run `ddev phpstan --generate-baseline` once to capture existing
+    debt so only new regressions fail (see PHPStan baseline below).
 - PHPStan baseline:
   - Generate a baseline with `ddev phpstan --generate-baseline`.
   - This writes `phpstan-baseline.neon` at the project root and updates
