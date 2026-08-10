@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-drupal-contrib
 repo_id: 634259708
 default_branch: main
-tag_name: 1.1.5
+tag_name: 1.1.6
 ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: official
 created_at: 2023-04-29
-updated_at: 2026-05-20
+updated_at: 2026-08-09
 workflow_status: success
 stars: 139
 ---
