@@ -6,13 +6,13 @@ user: MetaSyntactical
 repo: ddev-nub
 repo_id: 1325533045
 default_branch: main
-tag_name: v0.1.0
+tag_name: v0.2.0
 ddev_version_constraint: ">=v1.23.0"
 dependencies: []
 type: contrib
 created_at: 2026-08-06
-updated_at: 2026-08-07
-workflow_status: success
+updated_at: 2026-08-10
+workflow_status: failure
 stars: 0
 ---
 
@@ -40,6 +40,7 @@ After installation, make sure to commit the `.ddev` directory to version control
 ## Usage
 
 * `ddev nub [command]` runs any Nub CLI command inside the web container.
+* `ddev nubx [command]` runs Nub's package-runner (`nubx` is to `nub` what `npx` is to `npm`) inside the web container.
 
 ## Configuration
 

@@ -6,12 +6,12 @@ user: justafish
 repo: ddev-drupal-core-dev
 repo_id: 706601727
 default_branch: main
-tag_name: v1.2.4
+tag_name: v1.2.5
 ddev_version_constraint: ""
 dependencies: []
 type: contrib
 created_at: 2023-10-18
-updated_at: 2026-03-24
+updated_at: 2026-08-10
 workflow_status: disabled
 stars: 30
 ---
@@ -45,6 +45,10 @@ command. This allows you to perform some basic tasks without needing to install
 # Run "ddev drupal install" to see all available options
 ddev drupal install standard
 
+# Reset the site so it can be installed again
+# Use this rather than deleting sites/default/files and settings.php by hand
+ddev drupal uninstall
+
 # Run PHPUnit tests
 ddev phpunit core/modules/announcements_feed
 
@@ -70,7 +74,7 @@ ddev nightwatch --skiptags core
 
 Run a single test
 ```
-ddev nightwatch tests/Drupal/Nightwatch/Tests/exampleTest.js
+ddev nightwatch tests/Drupal/Nightwatch/Tests/a11yTestAdmin.js
 ```
 
 a11y tests for both the admin and default themes
