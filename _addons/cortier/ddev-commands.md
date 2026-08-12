@@ -6,12 +6,12 @@ user: cortier
 repo: ddev-commands
 repo_id: 1323461082
 default_branch: main
-tag_name: v1.1.2
+tag_name: v1.2.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-08-04
-updated_at: 2026-08-05
+updated_at: 2026-08-11
 workflow_status: success
 stars: 0
 ---
@@ -32,6 +32,7 @@ This DDEV add-on installs shared host commands used by Cortier projects.
 - `ddev shop`: Connect to or run a command in a shop surface.
 - `ddev launch`: Open the current project's local URL.
 - `ddev name`: Print the DDEV project name without its final suffix.
+- `ddev path`: Print the configured absolute path for a Cortier repository.
 - `ddev surface`: Manage and use API, app, admin, and shop surface connections.
 - `ddev url`: Print URLs from `.ddev/config.host.local.yaml`.
 
@@ -39,6 +40,18 @@ This DDEV add-on installs shared host commands used by Cortier projects.
 
 The target project must contain `.ddev/config.host.local.yaml`. The `surface`
 command also requires `jq` when it reads DDEV metadata.
+
+Configure repository paths in global Git configuration. For example:
+
+```bash
+git config --global cortier.paths.rules /absolute/path/to/rules
+ddev path rules
+```
+
+Add `--json-output` to return the repository name and resolved path as JSON.
+Configured paths must identify the root of a standalone Git checkout, not a
+nested directory or submodule, and its `origin` must identify the matching
+`cortier/<repository>` repository.
 
 API projects can connect to one app, one admin, and one shop. Each frontend can
 connect to one API; frontend-to-frontend connections are rejected. Connections

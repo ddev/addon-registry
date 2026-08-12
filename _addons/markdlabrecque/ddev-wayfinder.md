@@ -11,8 +11,8 @@ ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: contrib
 created_at: 2026-08-06
-updated_at: 2026-08-07
-workflow_status: success
+updated_at: 2026-08-11
+workflow_status: failure
 stars: 0
 ---
 
@@ -86,13 +86,18 @@ You do not need to generate or upload a config set. The schema is baked into the
 | `ddev wayfinder ping` | Core ping — the health check |
 | `ddev wayfinder system` | Core-scoped system info |
 | `ddev wayfinder info` | Server-level version handshake |
-| `ddev wayfinder ui` | Print the admin UI URL |
+| `ddev wayfinder ui` | Open the admin UI in a browser (`--print` to only print the URL) |
 | `ddev wayfinder url` | Print the base URL for the Search API server |
 | `ddev describe` | Service status and exposed ports |
 | `ddev logs -s wayfinder` | Wayfinder logs |
 
 The admin UI (query tester, schema view, index stats, synonyms) is served at `/ui` on the
-router-exposed port — `ddev wayfinder ui` prints the URL.
+router-exposed port — `ddev wayfinder ui` opens it.
+
+Mind the `/ui` path. The URL `ddev describe` lists for the `wayfinder` service is the bare
+`https://<project>.ddev.site:8945`, and Wayfinder has no route at `/`: it answers with an
+empty `404`, which in a browser is an indistinguishable-from-broken blank page. On DDEV
+v1.25.0+ the `ddev describe` row carries a reminder to that effect.
 
 ## Versions
 
