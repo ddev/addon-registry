@@ -6,13 +6,13 @@ user: julienloizelet
 repo: ddev-playwright
 repo_id: 598383514
 default_branch: main
-tag_name: v2.6.0
+tag_name: v3.0.0
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2023-02-07
-updated_at: 2026-02-16
-workflow_status: failure
+updated_at: 2026-08-12
+workflow_status: success
 stars: 18
 ---
 
@@ -111,10 +111,10 @@ You could also edit the value directly in the `docker-compose.playwright.yaml` f
 To change the Docker image, you can set the `PLAYWRIGHT_DOCKER_IMAGE` variable in the `.ddev/.env.playwright` file.
 To change the KasmVNC version, you can set the `KASMVNC_VERSION` variable in the `.ddev/.env.playwright` file.
 
-For example, to use the `mcr.microsoft.com/playwright:v1.46.0-focal-amd64` image, run the following command:
+For example, to use the `mcr.microsoft.com/playwright:v1.61.1-noble` image, run the following command:
 
 ```bash
-ddev dotenv set .ddev/.env.playwright --playwright-docker-image=mcr.microsoft.com/playwright:v1.46.0-focal-amd64
+ddev dotenv set .ddev/.env.playwright --playwright-docker-image=mcr.microsoft.com/playwright:v1.61.1-noble
 ddev add-on get julienloizelet/ddev-playwright
 ddev restart
 ```
@@ -125,8 +125,12 @@ All customization options (use with caution):
 
 | Variable                  | Flag                        | Default |
 |---------------------------|-----------------------------| ------- |
-| `PLAYWRIGHT_DOCKER_IMAGE` | `--playwright-docker-image` | `mcr.microsoft.com/playwright:focal` |
+| `PLAYWRIGHT_DOCKER_IMAGE` | `--playwright-docker-image` | `mcr.microsoft.com/playwright:v1.62.1-noble` |
 | `KASMVNC_VERSION` | `--kasmvnc-version` | `1.4.0` |
+
+**Note**: to avoid errors coming from a mismatch between the Playwright Node.js package and the installed browsers,
+you should keep the `@playwright/test` version of your `package.json` file in sync with the version of the Playwright
+Docker image (e.g. `"@playwright/test": "1.62.1"` for the default `mcr.microsoft.com/playwright:v1.62.1-noble` image).
 
 #### `.env` file
 
@@ -155,7 +159,7 @@ You will find an example of such a file in the `tests/project_root/tests/Playwri
 {
   "license": "MIT",
   "dependencies": {
-    "@playwright/test": "^1.34.2",
+    "@playwright/test": "1.62.1",
     "dotenv": "^16.0.3"
   }
 }
