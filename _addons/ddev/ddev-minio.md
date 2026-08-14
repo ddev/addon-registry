@@ -6,12 +6,12 @@ user: ddev
 repo: ddev-minio
 repo_id: 678091119
 default_branch: main
-tag_name: v2.2.0
+tag_name: v2.2.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: official
 created_at: 2023-08-13
-updated_at: 2025-12-01
+updated_at: 2026-08-13
 workflow_status: success
 stars: 11
 ---
