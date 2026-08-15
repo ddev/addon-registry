@@ -6,13 +6,13 @@ user: IT-Cru
 repo: ddev-codebase-memory-mcp
 repo_id: 1315934576
 default_branch: main
-tag_name: v1.0.0
+tag_name: v1.0.1
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-07-29
-updated_at: 2026-08-13
-workflow_status: failure
+updated_at: 2026-08-14
+workflow_status: success
 stars: 0
 ---
 
