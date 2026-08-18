@@ -6,12 +6,12 @@ user: IT-Cru
 repo: ddev-codebase-memory-mcp
 repo_id: 1315934576
 default_branch: main
-tag_name: v1.0.1
+tag_name: v1.0.2
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: contrib
 created_at: 2026-07-29
-updated_at: 2026-08-14
+updated_at: 2026-08-17
 workflow_status: success
 stars: 0
 ---
@@ -113,6 +113,55 @@ and more. This add-on is a natural companion to it: install in either order, no
 configuration, nothing owned by another add-on is modified. See
 [Use with ddev-ai-workspace](#use-with-ddev-ai-workspace).
 
+### Getting more out of an agent
+
+Two things ship with the add-on to make agents use the graph well rather than
+falling back to grep.
+
+**Instructions.** `.ddev/codebase-memory/AGENT-INSTRUCTIONS.md` tells an agent which
+tool answers which question, to call `get_graph_schema` first, and to prefer one
+`query_graph` call over a chain of narrower ones. Reference it from your own
+instruction file rather than having it installed over the top — for Claude Code, add
+to `CLAUDE.md`:
+
+```
+@.ddev/codebase-memory/AGENT-INSTRUCTIONS.md
+```
+
+For OpenCode, add the path to the `instructions` array in your `opencode.json`.
+
+**A shell shim.** `.ddev/codebase-memory/cbm` runs any graph tool from inside a
+container — agent containers mount the project but have no `ddev` binary — and prints
+only the tool's result, so it composes in a script:
+
+```bash
+CBM=.ddev/codebase-memory/cbm
+out="$($CBM search_graph --label Class)"
+prefix="$(printf '%s\n' "$out" | sed -n 's/^\(var-www-html[^ ]*\) (.*/\1/p')"
+for name in $(printf '%s\n' "$out" | awk '/^  [A-Za-z]/ {print $1}'); do
+  "$CBM" get_code_snippet --qualified-name "$prefix.$name"
+done
+```
+
+What that buys is **round-trips, not payload size**. Every MCP tool call sends the
+whole conversation through the model again, so a question that fans out over ten
+symbols costs eleven inferences; the script above costs one. Payload size is already
+handled upstream — the query tools answer in a compact tree format, so there is
+nothing left for us to trim.
+
+Note the query surface is **not JSON** — slice it with `awk`, not `jq`. Some tools,
+`get_code_snippet` among them, still answer in JSON, so check rather than assume.
+
+It reuses one MCP session across calls, so a script of several queries does not start
+a server process per invocation, and re-initializes by itself if the container
+restarted. `cbm --help` has more examples.
+
+`--project` is filled in with `var-www-html`, which is what CBM derives from the
+container mount path — so it holds whatever your DDEV project is called. It would
+only be wrong if you indexed under a custom `--name` or from a subdirectory, and in
+that case the server answers with the names it does have; `CBM_PROJECT` overrides the
+default.
+
 ### Other MCP clients
 
 Any client that speaks MCP over HTTP can use the same endpoint. From inside the
@@ -193,6 +242,7 @@ there.
 | `.mcp.json` | Claude Code MCP registration (`codebase-memory` key only) |
 | `opencode.json` | OpenCode MCP registration (`codebase-memory` key only) |
 | `.cbmignore` | Excludes `.ddev/` from the graph — created only if absent |
+| `.codebase-memory.json` | Drupal projects only: indexes `.module`/`.install`/`.theme` as PHP — created only if absent |
 
 Both JSON files are shared with other add-ons, so registration **merges**: other
 MCP servers, your `model` setting, and anything else you added are preserved, and
@@ -204,6 +254,38 @@ server without extra setup.
 The `.cbmignore` excludes `.ddev/` because DDEV's config directory contains shell
 scripts that would otherwise be indexed as application code and appear in search
 and trace results.
+
+### Drupal file extensions
+
+On a Drupal or Backdrop project, install writes a `.codebase-memory.json` mapping
+`.module`, `.install`, `.theme`, `.profile`, `.engine` and `.inc` to PHP, and `.twig`
+to HTML.
+
+The indexer decides how to parse a file from its extension, so without the PHP part
+every hook, schema and update function, and every theme preprocessor is missing from
+the graph — on a test project those files contributed **0 of 0** indexed functions
+before the mapping and **7 of 7** after, call edges included.
+
+The `.twig` part makes templates searchable. `search_code` only looks inside indexed
+files, so "which templates call my custom Twig function?" otherwise finds the PHP
+definition and none of the call sites — 1 match before the mapping, 3 after:
+
+```bash
+ddev cbm search_code --pattern my_custom_fn
+```
+
+Templates become `Module` nodes, so they never show up in `search_graph --label
+Function` or `--label Class`; the cost was 11 extra nodes for 3 templates. HTML rather
+than a Twig grammar because the indexer has none, and an unknown language name is
+silently ignored.
+
+Other project types get nothing, deliberately: WordPress, TYPO3 and Laravel keep their
+code in `.php`, which is indexed already — `.blade.php` included, since it ends in
+`.php`.
+
+Delete or edit the file if you disagree; it is only created when absent. To check what
+the graph is missing in your own project, ask for
+`check_index_coverage --paths <file>` — `not_tracked` means the indexer skipped it.
 
 ## Configuration
 
@@ -220,7 +302,7 @@ ddev dotenv set .ddev/.env.codebase-memory --cbm-workers=4
 | `CBM_WORKERS` | *(detected)* | Indexing threads. Worth setting: the binary sees **host** CPU count, not the container's quota |
 | `CBM_MEM_BUDGET_MB` | *(detected)* | Cap the in-memory graph budget, likewise derived from host RAM |
 | `CBM_LOG_LEVEL` | `info` | `debug`, `info`, `warn`, `error`, `none` |
-| `CBM_VERSION` | `v0.10.3` | The `codebase-memory-mcp` release to install; `latest` or any tag (rebuild required) |
+| `CBM_VERSION` | `v0.10.6` | The `codebase-memory-mcp` release to install; `latest` or any tag (rebuild required) |
 | `CBM_BRIDGE_TOKEN` | *(unset)* | Require `Authorization: Bearer <token>` on `/mcp` (the UI stays open) |
 | `CBM_UI_KEEPER` | `true` | Open a short-lived session so the graph UI works with no agent running |
 | `CBM_UI_KEEPER_IDLE` | `900` | Seconds of no UI traffic before that session is released |
