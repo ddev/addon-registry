@@ -6,14 +6,14 @@ user: amateescu
 repo: ddev-drupal-dev
 repo_id: 1183388555
 default_branch: main
-tag_name: 1.1.6
+tag_name: 1.1.8
 ddev_version_constraint: ">= v1.25.3"
 dependencies: []
 type: contrib
 created_at: 2026-03-16
-updated_at: 2026-08-07
+updated_at: 2026-08-18
 workflow_status: success
-stars: 9
+stars: 10
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
@@ -153,10 +153,11 @@ For PostgreSQL, install the [ddev-postgres](https://github.com/ddev/ddev-postgre
 
 ## Code quality checks
 
-PHPStan, PHP CodeSniffer and cspell run with core's own configuration:
+PHPStan, PHP CodeSniffer and cspell run with the configuration of the project being checked, falling back to core's:
 
 ```bash
 ddev phpstan core/modules/node         # PHPStan on specific paths
+ddev phpstan modules/contrib/token     # the module's own configuration, if it has one
 ddev phpstan                           # full analysis with core's baseline
 ddev phpcs core/modules/node           # coding standard checks
 ddev phpcs                             # whole codebase
@@ -165,6 +166,10 @@ ddev cspell                            # whole codebase
 ```
 
 `ddev cspell` needs core's node dependencies: `ddev exec 'corepack enable && cd core && yarn install'`.
+
+Paths and globs are relative to the project root. Each command takes the nearest configuration in the checked path or a parent directory, the same way contrib CI picks one up: `phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon` for PHPStan, `.phpcs.xml`, `phpcs.xml`, `.phpcs.xml.dist` or `phpcs.xml.dist` for PHP CodeSniffer, and `.cspell.json`, `cspell.json` or any of the other names cspell itself looks for. Paths belonging to several projects are checked one project at a time.
+
+Contrib projects usually keep their spelling words in `.gitlab-ci.yml` rather than in a cspell configuration, so `ddev cspell` reads the same variables from there that contrib CI does: `_CSPELL_WORDS`, `_CSPELL_IGNORE_PATHS` and the project dictionary file (`.cspell-project-words.txt`, or whatever `_CSPELL_DICTIONARY` names). A project with no cspell configuration of its own falls back to core's, which flags more words than the default configuration contrib CI uses, so the odd extra hit can show up.
 
 `ddev phpstan` analyses against the PHP version core declares in `config.platform`, not the container's runtime version, so results match what core's CI reports.
 
@@ -219,9 +224,9 @@ This sets the `COMPOSER` env var on the host so that running `composer` directly
 | Command | Description |
 | ------- | ----------- |
 | `ddev phpunit [path]` | Run PHPUnit tests |
-| `ddev phpstan [paths]` | Run PHPStan with core's configuration |
-| `ddev phpcs [paths]` | Run PHP CodeSniffer with core's coding standard |
-| `ddev cspell [globs]` | Run cspell with core's dictionaries |
+| `ddev phpstan [paths]` | Run PHPStan with the configuration of the checked project |
+| `ddev phpcs [paths]` | Run PHP CodeSniffer with the standard of the checked project |
+| `ddev cspell [globs]` | Run cspell with the configuration and words of the checked project |
 | `ddev commit-code-check [flags]` | Run core's pre-commit checks on your changed files |
 | `ddev add-module <name>` | Clone a contrib module for development |
 | `ddev switch <project> <branch>` | Switch core or a module to a branch and update dependencies |
