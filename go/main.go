@@ -61,6 +61,19 @@ func isRepoBlacklisted(repo *github.Repository) bool {
 	return slices.Contains(blacklist, repo.GetFullName())
 }
 
+// yamlQuote renders s as a double-quoted YAML scalar so front matter values are always
+// parsed as strings. Unquoted, a branch or tag like "6.7" is read as a number and ends up
+// unquoted in addons.json too, which breaks consumers expecting a string.
+func yamlQuote(s string) string {
+	return `"` + strings.NewReplacer(
+		`\`, `\\`,
+		`"`, `\"`,
+		"\n", `\n`,
+		"\r", `\r`,
+		"\t", `\t`,
+	).Replace(s) + `"`
+}
+
 func hasFileChanged(filePath string, newContent string) bool {
 	if _, err := os.Stat(filePath); err == nil {
 		existingContent, err := os.ReadFile(filePath)
@@ -260,7 +273,11 @@ func generateAddonMarkdown(repo *github.Repository) error {
 
 	dependencies := "[]"
 	if len(installYaml.Dependencies) > 0 {
-		dependencies = fmt.Sprintf(`["%s"]`, strings.Join(installYaml.Dependencies, `", "`))
+		quoted := make([]string, 0, len(installYaml.Dependencies))
+		for _, dependency := range installYaml.Dependencies {
+			quoted = append(quoted, yamlQuote(dependency))
+		}
+		dependencies = fmt.Sprintf("[%s]", strings.Join(quoted, ", "))
 	}
 
 	lastCommitDate, err := getLastCommitDate(repo)
@@ -278,13 +295,13 @@ func generateAddonMarkdown(repo *github.Repository) error {
 	newContent := fmt.Sprintf(`---
 title: %[1]s
 github_url: %[2]s
-description: "%[3]s"
+description: %[3]s
 user: %[4]s
 repo: %[5]s
 repo_id: %[6]d
 default_branch: %[7]s
 tag_name: %[8]s
-ddev_version_constraint: "%[9]s"
+ddev_version_constraint: %[9]s
 dependencies: %[10]s
 type: %[11]s
 created_at: %[12]s
@@ -295,20 +312,20 @@ stars: %[15]d
 
 %[16]s
 `,
-		repo.GetFullName(),
-		repo.GetHTMLURL(),
-		strings.ReplaceAll(repo.GetDescription(), `"`, `\"`),
-		org,
-		repoName,
+		yamlQuote(repo.GetFullName()),
+		yamlQuote(repo.GetHTMLURL()),
+		yamlQuote(repo.GetDescription()),
+		yamlQuote(org),
+		yamlQuote(repoName),
 		repo.GetID(),
-		repo.GetDefaultBranch(),
-		getLatestTag(repo),
-		installYaml.DdevVersionConstraint,
+		yamlQuote(repo.GetDefaultBranch()),
+		yamlQuote(getLatestTag(repo)),
+		yamlQuote(installYaml.DdevVersionConstraint),
 		dependencies,
-		addonType,
-		repo.GetCreatedAt().Format(time.DateOnly),
-		lastCommitDate,
-		workflowStatus,
+		yamlQuote(addonType),
+		yamlQuote(repo.GetCreatedAt().Format(time.DateOnly)),
+		yamlQuote(lastCommitDate),
+		yamlQuote(workflowStatus),
 		repo.GetStargazersCount(),
 		strings.TrimSpace(readmeContent),
 	)
