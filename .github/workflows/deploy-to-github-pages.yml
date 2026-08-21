@@ -217,6 +217,28 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - name: Validate addons.json field types
+        # YAML front matter is typed, so an unquoted value like `default_branch: 6.7` becomes
+        # a number and would be published as one, breaking consumers that expect a string
+        # (`ddev add-on list`). addons.json coerces the types, this asserts that it worked.
+        run: |
+          BAD=$(jq -r '
+            .addons[] as $addon
+            | $addon
+            | to_entries[]
+            | select(.key != "dependencies")
+            | (if .key == "repo_id" or .key == "stars" then "number" else "string" end) as $want
+            | select((.value | type) != $want)
+            | "\($addon.title): \(.key) is \(.value | type), expected \($want) (\(.value | tojson))"
+          ' _site/addons.json)
+
+          if [ -n "$BAD" ]; then
+            echo "::error::addons.json has fields with the wrong JSON type:"
+            echo "$BAD"
+            exit 1
+          fi
+          echo "addons.json field types are OK ($(jq '.addons | length' _site/addons.json) add-ons)"
+
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v5
