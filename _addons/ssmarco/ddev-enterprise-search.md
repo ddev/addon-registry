@@ -1,18 +1,18 @@
 ---
-title: ssmarco/ddev-enterprise-search
-github_url: https://github.com/ssmarco/ddev-enterprise-search
+title: "ssmarco/ddev-enterprise-search"
+github_url: "https://github.com/ssmarco/ddev-enterprise-search"
 description: "Elastic Enterprise Search service for DDEV"
-user: ssmarco
-repo: ddev-enterprise-search
+user: "ssmarco"
+repo: "ddev-enterprise-search"
 repo_id: 750137374
-default_branch: main
-tag_name: 0.0.4
+default_branch: "main"
+tag_name: "0.0.4"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-01-30
-updated_at: 2025-03-10
-workflow_status: unknown
+type: "contrib"
+created_at: "2024-01-30"
+updated_at: "2025-03-10"
+workflow_status: "unknown"
 stars: 0
 ---
 

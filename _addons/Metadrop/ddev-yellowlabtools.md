@@ -1,18 +1,18 @@
 ---
-title: Metadrop/ddev-yellowlabtools
-github_url: https://github.com/Metadrop/ddev-yellowlabtools
+title: "Metadrop/ddev-yellowlabtools"
+github_url: "https://github.com/Metadrop/ddev-yellowlabtools"
 description: "Ddev addon to run yellowlabs tools cli"
-user: Metadrop
-repo: ddev-yellowlabtools
+user: "Metadrop"
+repo: "ddev-yellowlabtools"
 repo_id: 1103805997
-default_branch: main
-tag_name: v1.0.1
+default_branch: "main"
+tag_name: "v1.0.1"
 ddev_version_constraint: ">= v1.23.0"
 dependencies: []
-type: contrib
-created_at: 2025-11-25
-updated_at: 2025-11-26
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-11-25"
+updated_at: "2025-11-26"
+workflow_status: "disabled"
 stars: 0
 ---
 

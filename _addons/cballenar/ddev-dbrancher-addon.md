@@ -1,18 +1,18 @@
 ---
-title: cballenar/ddev-dbrancher-addon
-github_url: https://github.com/cballenar/ddev-dbrancher-addon
+title: "cballenar/ddev-dbrancher-addon"
+github_url: "https://github.com/cballenar/ddev-dbrancher-addon"
 description: "A DDEV add-on that brings isolated, dynamic database routing to your Drupal feature branches. Useful for tricky setups that can't easily use worktrees."
-user: cballenar
-repo: ddev-dbrancher-addon
+user: "cballenar"
+repo: "ddev-dbrancher-addon"
 repo_id: 1246962531
-default_branch: main
-tag_name: v1.1.2
+default_branch: "main"
+tag_name: "v1.1.2"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2026-05-22
-updated_at: 2026-06-15
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-05-22"
+updated_at: "2026-06-15"
+workflow_status: "unknown"
 stars: 0
 ---
 

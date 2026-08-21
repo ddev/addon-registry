@@ -1,18 +1,18 @@
 ---
-title: hryvinskyi/ddev-opensearch
-github_url: https://github.com/hryvinskyi/ddev-opensearch
+title: "hryvinskyi/ddev-opensearch"
+github_url: "https://github.com/hryvinskyi/ddev-opensearch"
 description: "OpenSearch analytics, logging, and full-text search for DDEV"
-user: hryvinskyi
-repo: ddev-opensearch
+user: "hryvinskyi"
+repo: "ddev-opensearch"
 repo_id: 1152744447
-default_branch: main
-tag_name: 
+default_branch: "main"
+tag_name: ""
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2026-02-08
-updated_at: 2026-02-08
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-02-08"
+updated_at: "2026-02-08"
+workflow_status: "unknown"
 stars: 0
 ---
 

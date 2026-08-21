@@ -1,18 +1,18 @@
 ---
-title: tyler36/ddev-laravel-queue
-github_url: https://github.com/tyler36/ddev-laravel-queue
+title: "tyler36/ddev-laravel-queue"
+github_url: "https://github.com/tyler36/ddev-laravel-queue"
 description: "Start a Laravel queue worker automatically in DDEV"
-user: tyler36
-repo: ddev-laravel-queue
+user: "tyler36"
+repo: "ddev-laravel-queue"
 repo_id: 500674839
-default_branch: main
-tag_name: 1.0.1
+default_branch: "main"
+tag_name: "1.0.1"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2022-06-07
-updated_at: 2025-09-19
-workflow_status: success
+type: "contrib"
+created_at: "2022-06-07"
+updated_at: "2025-09-19"
+workflow_status: "success"
 stars: 5
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: thursdaybw/ddev-tightvnc
-github_url: https://github.com/thursdaybw/ddev-tightvnc
+title: "thursdaybw/ddev-tightvnc"
+github_url: "https://github.com/thursdaybw/ddev-tightvnc"
 description: "TightVNC server for DDEV"
-user: thursdaybw
-repo: ddev-tightvnc
+user: "thursdaybw"
+repo: "ddev-tightvnc"
 repo_id: 818857936
-default_branch: main
-tag_name: v1.0.1
+default_branch: "main"
+tag_name: "v1.0.1"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-06-23
-updated_at: 2024-06-30
-workflow_status: unknown
+type: "contrib"
+created_at: "2024-06-23"
+updated_at: "2024-06-30"
+workflow_status: "unknown"
 stars: 0
 ---
 

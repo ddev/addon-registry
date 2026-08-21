@@ -1,18 +1,18 @@
 ---
-title: fwust/ddev-clamav
-github_url: https://github.com/fwust/ddev-clamav
+title: "fwust/ddev-clamav"
+github_url: "https://github.com/fwust/ddev-clamav"
 description: "ClamAV integration for DDEV"
-user: fwust
-repo: ddev-clamav
+user: "fwust"
+repo: "ddev-clamav"
 repo_id: 710824160
-default_branch: main
-tag_name: 1.2.1
+default_branch: "main"
+tag_name: "1.2.1"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2023-10-27
-updated_at: 2026-02-25
-workflow_status: disabled
+type: "contrib"
+created_at: "2023-10-27"
+updated_at: "2026-02-25"
+workflow_status: "disabled"
 stars: 0
 ---
 

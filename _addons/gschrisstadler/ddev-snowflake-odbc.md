@@ -1,18 +1,18 @@
 ---
-title: gschrisstadler/ddev-snowflake-odbc
-github_url: https://github.com/gschrisstadler/ddev-snowflake-odbc
+title: "gschrisstadler/ddev-snowflake-odbc"
+github_url: "https://github.com/gschrisstadler/ddev-snowflake-odbc"
 description: "Snowflake ODBC Extension for PHP"
-user: gschrisstadler
-repo: ddev-snowflake-odbc
+user: "gschrisstadler"
+repo: "ddev-snowflake-odbc"
 repo_id: 787472015
-default_branch: main
-tag_name: 1.0.4
+default_branch: "main"
+tag_name: "1.0.4"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2024-04-16
-updated_at: 2026-08-05
-workflow_status: failure
+type: "contrib"
+created_at: "2024-04-16"
+updated_at: "2026-08-05"
+workflow_status: "failure"
 stars: 0
 ---
 

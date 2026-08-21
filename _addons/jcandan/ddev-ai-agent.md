@@ -1,18 +1,18 @@
 ---
-title: jcandan/ddev-ai-agent
-github_url: https://github.com/jcandan/ddev-ai-agent
+title: "jcandan/ddev-ai-agent"
+github_url: "https://github.com/jcandan/ddev-ai-agent"
 description: "A DDEV add-on to spin up a simple, opinionated, customizable n8n AI Agent workflow stack with sensible defaults."
-user: jcandan
-repo: ddev-ai-agent
+user: "jcandan"
+repo: "ddev-ai-agent"
 repo_id: 1089834277
-default_branch: alpha
-tag_name: 1.0.0-alpha.5
+default_branch: "alpha"
+tag_name: "1.0.0-alpha.5"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-11-04
-updated_at: 2025-12-11
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-11-04"
+updated_at: "2025-12-11"
+workflow_status: "disabled"
 stars: 0
 ---
 

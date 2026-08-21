@@ -1,18 +1,18 @@
 ---
-title: Corveda/ddev-redash
-github_url: https://github.com/Corveda/ddev-redash
+title: "Corveda/ddev-redash"
+github_url: "https://github.com/Corveda/ddev-redash"
 description: "DDEV addon for Redash"
-user: Corveda
-repo: ddev-redash
+user: "Corveda"
+repo: "ddev-redash"
 repo_id: 1111123801
-default_branch: main
-tag_name: v0.9-beta
+default_branch: "main"
+tag_name: "v0.9-beta"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-12-06
-updated_at: 2025-12-06
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-12-06"
+updated_at: "2025-12-06"
+workflow_status: "disabled"
 stars: 0
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: ddaffie/ddev-pg-search
-github_url: https://github.com/ddaffie/ddev-pg-search
+title: "ddaffie/ddev-pg-search"
+github_url: "https://github.com/ddaffie/ddev-pg-search"
 description: "DDEV add-on: ParadeDB pg_search (BM25 full-text search) for DDEV's PostgreSQL"
-user: ddaffie
-repo: ddev-pg-search
+user: "ddaffie"
+repo: "ddev-pg-search"
 repo_id: 1303914361
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
-type: contrib
-created_at: 2026-07-17
-updated_at: 2026-07-17
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-07-17"
+updated_at: "2026-07-17"
+workflow_status: "disabled"
 stars: 0
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: Cambrico/ddev-ansible
-github_url: https://github.com/Cambrico/ddev-ansible
+title: "Cambrico/ddev-ansible"
+github_url: "https://github.com/Cambrico/ddev-ansible"
 description: "A DDEV addon to seamlessly install and manage Ansible within your DDEV environment. Simplifies the integration of Ansible for local development and automation tasks."
-user: Cambrico
-repo: ddev-ansible
+user: "Cambrico"
+repo: "ddev-ansible"
 repo_id: 892347556
-default_branch: main
-tag_name: v1.1.0
+default_branch: "main"
+tag_name: "v1.1.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2024-11-22
-updated_at: 2025-09-24
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-11-22"
+updated_at: "2025-09-24"
+workflow_status: "disabled"
 stars: 1
 ---
 

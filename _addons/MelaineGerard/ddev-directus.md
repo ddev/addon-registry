@@ -1,18 +1,18 @@
 ---
-title: MelaineGerard/ddev-directus
-github_url: https://github.com/MelaineGerard/ddev-directus
+title: "MelaineGerard/ddev-directus"
+github_url: "https://github.com/MelaineGerard/ddev-directus"
 description: "A simple DDEV addon that add Directus on your project"
-user: MelaineGerard
-repo: ddev-directus
+user: "MelaineGerard"
+repo: "ddev-directus"
 repo_id: 774272156
-default_branch: main
-tag_name: 1.1.3
+default_branch: "main"
+tag_name: "1.1.3"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-03-19
-updated_at: 2026-04-29
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-03-19"
+updated_at: "2026-04-29"
+workflow_status: "disabled"
 stars: 5
 ---
 

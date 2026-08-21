@@ -1,18 +1,18 @@
 ---
-title: MurzNN/ddev-pgadmin
-github_url: https://github.com/MurzNN/ddev-pgadmin
+title: "MurzNN/ddev-pgadmin"
+github_url: "https://github.com/MurzNN/ddev-pgadmin"
 description: "pgAdmin Add-on For DDEV: PostgreSQL database management web interface"
-user: MurzNN
-repo: ddev-pgadmin
+user: "MurzNN"
+repo: "ddev-pgadmin"
 repo_id: 834866824
-default_branch: main
-tag_name: v0.1.1
+default_branch: "main"
+tag_name: "v0.1.1"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-07-28
-updated_at: 2025-05-01
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-07-28"
+updated_at: "2025-05-01"
+workflow_status: "disabled"
 stars: 1
 ---
 

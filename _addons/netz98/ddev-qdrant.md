@@ -1,18 +1,18 @@
 ---
-title: netz98/ddev-qdrant
-github_url: https://github.com/netz98/ddev-qdrant
+title: "netz98/ddev-qdrant"
+github_url: "https://github.com/netz98/ddev-qdrant"
 description: "ddev qdrant"
-user: netz98
-repo: ddev-qdrant
+user: "netz98"
+repo: "ddev-qdrant"
 repo_id: 811850723
-default_branch: main
-tag_name: 1.0.0
+default_branch: "main"
+tag_name: "1.0.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-06-07
-updated_at: 2024-06-20
-workflow_status: unknown
+type: "contrib"
+created_at: "2024-06-07"
+updated_at: "2024-06-20"
+workflow_status: "unknown"
 stars: 1
 ---
 

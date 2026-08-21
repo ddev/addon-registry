@@ -1,18 +1,18 @@
 ---
-title: oscarnovasf/ddev-commands
-github_url: https://github.com/oscarnovasf/ddev-commands
+title: "oscarnovasf/ddev-commands"
+github_url: "https://github.com/oscarnovasf/ddev-commands"
 description: "Conjunto de comandos personalizados pensados principalmente para su uso con Drupal"
-user: oscarnovasf
-repo: ddev-commands
+user: "oscarnovasf"
+repo: "ddev-commands"
 repo_id: 1151587694
-default_branch: main
-tag_name: v1.3.6
+default_branch: "main"
+tag_name: "v1.3.6"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2026-02-06
-updated_at: 2026-07-25
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-02-06"
+updated_at: "2026-07-25"
+workflow_status: "disabled"
 stars: 2
 ---
 

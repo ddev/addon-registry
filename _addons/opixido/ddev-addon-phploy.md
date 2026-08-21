@@ -1,18 +1,18 @@
 ---
-title: opixido/ddev-addon-phploy
-github_url: https://github.com/opixido/ddev-addon-phploy
+title: "opixido/ddev-addon-phploy"
+github_url: "https://github.com/opixido/ddev-addon-phploy"
 description: ""
-user: opixido
-repo: ddev-addon-phploy
+user: "opixido"
+repo: "ddev-addon-phploy"
 repo_id: 967426305
-default_branch: master
-tag_name: 0.1
+default_branch: "master"
+tag_name: "0.1"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2025-04-16
-updated_at: 2026-01-28
-workflow_status: unknown
+type: "contrib"
+created_at: "2025-04-16"
+updated_at: "2026-01-28"
+workflow_status: "unknown"
 stars: 0
 ---
 

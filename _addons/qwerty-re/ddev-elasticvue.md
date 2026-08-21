@@ -1,18 +1,18 @@
 ---
-title: qwerty-re/ddev-elasticvue
-github_url: https://github.com/qwerty-re/ddev-elasticvue
+title: "qwerty-re/ddev-elasticvue"
+github_url: "https://github.com/qwerty-re/ddev-elasticvue"
 description: "Elasticvue service for DDEV"
-user: qwerty-re
-repo: ddev-elasticvue
+user: "qwerty-re"
+repo: "ddev-elasticvue"
 repo_id: 1331773490
-default_branch: main
-tag_name: 1.0.0
+default_branch: "main"
+tag_name: "1.0.0"
 ddev_version_constraint: ""
 dependencies: ["qwerty-re/ddev-elasticsearch"]
-type: contrib
-created_at: 2026-08-12
-updated_at: 2026-08-12
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-08-12"
+updated_at: "2026-08-12"
+workflow_status: "unknown"
 stars: 0
 ---
 

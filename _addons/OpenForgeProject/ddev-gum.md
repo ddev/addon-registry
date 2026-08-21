@@ -1,18 +1,18 @@
 ---
-title: OpenForgeProject/ddev-gum
-github_url: https://github.com/OpenForgeProject/ddev-gum
+title: "OpenForgeProject/ddev-gum"
+github_url: "https://github.com/OpenForgeProject/ddev-gum"
 description: "A tool for glamorous shell scripts 🎀 like DDEV web commands"
-user: OpenForgeProject
-repo: ddev-gum
+user: "OpenForgeProject"
+repo: "ddev-gum"
 repo_id: 691401674
-default_branch: main
-tag_name: 1.2.3
+default_branch: "main"
+tag_name: "1.2.3"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2023-09-14
-updated_at: 2024-11-21
-workflow_status: success
+type: "contrib"
+created_at: "2023-09-14"
+updated_at: "2024-11-21"
+workflow_status: "success"
 stars: 9
 ---
 

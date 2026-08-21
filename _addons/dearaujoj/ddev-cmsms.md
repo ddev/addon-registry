@@ -1,18 +1,18 @@
 ---
-title: dearaujoj/ddev-cmsms
-github_url: https://github.com/dearaujoj/ddev-cmsms
+title: "dearaujoj/ddev-cmsms"
+github_url: "https://github.com/dearaujoj/ddev-cmsms"
 description: "DDEV add-on: instant disposable CMS Made Simple dev sites for module, plugin, and theme development."
-user: dearaujoj
-repo: ddev-cmsms
+user: "dearaujoj"
+repo: "ddev-cmsms"
 repo_id: 1312221944
-default_branch: main
-tag_name: v1.4.0
+default_branch: "main"
+tag_name: "v1.4.0"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: ["ddev/ddev-phpmyadmin"]
-type: contrib
-created_at: 2026-07-25
-updated_at: 2026-07-27
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-07-25"
+updated_at: "2026-07-27"
+workflow_status: "disabled"
 stars: 0
 ---
 

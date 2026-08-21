@@ -1,18 +1,18 @@
 ---
-title: drupal-canvas/ddev-drupal-xb-dev
-github_url: https://github.com/drupal-canvas/ddev-drupal-xb-dev
+title: "drupal-canvas/ddev-drupal-xb-dev"
+github_url: "https://github.com/drupal-canvas/ddev-drupal-xb-dev"
 description: "A DDEV add-on for Drupal Canvas module development and evaluation"
-user: drupal-canvas
-repo: ddev-drupal-xb-dev
+user: "drupal-canvas"
+repo: "ddev-drupal-xb-dev"
 repo_id: 827380616
-default_branch: main
-tag_name: v0.0.32
+default_branch: "main"
+tag_name: "v0.0.32"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-07-11
-updated_at: 2026-04-27
-workflow_status: success
+type: "contrib"
+created_at: "2024-07-11"
+updated_at: "2026-04-27"
+workflow_status: "success"
 stars: 25
 ---
 

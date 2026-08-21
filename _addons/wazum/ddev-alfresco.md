@@ -1,18 +1,18 @@
 ---
-title: wazum/ddev-alfresco
-github_url: https://github.com/wazum/ddev-alfresco
+title: "wazum/ddev-alfresco"
+github_url: "https://github.com/wazum/ddev-alfresco"
 description: "Alfresco Community Edition integration for DDEV"
-user: wazum
-repo: ddev-alfresco
+user: "wazum"
+repo: "ddev-alfresco"
 repo_id: 1070787060
-default_branch: main
-tag_name: 1.0.0
+default_branch: "main"
+tag_name: "1.0.0"
 ddev_version_constraint: ">= v1.21.0"
 dependencies: []
-type: contrib
-created_at: 2025-10-06
-updated_at: 2025-10-07
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-10-06"
+updated_at: "2025-10-07"
+workflow_status: "disabled"
 stars: 0
 ---
 

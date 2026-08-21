@@ -1,18 +1,18 @@
 ---
-title: TYPO3-Documentation/ddev-typo3-docs
-github_url: https://github.com/TYPO3-Documentation/ddev-typo3-docs
+title: "TYPO3-Documentation/ddev-typo3-docs"
+github_url: "https://github.com/TYPO3-Documentation/ddev-typo3-docs"
 description: "A DDEV add-on for documentation rendering via render-guides docker container"
-user: TYPO3-Documentation
-repo: ddev-typo3-docs
+user: "TYPO3-Documentation"
+repo: "ddev-typo3-docs"
 repo_id: 1087870304
-default_branch: main
-tag_name: 0.1.1
+default_branch: "main"
+tag_name: "0.1.1"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-11-01
-updated_at: 2026-03-10
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-11-01"
+updated_at: "2026-03-10"
+workflow_status: "disabled"
 stars: 5
 ---
 

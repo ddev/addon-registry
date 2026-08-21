@@ -1,18 +1,18 @@
 ---
-title: plopesc/ddev-glab-cli
-github_url: https://github.com/plopesc/ddev-glab-cli
+title: "plopesc/ddev-glab-cli"
+github_url: "https://github.com/plopesc/ddev-glab-cli"
 description: "ddev add-on for setting up the GitLab Client."
-user: plopesc
-repo: ddev-glab-cli
+user: "plopesc"
+repo: "ddev-glab-cli"
 repo_id: 1192798543
-default_branch: main
-tag_name: v1.3.0
+default_branch: "main"
+tag_name: "v1.3.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2026-03-26
-updated_at: 2026-07-20
-workflow_status: success
+type: "contrib"
+created_at: "2026-03-26"
+updated_at: "2026-07-20"
+workflow_status: "success"
 stars: 0
 ---
 

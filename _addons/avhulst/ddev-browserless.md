@@ -1,18 +1,18 @@
 ---
-title: avhulst/ddev-browserless
-github_url: https://github.com/avhulst/ddev-browserless
+title: "avhulst/ddev-browserless"
+github_url: "https://github.com/avhulst/ddev-browserless"
 description: "DDEV add-on for browserless v2 (Chromium): PDFs, screenshots, scraping and browser automation on demand. Ships a Claude Code skill for driving it."
-user: avhulst
-repo: ddev-browserless
+user: "avhulst"
+repo: "ddev-browserless"
 repo_id: 1319337407
-default_branch: main
-tag_name: v1.1.0
+default_branch: "main"
+tag_name: "v1.1.0"
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
-type: contrib
-created_at: 2026-08-01
-updated_at: 2026-08-03
-workflow_status: success
+type: "contrib"
+created_at: "2026-08-01"
+updated_at: "2026-08-03"
+workflow_status: "success"
 stars: 0
 ---
 

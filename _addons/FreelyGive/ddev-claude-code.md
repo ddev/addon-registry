@@ -1,18 +1,18 @@
 ---
-title: FreelyGive/ddev-claude-code
-github_url: https://github.com/FreelyGive/ddev-claude-code
+title: "FreelyGive/ddev-claude-code"
+github_url: "https://github.com/FreelyGive/ddev-claude-code"
 description: "Integrate claude code into your ddev setup to run AI assistant in the web container."
-user: FreelyGive
-repo: ddev-claude-code
+user: "FreelyGive"
+repo: "ddev-claude-code"
 repo_id: 958030426
-default_branch: main
-tag_name: 1.2.0
+default_branch: "main"
+tag_name: "1.2.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-03-31
-updated_at: 2026-06-24
-workflow_status: success
+type: "contrib"
+created_at: "2025-03-31"
+updated_at: "2026-06-24"
+workflow_status: "success"
 stars: 23
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: FreelyGive/ddev-drupal-canvas-create
-github_url: https://github.com/FreelyGive/ddev-drupal-canvas-create
+title: "FreelyGive/ddev-drupal-canvas-create"
+github_url: "https://github.com/FreelyGive/ddev-drupal-canvas-create"
 description: "DDEV add on to use @drupal-canvas/create inside DDEV"
-user: FreelyGive
-repo: ddev-drupal-canvas-create
+user: "FreelyGive"
+repo: "ddev-drupal-canvas-create"
 repo_id: 1160806001
-default_branch: main
-tag_name: 0.2.0
+default_branch: "main"
+tag_name: "0.2.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2026-02-18
-updated_at: 2026-02-25
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-02-18"
+updated_at: "2026-02-25"
+workflow_status: "unknown"
 stars: 0
 ---
 

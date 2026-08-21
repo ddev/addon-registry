@@ -1,18 +1,18 @@
 ---
-title: dipakmdhrm/ddev-dragonfly
-github_url: https://github.com/dipakmdhrm/ddev-dragonfly
+title: "dipakmdhrm/ddev-dragonfly"
+github_url: "https://github.com/dipakmdhrm/ddev-dragonfly"
 description: "DDEV add-on for DragonflyDB — a Redis-compatible in-memory data store"
-user: dipakmdhrm
-repo: ddev-dragonfly
+user: "dipakmdhrm"
+repo: "ddev-dragonfly"
 repo_id: 1251293362
-default_branch: main
-tag_name: 0.1.0
+default_branch: "main"
+tag_name: "0.1.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2026-05-27
-updated_at: 2026-05-27
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-05-27"
+updated_at: "2026-05-27"
+workflow_status: "unknown"
 stars: 0
 ---
 

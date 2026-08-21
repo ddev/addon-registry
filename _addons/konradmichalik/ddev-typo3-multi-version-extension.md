@@ -1,18 +1,18 @@
 ---
-title: konradmichalik/ddev-typo3-multi-version-extension
-github_url: https://github.com/konradmichalik/ddev-typo3-multi-version-extension
+title: "konradmichalik/ddev-typo3-multi-version-extension"
+github_url: "https://github.com/konradmichalik/ddev-typo3-multi-version-extension"
 description: "🧱 Provides a multi-version TYPO3 environment for develop and test your TYPO3 extension. "
-user: konradmichalik
-repo: ddev-typo3-multi-version-extension
+user: "konradmichalik"
+repo: "ddev-typo3-multi-version-extension"
 repo_id: 944430541
-default_branch: main
-tag_name: 0.4.0
+default_branch: "main"
+tag_name: "0.4.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2025-03-07
-updated_at: 2026-08-19
-workflow_status: success
+type: "contrib"
+created_at: "2025-03-07"
+updated_at: "2026-08-20"
+workflow_status: "success"
 stars: 9
 ---
 
@@ -36,7 +36,7 @@ on every version at once, without reinstalling anything.
 - [**Classic (non-Composer) mode**](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/docs/classic-mode.md): rebuild any version as a TER-style install to catch bugs that only surface outside Composer autoloading
 - [**Fixture import**](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/docs/configuration.md#fixtures): XML exports, raw SQL, site configurations and shell scripts are imported automatically on every install
 - [**Demo content profiles**](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/docs/installation.md#--demoprofile): populate an instance with `typo3/cms-introduction` or `bk2k/bootstrap-package` instead of a blank page
-- [**Install hooks and `project.sh`**](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/docs/configuration.md): add composer packages, TYPO3 settings and custom install steps without touching add-on-managed files
+- [**Install hooks, `project.sh` and `docker-compose.zz-project.yaml`**](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/docs/configuration.md): add composer packages, TYPO3 settings, custom install steps and env var overrides without touching add-on-managed files
 - [**Git worktree support**](https://github.com/konradmichalik/ddev-typo3-multi-version-extension/blob/main/docs/git-worktrees.md): run several checkouts of the same repository side by side without hostname collisions
 
 ## 🔥 Installation

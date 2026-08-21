@@ -1,18 +1,18 @@
 ---
-title: dragonwize/ddev-pgx-ulid
-github_url: https://github.com/dragonwize/ddev-pgx-ulid
+title: "dragonwize/ddev-pgx-ulid"
+github_url: "https://github.com/dragonwize/ddev-pgx-ulid"
 description: "DDev addon for Postgresql extension pgx_ulid."
-user: dragonwize
-repo: ddev-pgx-ulid
+user: "dragonwize"
+repo: "ddev-pgx-ulid"
 repo_id: 1126417302
-default_branch: main
-tag_name: v1.1.0
+default_branch: "main"
+tag_name: "v1.1.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2026-01-01
-updated_at: 2026-04-08
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-01-01"
+updated_at: "2026-04-08"
+workflow_status: "disabled"
 stars: 0
 ---
 

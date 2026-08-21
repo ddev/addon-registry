@@ -1,18 +1,18 @@
 ---
-title: tag1consulting/ddev-gander
-github_url: https://github.com/tag1consulting/ddev-gander
+title: "tag1consulting/ddev-gander"
+github_url: "https://github.com/tag1consulting/ddev-gander"
 description: "Gander - preconfigured OpenTelemetry stack with Grafana Tempo / Prometheus for performance testing"
-user: tag1consulting
-repo: ddev-gander
+user: "tag1consulting"
+repo: "ddev-gander"
 repo_id: 722773190
-default_branch: main
-tag_name: v0.0.14
+default_branch: "main"
+tag_name: "v0.0.14"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["ddev/ddev-selenium-standalone-chrome"]
-type: contrib
-created_at: 2023-11-23
-updated_at: 2026-05-06
-workflow_status: disabled
+type: "contrib"
+created_at: "2023-11-23"
+updated_at: "2026-05-06"
+workflow_status: "disabled"
 stars: 6
 ---
 

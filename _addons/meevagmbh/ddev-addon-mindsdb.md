@@ -1,18 +1,18 @@
 ---
-title: meevagmbh/ddev-addon-mindsdb
-github_url: https://github.com/meevagmbh/ddev-addon-mindsdb
+title: "meevagmbh/ddev-addon-mindsdb"
+github_url: "https://github.com/meevagmbh/ddev-addon-mindsdb"
 description: "MindsDB addon service for DDEV"
-user: meevagmbh
-repo: ddev-addon-mindsdb
+user: "meevagmbh"
+repo: "ddev-addon-mindsdb"
 repo_id: 902241173
-default_branch: main
-tag_name: v1.0.2
+default_branch: "main"
+tag_name: "v1.0.2"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-12-12
-updated_at: 2025-10-23
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-12-12"
+updated_at: "2025-10-23"
+workflow_status: "disabled"
 stars: 0
 ---
 

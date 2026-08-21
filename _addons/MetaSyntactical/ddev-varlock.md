@@ -1,18 +1,18 @@
 ---
-title: MetaSyntactical/ddev-varlock
-github_url: https://github.com/MetaSyntactical/ddev-varlock
+title: "MetaSyntactical/ddev-varlock"
+github_url: "https://github.com/MetaSyntactical/ddev-varlock"
 description: "DDEV add-on that installs the Varlock CLI into the web container"
-user: MetaSyntactical
-repo: ddev-varlock
+user: "MetaSyntactical"
+repo: "ddev-varlock"
 repo_id: 1295829552
-default_branch: main
-tag_name: v0.1.0
+default_branch: "main"
+tag_name: "v0.1.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2026-07-09
-updated_at: 2026-07-09
-workflow_status: success
+type: "contrib"
+created_at: "2026-07-09"
+updated_at: "2026-07-09"
+workflow_status: "success"
 stars: 0
 ---
 

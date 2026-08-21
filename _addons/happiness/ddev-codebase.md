@@ -1,18 +1,18 @@
 ---
-title: happiness/ddev-codebase
-github_url: https://github.com/happiness/ddev-codebase
+title: "happiness/ddev-codebase"
+github_url: "https://github.com/happiness/ddev-codebase"
 description: "A DDEV plugin for fetching tickets from Codebase."
-user: happiness
-repo: ddev-codebase
+user: "happiness"
+repo: "ddev-codebase"
 repo_id: 1061634936
-default_branch: main
-tag_name: 1.1.4
+default_branch: "main"
+tag_name: "1.1.4"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2025-09-22
-updated_at: 2026-03-12
-workflow_status: unknown
+type: "contrib"
+created_at: "2025-09-22"
+updated_at: "2026-03-12"
+workflow_status: "unknown"
 stars: 0
 ---
 

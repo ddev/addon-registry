@@ -1,18 +1,18 @@
 ---
-title: echavaillaz/ddev-gotenberg
-github_url: https://github.com/echavaillaz/ddev-gotenberg
+title: "echavaillaz/ddev-gotenberg"
+github_url: "https://github.com/echavaillaz/ddev-gotenberg"
 description: "Gotenberg service for DDEV."
-user: echavaillaz
-repo: ddev-gotenberg
+user: "echavaillaz"
+repo: "ddev-gotenberg"
 repo_id: 633840053
-default_branch: main
-tag_name: 1.0.1
+default_branch: "main"
+tag_name: "1.0.1"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2023-04-28
-updated_at: 2025-09-18
-workflow_status: success
+type: "contrib"
+created_at: "2023-04-28"
+updated_at: "2025-09-18"
+workflow_status: "success"
 stars: 5
 ---
 

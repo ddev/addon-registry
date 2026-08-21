@@ -1,18 +1,18 @@
 ---
-title: dustinleblanc/ddev-chrome-headless
-github_url: https://github.com/dustinleblanc/ddev-chrome-headless
+title: "dustinleblanc/ddev-chrome-headless"
+github_url: "https://github.com/dustinleblanc/ddev-chrome-headless"
 description: "An add-on for DDEV to easily add a Headless Chrome container for a variety of tasks like running functional Javascript tests"
-user: dustinleblanc
-repo: ddev-chrome-headless
+user: "dustinleblanc"
+repo: "ddev-chrome-headless"
 repo_id: 1164859764
-default_branch: main
-tag_name: v0.1.0
+default_branch: "main"
+tag_name: "v0.1.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2026-02-23
-updated_at: 2026-02-23
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-02-23"
+updated_at: "2026-02-23"
+workflow_status: "disabled"
 stars: 1
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: prioris-dev/ddev-socket-firewall
-github_url: https://github.com/prioris-dev/ddev-socket-firewall
+title: "prioris-dev/ddev-socket-firewall"
+github_url: "https://github.com/prioris-dev/ddev-socket-firewall"
 description: "DDEV add-on that installs Socket Firewall (sfw) into the web container and routes npm, yarn, pnpm and Composer through it — blocking malicious dependencies in real time, both via the ddev shortcuts and inside ddev ssh."
-user: prioris-dev
-repo: ddev-socket-firewall
+user: "prioris-dev"
+repo: "ddev-socket-firewall"
 repo_id: 1274673114
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-06-19
-updated_at: 2026-06-19
-workflow_status: success
+type: "contrib"
+created_at: "2026-06-19"
+updated_at: "2026-06-19"
+workflow_status: "success"
 stars: 0
 ---
 

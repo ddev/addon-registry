@@ -1,18 +1,18 @@
 ---
-title: tyler36/ddev-copilot
-github_url: https://github.com/tyler36/ddev-copilot
+title: "tyler36/ddev-copilot"
+github_url: "https://github.com/tyler36/ddev-copilot"
 description: "Run GitHub Copilot inside your DDEV project."
-user: tyler36
-repo: ddev-copilot
+user: "tyler36"
+repo: "ddev-copilot"
 repo_id: 1086871647
-default_branch: main
-tag_name: v0.2.0
+default_branch: "main"
+tag_name: "v0.2.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-10-31
-updated_at: 2025-10-31
-workflow_status: success
+type: "contrib"
+created_at: "2025-10-31"
+updated_at: "2025-10-31"
+workflow_status: "success"
 stars: 1
 ---
 

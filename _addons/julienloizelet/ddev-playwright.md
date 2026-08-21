@@ -1,18 +1,18 @@
 ---
-title: julienloizelet/ddev-playwright
-github_url: https://github.com/julienloizelet/ddev-playwright
+title: "julienloizelet/ddev-playwright"
+github_url: "https://github.com/julienloizelet/ddev-playwright"
 description: "Playwright add-on for ddev"
-user: julienloizelet
-repo: ddev-playwright
+user: "julienloizelet"
+repo: "ddev-playwright"
 repo_id: 598383514
-default_branch: main
-tag_name: v3.0.0
+default_branch: "main"
+tag_name: "v3.0.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2023-02-07
-updated_at: 2026-08-12
-workflow_status: failure
+type: "contrib"
+created_at: "2023-02-07"
+updated_at: "2026-08-12"
+workflow_status: "success"
 stars: 18
 ---
 

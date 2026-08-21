@@ -1,18 +1,18 @@
 ---
-title: davo20019/ddev-share-cf
-github_url: https://github.com/davo20019/ddev-share-cf
+title: "davo20019/ddev-share-cf"
+github_url: "https://github.com/davo20019/ddev-share-cf"
 description: "Share your DDEV sites publicly using Cloudflare Tunnel (free alternative to ddev share)"
-user: davo20019
-repo: ddev-share-cf
+user: "davo20019"
+repo: "ddev-share-cf"
 repo_id: 1076286664
-default_branch: main
-tag_name: v1.4.3
+default_branch: "main"
+tag_name: "v1.4.3"
 ddev_version_constraint: ">= v1.22.3"
 dependencies: []
-type: contrib
-created_at: 2025-10-14
-updated_at: 2026-02-01
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-10-14"
+updated_at: "2026-02-01"
+workflow_status: "disabled"
 stars: 9
 ---
 

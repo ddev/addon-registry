@@ -1,18 +1,18 @@
 ---
-title: madsnorgaard/ddev-matomo
-github_url: https://github.com/madsnorgaard/ddev-matomo
+title: "madsnorgaard/ddev-matomo"
+github_url: "https://github.com/madsnorgaard/ddev-matomo"
 description: "Matomo plugin for ddev"
-user: madsnorgaard
-repo: ddev-matomo
+user: "madsnorgaard"
+repo: "ddev-matomo"
 repo_id: 1037271516
-default_branch: main
-tag_name: v1.2.0
+default_branch: "main"
+tag_name: "v1.2.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2025-08-13
-updated_at: 2026-04-27
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-08-13"
+updated_at: "2026-04-27"
+workflow_status: "disabled"
 stars: 5
 ---
 

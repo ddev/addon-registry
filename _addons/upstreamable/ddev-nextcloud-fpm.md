@@ -1,18 +1,18 @@
 ---
-title: upstreamable/ddev-nextcloud-fpm
-github_url: https://github.com/upstreamable/ddev-nextcloud-fpm
+title: "upstreamable/ddev-nextcloud-fpm"
+github_url: "https://github.com/upstreamable/ddev-nextcloud-fpm"
 description: "Integrate the FPM docker image into the nginx-fpm server from DDEV"
-user: upstreamable
-repo: ddev-nextcloud-fpm
+user: "upstreamable"
+repo: "ddev-nextcloud-fpm"
 repo_id: 1190971050
-default_branch: main
-tag_name: 1.0.0
+default_branch: "main"
+tag_name: "1.0.0"
 ddev_version_constraint: ">= v1.25.1"
 dependencies: ["ddev/ddev-redis"]
-type: contrib
-created_at: 2026-03-24
-updated_at: 2026-04-07
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-03-24"
+updated_at: "2026-04-07"
+workflow_status: "disabled"
 stars: 0
 ---
 

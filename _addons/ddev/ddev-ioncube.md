@@ -1,18 +1,18 @@
 ---
-title: ddev/ddev-ioncube
-github_url: https://github.com/ddev/ddev-ioncube
+title: "ddev/ddev-ioncube"
+github_url: "https://github.com/ddev/ddev-ioncube"
 description: "Enable ionCube PHP loaders for encoded files in DDEV"
-user: ddev
-repo: ddev-ioncube
+user: "ddev"
+repo: "ddev-ioncube"
 repo_id: 697741707
-default_branch: main
-tag_name: v1.5.0
+default_branch: "main"
+tag_name: "v1.5.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: official
-created_at: 2023-09-28
-updated_at: 2026-05-18
-workflow_status: success
+type: "official"
+created_at: "2023-09-28"
+updated_at: "2026-05-18"
+workflow_status: "success"
 stars: 2
 ---
 

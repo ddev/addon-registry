@@ -1,18 +1,18 @@
 ---
-title: hanoii/ddev-readme
-github_url: https://github.com/hanoii/ddev-readme
+title: "hanoii/ddev-readme"
+github_url: "https://github.com/hanoii/ddev-readme"
 description: "An opinionated README formatter"
-user: hanoii
-repo: ddev-readme
+user: "hanoii"
+repo: "ddev-readme"
 repo_id: 769217362
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-03-08
-updated_at: 2024-11-21
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-03-08"
+updated_at: "2024-11-21"
+workflow_status: "disabled"
 stars: 0
 ---
 

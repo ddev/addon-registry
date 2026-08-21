@@ -1,18 +1,18 @@
 ---
-title: markdlabrecque/ddev-wayfinder
-github_url: https://github.com/markdlabrecque/ddev-wayfinder
+title: "markdlabrecque/ddev-wayfinder"
+github_url: "https://github.com/markdlabrecque/ddev-wayfinder"
 description: "A DDEV addon for building a container for a Wayfinder search backend"
-user: markdlabrecque
-repo: ddev-wayfinder
+user: "markdlabrecque"
+repo: "ddev-wayfinder"
 repo_id: 1324790351
-default_branch: main
-tag_name: v0.1.0
+default_branch: "main"
+tag_name: "v0.1.0"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
-type: contrib
-created_at: 2026-08-06
-updated_at: 2026-08-11
-workflow_status: success
+type: "contrib"
+created_at: "2026-08-06"
+updated_at: "2026-08-11"
+workflow_status: "success"
 stars: 0
 ---
 

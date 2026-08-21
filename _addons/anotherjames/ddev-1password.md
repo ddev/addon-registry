@@ -1,18 +1,18 @@
 ---
-title: anotherjames/ddev-1password
-github_url: https://github.com/anotherjames/ddev-1password
+title: "anotherjames/ddev-1password"
+github_url: "https://github.com/anotherjames/ddev-1password"
 description: "1Password-focussed DDEV add-on to use the host SSH agent in the web container"
-user: anotherjames
-repo: ddev-1password
+user: "anotherjames"
+repo: "ddev-1password"
 repo_id: 996810365
-default_branch: main
-tag_name: 0.2.1
+default_branch: "main"
+tag_name: "0.2.1"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-06-05
-updated_at: 2025-06-06
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-06-05"
+updated_at: "2025-06-06"
+workflow_status: "disabled"
 stars: 5
 ---
 

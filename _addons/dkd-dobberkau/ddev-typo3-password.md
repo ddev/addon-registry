@@ -1,18 +1,18 @@
 ---
-title: dkd-dobberkau/ddev-typo3-password
-github_url: https://github.com/dkd-dobberkau/ddev-typo3-password
+title: "dkd-dobberkau/ddev-typo3-password"
+github_url: "https://github.com/dkd-dobberkau/ddev-typo3-password"
 description: "DDEV add-on: Set TYPO3 backend user passwords without shell escaping issues"
-user: dkd-dobberkau
-repo: ddev-typo3-password
+user: "dkd-dobberkau"
+repo: "ddev-typo3-password"
 repo_id: 1216804617
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
-type: contrib
-created_at: 2026-04-21
-updated_at: 2026-04-21
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-04-21"
+updated_at: "2026-04-21"
+workflow_status: "unknown"
 stars: 0
 ---
 

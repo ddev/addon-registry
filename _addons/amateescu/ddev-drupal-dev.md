@@ -1,18 +1,18 @@
 ---
-title: amateescu/ddev-drupal-dev
-github_url: https://github.com/amateescu/ddev-drupal-dev
+title: "amateescu/ddev-drupal-dev"
+github_url: "https://github.com/amateescu/ddev-drupal-dev"
 description: "A DDEV add-on for developing Drupal core and contrib modules together, using a core git checkout as the project root."
-user: amateescu
-repo: ddev-drupal-dev
+user: "amateescu"
+repo: "ddev-drupal-dev"
 repo_id: 1183388555
-default_branch: main
-tag_name: 1.1.8
+default_branch: "main"
+tag_name: "1.1.8"
 ddev_version_constraint: ">= v1.25.3"
 dependencies: []
-type: contrib
-created_at: 2026-03-16
-updated_at: 2026-08-18
-workflow_status: success
+type: "contrib"
+created_at: "2026-03-16"
+updated_at: "2026-08-18"
+workflow_status: "success"
 stars: 10
 ---
 

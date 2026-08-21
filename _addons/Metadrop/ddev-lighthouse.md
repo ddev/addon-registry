@@ -1,18 +1,18 @@
 ---
-title: Metadrop/ddev-lighthouse
-github_url: https://github.com/Metadrop/ddev-lighthouse
+title: "Metadrop/ddev-lighthouse"
+github_url: "https://github.com/Metadrop/ddev-lighthouse"
 description: "Lighthouse ddev addon based on patrickhulce/lhci-client image"
-user: Metadrop
-repo: ddev-lighthouse
+user: "Metadrop"
+repo: "ddev-lighthouse"
 repo_id: 782495515
-default_branch: main
-tag_name: v3.1.0
+default_branch: "main"
+tag_name: "v3.1.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-04-05
-updated_at: 2026-05-22
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-04-05"
+updated_at: "2026-05-22"
+workflow_status: "disabled"
 stars: 3
 ---
 

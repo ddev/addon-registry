@@ -1,18 +1,18 @@
 ---
-title: wernerkrauss/ddev-silverstripe-tools
-github_url: https://github.com/wernerkrauss/ddev-silverstripe-tools
+title: "wernerkrauss/ddev-silverstripe-tools"
+github_url: "https://github.com/wernerkrauss/ddev-silverstripe-tools"
 description: "Scripts for Silverstripe CMS development with ddev"
-user: wernerkrauss
-repo: ddev-silverstripe-tools
+user: "wernerkrauss"
+repo: "ddev-silverstripe-tools"
 repo_id: 1337120004
-default_branch: main
-tag_name: v0.1.0
+default_branch: "main"
+tag_name: "v0.1.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2026-08-17
-updated_at: 2026-08-17
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-08-17"
+updated_at: "2026-08-17"
+workflow_status: "unknown"
 stars: 1
 ---
 

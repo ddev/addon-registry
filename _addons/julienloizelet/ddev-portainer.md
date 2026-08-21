@@ -1,18 +1,18 @@
 ---
-title: julienloizelet/ddev-portainer
-github_url: https://github.com/julienloizelet/ddev-portainer
+title: "julienloizelet/ddev-portainer"
+github_url: "https://github.com/julienloizelet/ddev-portainer"
 description: "Portainer add-on for ddev"
-user: julienloizelet
-repo: ddev-portainer
+user: "julienloizelet"
+repo: "ddev-portainer"
 repo_id: 598874816
-default_branch: main
-tag_name: v1.2.0
+default_branch: "main"
+tag_name: "v1.2.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2023-02-08
-updated_at: 2025-11-20
-workflow_status: success
+type: "contrib"
+created_at: "2023-02-08"
+updated_at: "2025-11-20"
+workflow_status: "success"
 stars: 3
 ---
 

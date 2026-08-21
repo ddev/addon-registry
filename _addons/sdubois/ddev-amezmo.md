@@ -1,18 +1,18 @@
 ---
-title: sdubois/ddev-amezmo
-github_url: https://github.com/sdubois/ddev-amezmo
+title: "sdubois/ddev-amezmo"
+github_url: "https://github.com/sdubois/ddev-amezmo"
 description: "DDEV add-on for the Amezmo hosting platform"
-user: sdubois
-repo: ddev-amezmo
+user: "sdubois"
+repo: "ddev-amezmo"
 repo_id: 1324671669
-default_branch: main
-tag_name: v0.2.2
+default_branch: "main"
+tag_name: "v0.2.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-08-06
-updated_at: 2026-08-11
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-08-06"
+updated_at: "2026-08-11"
+workflow_status: "disabled"
 stars: 2
 ---
 

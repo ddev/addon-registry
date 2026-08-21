@@ -1,18 +1,18 @@
 ---
-title: ddev/ddev-pnpm
-github_url: https://github.com/ddev/ddev-pnpm
+title: "ddev/ddev-pnpm"
+github_url: "https://github.com/ddev/ddev-pnpm"
 description: "Fast, disk space efficient pnpm package manager for DDEV"
-user: ddev
-repo: ddev-pnpm
+user: "ddev"
+repo: "ddev-pnpm"
 repo_id: 716421197
-default_branch: main
-tag_name: v1.4.0
+default_branch: "main"
+tag_name: "v1.4.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: official
-created_at: 2023-11-09
-updated_at: 2026-06-04
-workflow_status: success
+type: "official"
+created_at: "2023-11-09"
+updated_at: "2026-06-04"
+workflow_status: "success"
 stars: 9
 ---
 

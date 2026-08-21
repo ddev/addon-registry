@@ -1,18 +1,18 @@
 ---
-title: ddev/ddev-typo3-solr
-github_url: https://github.com/ddev/ddev-typo3-solr
+title: "ddev/ddev-typo3-solr"
+github_url: "https://github.com/ddev/ddev-typo3-solr"
 description: "Apache Solr (standalone/solrcloud) search integration for TYPO3 on DDEV"
-user: ddev
-repo: ddev-typo3-solr
+user: "ddev"
+repo: "ddev-typo3-solr"
 repo_id: 762432120
-default_branch: main
-tag_name: 1.4.0
+default_branch: "main"
+tag_name: "1.4.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: official
-created_at: 2024-02-23
-updated_at: 2026-07-01
-workflow_status: success
+type: "official"
+created_at: "2024-02-23"
+updated_at: "2026-07-01"
+workflow_status: "success"
 stars: 12
 ---
 

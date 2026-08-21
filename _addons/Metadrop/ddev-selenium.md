@@ -1,18 +1,18 @@
 ---
-title: Metadrop/ddev-selenium
-github_url: https://github.com/Metadrop/ddev-selenium
+title: "Metadrop/ddev-selenium"
+github_url: "https://github.com/Metadrop/ddev-selenium"
 description: "Provide selenium setup with a default chrome node, with possibilities to add more nodes of several browsers."
-user: Metadrop
-repo: ddev-selenium
+user: "Metadrop"
+repo: "ddev-selenium"
 repo_id: 719059276
-default_branch: main
-tag_name: v1.2.0
+default_branch: "main"
+tag_name: "v1.2.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2023-11-15
-updated_at: 2026-05-22
-workflow_status: disabled
+type: "contrib"
+created_at: "2023-11-15"
+updated_at: "2026-05-22"
+workflow_status: "disabled"
 stars: 7
 ---
 

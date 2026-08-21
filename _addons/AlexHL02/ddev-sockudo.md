@@ -1,18 +1,18 @@
 ---
-title: AlexHL02/ddev-sockudo
-github_url: https://github.com/AlexHL02/ddev-sockudo
+title: "AlexHL02/ddev-sockudo"
+github_url: "https://github.com/AlexHL02/ddev-sockudo"
 description: "🔌 A DDEV add-on to seamlessly integrate and configure Sockudo for your local development environment."
-user: AlexHL02
-repo: ddev-sockudo
+user: "AlexHL02"
+repo: "ddev-sockudo"
 repo_id: 1258658836
-default_branch: main
-tag_name: v1.1.0
+default_branch: "main"
+tag_name: "v1.1.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["ddev/ddev-redis"]
-type: contrib
-created_at: 2026-06-03
-updated_at: 2026-07-23
-workflow_status: success
+type: "contrib"
+created_at: "2026-06-03"
+updated_at: "2026-07-23"
+workflow_status: "success"
 stars: 0
 ---
 

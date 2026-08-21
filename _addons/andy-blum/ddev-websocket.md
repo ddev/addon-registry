@@ -1,18 +1,18 @@
 ---
-title: andy-blum/ddev-websocket
-github_url: https://github.com/andy-blum/ddev-websocket
+title: "andy-blum/ddev-websocket"
+github_url: "https://github.com/andy-blum/ddev-websocket"
 description: "A simple, extensible node.js websocket server"
-user: andy-blum
-repo: ddev-websocket
+user: "andy-blum"
+repo: "ddev-websocket"
 repo_id: 972679449
-default_branch: main
-tag_name: 0.0.2-alpha
+default_branch: "main"
+tag_name: "0.0.2-alpha"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-04-25
-updated_at: 2025-05-03
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-04-25"
+updated_at: "2025-05-03"
+workflow_status: "disabled"
 stars: 2
 ---
 

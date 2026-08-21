@@ -1,18 +1,18 @@
 ---
-title: flowsa/ddev-laravel-cloud
-github_url: https://github.com/flowsa/ddev-laravel-cloud
+title: "flowsa/ddev-laravel-cloud"
+github_url: "https://github.com/flowsa/ddev-laravel-cloud"
 description: "DDEV add-on: ddev pull laravel-cloud - pull the production database (and Craft asset files) from Laravel Cloud into your local DDEV project"
-user: flowsa
-repo: ddev-laravel-cloud
+user: "flowsa"
+repo: "ddev-laravel-cloud"
 repo_id: 1318472188
-default_branch: main
-tag_name: v0.9.1
+default_branch: "main"
+tag_name: "v0.9.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-07-31
-updated_at: 2026-07-31
-workflow_status: success
+type: "contrib"
+created_at: "2026-07-31"
+updated_at: "2026-07-31"
+workflow_status: "success"
 stars: 0
 ---
 

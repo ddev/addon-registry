@@ -1,18 +1,18 @@
 ---
-title: Metadrop/ddev-newman
-github_url: https://github.com/Metadrop/ddev-newman
+title: "Metadrop/ddev-newman"
+github_url: "https://github.com/Metadrop/ddev-newman"
 description: "Allows running newman tests on ddev setups"
-user: Metadrop
-repo: ddev-newman
+user: "Metadrop"
+repo: "ddev-newman"
 repo_id: 806591742
-default_branch: main
-tag_name: v1.1.1
+default_branch: "main"
+tag_name: "v1.1.1"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-05-27
-updated_at: 2026-05-22
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-05-27"
+updated_at: "2026-05-22"
+workflow_status: "disabled"
 stars: 4
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: ddev/ddev-sqlsrv
-github_url: https://github.com/ddev/ddev-sqlsrv
+title: "ddev/ddev-sqlsrv"
+github_url: "https://github.com/ddev/ddev-sqlsrv"
 description: "Microsoft SQL Server database support for DDEV"
-user: ddev
-repo: ddev-sqlsrv
+user: "ddev"
+repo: "ddev-sqlsrv"
 repo_id: 618290272
-default_branch: main
-tag_name: v1.1.2
+default_branch: "main"
+tag_name: "v1.1.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: official
-created_at: 2023-03-24
-updated_at: 2026-03-03
-workflow_status: success
+type: "official"
+created_at: "2023-03-24"
+updated_at: "2026-03-03"
+workflow_status: "success"
 stars: 8
 ---
 

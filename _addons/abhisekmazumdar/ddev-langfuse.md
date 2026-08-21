@@ -1,18 +1,18 @@
 ---
-title: abhisekmazumdar/ddev-langfuse
-github_url: https://github.com/abhisekmazumdar/ddev-langfuse
+title: "abhisekmazumdar/ddev-langfuse"
+github_url: "https://github.com/abhisekmazumdar/ddev-langfuse"
 description: "DDEV add-on for a local Langfuse observability stack"
-user: abhisekmazumdar
-repo: ddev-langfuse
+user: "abhisekmazumdar"
+repo: "ddev-langfuse"
 repo_id: 1320349068
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-08-02
-updated_at: 2026-08-02
-workflow_status: success
+type: "contrib"
+created_at: "2026-08-02"
+updated_at: "2026-08-02"
+workflow_status: "success"
 stars: 0
 ---
 

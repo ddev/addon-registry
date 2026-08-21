@@ -1,18 +1,18 @@
 ---
-title: JanoPL/ddev-kibana
-github_url: https://github.com/JanoPL/ddev-kibana
+title: "JanoPL/ddev-kibana"
+github_url: "https://github.com/JanoPL/ddev-kibana"
 description: "Kibana add-on for DDEV"
-user: JanoPL
-repo: ddev-kibana
+user: "JanoPL"
+repo: "ddev-kibana"
 repo_id: 530812551
-default_branch: main
-tag_name: v2.1.0
+default_branch: "main"
+tag_name: "v2.1.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["ddev/ddev-elasticsearch"]
-type: contrib
-created_at: 2022-08-30
-updated_at: 2026-08-05
-workflow_status: success
+type: "contrib"
+created_at: "2022-08-30"
+updated_at: "2026-08-05"
+workflow_status: "success"
 stars: 1
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: Cambrico/ddev-filestash
-github_url: https://github.com/Cambrico/ddev-filestash
+title: "Cambrico/ddev-filestash"
+github_url: "https://github.com/Cambrico/ddev-filestash"
 description: "📂 DDEV add-on for Filestash — a web UI over your S3/SFTP/WebDAV storage."
-user: Cambrico
-repo: ddev-filestash
+user: "Cambrico"
+repo: "ddev-filestash"
 repo_id: 1300078219
-default_branch: main
-tag_name: 
+default_branch: "main"
+tag_name: ""
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-07-14
-updated_at: 2026-07-14
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-07-14"
+updated_at: "2026-07-14"
+workflow_status: "disabled"
 stars: 0
 ---
 

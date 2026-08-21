@@ -1,18 +1,18 @@
 ---
-title: iljapolanskis/ddev-sftp
-github_url: https://github.com/iljapolanskis/ddev-sftp
+title: "iljapolanskis/ddev-sftp"
+github_url: "https://github.com/iljapolanskis/ddev-sftp"
 description: "DDEV SFTP Server Addon"
-user: iljapolanskis
-repo: ddev-sftp
+user: "iljapolanskis"
+repo: "ddev-sftp"
 repo_id: 1028210891
-default_branch: main
-tag_name: 1.0.1
+default_branch: "main"
+tag_name: "1.0.1"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-07-29
-updated_at: 2025-08-22
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-07-29"
+updated_at: "2025-08-22"
+workflow_status: "disabled"
 stars: 0
 ---
 

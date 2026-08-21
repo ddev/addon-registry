@@ -1,18 +1,18 @@
 ---
-title: ckng/ddev-directus-postgres
-github_url: https://github.com/ckng/ddev-directus-postgres
+title: "ckng/ddev-directus-postgres"
+github_url: "https://github.com/ckng/ddev-directus-postgres"
 description: "Directus with PostgreSQL (and Redis) addon for DDEV"
-user: ckng
-repo: ddev-directus-postgres
+user: "ckng"
+repo: "ddev-directus-postgres"
 repo_id: 945850419
-default_branch: master
-tag_name: 1.0.1
+default_branch: "master"
+tag_name: "1.0.1"
 ddev_version_constraint: ""
 dependencies: ["redis"]
-type: contrib
-created_at: 2025-03-10
-updated_at: 2025-03-11
-workflow_status: unknown
+type: "contrib"
+created_at: "2025-03-10"
+updated_at: "2025-03-11"
+workflow_status: "unknown"
 stars: 0
 ---
 

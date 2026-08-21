@@ -1,18 +1,18 @@
 ---
-title: lpeabody/ddev-ai
-github_url: https://github.com/lpeabody/ddev-ai
+title: "lpeabody/ddev-ai"
+github_url: "https://github.com/lpeabody/ddev-ai"
 description: "DDEV add-on to make AI-related services available in the environment."
-user: lpeabody
-repo: ddev-ai
+user: "lpeabody"
+repo: "ddev-ai"
 repo_id: 1018102141
-default_branch: main
-tag_name: 1.0-beta3
+default_branch: "main"
+tag_name: "1.0-beta3"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-07-11
-updated_at: 2025-07-15
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-07-11"
+updated_at: "2025-07-15"
+workflow_status: "disabled"
 stars: 1
 ---
 

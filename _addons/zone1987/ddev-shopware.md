@@ -1,18 +1,18 @@
 ---
-title: zone1987/ddev-shopware
-github_url: https://github.com/zone1987/ddev-shopware
+title: "zone1987/ddev-shopware"
+github_url: "https://github.com/zone1987/ddev-shopware"
 description: ""
-user: zone1987
-repo: ddev-shopware
+user: "zone1987"
+repo: "ddev-shopware"
 repo_id: 1339655611
-default_branch: 6.7
-tag_name: v6.7.0
+default_branch: "6.7"
+tag_name: "v6.7.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-08-19
-updated_at: 2026-08-19
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-08-19"
+updated_at: "2026-08-19"
+workflow_status: "failure"
 stars: 0
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: b13/ddev-stirling-pdf
-github_url: https://github.com/b13/ddev-stirling-pdf
+title: "b13/ddev-stirling-pdf"
+github_url: "https://github.com/b13/ddev-stirling-pdf"
 description: "Adds Stirling PDF to ddev"
-user: b13
-repo: ddev-stirling-pdf
+user: "b13"
+repo: "ddev-stirling-pdf"
 repo_id: 782224570
-default_branch: main
-tag_name: 0.0.2
+default_branch: "main"
+tag_name: "0.0.2"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-04-04
-updated_at: 2025-04-22
-workflow_status: success
+type: "contrib"
+created_at: "2024-04-04"
+updated_at: "2025-04-22"
+workflow_status: "success"
 stars: 0
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: penyaskito/ddev-authentik
-github_url: https://github.com/penyaskito/ddev-authentik
+title: "penyaskito/ddev-authentik"
+github_url: "https://github.com/penyaskito/ddev-authentik"
 description: "Authentik identity provider add-on for DDEV"
-user: penyaskito
-repo: ddev-authentik
+user: "penyaskito"
+repo: "ddev-authentik"
 repo_id: 826853007
-default_branch: main
-tag_name: v0.1.0
+default_branch: "main"
+tag_name: "v0.1.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-07-10
-updated_at: 2026-04-08
-workflow_status: success
+type: "contrib"
+created_at: "2024-07-10"
+updated_at: "2026-04-08"
+workflow_status: "success"
 stars: 6
 ---
 

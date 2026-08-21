@@ -1,18 +1,18 @@
 ---
-title: ddev/ddev-mongo
-github_url: https://github.com/ddev/ddev-mongo
+title: "ddev/ddev-mongo"
+github_url: "https://github.com/ddev/ddev-mongo"
 description: "MongoDB NoSQL database support for DDEV"
-user: ddev
-repo: ddev-mongo
+user: "ddev"
+repo: "ddev-mongo"
 repo_id: 475054747
-default_branch: main
-tag_name: v2.4.0
+default_branch: "main"
+tag_name: "v2.4.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: official
-created_at: 2022-03-28
-updated_at: 2026-08-13
-workflow_status: success
+type: "official"
+created_at: "2022-03-28"
+updated_at: "2026-08-13"
+workflow_status: "success"
 stars: 7
 ---
 

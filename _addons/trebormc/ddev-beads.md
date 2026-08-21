@@ -1,18 +1,18 @@
 ---
-title: trebormc/ddev-beads
-github_url: https://github.com/trebormc/ddev-beads
+title: "trebormc/ddev-beads"
+github_url: "https://github.com/trebormc/ddev-beads"
 description: "DDEV Add-on: Beads git-backed task tracker"
-user: trebormc
-repo: ddev-beads
+user: "trebormc"
+repo: "ddev-beads"
 repo_id: 1191702569
-default_branch: main
-tag_name: v1.0.58
+default_branch: "main"
+tag_name: "v1.0.58"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-03-25
-updated_at: 2026-07-05
-workflow_status: success
+type: "contrib"
+created_at: "2026-03-25"
+updated_at: "2026-07-05"
+workflow_status: "disabled"
 stars: 0
 ---
 

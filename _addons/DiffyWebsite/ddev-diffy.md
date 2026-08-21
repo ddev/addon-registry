@@ -1,18 +1,18 @@
 ---
-title: DiffyWebsite/ddev-diffy
-github_url: https://github.com/DiffyWebsite/ddev-diffy
+title: "DiffyWebsite/ddev-diffy"
+github_url: "https://github.com/DiffyWebsite/ddev-diffy"
 description: "Diffy integration with DDEV"
-user: DiffyWebsite
-repo: ddev-diffy
+user: "DiffyWebsite"
+repo: "ddev-diffy"
 repo_id: 832381294
-default_branch: main
-tag_name: 0.0.15
+default_branch: "main"
+tag_name: "0.0.15"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2024-07-22
-updated_at: 2026-02-27
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-07-22"
+updated_at: "2026-02-27"
+workflow_status: "disabled"
 stars: 1
 ---
 

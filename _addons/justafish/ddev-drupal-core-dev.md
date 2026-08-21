@@ -1,18 +1,18 @@
 ---
-title: justafish/ddev-drupal-core-dev
-github_url: https://github.com/justafish/ddev-drupal-core-dev
+title: "justafish/ddev-drupal-core-dev"
+github_url: "https://github.com/justafish/ddev-drupal-core-dev"
 description: "ddev addon for core development"
-user: justafish
-repo: ddev-drupal-core-dev
+user: "justafish"
+repo: "ddev-drupal-core-dev"
 repo_id: 706601727
-default_branch: main
-tag_name: v1.2.5
+default_branch: "main"
+tag_name: "v1.2.5"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2023-10-18
-updated_at: 2026-08-10
-workflow_status: success
+type: "contrib"
+created_at: "2023-10-18"
+updated_at: "2026-08-10"
+workflow_status: "success"
 stars: 30
 ---
 

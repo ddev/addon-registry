@@ -1,18 +1,18 @@
 ---
-title: tyler36/ddev-storybook
-github_url: https://github.com/tyler36/ddev-storybook
+title: "tyler36/ddev-storybook"
+github_url: "https://github.com/tyler36/ddev-storybook"
 description: "Helpers for DDEV and Storybook"
-user: tyler36
-repo: ddev-storybook
+user: "tyler36"
+repo: "ddev-storybook"
 repo_id: 746948704
-default_branch: main
-tag_name: 0.4
+default_branch: "main"
+tag_name: "0.4"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2024-01-23
-updated_at: 2025-06-09
-workflow_status: success
+type: "contrib"
+created_at: "2024-01-23"
+updated_at: "2025-06-09"
+workflow_status: "success"
 stars: 8
 ---
 

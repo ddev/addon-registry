@@ -1,18 +1,18 @@
 ---
-title: sebastian-ehrling/ddev-opensearch
-github_url: https://github.com/sebastian-ehrling/ddev-opensearch
+title: "sebastian-ehrling/ddev-opensearch"
+github_url: "https://github.com/sebastian-ehrling/ddev-opensearch"
 description: "Opensearch add-on for DDEV"
-user: sebastian-ehrling
-repo: ddev-opensearch
+user: "sebastian-ehrling"
+repo: "ddev-opensearch"
 repo_id: 501578857
-default_branch: main
-tag_name: v0.1.1
+default_branch: "main"
+tag_name: "v0.1.1"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2022-06-09
-updated_at: 2023-05-20
-workflow_status: unknown
+type: "contrib"
+created_at: "2022-06-09"
+updated_at: "2023-05-20"
+workflow_status: "unknown"
 stars: 3
 ---
 

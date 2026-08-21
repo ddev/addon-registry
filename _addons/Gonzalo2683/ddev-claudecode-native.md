@@ -1,18 +1,18 @@
 ---
-title: Gonzalo2683/ddev-claudecode-native
-github_url: https://github.com/Gonzalo2683/ddev-claudecode-native
+title: "Gonzalo2683/ddev-claudecode-native"
+github_url: "https://github.com/Gonzalo2683/ddev-claudecode-native"
 description: "DDEV addon for Claude Code integration using a self-contained native binary. No npm   dependencies."
-user: Gonzalo2683
-repo: ddev-claudecode-native
+user: "Gonzalo2683"
+repo: "ddev-claudecode-native"
 repo_id: 1119117727
-default_branch: master
-tag_name: v1.0.6
+default_branch: "master"
+tag_name: "v1.0.6"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2025-12-18
-updated_at: 2025-12-21
-workflow_status: unknown
+type: "contrib"
+created_at: "2025-12-18"
+updated_at: "2025-12-21"
+workflow_status: "unknown"
 stars: 1
 ---
 

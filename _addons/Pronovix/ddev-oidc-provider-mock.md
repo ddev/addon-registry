@@ -1,18 +1,18 @@
 ---
-title: Pronovix/ddev-oidc-provider-mock
-github_url: https://github.com/Pronovix/ddev-oidc-provider-mock
+title: "Pronovix/ddev-oidc-provider-mock"
+github_url: "https://github.com/Pronovix/ddev-oidc-provider-mock"
 description: "A mock OpenID Provider server to test and develop OpenID Connect authentication."
-user: Pronovix
-repo: ddev-oidc-provider-mock
+user: "Pronovix"
+repo: "ddev-oidc-provider-mock"
 repo_id: 1325102421
-default_branch: main
-tag_name: 1.0.0-alpha1
+default_branch: "main"
+tag_name: "1.0.0-alpha1"
 ddev_version_constraint: ">= v1.25.3"
 dependencies: []
-type: contrib
-created_at: 2026-08-06
-updated_at: 2026-08-07
-workflow_status: success
+type: "contrib"
+created_at: "2026-08-06"
+updated_at: "2026-08-07"
+workflow_status: "failure"
 stars: 0
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: SicseDev/ddev-sicse-toolkit
-github_url: https://github.com/SicseDev/ddev-sicse-toolkit
+title: "SicseDev/ddev-sicse-toolkit"
+github_url: "https://github.com/SicseDev/ddev-sicse-toolkit"
 description: ""
-user: SicseDev
-repo: ddev-sicse-toolkit
+user: "SicseDev"
+repo: "ddev-sicse-toolkit"
 repo_id: 1226571373
-default_branch: main
-tag_name: 0.0.2
+default_branch: "main"
+tag_name: "0.0.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-05-01
-updated_at: 2026-05-26
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-05-01"
+updated_at: "2026-05-26"
+workflow_status: "disabled"
 stars: 1
 ---
 

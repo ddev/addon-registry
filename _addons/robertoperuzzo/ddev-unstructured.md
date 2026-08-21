@@ -1,18 +1,18 @@
 ---
-title: robertoperuzzo/ddev-unstructured
-github_url: https://github.com/robertoperuzzo/ddev-unstructured
+title: "robertoperuzzo/ddev-unstructured"
+github_url: "https://github.com/robertoperuzzo/ddev-unstructured"
 description: "Unstructured self-hosted service for DDEV"
-user: robertoperuzzo
-repo: ddev-unstructured
+user: "robertoperuzzo"
+repo: "ddev-unstructured"
 repo_id: 922180134
-default_branch: main
-tag_name: v0.0.1-alpha2
+default_branch: "main"
+tag_name: "v0.0.1-alpha2"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2025-01-25
-updated_at: 2025-04-17
-workflow_status: unknown
+type: "contrib"
+created_at: "2025-01-25"
+updated_at: "2025-04-17"
+workflow_status: "unknown"
 stars: 1
 ---
 

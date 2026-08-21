@@ -1,18 +1,18 @@
 ---
-title: b13/ddev-keycloak
-github_url: https://github.com/b13/ddev-keycloak
+title: "b13/ddev-keycloak"
+github_url: "https://github.com/b13/ddev-keycloak"
 description: "Adds a Keycloak service to ddev"
-user: b13
-repo: ddev-keycloak
+user: "b13"
+repo: "ddev-keycloak"
 repo_id: 735703787
-default_branch: main
-tag_name: 0.0.2
+default_branch: "main"
+tag_name: "0.0.2"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2023-12-25
-updated_at: 2025-09-04
-workflow_status: cancelled
+type: "contrib"
+created_at: "2023-12-25"
+updated_at: "2025-09-04"
+workflow_status: "success"
 stars: 15
 ---
 

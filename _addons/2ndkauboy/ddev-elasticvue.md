@@ -1,18 +1,18 @@
 ---
-title: 2ndkauboy/ddev-elasticvue
-github_url: https://github.com/2ndkauboy/ddev-elasticvue
+title: "2ndkauboy/ddev-elasticvue"
+github_url: "https://github.com/2ndkauboy/ddev-elasticvue"
 description: "Elasticvue service for DDEV"
-user: 2ndkauboy
-repo: ddev-elasticvue
+user: "2ndkauboy"
+repo: "ddev-elasticvue"
 repo_id: 803841353
-default_branch: main
-tag_name: 1.1.0
+default_branch: "main"
+tag_name: "1.1.0"
 ddev_version_constraint: ""
 dependencies: ["ddev/ddev-elasticsearch"]
-type: contrib
-created_at: 2024-05-21
-updated_at: 2025-09-05
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-05-21"
+updated_at: "2025-09-05"
+workflow_status: "disabled"
 stars: 1
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: atj4me/ddev-tailscale-router
-github_url: https://github.com/atj4me/ddev-tailscale-router
+title: "atj4me/ddev-tailscale-router"
+github_url: "https://github.com/atj4me/ddev-tailscale-router"
 description: "This add-on integrates Tailscale into your DDEV project. Unlike temporary sharing solutions, this gives you permanent, human-readable URLs that work across all your Tailscale-connected devices."
-user: atj4me
-repo: ddev-tailscale-router
+user: "atj4me"
+repo: "ddev-tailscale-router"
 repo_id: 950788832
-default_branch: main
-tag_name: v3.0.0
+default_branch: "main"
+tag_name: "v3.0.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-03-18
-updated_at: 2025-09-20
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-03-18"
+updated_at: "2025-09-20"
+workflow_status: "disabled"
 stars: 7
 ---
 

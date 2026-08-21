@@ -1,18 +1,18 @@
 ---
-title: eakcize/ddev-timescaledb
-github_url: https://github.com/eakcize/ddev-timescaledb
+title: "eakcize/ddev-timescaledb"
+github_url: "https://github.com/eakcize/ddev-timescaledb"
 description: "TimeScaleDB with Mongo and MySQL FDWs"
-user: eakcize
-repo: ddev-timescaledb
+user: "eakcize"
+repo: "ddev-timescaledb"
 repo_id: 681120658
-default_branch: master
-tag_name: v1.2.0
+default_branch: "master"
+tag_name: "v1.2.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2023-08-21
-updated_at: 2023-08-24
-workflow_status: unknown
+type: "contrib"
+created_at: "2023-08-21"
+updated_at: "2023-08-24"
+workflow_status: "unknown"
 stars: 0
 ---
 

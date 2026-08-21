@@ -1,18 +1,18 @@
 ---
-title: tyler36/ddev-make
-github_url: https://github.com/tyler36/ddev-make
+title: "tyler36/ddev-make"
+github_url: "https://github.com/tyler36/ddev-make"
 description: "A DDEV helper to run `Makefile`s in the web container."
-user: tyler36
-repo: ddev-make
+user: "tyler36"
+repo: "ddev-make"
 repo_id: 962418405
-default_branch: main
-tag_name: v0.2
+default_branch: "main"
+tag_name: "v0.2"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-04-08
-updated_at: 2026-01-08
-workflow_status: success
+type: "contrib"
+created_at: "2025-04-08"
+updated_at: "2026-01-08"
+workflow_status: "success"
 stars: 0
 ---
 

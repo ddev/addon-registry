@@ -1,18 +1,18 @@
 ---
-title: haase-fabian/ddev-neos
-github_url: https://github.com/haase-fabian/ddev-neos
+title: "haase-fabian/ddev-neos"
+github_url: "https://github.com/haase-fabian/ddev-neos"
 description: "neos environment variables for ddev"
-user: haase-fabian
-repo: ddev-neos
+user: "haase-fabian"
+repo: "ddev-neos"
 repo_id: 535660811
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2022-09-12
-updated_at: 2025-10-11
-workflow_status: success
+type: "contrib"
+created_at: "2022-09-12"
+updated_at: "2025-10-11"
+workflow_status: "success"
 stars: 0
 ---
 

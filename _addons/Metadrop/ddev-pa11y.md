@@ -1,18 +1,18 @@
 ---
-title: Metadrop/ddev-pa11y
-github_url: https://github.com/Metadrop/ddev-pa11y
+title: "Metadrop/ddev-pa11y"
+github_url: "https://github.com/Metadrop/ddev-pa11y"
 description: "Aljibe ddev addon to add pa11y service"
-user: Metadrop
-repo: ddev-pa11y
+user: "Metadrop"
+repo: "ddev-pa11y"
 repo_id: 783100470
-default_branch: main
-tag_name: v2.0.7
+default_branch: "main"
+tag_name: "v2.0.7"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-04-07
-updated_at: 2026-06-03
-workflow_status: disabled
+type: "contrib"
+created_at: "2024-04-07"
+updated_at: "2026-06-03"
+workflow_status: "success"
 stars: 8
 ---
 

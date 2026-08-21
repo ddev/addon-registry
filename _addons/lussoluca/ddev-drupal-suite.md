@@ -1,18 +1,18 @@
 ---
-title: lussoluca/ddev-drupal-suite
-github_url: https://github.com/lussoluca/ddev-drupal-suite
+title: "lussoluca/ddev-drupal-suite"
+github_url: "https://github.com/lussoluca/ddev-drupal-suite"
 description: "Set up a DDEV environment for developing Drupal contrib modules"
-user: lussoluca
-repo: ddev-drupal-suite
+user: "lussoluca"
+repo: "ddev-drupal-suite"
 repo_id: 1018045221
-default_branch: main
-tag_name: 0.0.14
+default_branch: "main"
+tag_name: "0.0.14"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-07-11
-updated_at: 2026-01-17
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-07-11"
+updated_at: "2026-01-17"
+workflow_status: "disabled"
 stars: 3
 ---
 

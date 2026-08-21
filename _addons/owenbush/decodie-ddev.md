@@ -1,18 +1,18 @@
 ---
-title: owenbush/decodie-ddev
-github_url: https://github.com/owenbush/decodie-ddev
+title: "owenbush/decodie-ddev"
+github_url: "https://github.com/owenbush/decodie-ddev"
 description: "A DDEV add-on that integrates the Decodie learning companion into your local development environment."
-user: owenbush
-repo: decodie-ddev
+user: "owenbush"
+repo: "decodie-ddev"
 repo_id: 1195669181
-default_branch: main
-tag_name: 1.2.1
+default_branch: "main"
+tag_name: "1.2.1"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2026-03-30
-updated_at: 2026-07-06
-workflow_status: success
+type: "contrib"
+created_at: "2026-03-30"
+updated_at: "2026-07-06"
+workflow_status: "success"
 stars: 5
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: tyler36/ddev-vscode-devcontainer
-github_url: https://github.com/tyler36/ddev-vscode-devcontainer
+title: "tyler36/ddev-vscode-devcontainer"
+github_url: "https://github.com/tyler36/ddev-vscode-devcontainer"
 description: "Open a DDEV container in VSCode"
-user: tyler36
-repo: ddev-vscode-devcontainer
+user: "tyler36"
+repo: "ddev-vscode-devcontainer"
 repo_id: 623859832
-default_branch: main
-tag_name: v1.3
+default_branch: "main"
+tag_name: "v1.3"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2023-04-05
-updated_at: 2026-03-31
-workflow_status: success
+type: "contrib"
+created_at: "2023-04-05"
+updated_at: "2026-03-31"
+workflow_status: "success"
 stars: 6
 ---
 

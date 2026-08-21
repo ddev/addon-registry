@@ -1,18 +1,18 @@
 ---
-title: kevinquillen/ddev-arangodb
-github_url: https://github.com/kevinquillen/ddev-arangodb
+title: "kevinquillen/ddev-arangodb"
+github_url: "https://github.com/kevinquillen/ddev-arangodb"
 description: "A DDEV service for ArangoDB."
-user: kevinquillen
-repo: ddev-arangodb
+user: "kevinquillen"
+repo: "ddev-arangodb"
 repo_id: 1253487763
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-05-29
-updated_at: 2026-05-29
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-05-29"
+updated_at: "2026-05-29"
+workflow_status: "disabled"
 stars: 0
 ---
 

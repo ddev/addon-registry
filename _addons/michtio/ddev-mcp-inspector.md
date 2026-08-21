@@ -1,18 +1,18 @@
 ---
-title: michtio/ddev-mcp-inspector
-github_url: https://github.com/michtio/ddev-mcp-inspector
+title: "michtio/ddev-mcp-inspector"
+github_url: "https://github.com/michtio/ddev-mcp-inspector"
 description: "MCP Inspector as a turnkey DDEV add-on. Test stdio, SSE, and Streamable HTTP MCP servers from any framework — Craft, Laravel, Drupal, Node, Python — without installing Node on the host."
-user: michtio
-repo: ddev-mcp-inspector
+user: "michtio"
+repo: "ddev-mcp-inspector"
 repo_id: 1231105992
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-05-06
-updated_at: 2026-05-06
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-05-06"
+updated_at: "2026-05-06"
+workflow_status: "disabled"
 stars: 0
 ---
 

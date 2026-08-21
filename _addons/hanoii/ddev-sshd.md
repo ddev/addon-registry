@@ -1,18 +1,18 @@
 ---
-title: hanoii/ddev-sshd
-github_url: https://github.com/hanoii/ddev-sshd
+title: "hanoii/ddev-sshd"
+github_url: "https://github.com/hanoii/ddev-sshd"
 description: "Install ssh server on the web container"
-user: hanoii
-repo: ddev-sshd
+user: "hanoii"
+repo: "ddev-sshd"
 repo_id: 673792487
-default_branch: main
-tag_name: v1.1.0
+default_branch: "main"
+tag_name: "v1.1.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2023-08-02
-updated_at: 2026-05-11
-workflow_status: success
+type: "contrib"
+created_at: "2023-08-02"
+updated_at: "2026-05-11"
+workflow_status: "success"
 stars: 4
 ---
 

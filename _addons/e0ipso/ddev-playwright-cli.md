@@ -1,18 +1,18 @@
 ---
-title: e0ipso/ddev-playwright-cli
-github_url: https://github.com/e0ipso/ddev-playwright-cli
+title: "e0ipso/ddev-playwright-cli"
+github_url: "https://github.com/e0ipso/ddev-playwright-cli"
 description: "DDEV add-on that installs @playwright/cli globally in the web container and automatically sets up Claude Code skills"
-user: e0ipso
-repo: ddev-playwright-cli
+user: "e0ipso"
+repo: "ddev-playwright-cli"
 repo_id: 1161565491
-default_branch: main
-tag_name: v1.2.3
+default_branch: "main"
+tag_name: "v1.2.3"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2026-02-19
-updated_at: 2026-07-20
-workflow_status: success
+type: "contrib"
+created_at: "2026-02-19"
+updated_at: "2026-07-20"
+workflow_status: "success"
 stars: 6
 ---
 

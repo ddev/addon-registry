@@ -1,18 +1,18 @@
 ---
-title: bricebou/ddev-manticoresearch
-github_url: https://github.com/bricebou/ddev-manticoresearch
+title: "bricebou/ddev-manticoresearch"
+github_url: "https://github.com/bricebou/ddev-manticoresearch"
 description: "Manticoresearch add-on for DDEV"
-user: bricebou
-repo: ddev-manticoresearch
+user: "bricebou"
+repo: "ddev-manticoresearch"
 repo_id: 768156076
-default_branch: main
-tag_name: v0.0.4
+default_branch: "main"
+tag_name: "v0.0.4"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2024-03-06
-updated_at: 2025-05-22
-workflow_status: success
+type: "contrib"
+created_at: "2024-03-06"
+updated_at: "2025-05-22"
+workflow_status: "success"
 stars: 1
 ---
 

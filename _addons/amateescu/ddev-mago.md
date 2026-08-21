@@ -1,18 +1,18 @@
 ---
-title: amateescu/ddev-mago
-github_url: https://github.com/amateescu/ddev-mago
+title: "amateescu/ddev-mago"
+github_url: "https://github.com/amateescu/ddev-mago"
 description: "DDEV add-on for Mago — the blazing-fast PHP linter, formatter, and static analyzer written in Rust"
-user: amateescu
-repo: ddev-mago
+user: "amateescu"
+repo: "ddev-mago"
 repo_id: 1177968876
-default_branch: main
-tag_name: 1.3.0
+default_branch: "main"
+tag_name: "1.3.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2026-03-10
-updated_at: 2026-04-26
-workflow_status: success
+type: "contrib"
+created_at: "2026-03-10"
+updated_at: "2026-04-26"
+workflow_status: "success"
 stars: 3
 ---
 

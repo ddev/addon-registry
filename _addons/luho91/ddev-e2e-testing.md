@@ -1,18 +1,18 @@
 ---
-title: luho91/ddev-e2e-testing
-github_url: https://github.com/luho91/ddev-e2e-testing
+title: "luho91/ddev-e2e-testing"
+github_url: "https://github.com/luho91/ddev-e2e-testing"
 description: "Containerized Cucumber/Playwright testing with minimalistic settings"
-user: luho91
-repo: ddev-e2e-testing
+user: "luho91"
+repo: "ddev-e2e-testing"
 repo_id: 1091727900
-default_branch: main
-tag_name: 1.2
+default_branch: "main"
+tag_name: "1.2"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
-type: contrib
-created_at: 2025-11-07
-updated_at: 2025-11-10
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-11-07"
+updated_at: "2025-11-10"
+workflow_status: "disabled"
 stars: 0
 ---
 

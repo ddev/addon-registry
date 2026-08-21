@@ -1,18 +1,18 @@
 ---
-title: MurzNN/ddev-vscode
-github_url: https://github.com/MurzNN/ddev-vscode
+title: "MurzNN/ddev-vscode"
+github_url: "https://github.com/MurzNN/ddev-vscode"
 description: " DDEV add-on to manage VS Code configuration directory in the container right "
-user: MurzNN
-repo: ddev-vscode
+user: "MurzNN"
+repo: "ddev-vscode"
 repo_id: 1303598462
-default_branch: main
-tag_name: v1.0.0
+default_branch: "main"
+tag_name: "v1.0.0"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2026-07-17
-updated_at: 2026-07-17
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-07-17"
+updated_at: "2026-07-17"
+workflow_status: "unknown"
 stars: 1
 ---
 

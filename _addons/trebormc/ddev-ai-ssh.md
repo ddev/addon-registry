@@ -1,18 +1,18 @@
 ---
-title: trebormc/ddev-ai-ssh
-github_url: https://github.com/trebormc/ddev-ai-ssh
+title: "trebormc/ddev-ai-ssh"
+github_url: "https://github.com/trebormc/ddev-ai-ssh"
 description: "A DDEV add-on that enables SSH access to the web container for AI agents. Installs sshd in the web container and generates per-project SSH keys, so AI containers (OpenCode, Claude Code, Ralph) can execute commands (drush, composer, phpunit, phpstan) without needing the Docker socket."
-user: trebormc
-repo: ddev-ai-ssh
+user: "trebormc"
+repo: "ddev-ai-ssh"
 repo_id: 1214319210
-default_branch: main
-tag_name: v1.0.58
+default_branch: "main"
+tag_name: "v1.0.58"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2026-04-18
-updated_at: 2026-07-09
-workflow_status: success
+type: "contrib"
+created_at: "2026-04-18"
+updated_at: "2026-07-09"
+workflow_status: "disabled"
 stars: 1
 ---
 

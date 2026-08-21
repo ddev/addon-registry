@@ -1,18 +1,18 @@
 ---
-title: upstreamable/ddev-basin
-github_url: https://github.com/upstreamable/ddev-basin
+title: "upstreamable/ddev-basin"
+github_url: "https://github.com/upstreamable/ddev-basin"
 description: "Simplify project creation and ddev add-on management "
-user: upstreamable
-repo: ddev-basin
+user: "upstreamable"
+repo: "ddev-basin"
 repo_id: 1174546726
-default_branch: main
-tag_name: 1.0.1
+default_branch: "main"
+tag_name: "1.0.1"
 ddev_version_constraint: ">= v1.25.1"
 dependencies: []
-type: contrib
-created_at: 2026-03-06
-updated_at: 2026-05-29
-workflow_status: disabled
+type: "contrib"
+created_at: "2026-03-06"
+updated_at: "2026-05-29"
+workflow_status: "disabled"
 stars: 0
 ---
 

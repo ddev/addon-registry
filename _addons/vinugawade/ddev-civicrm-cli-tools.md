@@ -1,18 +1,18 @@
 ---
-title: vinugawade/ddev-civicrm-cli-tools
-github_url: https://github.com/vinugawade/ddev-civicrm-cli-tools
+title: "vinugawade/ddev-civicrm-cli-tools"
+github_url: "https://github.com/vinugawade/ddev-civicrm-cli-tools"
 description: "Tools to streamline CiviCRM workflows with seamless integration and efficient task management."
-user: vinugawade
-repo: ddev-civicrm-cli-tools
+user: "vinugawade"
+repo: "ddev-civicrm-cli-tools"
 repo_id: 908624626
-default_branch: main
-tag_name: v1.0.2
+default_branch: "main"
+tag_name: "v1.0.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2024-12-26
-updated_at: 2026-08-04
-workflow_status: success
+type: "contrib"
+created_at: "2024-12-26"
+updated_at: "2026-08-04"
+workflow_status: "disabled"
 stars: 4
 ---
 

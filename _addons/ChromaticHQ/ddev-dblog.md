@@ -1,18 +1,18 @@
 ---
-title: ChromaticHQ/ddev-dblog
-github_url: https://github.com/ChromaticHQ/ddev-dblog
+title: "ChromaticHQ/ddev-dblog"
+github_url: "https://github.com/ChromaticHQ/ddev-dblog"
 description: "Easily view your db's general_log in ddev"
-user: ChromaticHQ
-repo: ddev-dblog
+user: "ChromaticHQ"
+repo: "ddev-dblog"
 repo_id: 741654296
-default_branch: main
-tag_name: v1.0.2
+default_branch: "main"
+tag_name: "v1.0.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2024-01-10
-updated_at: 2026-08-03
-workflow_status: success
+type: "contrib"
+created_at: "2024-01-10"
+updated_at: "2026-08-03"
+workflow_status: "success"
 stars: 1
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: codingsasi/ddev-playwright
-github_url: https://github.com/codingsasi/ddev-playwright
+title: "codingsasi/ddev-playwright"
+github_url: "https://github.com/codingsasi/ddev-playwright"
 description: "Lightweight DDEV addon for Playwright testing - runs in web container with automatic setup and TypeScript support"
-user: codingsasi
-repo: ddev-playwright
+user: "codingsasi"
+repo: "ddev-playwright"
 repo_id: 910614336
-default_branch: main
-tag_name: v1.0.10
+default_branch: "main"
+tag_name: "v1.0.10"
 ddev_version_constraint: ""
 dependencies: ["ddev/ddev-nvm"]
-type: contrib
-created_at: 2024-12-31
-updated_at: 2026-07-26
-workflow_status: success
+type: "contrib"
+created_at: "2024-12-31"
+updated_at: "2026-07-26"
+workflow_status: "failure"
 stars: 4
 ---
 

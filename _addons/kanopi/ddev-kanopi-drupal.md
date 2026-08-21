@@ -1,18 +1,18 @@
 ---
-title: kanopi/ddev-kanopi-drupal
-github_url: https://github.com/kanopi/ddev-kanopi-drupal
+title: "kanopi/ddev-kanopi-drupal"
+github_url: "https://github.com/kanopi/ddev-kanopi-drupal"
 description: "This repository provides a DDEV add-on that configures a Drupal development environment with Kanopi's standard tooling and workflows. "
-user: kanopi
-repo: ddev-kanopi-drupal
+user: "kanopi"
+repo: "ddev-kanopi-drupal"
 repo_id: 1034499133
-default_branch: main
-tag_name: 1.5.1
+default_branch: "main"
+tag_name: "1.5.1"
 ddev_version_constraint: ">= v1.22.0"
 dependencies: []
-type: contrib
-created_at: 2025-08-08
-updated_at: 2026-07-10
-workflow_status: disabled
+type: "contrib"
+created_at: "2025-08-08"
+updated_at: "2026-07-10"
+workflow_status: "disabled"
 stars: 4
 ---
 

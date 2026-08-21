@@ -1,18 +1,18 @@
 ---
-title: madebydaniz/ddev-orthanc
-github_url: https://github.com/madebydaniz/ddev-orthanc
+title: "madebydaniz/ddev-orthanc"
+github_url: "https://github.com/madebydaniz/ddev-orthanc"
 description: "Orthanc service for DDEV"
-user: madebydaniz
-repo: ddev-orthanc
+user: "madebydaniz"
+repo: "ddev-orthanc"
 repo_id: 719515566
-default_branch: main
-tag_name: 0.0.4
+default_branch: "main"
+tag_name: "0.0.4"
 ddev_version_constraint: ""
 dependencies: []
-type: contrib
-created_at: 2023-11-16
-updated_at: 2025-04-09
-workflow_status: unknown
+type: "contrib"
+created_at: "2023-11-16"
+updated_at: "2025-04-09"
+workflow_status: "unknown"
 stars: 1
 ---
 

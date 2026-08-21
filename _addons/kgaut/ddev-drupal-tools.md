@@ -1,18 +1,18 @@
 ---
-title: kgaut/ddev-drupal-tools
-github_url: https://github.com/kgaut/ddev-drupal-tools
+title: "kgaut/ddev-drupal-tools"
+github_url: "https://github.com/kgaut/ddev-drupal-tools"
 description: "DDEV add-on: global host commands for Drupal projects — db-import/db-export and db-{prod,preprod}-{dump,get,import} / ssh-{prod,preprod}"
-user: kgaut
-repo: ddev-drupal-tools
+user: "kgaut"
+repo: "ddev-drupal-tools"
 repo_id: 1317094150
-default_branch: main
-tag_name: v0.1.2
+default_branch: "main"
+tag_name: "v0.1.2"
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
-type: contrib
-created_at: 2026-07-30
-updated_at: 2026-08-06
-workflow_status: unknown
+type: "contrib"
+created_at: "2026-07-30"
+updated_at: "2026-08-06"
+workflow_status: "unknown"
 stars: 0
 ---
 

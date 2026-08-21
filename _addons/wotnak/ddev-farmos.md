@@ -1,18 +1,18 @@
 ---
-title: wotnak/ddev-farmos
-github_url: https://github.com/wotnak/ddev-farmos
+title: "wotnak/ddev-farmos"
+github_url: "https://github.com/wotnak/ddev-farmos"
 description: ""
-user: wotnak
-repo: ddev-farmos
+user: "wotnak"
+repo: "ddev-farmos"
 repo_id: 714356238
-default_branch: main
-tag_name: 4
+default_branch: "main"
+tag_name: "4"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
-type: contrib
-created_at: 2023-11-04
-updated_at: 2026-02-13
-workflow_status: disabled
+type: "contrib"
+created_at: "2023-11-04"
+updated_at: "2026-02-13"
+workflow_status: "disabled"
 stars: 1
 ---
 
