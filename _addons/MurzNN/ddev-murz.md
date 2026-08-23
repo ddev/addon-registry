@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: ["MurzNN/ddev-vscode", "MurzNN/ddev-cursor", "MurzNN/ddev-playwright"]
 type: "contrib"
 created_at: "2025-12-20"
-updated_at: "2026-07-25"
+updated_at: "2026-08-22"
 workflow_status: "unknown"
 stars: 0
 ---
