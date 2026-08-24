@@ -6,12 +6,12 @@ user: "sdubois"
 repo: "ddev-amezmo"
 repo_id: 1324671669
 default_branch: "main"
-tag_name: "v0.2.2"
+tag_name: "v2.2.4"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-06"
-updated_at: "2026-08-11"
+updated_at: "2026-08-23"
 workflow_status: "disabled"
 stars: 2
 ---
@@ -21,7 +21,7 @@ stars: 2
 
 # ddev-amezmo
 
-`ddev-amezmo` is a DDEV integration for CMS and framework applications hosted on [Amezmo](https://www.amezmo.com/). It downloads a selected Amezmo environment's database and persistent storage files into a local DDEV project and can upload local database and persistent storage files back to a selected environment. It never deploys application code.
+`ddev-amezmo` is a DDEV integration for CMS and framework applications hosted on [Amezmo](https://www.amezmo.com/). It downloads a selected Amezmo environment's database and persistent storage files into a local DDEV project, uploads local data to a selected environment, and copies data between configured Amezmo environments. It never deploys application code.
 
 Production and staging profiles are installed independently. Drupal, WordPress, and custom application adapters are supported.
 
@@ -91,6 +91,7 @@ ddev restart
 ddev amezmo doctor production
 ddev amezmo pull production
 ddev amezmo push staging
+ddev amezmo copy --from production --to staging --db --files
 ddev amezmo drush staging cache:rebuild
 ddev amezmo cli whoami
 ```
@@ -116,6 +117,24 @@ The add-on checks SSH access, changes to `AMEZMO_REMOTE_APP_ROOT`, and passes ei
 
 `push` uploads the local database and persistent storage files to the selected Amezmo environment. DDEV displays a confirmation prompt, and the add-on prints an additional warning identifying the Amezmo target. Review the environment, local data, and paths carefully; uploading to production can overwrite important data. File uploads overwrite matching files but do not delete files already in the Amezmo environment. Database uploads replace the target database contents through the selected application CLI. Use `--skip-db` or `--skip-files` when only one asset type should be transferred.
 
+## Copy between Amezmo environments
+
+Use `copy` when the source and target are both configured Amezmo environments. Select the database, persistent files, or both explicitly:
+
+```bash
+ddev amezmo copy --from production --to staging --db
+ddev amezmo copy --from production --to staging --files
+ddev amezmo copy --from production --to staging --db --files
+```
+
+The command displays the source, target, and selected data, then requires you to type the target environment name. Use `-y` only when the direction has already been verified or for non-interactive operation. Source and target must be different and use the same application adapter. Copying into an environment named `production` is blocked unless `--allow-production-target` is also supplied.
+
+Database copies do not import into the local DDEV database. Before replacement, the command downloads and validates a backup of the target database under `.ddev/.downloads/amezmo-backups/`. It then downloads the source export to a temporary directory, validates its gzip stream, and imports it into the target. The temporary source export is removed after the command exits; the target backup is retained.
+
+Because `rsync` cannot transfer directly between two remote endpoints, file copies download into a temporary host directory and then upload to the target. Matching target files are overwritten, unmatched target files are not deleted, and the temporary directory is removed after the command exits. Ensure the host has enough free space for the selected database, files, and retained backup.
+
+A production database may contain real users, sessions, credentials, queued mail, and notification state. Run the application's staging sanitization and cache-rebuild procedures after copying. The add-on does not alter copied application data automatically.
+
 The add-on also bundles the pinned `amezmo-cli` `v0.1.0-beta.1` release for Amezmo API operations:
 
 ```bash
@@ -126,7 +145,7 @@ ddev amezmo cli deployments get INSTANCE_ID DEPLOYMENT_ID
 
 These commands require PHP 8.3 or newer on the host. The API CLI manages Amezmo resources; it does not replace this add-on's database or persistent-storage transfers.
 
-Drupal database downloads, uploads, health checks, and arbitrary commands use `vendor/bin/drush` in the Amezmo application release by default. WordPress database operations use `wp`. Set `AMEZMO_REMOTE_CLI_PATH` in the environment profile when the application CLI is elsewhere. Custom adapters must set `AMEZMO_REMOTE_DB_IMPORT_COMMAND`; the command receives the uncompressed SQL export on standard input.
+Drupal database downloads, health checks, and arbitrary commands use `vendor/bin/drush` in the Amezmo application release by default. Drupal uploads ask `drush sql:connect` for the native database-client command and stream the validated SQL export directly into that client, avoiding the slower `sql:cli` stdin path. WordPress database operations use `wp`. Set `AMEZMO_REMOTE_CLI_PATH` in the environment profile when the application CLI is elsewhere. Custom adapters must set `AMEZMO_REMOTE_DB_IMPORT_COMMAND`; the command receives the uncompressed SQL export on standard input.
 
 ## Documentation
 
