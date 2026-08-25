@@ -6,12 +6,12 @@ user: "zone1987"
 repo: "ddev-shopware"
 repo_id: 1339655611
 default_branch: "6.7"
-tag_name: "v6.7.0"
+tag_name: "v6.7.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-19"
-updated_at: "2026-08-19"
+updated_at: "2026-08-24"
 workflow_status: "failure"
 stars: 0
 ---
@@ -77,7 +77,7 @@ the current line.
 Pin an exact release so a later change cannot surprise you:
 
 ```bash
-ddev add-on get zone1987/ddev-shopware --version v6.7.0
+ddev add-on get zone1987/ddev-shopware --version v6.7.1
 ```
 
 Or follow a line's branch to always get its newest state:

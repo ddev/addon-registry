@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-04"
-updated_at: "2026-08-12"
+updated_at: "2026-08-24"
 workflow_status: "failure"
 stars: 0
 ---
@@ -35,12 +35,34 @@ This DDEV add-on installs shared host commands used by Cortier projects.
 - `ddev name`: Print the DDEV project name without its final suffix.
 - `ddev path`: Print the configured absolute path for a Cortier repository.
 - `ddev surface`: Manage and use API, app, admin, and shop surface connections.
-- `ddev url`: Print URLs from `.ddev/config.host.local.yaml`.
+- `ddev setup dns`: Configure wildcard DNS for the project's DDEV top-level domain.
+- `ddev url`: Print the project URL or a configured service URL from `.ddev/config.host.local.yaml`.
 
 # Requirements
 
 The target project must contain `.ddev/config.host.local.yaml`. The `surface`
 command also requires `jq` when it reads DDEV metadata.
+
+The `setup dns` command supports macOS with Homebrew and Arch Linux with `yay`
+and systemd-resolved. It installs and configures dnsmasq so every hostname below
+the project's `project_tld` resolves to `127.0.0.1`. Other DNS queries continue
+to use the host's existing resolvers. The command requests administrator access
+for system files and services and can be run repeatedly.
+
+Resolve project and service URLs with:
+
+```bash
+ddev url
+ddev url --authority
+ddev url buggregator
+ddev url storybook
+ddev url storybook screens-settings-developers--default
+```
+
+`ddev url buggregator` reads `BUGGREGATOR_HTTP_PORT` from `.ddev/.env`.
+`ddev url storybook` reads the named Storybook HTTPS port from
+`web_extra_exposed_ports`; an optional story ID adds the canonical Storybook
+story path. Unsupported services and positional formatting arguments fail.
 
 Configure repository paths in global Git configuration. For example:
 
