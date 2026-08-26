@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.25.1"
 dependencies: []
 type: "contrib"
 created_at: "2025-11-11"
-updated_at: "2026-08-12"
+updated_at: "2026-08-25"
 workflow_status: "unknown"
 stars: 0
 ---
@@ -47,12 +47,15 @@ scripts to enhance your Drupal development workflow.
    ddev add-on get wunderio/ddev-wunderio-drupal && ddev restart
    ```
 
-3. Optionally if you have GrumPHP installed:
+3. Optionally if you have GrumPHP installed, add this to `grumphp.yml` so git hooks run GrumPHP inside DDEV (git hooks execute on the host, where PHP is often unavailable):
 
-   - **Default setup (recommended):** In many setups the default `php` used by GrumPHP works out of the box and you **do not need any custom `EXEC_GRUMPHP_COMMAND`** in `grumphp.yml`.
-   - **If you previously added a custom `EXEC_GRUMPHP_COMMAND` for DDEV/Lando:** You can safely remove the entire `git_hook_variables` section from `grumphp.yml` and then re‑initialise the hooks so they use the default configuration.
+   ```yaml
+   grumphp:
+     git_hook_variables:
+       EXEC_GRUMPHP_COMMAND: ddev php
+   ```
 
-   After adjusting `grumphp.yml`, re‑init the hook:
+   Then re-init the hooks:
 
    ```bash
    ddev grumphp git:init
