@@ -6,12 +6,12 @@ user: "sdubois"
 repo: "ddev-amezmo"
 repo_id: 1324671669
 default_branch: "main"
-tag_name: "v2.2.4"
+tag_name: "v2.2.5"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-06"
-updated_at: "2026-08-23"
+updated_at: "2026-08-26"
 workflow_status: "disabled"
 stars: 2
 ---
@@ -129,7 +129,7 @@ ddev amezmo copy --from production --to staging --db --files
 
 The command displays the source, target, and selected data, then requires you to type the target environment name. Use `-y` only when the direction has already been verified or for non-interactive operation. Source and target must be different and use the same application adapter. Copying into an environment named `production` is blocked unless `--allow-production-target` is also supplied.
 
-Database copies do not import into the local DDEV database. Before replacement, the command downloads and validates a backup of the target database under `.ddev/.downloads/amezmo-backups/`. It then downloads the source export to a temporary directory, validates its gzip stream, and imports it into the target. The temporary source export is removed after the command exits; the target backup is retained.
+Database copies do not import into the local DDEV database. Before replacement, the command downloads and validates a backup of the target database under `.ddev/.downloads/amezmo-backups/`. It then downloads the source export to a temporary directory and validates its gzip stream. For Drupal, only after both files pass validation, site-local Drush clears every table from the target database before the source is imported. If that import fails, the command clears any partial import, automatically restores the validated target backup, reports whether restoration succeeded, and still exits nonzero. The temporary source export is removed after the command exits; the target backup is retained.
 
 Because `rsync` cannot transfer directly between two remote endpoints, file copies download into a temporary host directory and then upload to the target. Matching target files are overwritten, unmatched target files are not deleted, and the temporary directory is removed after the command exits. Ensure the host has enough free space for the selected database, files, and retained backup.
 

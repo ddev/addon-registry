@@ -6,14 +6,14 @@ user: "b13"
 repo: "ddev-keycloak"
 repo_id: 735703787
 default_branch: "main"
-tag_name: "0.0.2"
-ddev_version_constraint: ""
+tag_name: "0.1.0"
+ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: "contrib"
 created_at: "2023-12-25"
-updated_at: "2025-09-04"
-workflow_status: "cancelled"
-stars: 15
+updated_at: "2026-08-26"
+workflow_status: "success"
+stars: 16
 ---
 
 # Keycloak Add-On for DDEV
@@ -52,6 +52,43 @@ For earlier versions of DDEV run
 ```bash
 ddev get b13/ddev-keycloak && ddev restart
 ```
+
+### Using alternate images
+
+The add-on ships with a default Keycloak and MariaDB image, but both can be
+pointed somewhere else — a different version, a mirror registry, or a locally
+built Keycloak image containing your own providers/SPIs.
+
+```bash
+# Change the image as appropriate.
+ddev dotenv set .ddev/.env.keycloak --keycloak-docker-image="quay.io/keycloak/keycloak:26.4"
+
+ddev restart
+```
+
+Commit the `.ddev/.env.keycloak` file to version control so the whole team
+runs the same images.
+
+| Variable                   | Flag                         | Default                          |
+|----------------------------|------------------------------|----------------------------------|
+| `KEYCLOAK_DOCKER_IMAGE`    | `--keycloak-docker-image`    | `quay.io/keycloak/keycloak:26.7` |
+| `KEYCLOAK_DB_DOCKER_IMAGE` | `--keycloak-db-docker-image` | `mariadb:10.11`                  |
+
+> [!IMPORTANT]
+> Keycloak migrates its database schema forward automatically when you upgrade,
+> but it refuses to start against a database that was already migrated by a
+> *newer* version. For a downgrade — or when switching the database image to a
+> different engine — wipe the volumes first:
+>
+> ```bash
+> ddev stop
+> docker volume rm ddev-<project>_keycloak ddev-<project>_keycloak-db
+> ddev restart
+> ```
+>
+> This discards the realms and users inside the container, so run
+> `ddev kcctl import` afterwards. That is exactly why the JSON files in
+> `.ddev/keycloak/import` belong in git.
 
 ### Credentials
 
@@ -97,6 +134,53 @@ ddev kcctl delete
 ```
 ddev kc --help
 ```
+
+## URLs and metadata
+
+Keycloak is reachable in the browser at `https://<project>.ddev.site:8443`
+(and `http://<project>.ddev.site:8442`).
+
+From other containers — for example the `web` container fetching an IdP metadata
+document — use the internal address `http://keycloak:8080`:
+
+```
+SSO_METADATAURL="http://keycloak:8080/realms/<realm>/protocol/saml/descriptor"
+```
+
+The add-on pins Keycloak's public base URL via `KC_HOSTNAME`, so the URLs inside
+the returned metadata (entity ID, SSO `Location` endpoints, OIDC issuer and
+endpoints) always stay the browser-reachable `https://<project>.ddev.site:8443/...`
+ones, even though the document was requested internally. The SSO redirects
+therefore work in the browser.
+
+### Keycloak calling back into your project
+
+The reverse direction works too: Keycloak may act as the *client* while your
+ddev project is the identity provider — identity brokering, social login, or an
+OIDC identity provider configured from a discovery document.
+
+That requires Keycloak to make an **outgoing** HTTPS request to
+`https://<project>.ddev.site`, which is served with a certificate signed by
+ddev's locally generated [mkcert](https://github.com/FiloSottile/mkcert) root
+CA. The add-on copies that root CA into Keycloak's truststore directory on every
+start, so the JVM inside the container trusts it and the request goes through:
+
+```
+https://<project>.ddev.site:8443/realms/<realm>/.well-known/openid-configuration
+```
+
+Check it with:
+
+```bash
+ddev exec -s keycloak ls -l /opt/keycloak/conf/truststores/
+ddev logs -s keycloak | grep -i truststore
+```
+
+> [!NOTE]
+> Only the public `rootCA.pem` is copied, never the CA private key, and Keycloak
+> keeps running as its regular unprivileged user with TLS verification intact.
+> On hosts without mkcert installed there is no CA to copy — Keycloak still
+> starts, it just will not trust the ddev certificate.
 
 ## Theming
 
