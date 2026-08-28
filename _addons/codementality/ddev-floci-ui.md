@@ -12,8 +12,8 @@ dependencies: []
 type: "contrib"
 created_at: "2026-08-26"
 updated_at: "2026-08-26"
-workflow_status: "unknown"
-stars: 0
+workflow_status: "success"
+stars: 1
 ---
 
 # ddev-floci-ui <!-- omit in toc -->
