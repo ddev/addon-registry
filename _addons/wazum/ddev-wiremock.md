@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-04-20"
-updated_at: "2026-04-21"
+updated_at: "2026-08-28"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -45,6 +45,15 @@ Then add stubs one of three ways:
 
 - **Scaffold quickly** - `ddev wiremock-add GET /users/42` writes a stub
   JSON file; `ddev wiremock-reload` makes it live without a restart.
+  Real payloads go in through a file or a pipe:
+
+  ```bash
+  ddev wiremock-add GET /users/42 --body @response.json
+  curl -s https://api.example.com/users/42 | ddev wiremock-add GET /users/42 --body -
+  ```
+
+  `--delay 3000` makes the stub answer slowly, which is how you test
+  client timeouts and retries.
 - **Author by hand** - drop JSON files into `.ddev/wiremock/mappings/`.
   See `sample.json` there for the shape, then run `ddev wiremock-reload`.
 - **Record from a live upstream** - see [Recording](#recording) below.
@@ -58,12 +67,13 @@ request to the configured upstream and persists the result as a new stub.
 
 | Command | What it does |
 |---|---|
-| `ddev wiremock-add <METHOD> <PATH>` | Scaffold a new stub JSON file. `--status N`, `--body JSON`, `--content-type TYPE`, `--force`. |
+| `ddev wiremock-add <METHOD> <PATH>` | Scaffold a new stub JSON file. `--status N`, `--body JSON\|@FILE\|-`, `--content-type TYPE`, `--delay MS`, `--force`. |
 | `ddev wiremock-reload` | Re-read stub files from disk without restarting. Keeps the request journal. |
 | `ddev wiremock-mappings` | List active stubs. `--id <uuid>` fetches one, `--json` dumps full JSON. |
 | `ddev wiremock-requests` | Show the request journal. `--limit N`, `--unmatched`, `--json`. |
 | `ddev wiremock-logs` | Tail the WireMock container logs. Passes flags through to `ddev logs`. |
 | `ddev wiremock-reset` | Wipe runtime stubs and the request journal. File-backed stubs reload automatically. |
+| `ddev wiremock-proxy <url>` | Pass unstubbed requests through to a real upstream. `--off` removes it. |
 | `ddev wiremock-record <url>` | Start recording against an upstream URL. |
 | `ddev wiremock-record-stop` | Stop recording; writes stubs into `mappings/`. |
 | `ddev wiremock-snapshot` | Convert the current journal into stubs (no upstream needed). |
@@ -85,6 +95,21 @@ has received during the current run: method, URL, headers, body, which
 stub matched, and the response returned. `ddev wiremock-requests` reads
 it; `ddev wiremock-snapshot` persists it as stubs. The journal clears on
 `ddev wiremock-reset` and on container restart.
+
+## Partial mocking
+
+Stub the endpoints you care about and let the rest hit the real API:
+
+```bash
+ddev wiremock-proxy https://api.example.com
+```
+
+Your stubs keep answering; everything they do not match is forwarded
+upstream. Nothing is written to disk - that is the difference to
+recording. `ddev wiremock-proxy --off` removes the proxy.
+
+The proxy is runtime state. `ddev wiremock-reset`, `ddev wiremock-reload`
+and a container restart all remove it.
 
 ## Recording
 
@@ -142,6 +167,12 @@ Editable in `.ddev/.env.wiremock`:
 | `WIREMOCK_TAG` | `3x` | WireMock image tag. |
 | `WIREMOCK_HTTP_PORT` | `8080` | Router port for HTTP. |
 | `WIREMOCK_HTTPS_PORT` | `8443` | Router port for HTTPS. |
+| `WIREMOCK_ARGS` | empty | Extra WireMock CLI flags, appended to the container command. |
+
+`WIREMOCK_ARGS` takes anything from the
+[WireMock command line](https://wiremock.org/docs/standalone/java-jar/),
+for example `--max-request-journal-entries=100` or
+`--disable-request-logging`. Run `ddev restart` after changing it.
 
 ## Remove
 

@@ -12,7 +12,7 @@ dependencies: ["ddev/ddev-drupal-contrib"]
 type: "contrib"
 created_at: "2026-06-26"
 updated_at: "2026-06-27"
-workflow_status: "success"
+workflow_status: "disabled"
 stars: 0
 ---
 
