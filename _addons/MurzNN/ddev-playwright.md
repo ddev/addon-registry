@@ -6,12 +6,12 @@ user: "MurzNN"
 repo: "ddev-playwright"
 repo_id: 1304882212
 default_branch: "main"
-tag_name: "v1.0.1"
+tag_name: "v1.1.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-07-18"
-updated_at: "2026-07-25"
+updated_at: "2026-08-29"
 workflow_status: "disabled"
 stars: 1
 ---
@@ -25,8 +25,9 @@ stars: 1
 
 ## Overview
 
-This add-on installs Playwright and browsers (Chromium, Firefox, WebKit) to launch Playwright tests directly in the
-[DDEV](https://ddev.com/) container with GUI forwarding to the host machine.
+This add-on installs [Playwright](https://playwright.dev/) and browsers (Chromium, Firefox, WebKit) in the
+[DDEV](https://ddev.com/) `web` container so you can run tests against the project's internal network and
+dependencies. It also configures X11 forwarding for headed mode (visible browser windows on the host).
 
 ## Installation
 
@@ -34,16 +35,33 @@ This add-on installs Playwright and browsers (Chromium, Firefox, WebKit) to laun
 ddev add-on get MurzNN/ddev-playwright
 ```
 
-## Overview
+## What it does
 
-Add-on downloads the latest version of Playwright and installs dependencies, required to launch browsers (Chromium,
-Firefox, Webkit) during the DDEV `web` container build, to not re-configure them on each restart.
+- Installs Playwright system dependencies during the `web` container build (`web-build/Dockerfile.playwright`).
+- Runs `npx playwright install` after each container start to keep browsers up to date.
+- Mounts a shared host browser cache at `~/.cache/ms-playwright` so multiple DDEV projects reuse the same downloads.
+- Configures X11 forwarding for GUI apps launched inside the container (Playwright headed mode, Chrome, etc.).
 
-Also, it mounts a reusable host's browsers cache directory, shared with other DDEV projects, to not download a new
-copy of the same browsers for each DDEV project.
+## X11 / headed mode
 
-Additionally, it mounts an X11 Unix socket to allow opening GUI windows on the host machine from the apps, launched
-in the container.
+By default the add-on:
+
+1. Runs `xhost +local:docker` on the host before start.
+2. Bind-mounts `/tmp/.X11-unix` into the `web` container.
+3. Sets `DISPLAY=:0` in the container.
+4. Sets `LIBGL_ALWAYS_SOFTWARE=1` so Chromium/Mesa do not hang trying to use GPU/DRM inside Docker when no window appears.
+
+### macOS / rootless Docker alternative
+
+When bind-mounting `/tmp/.X11-unix` is not possible (for example rootless Docker on macOS), use the commented
+alternative in `.ddev/config.playwright.yaml`:
+
+```yaml
+web_environment:
+  - DISPLAY=host.docker.internal:0
+```
+
+You still need `xhost +local:docker` (or equivalent) on the host so Docker can connect to the X server.
 
 ## Credits
 
