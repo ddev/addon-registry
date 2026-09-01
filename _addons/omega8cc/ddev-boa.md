@@ -6,17 +6,19 @@ user: "omega8cc"
 repo: "ddev-boa"
 repo_id: 1299304061
 default_branch: "main"
-tag_name: "v1.0.2"
+tag_name: "v1.0.4"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-07-13"
-updated_at: "2026-08-05"
+updated_at: "2026-08-31"
 workflow_status: "unknown"
 stars: 0
 ---
 
 # ddev-boa
+
+[![tests](https://github.com/omega8cc/ddev-boa/actions/workflows/tests.yml/badge.svg)](https://github.com/omega8cc/ddev-boa/actions/workflows/tests.yml)
 
 Pull your **BOA-hosted** site's database and files into a local
 [DDEV](https://ddev.com) project — through your normal BOA limited-shell account, with no
@@ -49,12 +51,11 @@ Edit `.ddev/providers/boa.yaml` (or set these in `.ddev/.env`):
 |---|---|---|
 | `BOA_SSH_USER` | your tenant shell account | `o1.ftp` |
 | `BOA_HOST` | your BOA server hostname | `server.example.com` |
-| `BOA_ALIAS` | the site's Drush alias, no `@` | `mysite-com` |
-| `BOA_DRUSH` | `drush11` (default) or `drush`/`drush8` for Drupal 6/7 | `drush11` |
+| `BOA_ALIAS` | the site's Drush alias, no `@` | `mysite.com` |
+| `BOA_DRUSH` | `drush` (default) or `drush8` — the classic Drush that carries the aliases | `drush` |
 | `BOA_FILES_PATH` | optional; auto-discovered if empty | |
 
-Find the exact alias name (drush8 and drush10/11 alias names differ — dots become hyphens
-except the last extension):
+Find the exact alias name:
 
 ```bash
 ddev boa-aliases

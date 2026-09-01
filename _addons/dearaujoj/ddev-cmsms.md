@@ -12,7 +12,7 @@ dependencies: ["ddev/ddev-phpmyadmin"]
 type: "contrib"
 created_at: "2026-07-25"
 updated_at: "2026-07-27"
-workflow_status: "success"
+workflow_status: "disabled"
 stars: 0
 ---
 

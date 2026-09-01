@@ -6,12 +6,12 @@ user: "drupal-canvas"
 repo: "ddev-drupal-xb-dev"
 repo_id: 827380616
 default_branch: "main"
-tag_name: "v0.0.32"
+tag_name: "v0.0.33"
 ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2024-07-11"
-updated_at: "2026-04-27"
+updated_at: "2026-08-31"
 workflow_status: "success"
 stars: 25
 ---
@@ -50,7 +50,7 @@ mkdir ~/Sites/xb-dev
 cd ~/Sites/xb-dev
 
 # Configure the new DDEV project.
-ddev config --project-type=drupal11 --docroot=web
+ddev config --project-type=drupal11
 
 # Create the Drupal project.
 ddev composer create-project drupal/recommended-project:11.x@dev --no-install
@@ -58,7 +58,7 @@ ddev composer create-project drupal/recommended-project:11.x@dev --no-install
 # Install the add-on.
 ddev add-on get drupal-canvas/ddev-drupal-xb-dev
 
-# Perform one-time setup operations.
+# Perform one-time setup operations, including composer installing Drupal Canvas itself.
 ddev xb-setup
 
 # Optionally add some convenience extras for development.
@@ -74,7 +74,7 @@ ddev xb-workspaces-dev
 
 The resulting DDEV project is just like any other one. Interact with it using the [the built-in commands](https://ddev.readthedocs.io/en/stable/users/usage/commands/), e.g., `ddev launch` to browse the site.
 
-The installation process clones [the Drupal Canvas module](https://www.drupal.org/project/canvas) into `web/modules/contrib/canvas`. Develop and contribute from either location like you would any other Git repo for a normal Drupal project.
+The installation process clones [the Drupal Canvas module](https://www.drupal.org/project/canvas) into the project installer path for contrib modules (typically `web/modules/contrib/canvas` for `docroot: web`, or `modules/contrib/canvas` for `docroot: ""`). Develop and contribute from there like you would any other Git repo for a normal Drupal project.
 
 Any time you update the Drupal Canvas module or modify its front-end code, be sure to rebuild the UI app assets:
 
@@ -230,19 +230,19 @@ ddev restart
 Run Cypress tests interactively:
 
 ```shell
-ddev cypress open
+ddev xb-cypress open
 ```
 
 Run them headlessly:
 
 ```shell
-ddev cypress run
+ddev xb-cypress run
 ```
 
 Run component/unit tests:
 
 ```shell
-ddev cypress component
+ddev xb-cypress component
 ```
 
 ## Support & community

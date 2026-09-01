@@ -11,9 +11,9 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2025-03-07"
-updated_at: "2026-08-20"
+updated_at: "2026-08-31"
 workflow_status: "success"
-stars: 9
+stars: 10
 ---
 
 # ddev-typo3-multi-version-extension

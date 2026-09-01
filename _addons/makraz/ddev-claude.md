@@ -6,12 +6,12 @@ user: "makraz"
 repo: "ddev-claude"
 repo_id: 1231065280
 default_branch: "main"
-tag_name: "v0.4.0"
+tag_name: "v0.4.1"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-05-06"
-updated_at: "2026-08-21"
+updated_at: "2026-08-31"
 workflow_status: "success"
 stars: 4
 ---
