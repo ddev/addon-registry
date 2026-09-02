@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: "contrib"
 created_at: "2026-02-17"
-updated_at: "2026-06-23"
+updated_at: "2026-09-01"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -74,6 +74,8 @@ Sharing only works if the tools agree on a browser **revision**, which is tied t
 ```
 
 With a single resolved `playwright-core`, the add-on's `install-browser chromium` populates the cache once and your other tools (e.g. `@vitest/browser-playwright` driving Storybook stories) reuse it rather than downloading a second copy.
+
+Because the cache is shared, the add-on also sets `PLAYWRIGHT_SKIP_BROWSER_GC=1`. Playwright normally garbage-collects browser revisions it no longer recognises, which is safe for a per-project cache but destructive for a shared one: an install in one project would delete the revisions other projects pinned to a different `playwright-core`, forcing them to re-download on their next run.
 
 ## Credits
 

@@ -6,12 +6,12 @@ user: "Pronovix"
 repo: "ddev-saml-idp"
 repo_id: 1259096372
 default_branch: "main"
-tag_name: "1.0.0-beta1"
+tag_name: "1.0.0-beta2"
 ddev_version_constraint: ">= v1.25.2"
 dependencies: []
 type: "contrib"
 created_at: "2026-06-04"
-updated_at: "2026-08-07"
+updated_at: "2026-08-31"
 workflow_status: "success"
 stars: 2
 ---
@@ -45,14 +45,24 @@ This add-on is designed to streamline local SAML integration and testing for web
    ddev add-on get Pronovix/ddev-saml-idp
    ```
 
-2. **Start/Run the service:**
+2. **Start the SAML IdP service:**
 
-    - **Persistent configuration (recommended):**
-      If you want the SAML IdP service to always start automatically alongside your project, add the `saml-idp` profile to your `.ddev/config.local.yaml` (or `.ddev/config.yaml`) file:
+    By default, this add-on provides an **on-demand** service using Docker Compose profiles (`saml-idp`). It only starts when explicitly requested so that local resources are not consumed during unrelated development tasks.
+
+    - **On-demand (default & recommended):**
+      Start your project with the `saml-idp` profile whenever you need SAML authentication:
+      ```bash
+      ddev start --profiles=saml-idp
+      ```
+      *(Or when restarting: `ddev restart --profiles=saml-idp`)*
+
+    - **Always start automatically (optional):**
+      If you prefer the SAML IdP service to always start on every standard `ddev start` or `ddev restart` without passing the profile flag, create `.ddev/docker-compose.saml-idp_enable.yaml` to override and reset the profile constraint:
 
       ```yaml
-      profiles:
-        - saml-idp
+      services:
+        saml-idp:
+          profiles: !reset []
       ```
 
       Then restart your project:
@@ -61,15 +71,8 @@ This add-on is designed to streamline local SAML integration and testing for web
       ddev restart
       ```
 
-    - **On-demand (alternative):**
-      If you prefer to start the SAML IdP only when needed, without persisting it to your DDEV configuration, run `ddev restart` first to ensure the router is ready, then start with the profile:
-      ```bash
-      ddev restart
-      ddev start --profiles=saml-idp
-      ```
-
    > [!NOTE]
-   > On the very first start after installation, the container image is built from scratch. The `ddev restart` step above accounts for this. Subsequent starts work normally without any extra steps.
+   > On the very first start after installation, the container image is built from scratch. Subsequent starts work normally without any build delay.
 
 ## Service Access & Endpoints
 
