@@ -6,12 +6,12 @@ user: "Metadrop"
 repo: "ddev-aljibe"
 repo_id: 817303007
 default_branch: "main"
-tag_name: "v2.4.9"
+tag_name: "v2.4.10"
 ddev_version_constraint: ">= v1.24.1"
 dependencies: []
 type: "contrib"
 created_at: "2024-06-19"
-updated_at: "2026-09-01"
+updated_at: "2026-09-02"
 workflow_status: "disabled"
 stars: 25
 ---

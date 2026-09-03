@@ -6,12 +6,12 @@ user: "Pronovix"
 repo: "ddev-oidc-provider-mock"
 repo_id: 1325102421
 default_branch: "main"
-tag_name: "1.0.0-alpha1"
+tag_name: "1.0.0-alpha2"
 ddev_version_constraint: ">= v1.25.3"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-06"
-updated_at: "2026-08-07"
+updated_at: "2026-09-02"
 workflow_status: "success"
 stars: 0
 ---
@@ -27,7 +27,7 @@ This DDEV add-on integrates [`ghcr.io/geigerzaehler/oidc-provider-mock`](https:/
 
 ## Overview & Features
 
-- **Optional Profile**: Defined via Docker Compose profiles (`oidc-provider-mock`, `oidc`), so the container runs only when you actively need it.
+- **Optional Profile**: Defined via Docker Compose profiles (`oidc-provider-mock`), so the container runs only when you actively need it.
 - **Turnkey Setup**: Pre-configured mock users (`admin`, `alice`, `bob`) with zero mandatory setup steps.
 - **Framework-Agnostic**: Works with any OIDC client (Drupal `openid_connect`, `oauth2_client`, custom PHP/JS applications, etc.).
 - **Dual Routing**: Routed through DDEV's HTTPS router at `https://oidc.<site>.<tld>` (e.g. `https://oidc.mysite.ddev.site`) so both browser front-channel redirects and server-to-server back-channel API calls hit the exact same Issuer URL.
@@ -41,28 +41,30 @@ This DDEV add-on integrates [`ghcr.io/geigerzaehler/oidc-provider-mock`](https:/
    ddev add-on get Pronovix/ddev-oidc-provider-mock
    ```
 
-2. **Start/Run the service:**
+2. **Start the OIDC Provider Mock service:**
 
-   - **Persistent configuration (recommended):**
-     If you want the OIDC Provider Mock service to always start automatically alongside your project, add the `oidc-provider-mock` profile to your `.ddev/config.local.yaml` (or `.ddev/config.yaml`) file:
+   By default, this add-on provides an **on-demand** service using Docker Compose profiles (`oidc-provider-mock`). It only starts when explicitly requested so that local resources are not consumed during unrelated development tasks.
+
+   - **On-demand (default & recommended):**
+     Start your project with the `oidc-provider-mock` profile whenever you need OIDC authentication:
+     ```bash
+     ddev start --profiles=oidc-provider-mock
+     ```
+     *(Or when restarting: `ddev restart --profiles=oidc-provider-mock`)*
+
+   - **Always start automatically (optional):**
+     If you prefer the OIDC Provider Mock service to always start on every standard `ddev start` or `ddev restart` without passing the profile flag, create `.ddev/docker-compose.oidc-provider-mock_enable.yaml` to override and reset the profile constraint:
 
      ```yaml
-     profiles:
-       - oidc-provider-mock
+     services:
+       oidc-provider-mock:
+         profiles: !reset []
      ```
 
      Then restart your project:
 
      ```bash
      ddev restart
-     ```
-
-   - **On-demand (alternative):**
-     If you prefer to start the OIDC Provider Mock only when needed, without persisting it to your DDEV configuration, run `ddev restart` first to ensure the router is ready, then start with the profile:
-
-     ```bash
-     ddev restart
-     ddev start --profiles=oidc-provider-mock
      ```
 
 ## Key Endpoints
