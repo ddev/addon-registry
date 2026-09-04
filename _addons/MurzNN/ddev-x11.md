@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2026-07-17"
 updated_at: "2026-08-29"
 workflow_status: "unknown"
-stars: 1
+stars: 2
 ---
 
 [![tests](https://github.com/MurzNN/ddev-x11/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/MurzNN/ddev-x11/actions/workflows/tests.yml?query=branch%3Amain)
