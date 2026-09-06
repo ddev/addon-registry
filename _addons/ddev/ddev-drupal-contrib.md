@@ -13,7 +13,7 @@ type: "official"
 created_at: "2023-04-29"
 updated_at: "2026-08-30"
 workflow_status: "success"
-stars: 140
+stars: 139
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
