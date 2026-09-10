@@ -6,12 +6,12 @@ user: "e0ipso"
 repo: "ddev-assistant-claude"
 repo_id: 1132377741
 default_branch: "main"
-tag_name: "v1.4.0"
+tag_name: "v1.4.1"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-01-11"
-updated_at: "2026-06-29"
+updated_at: "2026-09-09"
 workflow_status: "success"
 stars: 16
 ---
@@ -46,7 +46,7 @@ After installation, commit the `.ddev` directory to version control.
 ## What it does
 
 - **Installs Claude Code** into the container at `/usr/local/bin/claude`, on `$PATH` for every shell
-- **Seeds host configuration** on start: your host `~/.claude/` tree is mounted read-only under `~/.cred-seed/claude/`, then mirrored into the writable container `~/.claude/` directory on every restart:
+- **Seeds host configuration** on start: your host `~/.claude/` tree is mounted read-only at `/mnt/ddev-assistant-claude-seed/`, then mirrored into the writable container `~/.claude/` directory on every restart:
   - `~/.claude/CLAUDE.md` — project and global instructions
   - `~/.claude/settings.json` — Claude Code settings
   - `~/.claude/skills/` — custom skills
