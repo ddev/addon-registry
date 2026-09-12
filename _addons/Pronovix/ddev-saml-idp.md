@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.25.2"
 dependencies: []
 type: "contrib"
 created_at: "2026-06-04"
-updated_at: "2026-08-31"
+updated_at: "2026-09-11"
 workflow_status: "success"
 stars: 2
 ---
@@ -38,41 +38,55 @@ This add-on is designed to streamline local SAML integration and testing for web
 - **Version Control Pinning:** Control base PHP version (`PHP_IMAGE_TAG`, default: `8.4`) and SimpleSAMLphp library version (`SSP_VERSION`, default: `^2.2`) via DDEV environment variables.
 - **Native Multi-Architecture Support:** Built locally from source, running natively on both Apple Silicon (`linux/arm64`) and Intel/AMD (`linux/amd64`) machines.
 
-## Installation & Setup
+## Installation
 
-1. **Install the add-on:**
-   ```bash
-   ddev add-on get Pronovix/ddev-saml-idp
-   ```
+```bash
+ddev add-on get Pronovix/ddev-saml-idp
+ddev restart && ddev start --profiles=saml-idp
+```
 
-2. **Start the SAML IdP service:**
+> [!NOTE]
+> On the very first start after installation, the container image is built from scratch. Subsequent starts work normally without any build delay.
 
-    By default, this add-on provides an **on-demand** service using Docker Compose profiles (`saml-idp`). It only starts when explicitly requested so that local resources are not consumed during unrelated development tasks.
+## Updating
 
-    - **On-demand (default & recommended):**
-      Start your project with the `saml-idp` profile whenever you need SAML authentication:
-      ```bash
-      ddev start --profiles=saml-idp
-      ```
-      *(Or when restarting: `ddev restart --profiles=saml-idp`)*
+When updating this add-on (or changing files that affect the SAML IdP Docker image), a standard `ddev restart` or `ddev restart --no-cache` will **not** rebuild the SAML IdP container image because the SAML IdP service is gated behind an optional Docker Compose profile (tracked in [ddev/ddev#8817](https://github.com/ddev/ddev/issues/8817)).
 
-    - **Always start automatically (optional):**
-      If you prefer the SAML IdP service to always start on every standard `ddev start` or `ddev restart` without passing the profile flag, create `.ddev/docker-compose.saml-idp_enable.yaml` to override and reset the profile constraint:
+To update the add-on and properly rebuild and restart the SAML IdP service:
 
-      ```yaml
-      services:
-        saml-idp:
-          profiles: !reset []
-      ```
+```bash
+ddev add-on get Pronovix/ddev-saml-idp
+ddev debug rebuild -s saml-idp
+ddev restart && ddev start --profiles=saml-idp
+```
 
-      Then restart your project:
+> **Note:** `ddev debug rebuild -s <service>` (or its alias `ddev utility rebuild -s <service>`) for profile-gated services requires DDEV >= v1.25.3 ([ddev/ddev#8463](https://github.com/ddev/ddev/pull/8463)). Following up with `ddev restart && ddev start --profiles=saml-idp` ensures all project containers and profile services restart cleanly together (see [ddev/ddev#7904](https://github.com/ddev/ddev/issues/7904)).
 
-      ```bash
-      ddev restart
-      ```
+## Usage
 
-   > [!NOTE]
-   > On the very first start after installation, the container image is built from scratch. Subsequent starts work normally without any build delay.
+By default, this add-on provides an **on-demand** service using Docker Compose profiles (`saml-idp`). It only starts when explicitly requested so that local resources are not consumed during unrelated development tasks.
+
+- **On-demand (default & recommended):**
+  Start your project with the `saml-idp` profile whenever you need SAML authentication:
+  ```bash
+  ddev start --profiles=saml-idp
+  ```
+  *(Or when restarting: `ddev restart && ddev start --profiles=saml-idp`)*
+
+- **Always start automatically (optional):**
+  If you prefer the SAML IdP service to always start on every standard `ddev start` or `ddev restart` without passing the profile flag, create `.ddev/docker-compose.saml-idp_enable.yaml` to override and reset the profile constraint:
+
+  ```yaml
+  services:
+    saml-idp:
+      profiles: !reset []
+  ```
+
+  Then restart your project:
+
+  ```bash
+  ddev restart
+  ```
 
 ## Service Access & Endpoints
 
@@ -168,7 +182,14 @@ PHP_IMAGE_TAG=8.3
 # Pin the exact SimpleSAMLphp composer version or version constraint
 SSP_VERSION=2.2.0
 ```
-Run `ddev restart` to rebuild the container with your newly specified versions.
+Rebuild and restart the container with your newly specified versions:
+
+```bash
+ddev debug rebuild -s saml-idp
+ddev restart && ddev start --profiles=saml-idp
+```
+
+*(Or simply `ddev debug rebuild -s saml-idp && ddev restart` if you have configured the service to always start automatically).*
 
 ## Troubleshooting & Logs
 
@@ -177,12 +198,12 @@ Run `ddev restart` to rebuild the container with your newly specified versions.
   ddev logs -s saml-idp
   ```
 - **Reset/Regenerate Signing Certificates:**
-  If you ever need to regenerate the certificates and private keys, simply delete them and restart/start the IdP service (using `ddev restart` if the profile is persistent, or `ddev start --profiles=saml-idp` if starting on-demand):
+  If you ever need to regenerate the certificates and private keys, simply delete them and restart/start the IdP service (using `ddev restart && ddev start --profiles=saml-idp` if starting on-demand, or `ddev restart` if the profile is persistent):
   ```bash
   rm -f .ddev/saml-idp/certs/*
-  ddev restart
-  # OR if running on-demand:
-  # ddev start --profiles=saml-idp
+  ddev restart && ddev start --profiles=saml-idp
+  # OR if using persistent auto-start configuration:
+  # ddev restart
   ```
   The entrypoint script will automatically detect the missing certificates and securely generate a brand-new, matching cryptographic key set.
 

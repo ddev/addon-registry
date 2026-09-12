@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.25.3"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-06"
-updated_at: "2026-09-02"
+updated_at: "2026-09-11"
 workflow_status: "success"
 stars: 0
 ---
@@ -34,38 +34,52 @@ This DDEV add-on integrates [`ghcr.io/geigerzaehler/oidc-provider-mock`](https:/
 - **Accepts Any Credentials**: Accepts any Client ID and Client Secret by default (unless restricted via arguments).
 - **Persistent & Versionable User List**: User definitions are stored in `.ddev/oidc-provider-mock/users.yaml` which can be customized and committed to your project's version control.
 
-## Installation & Usage
+## Installation
 
-1. **Install the add-on:**
-   ```bash
-   ddev add-on get Pronovix/ddev-oidc-provider-mock
-   ```
+```bash
+ddev add-on get Pronovix/ddev-oidc-provider-mock
+ddev restart && ddev start --profiles=oidc-provider-mock
+```
 
-2. **Start the OIDC Provider Mock service:**
+## Updating
 
-   By default, this add-on provides an **on-demand** service using Docker Compose profiles (`oidc-provider-mock`). It only starts when explicitly requested so that local resources are not consumed during unrelated development tasks.
+When updating this add-on, a standard `ddev restart` or `ddev restart --no-cache` will **not** rebuild or pull the service container if changes are made to profile-gated services (tracked in [ddev/ddev#8817](https://github.com/ddev/ddev/issues/8817)).
 
-   - **On-demand (default & recommended):**
-     Start your project with the `oidc-provider-mock` profile whenever you need OIDC authentication:
-     ```bash
-     ddev start --profiles=oidc-provider-mock
-     ```
-     *(Or when restarting: `ddev restart --profiles=oidc-provider-mock`)*
+To update the add-on and properly restart the OIDC Provider Mock service:
 
-   - **Always start automatically (optional):**
-     If you prefer the OIDC Provider Mock service to always start on every standard `ddev start` or `ddev restart` without passing the profile flag, create `.ddev/docker-compose.oidc-provider-mock_enable.yaml` to override and reset the profile constraint:
+```bash
+ddev add-on get Pronovix/ddev-oidc-provider-mock
+ddev debug rebuild -s oidc-provider-mock
+ddev restart && ddev start --profiles=oidc-provider-mock
+```
 
-     ```yaml
-     services:
-       oidc-provider-mock:
-         profiles: !reset []
-     ```
+> **Note:** `ddev debug rebuild -s <service>` (or its alias `ddev utility rebuild -s <service>`) for profile-gated services requires DDEV >= v1.25.3 ([ddev/ddev#8463](https://github.com/ddev/ddev/pull/8463)). Following up with `ddev restart && ddev start --profiles=oidc-provider-mock` ensures all project containers and profile services restart cleanly together (see [ddev/ddev#7904](https://github.com/ddev/ddev/issues/7904)).
 
-     Then restart your project:
+## Usage
 
-     ```bash
-     ddev restart
-     ```
+By default, this add-on provides an **on-demand** service using Docker Compose profiles (`oidc-provider-mock`). It only starts when explicitly requested so that local resources are not consumed during unrelated development tasks.
+
+- **On-demand (default & recommended):**
+  Start your project with the `oidc-provider-mock` profile whenever you need OIDC authentication:
+  ```bash
+  ddev start --profiles=oidc-provider-mock
+  ```
+  *(Or when restarting: `ddev restart && ddev start --profiles=oidc-provider-mock`)*
+
+- **Always start automatically (optional):**
+  If you prefer the OIDC Provider Mock service to always start on every standard `ddev start` or `ddev restart` without passing the profile flag, create `.ddev/docker-compose.oidc-provider-mock_enable.yaml` to override and reset the profile constraint:
+
+  ```yaml
+  services:
+    oidc-provider-mock:
+      profiles: !reset []
+  ```
+
+  Then restart your project:
+
+  ```bash
+  ddev restart
+  ```
 
 ## Key Endpoints
 
@@ -78,9 +92,12 @@ This DDEV add-on integrates [`ghcr.io/geigerzaehler/oidc-provider-mock`](https:/
 | **Discovery** | `https://oidc.<site>.<tld>/.well-known/openid-configuration` | OpenID Connect discovery metadata |
 | **Authorization** | `https://oidc.<site>.<tld>/oauth2/authorize` | HTML authorization form / redirect |
 | **Token** | `https://oidc.<site>.<tld>/oauth2/token` | Exchange code for tokens |
-| **Userinfo** | `https://oidc.<site>.<tld>/oauth2/userinfo` | Fetch authenticated user claims |
+| **Userinfo** | `https://oidc.<site>.<tld>/userinfo` | Fetch authenticated user claims |
 | **Client Registration** | `POST https://oidc.<site>.<tld>/oauth2/clients` | Dynamic client registration (optional) |
 | **Dynamic Claims API** | `PUT https://oidc.<site>.<tld>/users/{sub}` | Inject/update user claims during test runs |
+
+> [!TIP]
+> For any additional endpoints, or to view all available paths discovered dynamically, inspect your project's discovery metadata at `https://oidc.<site>.<tld>/.well-known/openid-configuration`, or consult the official [OIDC Provider Mock Documentation](https://oidc-provider-mock.readthedocs.io/).
 
 ## Usage & Commands
 
@@ -133,7 +150,7 @@ To connect any OIDC client module or application to this mock provider:
 4. **Scopes**: `openid email profile`
 5. **Authorization Endpoint**: `https://oidc.<site>.<tld>/oauth2/authorize`
 6. **Token Endpoint**: `https://oidc.<site>.<tld>/oauth2/token`
-7. **Userinfo Endpoint**: `https://oidc.<site>.<tld>/oauth2/userinfo`
+7. **Userinfo Endpoint**: `https://oidc.<site>.<tld>/userinfo`
 
 ## Credits
 
