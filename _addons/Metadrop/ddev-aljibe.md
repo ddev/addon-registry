@@ -12,8 +12,8 @@ dependencies: []
 type: "contrib"
 created_at: "2024-06-19"
 updated_at: "2026-09-07"
-workflow_status: "disabled"
-stars: 25
+workflow_status: "success"
+stars: 26
 ---
 
 [![tests](https://github.com/Metadrop/ddev-aljibe/actions/workflows/tests.yml/badge.svg)](https://github.com/Metadrop/ddev-aljibe/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
