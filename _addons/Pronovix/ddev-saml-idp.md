@@ -6,12 +6,12 @@ user: "Pronovix"
 repo: "ddev-saml-idp"
 repo_id: 1259096372
 default_branch: "main"
-tag_name: "1.0.0-beta3"
+tag_name: "1.0.0-beta4"
 ddev_version_constraint: ">= v1.25.2"
 dependencies: []
 type: "contrib"
 created_at: "2026-06-04"
-updated_at: "2026-09-15"
+updated_at: "2026-09-16"
 workflow_status: "success"
 stars: 2
 ---

@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2024-06-04"
 updated_at: "2026-02-05"
 workflow_status: "success"
-stars: 37
+stars: 38
 ---
 
 [![tests](https://github.com/s2b/ddev-vite-sidecar/actions/workflows/tests.yml/badge.svg)](https://github.com/s2b/ddev-vite-sidecar/actions/workflows/tests.yml)
