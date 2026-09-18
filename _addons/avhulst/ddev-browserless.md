@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2026-08-01"
 updated_at: "2026-08-03"
 workflow_status: "success"
-stars: 0
+stars: 1
 ---
 
 # DDEV Browserless Add-on
