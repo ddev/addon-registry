@@ -6,12 +6,12 @@ user: "abhisekmazumdar"
 repo: "ddev-langfuse"
 repo_id: 1320349068
 default_branch: "main"
-tag_name: "v1.0.0"
+tag_name: "v1.0.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-02"
-updated_at: "2026-08-02"
+updated_at: "2026-09-18"
 workflow_status: "failure"
 stars: 0
 ---
@@ -46,7 +46,7 @@ services inside your existing DDEV project:
 | `langfuse-postgres` | `postgres:17` | relational data |
 | `langfuse-clickhouse` | `clickhouse/clickhouse-server:25.12` | trace/analytics store |
 | `langfuse-redis` | `redis:7` | queues/cache |
-| `langfuse-minio` | `minio/minio` | S3-compatible blob storage |
+| `langfuse-minio` | `quay.io/minio/minio` | S3-compatible blob storage |
 
 No lightweight single-container alternative exists for Langfuse's current
 architecture — all six services are required.
