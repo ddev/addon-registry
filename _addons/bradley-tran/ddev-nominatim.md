@@ -6,12 +6,12 @@ user: "bradley-tran"
 repo: "ddev-nominatim"
 repo_id: 1375557109
 default_branch: "main"
-tag_name: "v0.1.1"
+tag_name: "v0.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-09-18"
-updated_at: "2026-09-18"
+updated_at: "2026-09-19"
 workflow_status: "success"
 stars: 0
 ---
@@ -25,7 +25,7 @@ stars: 0
 
 ## Overview
 
-This add-on integrates [Nominatim](https://nominatim.org/) (OpenStreetMap search and reverse geocoding engine) into your [DDEV](https://ddev.com/) project using the [`mediagis/nominatim`](https://hub.docker.com/r/mediagis/nominatim) Docker image.
+This add-on integrates [Nominatim](https://nominatim.org/) (OpenStreetMap search and reverse geocoding engine) into your [DDEV](https://ddev.com/) project using the [`mediagis/nominatim`](https://hub.docker.com/r/mediagis/nominatim) Docker image, along with [Nominatim UI](https://github.com/osm-search/nominatim-ui) for interactive map searching, reverse geocoding, and database inspection.
 
 By default, the add-on downloads and imports the Monaco extract from Geofabrik for quick testing and development. You can easily configure it to import any regional extract or custom OSM data.
 
@@ -49,7 +49,11 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 ### Accessing Nominatim
 
-- **External (Host Browser / Tools):**
+- **Web UI (Host Browser):**
+  - HTTP: `http://<projectname>.ddev.site:8765`
+  - HTTPS: `https://<projectname>.ddev.site:8744`
+  - Quick launch: `ddev nominatim-ui`
+- **API (Host Browser / External Tools):**
   - HTTP: `http://<projectname>.ddev.site:8980`
   - HTTPS: `https://<projectname>.ddev.site:8943`
 - **Internal (From `web` container or other services):**
@@ -67,9 +71,33 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Command | Description |
 | ------- | ----------- |
+| `ddev nominatim-ui` | Open the Nominatim Web UI in your browser |
+| `ddev nominatim <cmd>` | Run Nominatim CLI commands inside the container |
 | `ddev describe` | View service status and exposed ports |
 | `ddev logs -s nominatim` | View Nominatim container logs |
 | `ddev logs -s nominatim -f` | Follow live import and request logs |
+| `ddev logs -s nominatim-ui` | View Nominatim UI web server logs |
+
+### Nominatim CLI
+
+This add-on exposes the `nominatim` command to run CLI commands directly inside the Nominatim container:
+
+```bash
+# Check service and database status
+ddev nominatim status
+
+# Check database health and consistency
+ddev nominatim admin --check-database
+
+# Warm database cache
+ddev nominatim admin --warm
+
+# Show Nominatim version
+ddev nominatim --version
+
+# View all available CLI commands and help
+ddev nominatim --help
+```
 
 ## Configuration
 
@@ -99,6 +127,18 @@ ddev restart
 | `NOMINATIM_IMPORT_WIKIPEDIA` | `--nominatim-import-wikipedia` | `false` | Import Wikipedia importance dumps for improved ranking |
 | `NOMINATIM_HTTP_PORT` | `--nominatim-http-port` | `8980` | Host HTTP port exposed via DDEV router |
 | `NOMINATIM_HTTPS_PORT` | `--nominatim-https-port` | `8943` | Host HTTPS port exposed via DDEV router |
+| `NOMINATIM_UI_HTTP_PORT` | `--nominatim-ui-http-port` | `8765` | Host HTTP port for Web UI exposed via DDEV router |
+| `NOMINATIM_UI_HTTPS_PORT` | `--nominatim-ui-https-port` | `8744` | Host HTTPS port for Web UI exposed via DDEV router |
+| `NOMINATIM_UI_VERSION` | `--nominatim-ui-version` | `3.12.0` | Release version of `osm-search/nominatim-ui` |
+| `NOMINATIM_UI_PAGE_TITLE` | `--nominatim-ui-page-title` | `Nominatim` | Page title displayed in the Web UI |
+| `NOMINATIM_UI_DOCKER_IMAGE` | `--nominatim-ui-docker-image` | `nginx:alpine` | Docker image used to serve Nominatim UI |
+
+### Customizing Nominatim UI
+
+You can customize the UI by creating files in `.ddev/nominatim-ui/`:
+- **Theme Configuration:** Create `.ddev/nominatim-ui/config.theme.js` to override frontend settings (e.g., default zoom, map center, tiles).
+- **Web Server Configuration:** Create `.ddev/nominatim-ui/nginx.conf` to provide a custom Nginx configuration.
+After creating or editing these files, restart DDEV with `ddev restart`.
 
 ## Data Persistence & Changing Data Extracts
 
