@@ -12,8 +12,8 @@ dependencies: []
 type: "contrib"
 created_at: "2023-10-18"
 updated_at: "2026-08-10"
-workflow_status: "success"
-stars: 30
+workflow_status: "failure"
+stars: 31
 ---
 
 # ddev-core-dev
