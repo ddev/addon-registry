@@ -6,12 +6,12 @@ user: "ddev"
 repo: "ddev-cypress"
 repo_id: 473510790
 default_branch: "main"
-tag_name: "v.1.21.0"
+tag_name: "v2.0.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2022-03-24"
-updated_at: "2026-08-24"
+updated_at: "2026-09-22"
 workflow_status: "success"
 stars: 16
 ---
