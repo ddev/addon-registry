@@ -6,13 +6,13 @@ user: "ptmkenny"
 repo: "ddev-codex"
 repo_id: 1354489766
 default_branch: "main"
-tag_name: "v1.0.0"
+tag_name: "v1.0.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-09-02"
-updated_at: "2026-09-02"
-workflow_status: "failure"
+updated_at: "2026-09-23"
+workflow_status: "success"
 stars: 0
 ---
 
@@ -118,6 +118,15 @@ restrictions with `seccomp=unconfined`, `apparmor=unconfined`, and
 `systempaths=unconfined`. The web and database containers retain their normal
 Docker security profiles. This is the same three-option configuration
 [Moby documents for a rootless sandbox running inside Docker](https://github.com/moby/buildkit/blob/master/docs/rootless.md#docker).
+
+Ubuntu hosts can also enforce
+`kernel.apparmor_restrict_unprivileged_userns=1`, which restricts capabilities
+inside user namespaces even for an `unconfined` container. Bubblewrap can then
+fail with `setting up uid map: Permission denied`. The CI workflow disables
+this restriction on its disposable runner before testing. On a development
+host, use an administrator-managed AppArmor policy that permits the sandbox's
+user namespaces; disabling the sysctl affects the entire host. See
+[Ubuntu's user namespace restriction documentation](https://documentation.ubuntu.com/release-notes/24.04/#unprivileged-user-namespace-restrictions).
 
 The sidecar also drops all Linux capabilities and enables
 `no-new-privileges`. It is not privileged and does not mount the Docker socket

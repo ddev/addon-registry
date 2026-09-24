@@ -1,8 +1,8 @@
 ---
-title: "maxwebgr/ddev-zed"
-github_url: "https://github.com/maxwebgr/ddev-zed"
+title: "jfeid/ddev-zed"
+github_url: "https://github.com/jfeid/ddev-zed"
 description: "Zed editor integration for DDEV projects: tasks, Xdebug listener, ddev zed command, optional ddev-mcp"
-user: "maxwebgr"
+user: "jfeid"
 repo: "ddev-zed"
 repo_id: 1382197667
 default_branch: "main"
@@ -11,12 +11,12 @@ ddev_version_constraint: ">= v1.25.4"
 dependencies: []
 type: "contrib"
 created_at: "2026-09-22"
-updated_at: "2026-09-22"
-workflow_status: "unknown"
+updated_at: "2026-09-23"
+workflow_status: "success"
 stars: 0
 ---
 
-[![tests](https://github.com/maxwebgr/ddev-zed/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/maxwebgr/ddev-zed/actions/workflows/tests.yml?query=branch%3Amain)
+[![tests](https://github.com/jfeid/ddev-zed/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/jfeid/ddev-zed/actions/workflows/tests.yml?query=branch%3Amain)
 
 # DDEV Zed
 
@@ -25,13 +25,13 @@ Zed editor integration for DDEV projects: tasks for everyday `ddev` commands, a 
 ## Install
 
 ```bash
-ddev add-on get maxwebgr/ddev-zed
+ddev add-on get jfeid/ddev-zed
 ```
 
 To also connect Zed's Agent Panel to DDEV, opt in to the MCP server (see [DDEV MCP server](#ddev-mcp-server-optional)):
 
 ```bash
-DDEV_ZED_MCP=true ddev add-on get maxwebgr/ddev-zed
+DDEV_ZED_MCP=true ddev add-on get jfeid/ddev-zed
 ```
 
 ## What it installs
@@ -74,7 +74,7 @@ Files containing `#ddev-generated` belong to the add-on and are updated on reins
 2. Run the `ddev: xdebug toggle` task.
 3. Load the page.
 
-The listener binds to `0.0.0.0:9003` so the web container can reach it, and maps `/var/www/html` to `$ZED_WORKTREE_ROOT`, the [task variable](https://zed.dev/docs/tasks#variables) Zed resolves to the project root. If breakpoints don't trigger, see the [FAQ](https://github.com/maxwebgr/ddev-zed/blob/main/FAQ.md): the usual causes are a host firewall blocking port 9003 or, rarely, the variable not resolving.
+The listener binds to `0.0.0.0:9003` so the web container can reach it, and maps `/var/www/html` to `$ZED_WORKTREE_ROOT`, the [task variable](https://zed.dev/docs/tasks#variables) Zed resolves to the project root. If breakpoints don't trigger, see the [FAQ](https://github.com/jfeid/ddev-zed/blob/main/FAQ.md): the usual causes are a host firewall blocking port 9003 or, rarely, the variable not resolving.
 
 ## Keybindings
 
@@ -95,7 +95,7 @@ Zed's `keymap.json` is global, so the add-on doesn't touch it. Example:
 
 ## FAQ
 
-See [FAQ.md](https://github.com/maxwebgr/ddev-zed/blob/main/FAQ.md) for firewall setup, path mapping fallbacks, and merging into user-owned files.
+See [FAQ.md](https://github.com/jfeid/ddev-zed/blob/main/FAQ.md) for firewall setup, path mapping fallbacks, and merging into user-owned files.
 
 ## Remove
 
@@ -103,4 +103,4 @@ See [FAQ.md](https://github.com/maxwebgr/ddev-zed/blob/main/FAQ.md) for firewall
 ddev add-on remove zed
 ```
 
-**Contributed and maintained by [@maxwebgr](https://github.com/maxwebgr)**
+**Contributed and maintained by [@jfeid](https://github.com/jfeid)**

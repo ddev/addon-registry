@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-07-13"
-updated_at: "2026-08-31"
+updated_at: "2026-09-23"
 workflow_status: "success"
 stars: 0
 ---
@@ -85,6 +85,23 @@ ddev pull boa      # pulls the database + files. Never pulls or pushes code.
 
 There is intentionally **no `ddev push boa`** — pushing to a live hosted site from a local
 box is not something this add-on will do.
+
+### Keep a reset point
+
+A pulled database is your live site's data, your users' accounts and email addresses
+included, and so is every snapshot of it. Keep snapshots in `.ddev/db_snapshots`, which
+DDEV's own `.ddev/.gitignore` keeps out of Git, and never `git add -f` them, whatever
+DDEV's guides say about committing seed snapshots.
+
+With DDEV v1.25.4 or newer:
+
+```bash
+ddev snapshot --name=seed           # right after the first pull
+ddev restart --reset-database -Oy   # back to the seed, no new pull
+```
+
+Settle the database engine before taking the seed. A snapshot restores only into the
+engine and version it was taken on, so a MariaDB seed will not load into a MySQL project.
 
 ### Running Drush locally after a pull
 
