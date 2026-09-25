@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2026-03-04"
 updated_at: "2026-07-23"
 workflow_status: "disabled"
-stars: 0
+stars: 1
 ---
 
 # ddev-xhgui-cli
