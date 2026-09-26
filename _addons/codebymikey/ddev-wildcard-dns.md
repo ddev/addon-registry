@@ -6,13 +6,13 @@ user: "codebymikey"
 repo: "ddev-wildcard-dns"
 repo_id: 1385491386
 default_branch: "main"
-tag_name: "0.1.0"
+tag_name: "0.2.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-09-24"
-updated_at: "2026-09-24"
-workflow_status: "unknown"
+updated_at: "2026-09-25"
+workflow_status: "success"
 stars: 0
 ---
 
@@ -72,21 +72,32 @@ example, `demo.example.ddev.site` resolves to the DDEV router when the project u
 
 The add-on registers the resolver automatically in the `web` service. To enable wildcard DNS
 resolution in another service, add a `post-start` hook for that service in a project config file,
-such as `.ddev/config.yaml`:
+such as `.ddev/config.yaml`. The script writes `/etc/resolv.conf`, so it has to run as root or as
+a user with `sudo`; when the service's default user is neither, run the hook as root with `user:`:
 
 ```yaml
 hooks:
   post-start:
     - service: db
       exec: /mnt/ddev_config/wildcard-dns/register-resolver.sh
+    # A service whose default user is unprivileged and has no sudo.
+    - service: playwright-mcp
+      user: root
+      exec: /var/www/html/.ddev/wildcard-dns/register-resolver.sh playwright-mcp
 ```
 
 The script accepts an optional label as its first argument, which is only used to prefix its log
 output. It defaults to the container hostname.
 
 For a custom service, make sure the project's `.ddev` directory is mounted at `/mnt/ddev_config`
-(or adjust the path in the hook). The service image must also provide `getent`, `awk`, `mktemp`,
-and `sudo`, and allow `/etc/resolv.conf` to be updated. Restart the project after adding the hook:
+(or adjust the path in the hook, for example to `/var/www/html/.ddev/...` when the service mounts
+the project root instead). The service image must provide `getent`, `awk` and `mktemp`.
+
+When the script cannot register the resolver (no `getent`, no root and no `sudo`, or `/etc/resolv.conf`
+not writable) it prints the reason to stderr and exits `0`, so `ddev start` still succeeds and the
+service keeps its default resolver.
+
+Restart the project after adding the hook:
 
 ```bash
 ddev restart

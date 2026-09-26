@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2026-02-28"
 updated_at: "2026-07-21"
 workflow_status: "success"
-stars: 4
+stars: 6
 ---
 
 # ddev-playwright <!-- omit in toc -->

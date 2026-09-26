@@ -6,13 +6,13 @@ user: "Lullabot"
 repo: "ddev-playwright"
 repo_id: 635031324
 default_branch: "main"
-tag_name: "v0.5.6"
+tag_name: "v0.5.7"
 ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2023-05-01"
-updated_at: "2026-09-22"
-workflow_status: "disabled"
+updated_at: "2026-09-25"
+workflow_status: "success"
 stars: 39
 ---
 
@@ -25,6 +25,7 @@ _Example test validating phpinfo(), slowed down for the demo._
 
 * [What is ddev-playwright?](#what-is-ddev-playwright)
 * [Getting started](#getting-started)
+* [Viewing test reports](#viewing-test-reports)
 * [SQLite tmpfs mount](#sqlite-tmpfs-mount)
 * [What the browser install sees](#what-the-browser-install-sees)
 * [Contributing](#contributing)
@@ -83,11 +84,10 @@ ddev playwright test
 ddev playwright test --headed
 # To generate playwright code by browsing.
 ddev playwright codegen
-# To view the HTML test report.
-# Bind to the loopback interface inside the container, which is sufficient for
-# DDEV routing and keeps the report server more constrained.
-ddev playwright show-report --host=127.0.0.1
-# The report is then accessible at https://<PROJECT>.ddev.site:9324
+# To view the HTML test report. The command prints the URL to open; no --host
+# flag is needed.
+ddev playwright show-report
+# The report is accessible at https://<PROJECT>.ddev.site:9324
 ```
 
 The following services are exposed with this addon:
@@ -97,12 +97,54 @@ The following services are exposed with this addon:
 | KasmVNC                 | https://\<PROJECT>.ddev.site:8444 | Username is your local username. Password is `secret`.                                     |
 | Playwright Test Reports | https://\<PROJECT>.ddev.site:9324 | This port is changed from the default to not conflict with running Playwright on the host. |
 
+## Viewing test reports
+
+`ddev playwright show-report` needs no flags. It serves the report from the
+web container and prints the URL to open:
+
+```
+ddev-playwright: view the report at https://<PROJECT>.ddev.site:9324
+ddev-playwright: the address Playwright prints below is the in-container one.
+
+  Serving HTML report at http://0.0.0.0:9323. Press Ctrl+C to quit.
+```
+
+Playwright's own line is accurate, but describes the address *inside* the
+container. The router publishes it on the host at the port in the table above.
+
+### Accessing other Playwright HTTP services beyond show-report
+
+When running commands like `show-trace`, always:
+
+1. **Bind `0.0.0.0`, never `localhost`.** The router connects over the Docker
+   network, so a server on the container's loopback interface is invisible to
+   it and the routed URL answers `502 Bad Gateway`. Binding `0.0.0.0` does not
+   expose anything to your network — the container port is not published, so
+   the router is still the only way in.
+2. **Use a port in `web_extra_exposed_ports`.** Anything else is not routed at
+   all, whatever it is bound to.
+
+`ddev playwright show-report` already satisfies both, which is why it needs no
+flags. Playwright's other servers default to `localhost` and need saying
+explicitly — both of these come out at `https://<PROJECT>.ddev.site:9324`:
+
+```bash
+ddev playwright test --ui --ui-host=0.0.0.0 --ui-port=9323
+ddev playwright show-trace --host=0.0.0.0 --port=9323
+```
+
+Run only one at a time; they share the single routed port.
+
 ## SQLite tmpfs mount
 
-This addon mounts `/tmp/sqlite` as a tmpfs (in-memory) volume. The
+This addon mounts `/tmp/ddev-playwright` as a tmpfs (in-memory) volume. The
 [`@lullabot/playwright-drupal`](https://www.npmjs.com/package/@lullabot/playwright-drupal)
-package uses this path for per-test SQLite database copies, and keeping
+package uses `/tmp/ddev-playwright/sqlite` for per-test SQLite database copies, and keeping
 the I/O in memory significantly improves parallel test performance. Feel free to use it for your own database driven tests.
+
+For compatibility with existing versions of `@lullabot/playwright-drupal`, the
+same tmpfs remains mounted at `/tmp/sqlite`. Legacy versions therefore keep
+their existing path, while newer versions can use the namespaced directory.
 
 Because tmpfs is volatile, `ddev restart` will clear the volume.
 
