@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2024-03-06"
 updated_at: "2026-09-16"
 workflow_status: "success"
-stars: 1
+stars: 2
 ---
 
 # DDEV Manticore Search
