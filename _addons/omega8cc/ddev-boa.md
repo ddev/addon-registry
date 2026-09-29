@@ -6,12 +6,12 @@ user: "omega8cc"
 repo: "ddev-boa"
 repo_id: 1299304061
 default_branch: "main"
-tag_name: "v1.0.4"
+tag_name: "v1.0.5"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-07-13"
-updated_at: "2026-09-23"
+updated_at: "2026-09-28"
 workflow_status: "success"
 stars: 0
 ---
@@ -68,9 +68,12 @@ ddev boa-config    # writes .ddev/config.boa.yaml, then:
 ddev restart
 ```
 
-`boa-config` queries the site once and sets your project's **PHP version**, **Drupal
-project type** and **docroot** to match what BOA actually reports for the site (read from
-`drush @alias status`, so it stays in step with the site rather than being hand-copied). It
+`boa-config` sets your project's **PHP version** to the PHP-FPM version that serves the
+site (the site's `multi-fpm.info` line once it applies, else your `fpm.info`; the
+command-line version Drush reports when neither applies, and the generated file says
+which), and its **Drupal project type** and **docroot** to match what BOA actually reports
+for the site (read from `drush @alias status`, so it stays in step with the site rather
+than being hand-copied). It
 notes the site's database engine (Percona/MySQL) as a commented, opt-in suggestion — DDEV's
 default MariaDB imports BOA database dumps fine, so the database type is left unchanged to
 keep things working out of the box. Review the generated `.ddev/config.boa.yaml` before
