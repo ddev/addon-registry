@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2026-09-24"
 updated_at: "2026-09-24"
 workflow_status: "success"
-stars: 0
+stars: 1
 ---
 
 # ddev-luxir
