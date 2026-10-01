@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2024-12-26"
 updated_at: "2026-08-04"
 workflow_status: "success"
-stars: 4
+stars: 5
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com/addons/vinugawade/ddev-civicrm-cli-tools)

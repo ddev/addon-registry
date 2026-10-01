@@ -11,9 +11,9 @@ ddev_version_constraint: ">= v1.24.6"
 dependencies: []
 type: "official"
 created_at: "2023-04-29"
-updated_at: "2026-09-19"
+updated_at: "2026-09-30"
 workflow_status: "success"
-stars: 140
+stars: 141
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
@@ -43,6 +43,18 @@ ddev symlink-project
 # Detect expected Drupal and PHP versions.
 ddev config --update
 ```
+
+### Installing with Drupal CMS
+If you want to work with a specific Drupal CMS site template, add it to your dev dependencies, along with Drush:
+```shell
+# replace drupal/byte with your desired package.
+composer require --dev --no-update drupal/byte drush/drush
+```
+Then, when your codebase is set up, use Drush to set up Drupal with Byte:
+```shell
+ddev drush site:install ../recipes/byte
+```
+The end result will be exactly as if you started a project with Drupal CMS and chose Byte during installation.
 
 ## Update
 

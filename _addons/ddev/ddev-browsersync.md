@@ -12,8 +12,8 @@ dependencies: []
 type: "official"
 created_at: "2022-04-15"
 updated_at: "2026-02-21"
-workflow_status: "success"
-stars: 41
+workflow_status: "disabled"
+stars: 42
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
