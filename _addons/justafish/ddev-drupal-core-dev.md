@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2023-10-18"
 updated_at: "2026-08-10"
 workflow_status: "disabled"
-stars: 31
+stars: 32
 ---
 
 # ddev-core-dev
