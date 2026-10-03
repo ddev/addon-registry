@@ -6,15 +6,20 @@ user: "opixido"
 repo: "ddev-addon-phploy"
 repo_id: 967426305
 default_branch: "master"
-tag_name: "0.1"
-ddev_version_constraint: ""
+tag_name: "0.7"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2025-04-16"
-updated_at: "2026-01-28"
+updated_at: "2026-10-02"
 workflow_status: "unknown"
 stars: 0
 ---
+
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/opixido/ddev-addon-phploy/actions/workflows/tests.yml/badge.svg)](https://github.com/opixido/ddev-addon-phploy/actions/workflows/tests.yml)
+[![last commit](https://img.shields.io/github/last-commit/opixido/ddev-addon-phploy)](https://github.com/opixido/ddev-addon-phploy/commits)
+[![release](https://img.shields.io/github/v/release/opixido/ddev-addon-phploy)](https://github.com/opixido/ddev-addon-phploy/releases/latest)
 
 # DDEV Add-on: phploy
 

@@ -12,7 +12,7 @@ dependencies: []
 type: "official"
 created_at: "2022-05-19"
 updated_at: "2025-12-10"
-workflow_status: "disabled"
+workflow_status: "success"
 stars: 35
 ---
 

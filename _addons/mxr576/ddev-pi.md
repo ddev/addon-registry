@@ -6,12 +6,12 @@ user: "mxr576"
 repo: "ddev-pi"
 repo_id: 1250983207
 default_branch: "main"
-tag_name: "1.0.0-beta10"
+tag_name: "1.0.0-rc1"
 ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: "contrib"
 created_at: "2026-05-27"
-updated_at: "2026-09-17"
+updated_at: "2026-10-02"
 workflow_status: "success"
 stars: 0
 ---
@@ -31,7 +31,8 @@ This DDEV add-on provides a fully containerized, isolated environment for the [P
 - **Project access:** The project root is mounted at `/var/www/html` with read/write permissions, allowing Pi to interact with your codebase.
 - **Network:** The agent is isolated within the DDEV project network.
 - **Sensitive data:** No host-level sensitive directories (e.g., `~/.ssh`) are mounted.
-- **Offline by default:** Network-dependent features (`PI_OFFLINE=1`, `PI_SKIP_VERSION_CHECK=1`, `PI_TELEMETRY=0`) are disabled by default to keep the container self-contained and avoid unexpected outbound traffic.
+- **Offline by default:** `PI_OFFLINE=1` is set to block all Pi-initiated outbound network traffic that is not required for normal agent use — this includes background model-catalog refreshes, version checks, package-update probes, install telemetry, automatic tool downloads, and silent bug-report uploads. `PI_SKIP_VERSION_CHECK=1` and `PI_TELEMETRY=0` are set alongside it for defence-in-depth, independently preventing version checks and telemetry even if `PI_OFFLINE` is overridden. Set `PI_OFFLINE=0` in your DDEV project configuration to restore internet access (e.g., to contact an external LLM provider API directly). See the [Offline Mode section of the Architecture document](https://github.com/mxr576/ddev-pi/blob/main/docs/architecture.md#offline-mode-pi_offline1) for the full breakdown.
+- **Supply-chain:** Pi is installed from npm with lifecycle scripts disabled (`--ignore-scripts`) at image build time. The agent version is controlled by the `PI_VERSION` build argument, which defaults to `latest`. **Pin `PI_VERSION` to an exact version** for reproducible, tamper-resistant builds — see [Pi installation method & supply-chain hardening](https://github.com/mxr576/ddev-pi/blob/main/docs/SECURITY.md#5-pi-installation-method--supply-chain-hardening).
 
 For a detailed diagram and breakdown of the system's components and security boundaries, please see the [Architecture document](https://github.com/mxr576/ddev-pi/blob/main/docs/architecture.md).
 
