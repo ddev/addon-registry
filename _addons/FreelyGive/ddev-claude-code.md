@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2025-03-31"
 updated_at: "2026-06-24"
 workflow_status: "success"
-stars: 23
+stars: 24
 ---
 
 # ddev-claude-code <!-- omit in toc -->
