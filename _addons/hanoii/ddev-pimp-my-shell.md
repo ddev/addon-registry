@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2024-03-25"
 updated_at: "2026-10-03"
 workflow_status: "success"
-stars: 5
+stars: 6
 ---
 
 [![tests](https://github.com/hanoii/ddev-pimp-my-shell/actions/workflows/tests.yml/badge.svg)](https://github.com/hanoii/ddev-pimp-my-shell/actions/workflows/tests.yml)

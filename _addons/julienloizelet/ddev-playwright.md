@@ -6,12 +6,12 @@ user: "julienloizelet"
 repo: "ddev-playwright"
 repo_id: 598383514
 default_branch: "main"
-tag_name: "v3.0.0"
+tag_name: "v3.1.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2023-02-07"
-updated_at: "2026-08-12"
+updated_at: "2026-10-05"
 workflow_status: "success"
 stars: 19
 ---
