@@ -6,12 +6,12 @@ user: "asiby"
 repo: "ddev.d"
 repo_id: 1404894986
 default_branch: "main"
-tag_name: "v0.1.1"
+tag_name: "v0.1.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-10-04"
-updated_at: "2026-10-05"
+updated_at: "2026-10-07"
 workflow_status: "failure"
 stars: 0
 ---
@@ -33,6 +33,7 @@ Adds a global `ddev autostart` command that starts your DDEV projects automatica
 - Linux with systemd (see [Supported platforms](#supported-platforms))
 - `sudo` rights, used once per change to install or remove a boot service
 - Your user can run Docker without `sudo` (usually by being in the `docker` group)
+- With rootless Docker or Podman, lingering turned on for your user (`sudo loginctl enable-linger $USER`), so they start at boot. `enable` tells you if it's off.
 
 ## Installation
 
@@ -126,7 +127,7 @@ The service records where `ddev` and `docker` are installed, and adds only those
 journalctl -u ddev-autostart-<project>.service -b
 ```
 
-Common causes: Docker took more than about 2 minutes to start, your user isn't in the `docker` group, or the project itself fails to start (try `ddev start <project>` by hand).
+Common causes: Docker took more than about 2 minutes to start, your user isn't in the `docker` group, lingering is off with rootless Docker or Podman, or the project itself fails to start (try `ddev start <project>` by hand).
 
 **`list` shows a project as `orphaned`.** The project was deleted or renamed while registered, so its boot service fails every time. Remove it with `ddev autostart disable <project>`.
 

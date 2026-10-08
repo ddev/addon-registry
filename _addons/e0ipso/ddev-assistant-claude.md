@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: ["Lullabot/ddev-gitleaks"]
 type: "contrib"
 created_at: "2026-01-11"
-updated_at: "2026-10-02"
+updated_at: "2026-10-07"
 workflow_status: "success"
 stars: 16
 ---

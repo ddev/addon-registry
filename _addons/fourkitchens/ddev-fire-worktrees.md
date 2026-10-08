@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2026-10-06"
 updated_at: "2026-10-06"
 workflow_status: "unknown"
-stars: 0
+stars: 1
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
