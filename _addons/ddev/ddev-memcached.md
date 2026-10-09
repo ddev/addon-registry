@@ -6,12 +6,12 @@ user: "ddev"
 repo: "ddev-memcached"
 repo_id: 449470423
 default_branch: "main"
-tag_name: "v1.1.8"
-ddev_version_constraint: ">= v1.24.3"
+tag_name: "v1.1.9"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2022-01-18"
-updated_at: "2026-02-18"
+updated_at: "2026-10-08"
 workflow_status: "success"
 stars: 5
 ---

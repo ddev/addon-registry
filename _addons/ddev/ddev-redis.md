@@ -6,12 +6,12 @@ user: "ddev"
 repo: "ddev-redis"
 repo_id: 452397673
 default_branch: "main"
-tag_name: "v2.2.0"
+tag_name: "v3.0.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2022-01-26"
-updated_at: "2026-09-10"
+updated_at: "2026-10-08"
 workflow_status: "success"
 stars: 36
 ---
@@ -83,16 +83,19 @@ Use the `ddev redis-backend` command to swap between Redis backends:
 
 | Command | Docker Image |
 |--------------------------------------|-----------------------------------------------|
-| `ddev redis-backend redis`           | `redis:7`                                     |
-| `ddev redis-backend redis-alpine`    | `redis:7-alpine`                              |
-| `ddev redis-backend valkey`          | `valkey/valkey:8`                             |
-| `ddev redis-backend valkey-alpine`   | `valkey/valkey:8-alpine`                      |
+| `ddev redis-backend redis`           | `redis:8`                                     |
+| `ddev redis-backend redis-alpine`    | `redis:8-alpine`                              |
+| `ddev redis-backend valkey`          | `valkey/valkey:9`                             |
+| `ddev redis-backend valkey-alpine`   | `valkey/valkey:9-alpine`                      |
 | `ddev redis-backend <image>`         | `<image>` (specify your custom Redis image)   |
 
 > [!TIP]
 > Add `optimize` or `optimized` after the command to enable optimized Redis configuration.
 >
 > Example: `ddev redis-backend redis optimize`
+
+> [!NOTE]
+> Switching backends with `ddev redis-backend` deletes the existing Redis volume.
 
 ## Advanced Customization
 
@@ -111,7 +114,7 @@ ddev restart
 
 Make sure to commit the `.ddev/.env.redis` file to version control.
 
-To change the used Docker image:
+To change the used Docker image, for example, to stay on Redis 7:
 
 ```bash
 ddev dotenv set .ddev/.env.redis --redis-docker-image=redis:7
@@ -130,7 +133,7 @@ All customization options (use with caution):
 
 | Variable | Flag | Default |
 | -------- | ---- | ------- |
-| `REDIS_DOCKER_IMAGE` | `--redis-docker-image` | `redis:7` |
+| `REDIS_DOCKER_IMAGE` | `--redis-docker-image` | `redis:8` |
 | `REDIS_HOSTNAME` | `--redis-hostname` | `redis` |
 | `REDIS_OPTIMIZED` | `--redis-optimized` | `false` (`true`/`false`) |
 

@@ -7,11 +7,11 @@ repo: "ddev-drupal-contrib"
 repo_id: 634259708
 default_branch: "main"
 tag_name: "1.2.1"
-ddev_version_constraint: ">= v1.24.6"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2023-04-29"
-updated_at: "2026-09-30"
+updated_at: "2026-10-08"
 workflow_status: "success"
 stars: 141
 ---

@@ -6,12 +6,12 @@ user: "Lullabot"
 repo: "ddev-playwright"
 repo_id: 635031324
 default_branch: "main"
-tag_name: "v0.5.9"
+tag_name: "v0.5.10"
 ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2023-05-01"
-updated_at: "2026-10-07"
+updated_at: "2026-10-08"
 workflow_status: "success"
 stars: 39
 ---
@@ -29,6 +29,8 @@ _Example test validating phpinfo(), slowed down for the demo._
 * [SQLite tmpfs mount](#sqlite-tmpfs-mount)
 * [What the browser install sees](#what-the-browser-install-sees)
 * [Contributing](#contributing)
+
+> Looking for something to help with writing tests? Take a look at [playwright-drupal](https://lullabot.github.io/playwright-drupal/latest/) for a full Drupal testing framework and [playwright-testing](https://lullabot.github.io/playwright-drupal/latest/generic-playwright-utilities/) for any other application.
 
 ## What is ddev-playwright?
 
@@ -94,7 +96,7 @@ The following services are exposed with this addon:
 
 | Service                 | URL                               | Notes                                                                                      |
 |-------------------------|-----------------------------------|--------------------------------------------------------------------------------------------|
-| KasmVNC                 | https://\<PROJECT>.ddev.site:8444 | Username is your local username. Password is `secret`.                                     |
+| KasmVNC                 | https://\<PROJECT>.ddev.site:8444 | No login required.                                                                        |
 | Playwright Test Reports | https://\<PROJECT>.ddev.site:9324 | This port is changed from the default to not conflict with running Playwright on the host. |
 
 ## Viewing test reports

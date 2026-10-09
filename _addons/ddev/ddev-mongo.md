@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2022-03-28"
-updated_at: "2026-08-13"
+updated_at: "2026-10-08"
 workflow_status: "success"
 stars: 7
 ---
@@ -39,6 +39,17 @@ ddev restart
 ```
 
 After installation, make sure to commit the `.ddev` directory to version control.
+
+> [!WARNING]
+> MongoDB 8 doesn't start on Linux kernel 6.19 through 7.0.13 (for example, Ubuntu 26.04), see [#40](https://github.com/ddev/ddev-mongo/issues/40).
+> Containers use the kernel of the Docker host, check it with `docker info --format '{{.KernelVersion}}'`.
+> If it's in that range, use MongoDB 7.0 until you can upgrade to kernel 7.0.14 or later:
+>
+> ```bash
+> ddev dotenv set .ddev/.env.mongo --mongo-docker-image=mongo:7.0
+> ddev add-on get ddev/ddev-mongo
+> ddev restart
+> ```
 
 ## Connection
 

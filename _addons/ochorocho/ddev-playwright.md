@@ -6,12 +6,12 @@ user: "ochorocho"
 repo: "ddev-playwright"
 repo_id: 1169276508
 default_branch: "main"
-tag_name: "v0.0.3"
+tag_name: "v0.0.4"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: "contrib"
 created_at: "2026-02-28"
-updated_at: "2026-07-21"
+updated_at: "2026-10-08"
 workflow_status: "success"
 stars: 7
 ---
@@ -68,6 +68,7 @@ If you use a different version, update the Docker image accordingly (see [Config
 | `ddev playwright --version` | Show the installed Playwright version |
 | `ddev playwright install` | Install browser binaries (usually not needed) |
 | `ddev playwright --dir=<path> test` | Run tests from a different directory |
+| `ddev playwright --slow-mo=<ms> test` | Delay every action by `<ms>` (needs config snippet, see below) |
 | `ddev playwright --help` | Show all available commands |
 
 Any `npx playwright` command and option can be passed through:
@@ -141,6 +142,23 @@ ddev restart
 ```
 
 This sets the working directory for all `ddev playwright` commands. The path is relative to your project root. Default: `.` (project root).
+
+### Slow Motion
+
+`--slow-mo=<ms>` sets `PLAYWRIGHT_SLOWMO` in the container. Playwright doesn't read it by itself, so add this to your `playwright.config.ts`:
+
+```ts
+use: {
+  launchOptions: { slowMo: Number(process.env.PLAYWRIGHT_SLOWMO ?? 0) },
+},
+```
+
+```bash
+ddev playwright --slow-mo=500 test
+ddev playwright --slow-mo=500 browser
+```
+
+The container is headless, so watch the slowed run in UI mode or via video/trace.
 
 ### Multiple Playwright Installations
 

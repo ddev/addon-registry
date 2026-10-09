@@ -1,27 +1,27 @@
 ---
-title: "asiby/ddev.d"
-github_url: "https://github.com/asiby/ddev.d"
+title: "asiby/ddev-autostart"
+github_url: "https://github.com/asiby/ddev-autostart"
 description: "Automated system boot and startup management for your DDEV projects."
 user: "asiby"
-repo: "ddev.d"
+repo: "ddev-autostart"
 repo_id: 1404894986
 default_branch: "main"
-tag_name: "v0.1.2"
+tag_name: "v0.4.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-10-04"
-updated_at: "2026-10-07"
+updated_at: "2026-10-08"
 workflow_status: "failure"
 stars: 0
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
-[![tests](https://github.com/asiby/ddev.d/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/asiby/ddev.d/actions/workflows/tests.yml?query=branch%3Amain)
-[![last commit](https://img.shields.io/github/last-commit/asiby/ddev.d)](https://github.com/asiby/ddev.d/commits)
-[![release](https://img.shields.io/github/v/release/asiby/ddev.d)](https://github.com/asiby/ddev.d/releases/latest)
+[![tests](https://github.com/asiby/ddev-autostart/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/asiby/ddev-autostart/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/asiby/ddev-autostart)](https://github.com/asiby/ddev-autostart/commits)
+[![release](https://img.shields.io/github/v/release/asiby/ddev-autostart)](https://github.com/asiby/ddev-autostart/releases/latest)
 
-# DDEV.d
+# DDEV Autostart
 
 ## Overview
 
@@ -40,12 +40,12 @@ Adds a global `ddev autostart` command that starts your DDEV projects automatica
 Run this from inside any DDEV project (or add `--project <name>` from anywhere):
 
 ```bash
-ddev add-on get asiby/ddev.d
+ddev add-on get asiby/ddev-autostart
 ```
 
 No restart is needed. The command is installed into DDEV's global directory (`~/.ddev`).
 
-To update to the latest version, run the same command again.
+To update to the latest version, run the same command again from the project you installed it from. If you don't remember which one, `ddev autostart status` tells you at the bottom.
 
 ## Usage
 
@@ -57,6 +57,9 @@ To update to the latest version, run the same command again.
 | `ddev autostart disable --all` | Stop starting every project on boot |
 | `ddev autostart status [project...]` | Show whether projects are registered and whether they started |
 | `ddev autostart list` | Show every project and its autostart state |
+| `ddev autostart --version` | Show the installed version (include it in bug reports) |
+
+Tab completion works for the actions, their options and project names (after `disable`, only the projects you've registered).
 
 Inside a project folder, the project name is detected automatically:
 
@@ -111,6 +114,10 @@ site-a   enabled    active    running  /home/me/code/site-a
 - starts after Docker and waits up to about 2 minutes for it to respond;
 - runs at boot without anyone needing to log in.
 
+It runs only once, at boot. If Docker is stopped or restarted later, your projects stop with it and stay stopped until you run `ddev start`.
+
+Registrations belong to the Linux user who made them. On a shared machine, other users' registrations are left alone by every command, including uninstalling.
+
 `enable` doesn't start the project now, and `disable` doesn't stop it; they only change what happens at the next boot. To try a project's boot service without rebooting:
 
 ```bash
@@ -133,17 +140,17 @@ Common causes: Docker took more than about 2 minutes to start, your user isn't i
 
 ## Uninstalling
 
-Remove the add-on **from the same project you installed it from** (DDEV keeps the add-on's install record in that project):
+Remove the add-on **from the same project you installed it from** (DDEV keeps the add-on's install record in that project). If you don't remember which one, `ddev autostart status` or `ddev autostart list` tells you at the bottom:
 
 ```bash
-ddev add-on remove ddev.d
+ddev add-on remove ddev-autostart
 ```
 
 Before deleting the command, uninstalling removes the boot registration of every project, so nothing keeps starting on boot afterwards. It asks for your `sudo` password if needed. Where no password can be entered (for example in a script with no terminal), it leaves the registrations in place and prints the exact commands to remove them.
 
 ## Contributing
 
-Each operating system is a plugin in `commands/host/autostart.d/plugins/`. A plugin defines four functions: `plugin_enable`, `plugin_disable`, `plugin_status` and `plugin_list_registered`. See `systemd.sh` for the reference implementation.
+Each operating system is a plugin in `commands/host/autostart.d/plugins/`. A plugin defines four functions: `plugin_enable`, `plugin_disable`, `plugin_status` and `plugin_list_registered`. See `systemd.sh` for the reference implementation. Shell completion uses `plugin_list_registered` too, so a new plugin gets completion without extra work. Since it runs on every Tab press, it must list only the current user's registrations, never prompt or need `sudo`, and print nothing but its results.
 
 Every file under `commands/host/` must contain `#ddev-generated` so DDEV can update and remove it.
 

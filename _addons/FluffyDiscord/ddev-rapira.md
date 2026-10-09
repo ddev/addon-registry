@@ -6,13 +6,13 @@ user: "FluffyDiscord"
 repo: "ddev-rapira"
 repo_id: 1359003196
 default_branch: "master"
-tag_name: "v0.1.1"
+tag_name: "v0.2.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-09-06"
-updated_at: "2026-10-01"
-workflow_status: "failure"
+updated_at: "2026-10-08"
+workflow_status: "success"
 stars: 0
 ---
 
@@ -85,13 +85,23 @@ A proxy cannot supply everything `fastcgi_params` did. What changes, measured:
 |---|---|---|
 | Rapira config file | `rapira.toml` in the project root, else classic mode on `<docroot>/index.php` | `ddev dotenv set .ddev/.env.web --rapira-config-file=rapira.dev.toml && ddev restart` |
 | Docroot (the override's nginx `root`) | your `ddev config --docroot`, set at install | Edit `root` in `.ddev/nginx_full/nginx-site.conf` and `ddev restart` |
-| Rapira version | `nightly` | `ARG RAPIRA_VERSION` in `.ddev/web-build/Dockerfile.rapira` (a release tag newer than `v0.8.1`), then `ddev restart` |
+| Rapira version | `v0.9.1` | `ARG RAPIRA_VERSION` in `.ddev/web-build/Dockerfile.rapira` (a release tag from `v0.9.1` on, or `nightly`), then `ddev restart` |
 
 The add-on does **not** write or manage `rapira.toml` — it is yours, DDEV bind-mounts it, and it stays live. Copy [`example.rapira.toml`](https://github.com/FluffyDiscord/ddev-rapira/blob/master/./example.rapira.toml) to your project root to start from something.
 
-**Keep Rapira on `127.0.0.1:8000`** — nginx proxies there. That is Rapira's default, so leave `[http] listen` out of your config or set it to that address (`0.0.0.0:8000` works too). Any other port answers 502.
+**Set `listen = "127.0.0.1:8000"` in your config** — nginx proxies there, and any other port answers 502. `0.0.0.0:8000` works too.
 
-**Pull a newer nightly** with `ddev utility rebuild` — DDEV caches the image, so `ddev restart` keeps the build you have.
+```toml
+# rapira.toml
+[http]
+listen = "127.0.0.1:8000"
+
+[http.pool]
+mode = "classic"
+entrypoint = "public/index.php"
+```
+
+**On `nightly`, pull a newer build** with `ddev utility rebuild` — DDEV caches the image, so `ddev restart` keeps the build you have.
 
 Edits to `.ddev/nginx_full/nginx-site.conf` are replaced on the next `ddev add-on get` (the old file is kept beside it as `nginx-site.conf.ddev-rapira-backup-<epoch>`). Put additive rules in `.ddev/nginx/*.conf`, which the override still includes.
 

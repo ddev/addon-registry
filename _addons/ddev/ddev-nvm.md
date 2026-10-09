@@ -6,12 +6,12 @@ user: "ddev"
 repo: "ddev-nvm"
 repo_id: 1098933186
 default_branch: "main"
-tag_name: "v1.0.1"
+tag_name: "v1.0.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2025-11-18"
-updated_at: "2025-11-18"
+updated_at: "2026-10-08"
 workflow_status: "success"
 stars: 4
 ---

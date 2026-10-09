@@ -6,12 +6,12 @@ user: "ddev"
 repo: "ddev-sqlsrv"
 repo_id: 618290272
 default_branch: "main"
-tag_name: "v1.1.2"
+tag_name: "v1.2.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2023-03-24"
-updated_at: "2026-03-03"
+updated_at: "2026-10-08"
 workflow_status: "success"
 stars: 8
 ---
@@ -41,6 +41,8 @@ ddev restart
 ```
 
 After installation, make sure to commit the `.ddev` directory to version control.
+
+The `sqlsrv` and `pdo_sqlsrv` PHP extensions are installed for PHP 7.0 and higher. PHP 7.0-8.2 get the last [release](https://github.com/microsoft/msphpsql/releases) that supports that PHP version (via PECL), and PHP 8.3+ gets the latest release (via [PIE](https://github.com/php/pie)).
 
 ## Usage
 
@@ -113,10 +115,10 @@ All customization options (use with caution):
 
 | Variable | Flag | Default |
 | -------- | ---- | ------- |
-| `MSSQL_DOCKER_IMAGE` | `--mssql-docker-image` | `mcr.microsoft.com/mssql/server:2022-CU17-ubuntu-22.04` |
+| `MSSQL_DOCKER_IMAGE` | `--mssql-docker-image` | `mcr.microsoft.com/mssql/server:2022-CU27-ubuntu-22.04` |
 | `MSSQL_EXTERNAL_PORT` | `--mssql-external-port` | `1433` |
 | `MSSQL_SA_PASSWORD` | `--mssql-sa-password` | `Password12!` |
-| `MSSQL_PID` | `--mssql-pid` | `Evaluation` |
+| `MSSQL_PID` | `--mssql-pid` | `Developer` |
 | `MSSQL_DB_NAME` | `--mssql-db-name` | `master` |
 | `MSSQL_HOST` | `--mssql-host` | `sqlsrv` |
 | `MSSQL_COLLATION` | `--mssql-collation` | `LATIN1_GENERAL_100_CI_AS_SC_UTF8` |
