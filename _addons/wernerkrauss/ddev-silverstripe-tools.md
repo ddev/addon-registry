@@ -6,17 +6,23 @@ user: "wernerkrauss"
 repo: "ddev-silverstripe-tools"
 repo_id: 1337120004
 default_branch: "main"
-tag_name: "v0.1.0"
-ddev_version_constraint: ""
+tag_name: "v0.2.2"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-17"
-updated_at: "2026-08-17"
+updated_at: "2026-10-09"
 workflow_status: "unknown"
 stars: 1
 ---
 
 # ddev-silverstripe-tools
+
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com/wernerkrauss/ddev-silverstripe-tools)
+[![tests](https://github.com/wernerkrauss/ddev-silverstripe-tools/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/wernerkrauss/ddev-silverstripe-tools/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/wernerkrauss/ddev-silverstripe-tools)](https://github.com/wernerkrauss/ddev-silverstripe-tools/commits)
+[![release](https://img.shields.io/github/v/release/wernerkrauss/ddev-silverstripe-tools)](https://github.com/wernerkrauss/ddev-silverstripe-tools/releases/latest)
+[![License](https://img.shields.io/github/license/wernerkrauss/ddev-silverstripe-tools)](LICENSE)
 
 Reusable DDEV commands and optional project startup tooling for Silverstripe projects.
 
@@ -40,14 +46,15 @@ The add-on installs project-specific commands into `.ddev/commands/web/` and rec
 Install a newer released tag again:
 
 ```bash
-ddev add-on get github.com/wernerkrauss/ddev-silverstripe-tools --version v0.2.0
+ddev add-on get wernerkrauss/ddev-silverstripe-tools --version v0.2.0
 ```
 
 Review the resulting `.ddev` diff before committing it.
 
 ## Optional start hook
 
-The add-on installs the hook disabled. Enable it in a project-specific DDEV config file:
+The add-on installs the hook disabled when `DDEV_SILVERSTRIPE_AUTO_START` is not set. Set it to `true` in a
+project-specific DDEV config file to enable the hook:
 
 ```yaml
 web_environment:
@@ -56,7 +63,12 @@ web_environment:
 ```
 
 The hook then runs Composer installation, Silverstripe build, and optionally the frontend build after DDEV starts.
+When `DDEV_SILVERSTRIPE_THEME_PATH` is set to a theme directory, `yarn build` runs in that directory. If the variable
+is empty or set to `/`, the build runs in the webroot.
 Do not enable it for projects where startup should remain fast or where builds require a separate workflow.
+
+When the variable is unset or set to `false`, the hook exits immediately and does not run `composer install`, the
+Silverstripe build, or the optional frontend build.
 
 For frontend formatting, configure the theme path in the project:
 
@@ -86,7 +98,8 @@ otherwise, additional arguments are passed to the underlying tool.
 | `ddev phpunit [args]` | Runs the project’s `vendor/bin/phpunit` with an unlimited PHP memory limit and the default DDEV/Silverstripe test database credentials (`root`/`root`). |
 | `ddev stan [args]` | Runs the project’s `vendor/bin/phpstan`. |
 | `ddev rector [args]` | Runs the project’s `vendor/bin/rector`. Use `ddev rector --dry-run` to inspect proposed changes. |
-| `ddev jack [args]` | Runs `vendor/bin/jack` (Rector Jack), if the project uses it. |
+| `ddev jack [args]` | Runs `vendor/bin/jack` (Deprecated: Use `ddev check-outdated-dependencies` instead) or falls back to `vendor/bin/swiss-knife`. |
+| `ddev check-outdated-dependencies [args]` | Checks for outdated Composer dependencies using `rector/swiss-knife` (`vendor/bin/swiss-knife check-outdated-dependencies`). |
 
 ### Code quality and formatting
 
@@ -95,7 +108,7 @@ otherwise, additional arguments are passed to the underlying tool.
 | `ddev lint [phpcs-args]` | Runs PHP_CodeSniffer. If `DDEV_SILVERSTRIPE_THEME_PATH` is configured, it also checks the theme with Prettier. |
 | `ddev fix` | Fixes PHP formatting with `vendor/bin/phpcbf` and formats the configured theme with Prettier. This changes files. |
 | `ddev prettier [check\|write]` | Checks or formats `src/**/*.{js,css,scss}` below `DDEV_SILVERSTRIPE_THEME_PATH` using the theme’s Yarn/Prettier installation. The default is `check`. |
-| `ddev ci` | Runs the standard project checks in sequence: PHPUnit, PHP/frontend linting, PHPStan, and Rector in dry-run mode. If `vendor/bin/jack` exists, it also runs `jack breakpoint`. |
+| `ddev ci` | Runs the standard project checks in sequence: PHPUnit, PHP/frontend linting, PHPStan, Rector (dry-run), and check-outdated-dependencies. |
 
 ### Deployment and packaging
 
@@ -107,6 +120,6 @@ otherwise, additional arguments are passed to the underlying tool.
 
 - `DDEV_SILVERSTRIPE_THEME_PATH` is required by `ddev prettier` and enables the optional frontend check in `ddev lint`.
 - `ddev fix` always invokes Prettier, so it requires `DDEV_SILVERSTRIPE_THEME_PATH` even when only PHP formatting is needed.
-- Commands fail early with a clear error when their required project-local binary is missing. The exception is `ddev sspak`,
+- Commands fail early with a clear error and installation hint when their required project-local binary is missing (exit code 127). The exception is `ddev sspak`,
   which installs its global binary automatically.
-- `ddev ci` is a convenience wrapper around the other checks; it stops when one of the checks fails.
+- `ddev ci` is a convenience wrapper around the other checks; it runs all checks, treats uninstalled tools (exit code 127) as skipped, collects their statuses, and outputs a summary at the end.

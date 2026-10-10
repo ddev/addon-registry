@@ -6,12 +6,12 @@ user: "amateescu"
 repo: "ddev-drupal-dev"
 repo_id: 1183388555
 default_branch: "main"
-tag_name: "1.2.2"
+tag_name: "1.2.3"
 ddev_version_constraint: ">= v1.25.3"
 dependencies: []
 type: "contrib"
 created_at: "2026-03-16"
-updated_at: "2026-09-25"
+updated_at: "2026-10-09"
 workflow_status: "success"
 stars: 12
 ---
@@ -28,6 +28,8 @@ A DDEV add-on for working on Drupal core and contrib modules together, using a c
 Other add-ons target either core or contrib in isolation. This one is for when you need both: developing a contrib module against the latest core, fixing a core bug that affects contrib, or running contrib tests on a core patch.
 
 Extra dependencies (contrib modules, Drush, dev tools) are managed through a `composer.local.json` overlay, keeping core's `composer.json` and `composer.lock` untouched.
+
+The full documentation is at **https://amateescu.github.io/ddev-drupal-dev/**.
 
 ## Installation
 
@@ -179,10 +181,27 @@ Tests run against your project's configured database by default. Use `--db` to s
 ddev phpunit core/modules/node                  # project database (default)
 ddev phpunit --db=sqlite core/modules/node      # SQLite
 ddev phpunit --db=pgsql core/modules/node       # PostgreSQL
+ddev phpunit --db=mariadb core/modules/node     # MariaDB
 ddev phpunit modules/contrib/token              # contrib module tests
 ```
 
+Test paths are relative to the directory you run the command from, so inside a module you can leave out the module's own path:
+
+```bash
+cd modules/contrib/token
+ddev phpunit tests/src/Kernel
+```
+
 For PostgreSQL, install the [ddev-postgres](https://github.com/ddev/ddev-postgres) add-on first.
+
+For MariaDB on a project whose database is MySQL, add a second database container from the example the add-on installs, then set its image tag to the MariaDB version you want to test:
+
+```bash
+sed '/^#ddev-generated$/d' .ddev/drupal-dev/docker-compose.mariadb.yaml.example > .ddev/docker-compose.mariadb.yaml
+ddev restart
+```
+
+On a project whose database is MariaDB, `--db=mariadb` uses the project database and needs no extra container.
 
 ## Code quality checks
 
@@ -191,16 +210,24 @@ PHPStan, PHP CodeSniffer and cspell run with the configuration of the project be
 ```bash
 ddev phpstan core/modules/node         # PHPStan on specific paths
 ddev phpstan modules/contrib/token     # the module's own configuration, if it has one
-ddev phpstan                           # full analysis with core's baseline
+ddev phpstan                           # full analysis with core's baseline, from the project root
 ddev phpcs core/modules/node           # coding standard checks
-ddev phpcs                             # whole codebase
+ddev phpcs                             # whole codebase, from the project root
 ddev cspell core/modules/node/**       # spell checking (globs)
-ddev cspell                            # whole codebase
+ddev cspell                            # whole codebase, from the project root
 ```
 
 `ddev cspell` needs core's node dependencies: `ddev exec 'corepack enable && cd core && yarn install'`.
 
-Paths and globs are relative to the project root. Each command takes the nearest configuration in the checked path or a parent directory, the same way contrib CI picks one up: `phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon` for PHPStan, `.phpcs.xml`, `phpcs.xml`, `.phpcs.xml.dist` or `phpcs.xml.dist` for PHP CodeSniffer, and `.cspell.json`, `cspell.json` or any of the other names cspell itself looks for. Paths belonging to several projects are checked one project at a time.
+Paths and globs are relative to the directory you run the command from. Without any, a command checks that directory, and from the project root that is the whole codebase:
+
+```bash
+cd modules/contrib/token
+ddev phpstan                           # the module
+ddev phpcs src                         # the module's src directory
+```
+
+Each command takes the nearest configuration in the checked path or a parent directory, the same way contrib CI picks one up: `phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon` for PHPStan, `.phpcs.xml`, `phpcs.xml`, `.phpcs.xml.dist` or `phpcs.xml.dist` for PHP CodeSniffer, and `.cspell.json`, `cspell.json` or any of the other names cspell itself looks for. Paths belonging to several projects are checked one project at a time.
 
 A contrib project (one with a `.gitlab-ci.yml`) is checked the way contrib CI checks it:
 
@@ -272,6 +299,8 @@ This sets the `COMPOSER` env var on the host so that running `composer` directly
 | `ddev mr <project> <number>` | Check out a merge request branch and update dependencies |
 | `ddev update-module <name>` | Update composer constraint after switching a module's branch |
 | `ddev remove-module <name>` | Remove a previously cloned contrib module |
+
+With DDEV's [shell completion](https://docs.ddev.com/en/stable/users/install/shell-completion/) set up, Tab completes `core` and the cloned modules for `switch` and `mr`, the cloned modules for `update-module` and `remove-module`, a checkout's branches for `switch`, and the `--db` values for `phpunit`.
 
 ## How it works
 
