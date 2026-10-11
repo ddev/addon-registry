@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: "contrib"
 created_at: "2026-05-27"
-updated_at: "2026-10-05"
+updated_at: "2026-10-09"
 workflow_status: "success"
 stars: 0
 ---

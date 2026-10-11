@@ -6,12 +6,12 @@ user: "blankse"
 repo: "ddev-pdfreactor"
 repo_id: 474439706
 default_branch: "main"
-tag_name: "v1.0.7"
+tag_name: "v1.0.8"
 ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2022-03-26"
-updated_at: "2024-10-24"
+updated_at: "2026-10-10"
 workflow_status: "failure"
 stars: 5
 ---

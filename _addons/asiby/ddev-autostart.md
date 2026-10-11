@@ -6,12 +6,12 @@ user: "asiby"
 repo: "ddev-autostart"
 repo_id: 1404894986
 default_branch: "main"
-tag_name: "v0.4.0"
+tag_name: "v0.5.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-10-04"
-updated_at: "2026-10-08"
+updated_at: "2026-10-10"
 workflow_status: "failure"
 stars: 0
 ---
@@ -25,15 +25,22 @@ stars: 0
 
 ## Overview
 
-Adds a global `ddev autostart` command that starts your DDEV projects automatically when the computer boots. Each project is registered separately, so you choose exactly which ones come up on their own, or register everything you have running with a single `ddev autostart enable --running`.
+Adds a global `ddev autostart` command that starts your DDEV projects automatically: at boot on Linux, and when you log in on macOS. Each project is registered separately, so you choose exactly which ones come up on their own, or register everything you have running with a single `ddev autostart enable --running`.
 
 ## Requirements
 
 - DDEV v1.24.10 or later
-- Linux with systemd (see [Supported platforms](#supported-platforms))
+- Linux with systemd, or macOS (see [Supported platforms](#supported-platforms))
+
+On Linux:
+
 - `sudo` rights, used once per change to install or remove a boot service
 - Your user can run Docker without `sudo` (usually by being in the `docker` group)
 - With rootless Docker or Podman, lingering turned on for your user (`sudo loginctl enable-linger $USER`), so they start at boot. `enable` tells you if it's off.
+
+On macOS:
+
+- Docker set to start when you log in: a setting in Docker Desktop, OrbStack and Rancher Desktop, or `brew services start colima` for Colima
 
 ## Installation
 
@@ -51,10 +58,10 @@ To update to the latest version, run the same command again from the project you
 
 | Command | Description |
 | ------- | ----------- |
-| `ddev autostart enable [project...]` | Start projects automatically on boot |
-| `ddev autostart enable --running` | Start every project that is running right now on boot |
-| `ddev autostart disable [project...]` | Stop starting projects on boot (they keep running) |
-| `ddev autostart disable --all` | Stop starting every project on boot |
+| `ddev autostart enable [project...]` | Start projects automatically |
+| `ddev autostart enable --running` | Start every project that is running right now automatically |
+| `ddev autostart disable [project...]` | Stop starting projects automatically (they keep running) |
+| `ddev autostart disable --all` | Stop starting every project automatically |
 | `ddev autostart status [project...]` | Show whether projects are registered and whether they started |
 | `ddev autostart list` | Show every project and its autostart state |
 | `ddev autostart --version` | Show the installed version (include it in bug reports) |
@@ -74,7 +81,7 @@ Anywhere else, give one or more project names:
 ddev autostart enable site-a shop blog
 ```
 
-If any name is wrong, nothing is changed. To make your current setup come back after every reboot, register whatever is running:
+If any name is wrong, nothing is changed. To make your current setup come back after every reboot or login, register whatever is running:
 
 ```bash
 ddev autostart enable --running
@@ -92,7 +99,7 @@ site-a   enabled    active    running  /home/me/code/site-a
 ```
 
 - **AUTOSTART**: `enabled`, `disabled`, or `orphaned` (registered, but the project was deleted or renamed)
-- **SERVICE**: the boot service's state; `active` means it started successfully this boot
+- **SERVICE**: the autostart service's state; `active` means it started successfully since the last boot (Linux) or login (macOS)
 - **DDEV**: whether the project is running right now
 
 `list` also prints a reminder for orphaned or failed registrations.
@@ -103,7 +110,7 @@ site-a   enabled    active    running  /home/me/code/site-a
 | -------- | ------ |
 | Linux with systemd (Ubuntu, Debian, Fedora, Arch, …) | ✅ Supported |
 | Linux with OpenRC (Alpine, Gentoo) | Planned |
-| macOS (launchd) | Planned |
+| macOS (launchd) | ✅ Supported (starts at login) |
 | Windows (Task Scheduler) | Planned |
 
 ## How it works (Linux / systemd)
@@ -113,6 +120,7 @@ site-a   enabled    active    running  /home/me/code/site-a
 - runs `ddev start <project>` as your user, never as root;
 - starts after Docker and waits up to about 2 minutes for it to respond;
 - runs at boot without anyone needing to log in.
+- with several projects registered, starts them one at a time, since DDEV fails when two start at the same moment.
 
 It runs only once, at boot. If Docker is stopped or restarted later, your projects stop with it and stay stopped until you run `ddev start`.
 
@@ -126,17 +134,37 @@ sudo systemctl start ddev-autostart-<project>.service
 
 The service records where `ddev` and `docker` are installed, and adds only those folders to the standard system ones. If you move or reinstall either to a different location, run `ddev autostart enable <project>` again to update it. Normal upgrades (apt, Homebrew, `ddev self-upgrade`) keep the same location and need nothing.
 
+## How it works (macOS / launchd)
+
+On macOS, Docker runs as your user and only starts once you log in, so projects start at login too. `enable` writes a LaunchAgent at `~/Library/LaunchAgents/ddev-autostart.<project>.plist`, so no `sudo` is needed. When you log in, it:
+
+- waits up to about 5 minutes for Docker to respond;
+- runs `ddev start <project>`;
+- writes what happened to `~/Library/Logs/ddev-autostart/<project>.log`.
+- with several projects registered, starts them one at a time, since DDEV fails when two start at the same moment.
+
+macOS lists it in System Settings → General → Login Items & Extensions → Allow in the Background as `sh`. Leave it switched on.
+
+As on Linux, it runs only once, and `enable` and `disable` don't start or stop the project. To try it without logging out, run the command `ddev autostart status <project>` shows next to "Try it".
+
 ## Troubleshooting
 
-**A project didn't start at boot.** `ddev autostart status <project>` shows the last result, and the boot log shows why:
+**A project didn't start.** `ddev autostart status <project>` shows the last result, and the log shows why:
 
 ```bash
-journalctl -u ddev-autostart-<project>.service -b
+journalctl -u ddev-autostart-<project>.service -b      # Linux
+cat ~/Library/Logs/ddev-autostart/<project>.log        # macOS
 ```
 
-Common causes: Docker took more than about 2 minutes to start, your user isn't in the `docker` group, lingering is off with rootless Docker or Podman, or the project itself fails to start (try `ddev start <project>` by hand).
+Common causes: Docker took more than about 2 minutes (Linux) or 5 minutes (macOS) to start, your user isn't in the `docker` group, lingering is off with rootless Docker or Podman, Docker isn't set to start at login (macOS), or the project itself fails to start (try `ddev start <project>` by hand).
 
-**`list` shows a project as `orphaned`.** The project was deleted or renamed while registered, so its boot service fails every time. Remove it with `ddev autostart disable <project>`.
+**macOS: the project didn't start at login, and its log has no entry for that login.** macOS lists login jobs in System Settings, under General → Login Items & Extensions → Allow in the Background. This one shows up there as `sh`, because it runs a short shell script. If it was switched off, switch it back on. If it was removed, register the project again with `ddev autostart disable <project>` then `ddev autostart enable <project>`. If `status` says the last result failed but the log is empty, launchd couldn't open the project folder: it was moved, deleted, or is in a protected folder (see below).
+
+**The log says "Not trying to add hostnames to hosts file".** This line is always there and is normal: at boot or login there's no one to type a `sudo` password, so DDEV skips `/etc/hosts` and starts the project anyway. Names under `ddev.site` work once the computer is online; a custom hostname that needs a hosts entry needs one `ddev start` from a terminal first.
+
+**macOS: the log says "Operation not permitted".** macOS protects Desktop, Documents and Downloads, and may not let a login job use a project there even though it works from Terminal. Move the project to another folder, such as `~/Sites`.
+
+**`list` shows a project as `orphaned`.** The project was deleted or renamed while registered, so its autostart service fails every time. Remove it with `ddev autostart disable <project>`.
 
 ## Uninstalling
 
@@ -146,7 +174,7 @@ Remove the add-on **from the same project you installed it from** (DDEV keeps th
 ddev add-on remove ddev-autostart
 ```
 
-Before deleting the command, uninstalling removes the boot registration of every project, so nothing keeps starting on boot afterwards. It asks for your `sudo` password if needed. Where no password can be entered (for example in a script with no terminal), it leaves the registrations in place and prints the exact commands to remove them.
+Before deleting the command, uninstalling removes the autostart registration of every project, so nothing keeps starting afterwards. On Linux, it asks for your `sudo` password if needed. Where no password can be entered (for example in a script with no terminal), it leaves the registrations in place and prints the exact commands to remove them.
 
 ## Contributing
 
@@ -160,6 +188,7 @@ Environment variables useful for development and testing:
 | -------- | ------ |
 | `DDEV_AUTOSTART_PLUGIN` | Force a plugin (e.g. `systemd`) instead of detecting the OS |
 | `DDEV_AUTOSTART_UNIT_DIR` | Write systemd units to another folder instead of `/etc/systemd/system` |
+| `DDEV_AUTOSTART_AGENT_DIR` | Write LaunchAgents to another folder instead of `~/Library/LaunchAgents` |
 | `DDEV_AUTOSTART_NONINTERACTIVE` | Never prompt for a `sudo` password; fail with manual steps instead |
 
 The tests use [Bats](https://bats-core.readthedocs.io/): `bats ./tests/test.bats`. Where systemd is running and `sudo` needs no password, they register a real boot service for a temporary test project and remove it afterwards; elsewhere those checks are skipped.
