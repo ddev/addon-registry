@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: "contrib"
 created_at: "2026-05-27"
-updated_at: "2026-10-09"
+updated_at: "2026-10-13"
 workflow_status: "success"
 stars: 0
 ---
@@ -43,7 +43,7 @@ For a detailed diagram and breakdown of the system's components and security bou
 
 - DDEV >= v1.25.2
 - The [`trebormc/ddev-ai-ssh`](https://github.com/trebormc/ddev-ai-ssh) add-on (installed automatically as a dependency)
-- **Optional:** `python3` installed on the host machine (only required if using the experimental host clipboard integration)
+- **Optional:** `python3` installed on the host machine (recommended for universal host clipboard integration across all terminals and arbitrary payload sizes; if omitted, clipboard sync falls back to terminal OSC 52)
 
 ## Installation
 
@@ -102,9 +102,17 @@ This add-on provides several ways to customize the container environment, manage
 
 ## Experimental Host Clipboard Integration
 
-This add-on features an experimental cross-platform clipboard integration that securely bridges the containerized Pi Coding Agent to your host system's clipboard.
+This add-on features a cross-platform clipboard integration that bridges the containerized Pi Coding Agent to your host system's clipboard using a hybrid strategy:
 
-When you use the `/copy` command (or when the agent writes to the clipboard), the content is written to a temporary pending file inside the shared workspace volume (`.ddev/pi/.clipboard_pending`). A lightweight, background Python daemon (`pi/clipboard-helper.py`) running on your host monitors this file, reads and copies its contents to your host's clipboard using native system utilities, and then immediately deletes the file.
+1. **Shared Volume File Bridge (Default):**
+   When `python3` is available on your host, using the `/copy` command writes payload content to a temporary pending file inside the shared workspace volume (`.ddev/pi/.clipboard_pending`). A lightweight, background Python daemon (`pi/clipboard-helper.py`) running on your host monitors this file, copies its contents to your host clipboard using native system utilities (`pbcopy`, `clip.exe`, `powershell.exe`, or `wl-copy`/`xclip`), and deletes the file.
+   * **Advantages:** Universal terminal compatibility (including macOS Terminal.app and GNOME Terminal) and unlimited payload sizes (handles large code files and transcripts without truncation).
+
+2. **Terminal OSC 52 Fallback (Zero Host Dependencies):**
+   If `python3` is not found on your host machine, `ddev pi` automatically falls back to Pi's native remote session clipboard support (`PI_CLIPBOARD_OSC52=1`). Copied text is emitted directly through standard ANSI OSC 52 terminal escape sequences to your host terminal.
+   * **Requirements:** Requires an OSC 52-compatible terminal emulator (such as Ghostty, iTerm2, Windows Terminal, Kitty, WezTerm, or Alacritty). Payloads are capped by Pi at ~75 KB (`100,000` base64 characters).
+
+You can explicitly force or disable OSC 52 sync at any time by setting `PI_CLIPBOARD_OSC52=1` or `PI_CLIPBOARD_OSC52=0`.
 
 ### OS Support & Feedback
 
