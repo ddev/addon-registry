@@ -6,12 +6,12 @@ user: "Metadrop"
 repo: "ddev-lighthouse"
 repo_id: 782495515
 default_branch: "main"
-tag_name: "v3.1.0"
+tag_name: "3.1.1"
 ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2024-04-05"
-updated_at: "2026-05-22"
+updated_at: "2026-10-14"
 workflow_status: "disabled"
 stars: 3
 ---
@@ -76,3 +76,7 @@ Once Lighthouse reports are generated, you can review them to identify areas for
 Happy optimization!
 
 **Contributed and maintained by [@Metadrop](https://github.com/Metadrop)**
+
+## Limitations
+
+This plugin is based in patrickhulce/lhci-client Docker image. That image is based in Debian Bullseye and Node 22. Bullseye end of life has been reached so this plugin used the Debian archive. Consider using [DDEV Unlighthouse plugin](https://github.com/Metadrop/ddev-unlighthouse) instead.

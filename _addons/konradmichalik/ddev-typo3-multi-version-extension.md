@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2025-03-07"
 updated_at: "2026-10-08"
 workflow_status: "success"
-stars: 10
+stars: 11
 ---
 
 # ddev-typo3-multi-version-extension
