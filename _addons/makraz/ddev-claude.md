@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2026-05-06"
 updated_at: "2026-09-26"
 workflow_status: "success"
-stars: 4
+stars: 5
 ---
 
 # DDEV Claude
