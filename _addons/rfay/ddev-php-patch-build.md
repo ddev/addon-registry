@@ -6,12 +6,12 @@ user: "rfay"
 repo: "ddev-php-patch-build"
 repo_id: 692610647
 default_branch: "main"
-tag_name: "v0.5.2"
+tag_name: "v0.5.3"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2023-09-17"
-updated_at: "2026-07-07"
+updated_at: "2026-10-18"
 workflow_status: "success"
 stars: 1
 ---
@@ -67,8 +67,10 @@ After installation, make sure to commit the `.ddev` directory to version control
 If you hit GitHub rate limits while downloading `static-php-cli` extensions, export your token before running `ddev start` to build the PHP binaries:
 
 ```bash
-export GITHUB_TOKEN=your_github_token
+export DDEV_GITHUB_TOKEN=your_github_token
 ```
+
+DDEV passes `DDEV_GITHUB_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN` to the build as a secret, so the token isn't stored in the image. This requires DDEV newer than v1.25.4; older versions build without a token.
 
 | Variable                | Flag                      | Default                                                                                                                                              |
 |-------------------------|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|

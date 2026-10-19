@@ -6,12 +6,12 @@ user: "fourkitchens"
 repo: "ddev-fire-worktrees"
 repo_id: 1407733226
 default_branch: "main"
-tag_name: "v0.3.0"
+tag_name: "v0.5.0"
 ddev_version_constraint: ">= v1.25.4"
 dependencies: []
 type: "contrib"
 created_at: "2026-10-06"
-updated_at: "2026-10-17"
+updated_at: "2026-10-18"
 workflow_status: "disabled"
 stars: 2
 ---
@@ -102,11 +102,12 @@ same options. See [Choosing the database](https://github.com/fourkitchens/ddev-f
 | [Choosing the branch](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/branches.md) | Check out an existing branch or a pull request, fetch first, or compare a pull request with its base. |
 | [Choosing the database](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/databases.md) | Copy, reuse or import a database, start empty, or get a new copy later. |
 | [Lando projects](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/lando.md) | Use worktrees in a project that also has, or only has, a `.lando.yml`. |
-| [T3 and other agent tools](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/agent-tools.md) | Start worktrees from T3, Claude Code and similar tools, find out why a start failed, and clean up after them. |
+| [Agent tools](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/agent-tools.md) | Start and delete worktree environments from any agent tool, find out why a start failed, and clean up after them. |
 | [Migrating from project-local commands](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/migrating.md) | Replace a project's own `worktree-*` commands and keep existing worktrees. |
 | [How it works](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/how-it-works.md) | See what startup does and how names, hostnames, locks and prune work. |
 | [Troubleshooting](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/troubleshooting.md) | Fix common errors and warnings. |
 | [Contributing](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/contributing.md) | Run the tests, try changes in a project, and release. |
+| [Workflow](https://github.com/fourkitchens/ddev-fire-worktrees/blob/main/docs/workflow.md) | Take an idea or a bug report to a merged pull request with the agent skills. |
 
 ## Removal
 
