@@ -7,11 +7,11 @@ repo: "ddev-selenium-standalone-chrome"
 repo_id: 563535124
 default_branch: "main"
 tag_name: "2.2.1"
-ddev_version_constraint: ">= v1.24.10"
+ddev_version_constraint: ">= v1.25.4"
 dependencies: []
 type: "official"
 created_at: "2022-11-08"
-updated_at: "2026-10-18"
+updated_at: "2026-10-19"
 workflow_status: "success"
 stars: 40
 ---
@@ -54,11 +54,26 @@ ddev composer require drupal/core-dev
 
 After installation, make sure to commit the `.ddev` directory to version control.
 
+The `selenium-chrome` container runs as your host user (same username, UID and GID), so files the browser reads from or writes to the project directory have the same ownership as on the host. To do this, DDEV adds a thin layer to the Selenium image.
+
+`ddev describe` shows the WebDriver URL and how to watch tests with noVNC.
+
 ### Optional steps
 
 1. Update the provided `.ddev/config.selenium-standalone-chrome.yaml` as you see fit (and remove the #ddev-generated line). You can also just override lines in your `.ddev/config.yaml`
 1. Check `config.selenium-standalone-chrome.yaml` and `docker-compose.selenium-chrome.yaml` into your source control.
 1. Update by re-running `ddev add-on get ddev/ddev-selenium-standalone-chrome`.
+
+### Using a different Selenium image
+
+To use a different image or version, set `SELENIUM_CHROME_DOCKER_IMAGE` and restart:
+
+```bash
+ddev dotenv set .ddev/.env.selenium-chrome --selenium-chrome-docker-image=selenium/standalone-chromium:137.0
+ddev restart
+```
+
+Commit `.ddev/.env.selenium-chrome` so your team uses the same image.
 
 ## Usage
 

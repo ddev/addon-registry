@@ -6,12 +6,12 @@ user: "kgaut"
 repo: "ddev-drupal-tools"
 repo_id: 1317094150
 default_branch: "main"
-tag_name: "v0.4.1"
+tag_name: "v0.4.2"
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-07-30"
-updated_at: "2026-09-17"
+updated_at: "2026-10-19"
 workflow_status: "unknown"
 stars: 0
 ---
@@ -125,6 +125,27 @@ hooks:
 projects. Other projects get their dumps with `mysqldump` through `db-{prod,preprod}-get` (see
 [Dump without drush](#dump-without-drush)).
 
+### PostgreSQL
+
+On a PostgreSQL project (`database: postgres:…` in `.ddev/config.yaml`), `db-import` streams the
+dump through a filter before `ddev import-db`, since `psql` stops at the first error and a server
+dump fails on the freshly recreated local database. The filter removes, like
+`pg_restore --no-owner --no-acl` would:
+
+- the `DROP …` statements of a `pg_dump --clean` without `--if-exists`, before the first object
+  is created;
+- the `ALTER … OWNER TO …` statements: everything then belongs to the DDEV user;
+- the `GRANT` / `REVOKE` / `ALTER DEFAULT PRIVILEGES` statements of the dump's ACL sections, which
+  target server roles.
+
+Data lines (`COPY … FROM stdin`) and function bodies are left untouched, and the number of
+statements removed is displayed. `.sql`, `.sql.gz`, `.sql.bz2` and `.sql.xz` dumps are filtered;
+archives (`.zip`, `.tgz`, `.tar.gz`) are imported as is, with a warning. MariaDB and MySQL
+projects are not affected.
+
+When an import fails, `db-import` says that the database is now empty or incomplete and skips
+the following steps; on PostgreSQL, the `psql` error is the one displayed after `stderr:`.
+
 ### Remote server (production / staging)
 
 | Command | Description |
@@ -180,6 +201,8 @@ local dumps directory: nothing is written on the server. Only `PROD_USER`, `PROD
   valid and ends with mysqldump's `-- Dump completed` line; otherwise it is deleted, including
   on Ctrl-C.
 - When both variables are set, `PROD_DB_PATH` wins: the existing server dumps are fetched.
+- On a PostgreSQL project, this mode stops with an error: it only knows `mysqldump`. Use
+  `PROD_DB_PATH` to fetch the server's `pg_dump` dumps, which `db-import` filters on import.
 
 ### Local dumps directory
 
