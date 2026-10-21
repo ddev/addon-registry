@@ -6,12 +6,12 @@ user: "konradmichalik"
 repo: "ddev-typo3-multi-version-extension"
 repo_id: 944430541
 default_branch: "main"
-tag_name: "0.4.1"
+tag_name: "0.5.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2025-03-07"
-updated_at: "2026-10-08"
+updated_at: "2026-10-20"
 workflow_status: "success"
 stars: 11
 ---
