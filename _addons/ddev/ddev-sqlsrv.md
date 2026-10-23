@@ -6,12 +6,12 @@ user: "ddev"
 repo: "ddev-sqlsrv"
 repo_id: 618290272
 default_branch: "main"
-tag_name: "v1.2.0"
+tag_name: "v1.2.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2023-03-24"
-updated_at: "2026-10-16"
+updated_at: "2026-10-22"
 workflow_status: "success"
 stars: 8
 ---

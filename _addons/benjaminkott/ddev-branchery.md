@@ -6,12 +6,12 @@ user: "benjaminkott"
 repo: "ddev-branchery"
 repo_id: 1343018794
 default_branch: "main"
-tag_name: "v0.3.0"
+tag_name: "v0.4.0"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-22"
-updated_at: "2026-10-20"
+updated_at: "2026-10-22"
 workflow_status: "success"
 stars: 2
 ---
