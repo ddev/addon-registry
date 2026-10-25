@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-10-22"
-updated_at: "2026-10-22"
+updated_at: "2026-10-24"
 workflow_status: "success"
 stars: 0
 ---
@@ -64,7 +64,7 @@ What it does:
 1. Starts an S3-compatible bucket in a container (versitygw), listening on `127.0.0.1` on a random port, with random keys.
 2. Runs `backupdrill backup`, which dumps the project database (the `public` schema) into that bucket along with a manifest: tables, estimated row counts, and the dump's sha256.
 3. Runs `backupdrill drill`, which downloads the dump, checks the sha256, restores it into a fresh `postgres:<major>-alpine` container, and compares what came back against the manifest.
-4. Removes the temporary bucket, and the sandbox too unless the drill failed and you passed `--keep`. What Ctrl+C leaves behind is under [Limitations](#limitations).
+4. Removes the temporary bucket, and the sandbox too unless the drill failed and you passed `--keep`. Ctrl+C removes both as well, along with the downloaded dump.
 
 Output from a project with four tables and about 200,000 rows (some progress lines left out):
 
@@ -118,8 +118,8 @@ The command only ever talks to the project database and its own temporary bucket
 - Database only. Uploaded files in your project are not part of the backup.
 - Only the `public` schema unless you set `BACKUPDRILL_SCHEMAS`.
 - Nothing is kept. Each run makes a new backup and throws it away.
-- The CLI comes from npm as `backupdrill@2` (the newest 2.x release), and the first run pulls the versitygw and Postgres images, so it needs network access and takes longer.
-- Ctrl+C still removes the bucket and the downloaded dump, but if the sandbox is already running it stays up, and a running `--check-cmd` carries on until it finishes. The CLI doesn't clean up after itself when it's interrupted yet. List leftover sandboxes with `docker ps --filter ancestor=postgres:17-alpine` (use your Postgres version) and remove one with `docker rm -fv <id>`.
+- The CLI comes from npm as `backupdrill@^2.7.1` (the newest 2.x release, 2.7.1 or later), and the first run pulls the versitygw and Postgres images, so it needs network access and takes longer.
+- Pressing Ctrl+C a second time skips the cleanup and can leave the sandbox running. List leftover sandboxes with `docker ps --filter name=backupdrill-drill-` and remove one with `docker rm -fv <id>`.
 - Tested on macOS (Apple Silicon, OrbStack) and on Ubuntu, x86-64 and arm64, in CI. Windows hasn't been tried.
 
 ## Backing up a real database
