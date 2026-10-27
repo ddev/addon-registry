@@ -12,7 +12,7 @@ dependencies: ["trebormc/ddev-ai-ssh"]
 type: "contrib"
 created_at: "2026-05-27"
 updated_at: "2026-10-22"
-workflow_status: "success"
+workflow_status: "failure"
 stars: 0
 ---
 
