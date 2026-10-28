@@ -6,12 +6,12 @@ user: "astehlik"
 repo: "ddev-supercronic"
 repo_id: 1275315473
 default_branch: "main"
-tag_name: "v0.2.50"
+tag_name: "v0.2.51"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: "contrib"
 created_at: "2026-06-20"
-updated_at: "2026-10-19"
+updated_at: "2026-10-27"
 workflow_status: "success"
 stars: 0
 ---

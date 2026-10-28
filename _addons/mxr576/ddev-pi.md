@@ -6,14 +6,14 @@ user: "mxr576"
 repo: "ddev-pi"
 repo_id: 1250983207
 default_branch: "main"
-tag_name: "1.0.0-rc4"
+tag_name: "1.0.0-rc5"
 ddev_version_constraint: ">= v1.25.2"
 dependencies: ["trebormc/ddev-ai-ssh"]
 type: "contrib"
 created_at: "2026-05-27"
-updated_at: "2026-10-22"
-workflow_status: "failure"
-stars: 0
+updated_at: "2026-10-27"
+workflow_status: "success"
+stars: 1
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)

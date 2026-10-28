@@ -12,7 +12,7 @@ dependencies: ["codementality/ddev-floci-ui"]
 type: "contrib"
 created_at: "2026-08-26"
 updated_at: "2026-08-26"
-workflow_status: "success"
+workflow_status: "disabled"
 stars: 1
 ---
 
