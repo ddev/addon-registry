@@ -6,12 +6,12 @@ user: "trebormc"
 repo: "ddev-ralph"
 repo_id: 1191701553
 default_branch: "main"
-tag_name: "v1.0.58"
+tag_name: "v1.0.59"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads"]
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-07-05"
+updated_at: "2026-10-29"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -280,11 +280,12 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 | [ddev-ai-workspace](https://github.com/trebormc/ddev-ai-workspace) | Meta add-on that installs the full AI development stack with one command. | Workspace |
 | [ddev-opencode](https://github.com/trebormc/ddev-opencode) | [OpenCode](https://opencode.ai) AI CLI container for interactive development. | Backend (required, pick one or both) |
 | [ddev-claude-code](https://github.com/trebormc/ddev-claude-code) | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI container for interactive development. | Backend (required, pick one or both) |
+| [ddev-ai-arena](https://github.com/trebormc/ddev-ai-arena) | Host package (skill + scripts, not a DDEV add-on) that runs N AI candidates in isolated worktree environments, gates them mechanically and judges them blind. | Sibling: parallel candidates instead of a sequential loop |
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser for browser automation and visual testing. | Auto-installed dependency |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker. Ralph uses it for task planning and progress tracking. | Auto-installed dependency |
 | [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) | Auto-syncs AI agent repositories into a shared Docker volume. | Not a direct dependency |
 | [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container. Generates per-project keys, installs sshd. | Installed by ddev-opencode/claude-code |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 10 agents, 12 rules, 24 skills for Drupal development. Includes `ralph-planner` and `drupal-test-generator` agents. | Agent configuration |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 11 agents, 15 rules, 39 skills for Drupal development. Includes `ralph-planner` and `drupal-test-generator` agents. | Agent configuration |
 
 ## Disclaimer
 

@@ -6,12 +6,12 @@ user: "trebormc"
 repo: "ddev-opencode"
 repo_id: 1191702047
 default_branch: "main"
-tag_name: "v1.0.58"
+tag_name: "v1.0.59"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-07-08"
+updated_at: "2026-10-29"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -23,7 +23,7 @@ stars: 0
 
 # ddev-opencode
 
-A DDEV add-on that runs [OpenCode](https://github.com/opencode-ai/opencode) in a dedicated container for AI-powered **Drupal** development.
+A DDEV add-on that runs [OpenCode 2](https://github.com/anomalyco/opencode) in a dedicated container for AI-powered **Drupal** development.
 
 > **Part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-workspace)** — a modular ecosystem of DDEV add-ons for AI-powered Drupal development. Install the full stack with one command: `ddev add-on get trebormc/ddev-ai-workspace`
 >
@@ -64,9 +64,9 @@ This automatically installs the required dependencies:
 
 ## Authentication
 
-Run `ddev opencode` and follow the prompts. OpenCode handles authentication natively. No custom commands or manual file editing needed.
+API keys are shared across all your DDEV projects through `~/.ddev/opencode/auth.json` on the host (the OpenCode 1 credentials file, also written by `opencode auth login` on a host OpenCode 1 install). OpenCode 2 keeps its credentials in a SQLite database and does not read that file in a fresh container, so the container's entrypoint injects every API key it contains into the container-global config on each start. You authenticate **once** for API-key providers.
 
-Credentials are stored in a shared file on the host (`~/.ddev/opencode/auth.json` by default), so you only need to authenticate **once**. All your DDEV projects share the same credentials automatically.
+OAuth providers (for example an Anthropic subscription login) cannot be injected this way: run `ddev opencode`, then `/connect` in the TUI, once per project. The database lives in a per-project Docker volume (`ddev-<project>-opencode-data`), so it survives `ddev restart`.
 
 ## Configuration
 
@@ -76,7 +76,7 @@ After installation, environment variables are in `.ddev/.env.opencode`:
 # Shared OpenCode directory for credentials and config.
 # Shared across ALL DDEV projects. Change only if you need a custom location.
 # Files: auth.json (credentials), config/ (optional shared opencode.json /
-# opencode-notifier.json / AGENTS.md overrides + node_modules plugin cache)
+# opencode-notifier.json / AGENTS.md overrides)
 HOST_OPENCODE_DIR=${HOME}/.ddev/opencode
 
 # Self-update OpenCode on every container start (set to false to keep
@@ -87,7 +87,7 @@ OPENCODE_AUTO_UPDATE=true
 TZ=UTC
 ```
 
-> **Note:** the image bakes whatever OpenCode version was latest when it was built, and Docker layer caching freezes it there. With `OPENCODE_AUTO_UPDATE=true` (the default) the entrypoint checks npm on every start and reinstalls only when a newer version exists; offline starts keep the current version.
+> **Note:** the image bakes whatever OpenCode 2 version was latest when it was built (npm package `@opencode/cli`), and Docker layer caching freezes it there. With `OPENCODE_AUTO_UPDATE=true` (the default) the entrypoint checks npm on every start and reinstalls only when a newer version exists; offline starts keep the current version. This is the only update path — OpenCode's built-in updater is disabled in the container. Plugins listed in `opencode.json` are downloaded by OpenCode 2 itself on first start (cached in the container under `~/.cache/opencode/npm/`).
 
 ### Agent Configuration
 
@@ -274,11 +274,12 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 | [ddev-ai-workspace](https://github.com/trebormc/ddev-ai-workspace) | Meta add-on that installs the full AI development stack with one command. | Workspace |
 | [ddev-claude-code](https://github.com/trebormc/ddev-claude-code) | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI container for interactive development. | Alternative AI tool |
 | [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to this container or Claude Code via SSH. | Uses this as backend |
+| [ddev-ai-arena](https://github.com/trebormc/ddev-ai-arena) | Host package (skill + scripts, not a DDEV add-on) that runs N AI candidates in isolated worktree environments, gates them mechanically and judges them blind. | Runs arena candidates and the project-manager session inside this container |
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser for browser automation and visual testing. | Auto-installed dependency |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker shared by all AI containers. | Auto-installed dependency |
 | [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) | Auto-syncs AI agent repositories into a shared Docker volume. Provides agents and config. | Auto-installed dependency |
 | [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container. Generates per-project keys, installs sshd. | Auto-installed dependency |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 10 agents, 12 rules, 24 skills for Drupal development. Synced automatically via ddev-agents-sync. | Agent configuration |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 11 agents, 15 rules, 39 skills for Drupal development. Synced automatically via ddev-agents-sync. | Agent configuration |
 
 ## Disclaimer
 

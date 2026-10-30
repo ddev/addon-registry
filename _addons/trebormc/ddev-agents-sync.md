@@ -6,12 +6,12 @@ user: "trebormc"
 repo: "ddev-agents-sync"
 repo_id: 1191720964
 default_branch: "main"
-tag_name: "v1.0.58"
+tag_name: "v1.0.59"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-07-06"
+updated_at: "2026-09-16"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -79,6 +79,16 @@ AGENTS_REPOS=https://github.com/trebormc/drupal-ai-agents.git,https://github.com
 ```
 
 Files from later repos override earlier ones. This lets you use the public Drupal agents as a base and add (or replace) specific agents/skills from a private repo.
+
+### Pinning a branch or tag
+
+Append `#<branch-or-tag>` to a URL to sync that ref instead of the default branch (a commit SHA is not accepted):
+
+```bash
+AGENTS_REPOS=https://github.com/trebormc/drupal-ai-agents.git#feature/new-rule
+```
+
+This is how [ddev-ai-arena](https://github.com/trebormc/ddev-ai-arena) evaluates a change to the agents pack: two candidates, same task, one on `main` and one on the branch under test.
 
 ## How It Works
 
@@ -317,10 +327,11 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 | [ddev-opencode](https://github.com/trebormc/ddev-opencode) | [OpenCode](https://opencode.ai) AI CLI container for interactive development. | Auto-installs this add-on |
 | [ddev-claude-code](https://github.com/trebormc/ddev-claude-code) | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI container for interactive development. | Auto-installs this add-on |
 | [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to OpenCode or Claude Code. | Does not require this add-on |
+| [ddev-ai-arena](https://github.com/trebormc/ddev-ai-arena) | Host package (skill + scripts, not a DDEV add-on) that runs N AI candidates in isolated worktree environments, gates them mechanically and judges them blind. | Applies per-candidate model overrides through this add-on's `.env.agents` cascade |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker shared by all AI containers. | Sibling dependency |
 | [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container for AI agents. | Sibling dependency |
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser for browser automation and visual testing. | Sibling dependency |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 10 agents, 12 rules, 24 skills for Drupal development. Default repo synced by this add-on. | Content synced by this add-on |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 11 agents, 15 rules, 39 skills for Drupal development. Default repo synced by this add-on. | Content synced by this add-on |
 
 ## Disclaimer
 

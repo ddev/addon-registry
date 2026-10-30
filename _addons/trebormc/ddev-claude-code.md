@@ -6,12 +6,12 @@ user: "trebormc"
 repo: "ddev-claude-code"
 repo_id: 1191702322
 default_branch: "main"
-tag_name: "v1.0.58"
+tag_name: "v1.0.59"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-07-08"
+updated_at: "2026-09-16"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -215,7 +215,7 @@ Inside the container (via `ddev claude-code shell`), these helper functions are 
 
 When [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) is installed (auto-installed as dependency), Claude Code automatically gets the Drupal configuration at the USER level inside the container (`~/.claude/`), leaving your project files untouched:
 
-- **10 specialized agents** in `~/.claude/agents/` (drupal-dev, code-review, etc.)
+- **11 specialized agents** in `~/.claude/agents/` (drupal-dev, drupal-theme, code-review, code-explorer, task-router, etc.)
 - **Rules** in `~/.claude/rules/` and **skills** in `~/.claude/skills/`
 - **CLAUDE.md** with Drupal development instructions as user-level memory (`~/.claude/CLAUDE.md`). A `~/.ddev/claude-code/CLAUDE.md` on the host, if present, replaces the synced one.
 
@@ -315,11 +315,12 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 | [ddev-ai-workspace](https://github.com/trebormc/ddev-ai-workspace) | Meta add-on that installs the full AI development stack with one command. | Workspace |
 | [ddev-opencode](https://github.com/trebormc/ddev-opencode) | [OpenCode](https://opencode.ai) AI CLI container for interactive development. | Alternative AI tool |
 | [ddev-ralph](https://github.com/trebormc/ddev-ralph) | Autonomous AI task orchestrator. Delegates work to this container or OpenCode via SSH. | Uses this as backend |
+| [ddev-ai-arena](https://github.com/trebormc/ddev-ai-arena) | Host package (skill + scripts, not a DDEV add-on) that runs N AI candidates in isolated worktree environments, gates them mechanically and judges them blind. | Runs arena candidates and the project-manager session inside this container |
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser for browser automation and visual testing. | Auto-installed dependency |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker shared by all AI containers. | Auto-installed dependency |
 | [ddev-agents-sync](https://github.com/trebormc/ddev-agents-sync) | Auto-syncs AI agent repositories into a shared Docker volume. Provides CLAUDE.md. | Auto-installed dependency |
 | [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container. Generates per-project keys, installs sshd. | Auto-installed dependency |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 10 agents, 12 rules, 24 skills for Drupal development. Synced automatically via ddev-agents-sync. | Agent configuration |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 11 agents, 15 rules, 39 skills for Drupal development. Synced automatically via ddev-agents-sync. | Agent configuration |
 
 ## Disclaimer
 

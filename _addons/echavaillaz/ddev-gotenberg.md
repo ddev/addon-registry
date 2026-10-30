@@ -7,11 +7,11 @@ repo: "ddev-gotenberg"
 repo_id: 633840053
 default_branch: "main"
 tag_name: "1.0.1"
-ddev_version_constraint: ">= v1.24.3"
+ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2023-04-28"
-updated_at: "2025-09-18"
+updated_at: "2026-10-29"
 workflow_status: "failure"
 stars: 5
 ---
