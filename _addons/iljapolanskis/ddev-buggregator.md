@@ -6,12 +6,12 @@ user: "iljapolanskis"
 repo: "ddev-buggregator"
 repo_id: 673257959
 default_branch: "main"
-tag_name: "1.1.1"
-ddev_version_constraint: ">= v1.23.2"
+tag_name: "1.1.2"
+ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2023-08-01"
-updated_at: "2025-08-22"
+updated_at: "2026-10-30"
 workflow_status: "disabled"
 stars: 2
 ---
@@ -45,44 +45,46 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 ### Accessing Buggregator UI
 
-Open `https://mysite.ddev.site:8000` in your browser to access the Buggregator web interface.
+Open `https://<project>.ddev.site:8000` in your browser to access the Buggregator web interface.
 
-Additional information on using Buggregator can be found in the [Buggregator documentation](https://github.com/buggregator/server#configuration).
+### Connecting your application
+
+From inside the `web` container Buggregator is reachable by its service name, `buggregator`.
+Set these variables in your application's `.env` (see the [Buggregator documentation](https://docs.buggregator.dev/) for framework-specific setup):
+
+| Feature | Port | Configuration |
+| ------- | ---- | ------------- |
+| [Sentry](https://docs.buggregator.dev/config/sentry.html) | 8000 | `SENTRY_DSN=http://sentry@buggregator:8000/1` |
+| [Ray](https://docs.buggregator.dev/config/ray.html) | 8000 | `RAY_HOST=ray@buggregator`, `RAY_PORT=8000` |
+| [Inspector](https://docs.buggregator.dev/config/inspector.html) | 8000 | `INSPECTOR_URL=http://inspector@buggregator:8000`, `INSPECTOR_API_KEY=test` |
+| [XHProf](https://docs.buggregator.dev/config/xhprof.html) | 8000 | `PROFILER_ENDPOINT=http://profiler@buggregator:8000` |
+| [HTTP dumps](https://docs.buggregator.dev/config/http-dumps.html) | 8000 | `http://http-dump@buggregator:8000` |
+| [SMTP](https://docs.buggregator.dev/config/smtp.html) | 1025 | `MAILER_DSN=smtp://buggregator:1025` |
+| [VarDumper](https://docs.buggregator.dev/config/var-dumper.html) | 9912 | `VAR_DUMPER_FORMAT=server`, `VAR_DUMPER_SERVER=buggregator:9912` |
+| [Monolog](https://docs.buggregator.dev/config/monolog.html) | 9913 | `SocketHandler('buggregator:9913')` |
+
+Only the web UI (port 8000) is published through the DDEV router. SMTP, VarDumper and Monolog are plain TCP services and are only reachable from other containers in the project.
 
 ## Configuration
 
-You can customize the Buggregator service by setting environment variables in your `.ddev/.env` file:
+Customize the add-on with `ddev dotenv set`, which writes to `.ddev/.env.buggregator`:
 
 ```bash
-# Buggregator image version
-BUGGREGATOR_IMAGE=ghcr.io/buggregator/server:latest
+# Pin the Buggregator image version
+ddev dotenv set .ddev/.env.buggregator --buggregator-image=ghcr.io/buggregator/server:latest
 
-# Port configurations
-BUGGREGATOR_HTTP_PORT=8000
-BUGGREGATOR_SMTP_PORT=1025
-BUGGREGATOR_VAR_DUMPER_PORT=9912
-BUGGREGATOR_MONOLOG_PORT=9913
-BUGGREGATOR_SENTRY_PORT=9511
-BUGGREGATOR_RAY_PORT=23517
-```
+# Serve the web UI on another router port, e.g. https://<project>.ddev.site:8100
+ddev dotenv set .ddev/.env.buggregator --buggregator-http-port=8100
 
-After making changes, restart DDEV:
-
-```bash
 ddev restart
 ```
 
-## Configuration Options
-
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `BUGGREGATOR_IMAGE` | `ghcr.io/buggregator/server:latest` | Docker image version to use |
-| `BUGGREGATOR_HTTP_PORT` | `8000` | HTTP port for web interface |
-| `BUGGREGATOR_SMTP_PORT` | `1025` | SMTP port for email debugging |
-| `BUGGREGATOR_VAR_DUMPER_PORT` | `9912` | Port for Symfony VarDumper |
-| `BUGGREGATOR_MONOLOG_PORT` | `9913` | Port for Monolog handler |
-| `BUGGREGATOR_SENTRY_PORT` | `9511` | Port for Sentry integration |
-| `BUGGREGATOR_RAY_PORT` | `23517` | Port for Ray debugging tool |
+| `BUGGREGATOR_IMAGE` | `ghcr.io/buggregator/server:latest` | Docker image to use |
+| `BUGGREGATOR_HTTP_PORT` | `8000` | Router port for the HTTPS web UI |
+
+Variables in `.ddev/.env.buggregator` are also passed into the Buggregator container, so any [server setting](https://docs.buggregator.dev/config/server.html) can be configured there too.
 
 ## PHP Usage Example
 

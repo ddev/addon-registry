@@ -6,12 +6,12 @@ user: "iljapolanskis"
 repo: "ddev-sftp"
 repo_id: 1028210891
 default_branch: "main"
-tag_name: "1.0.1"
+tag_name: "1.0.2"
 ddev_version_constraint: ">= v1.24.3"
 dependencies: []
 type: "contrib"
 created_at: "2025-07-29"
-updated_at: "2025-08-22"
+updated_at: "2026-10-30"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -45,28 +45,10 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 ## Configuration
 
-You can customize the SFTP service by setting environment variables in your `.ddev/.env` file:
+You can customize the SFTP service with `ddev dotenv set`, which writes to `.ddev/.env.sftp`. Keeping the settings there (instead of `.ddev/.env`) stops the SFTP credentials from leaking into every container of the project:
 
 ```bash
-# SFTP port (host port mapping)
-SFTP_PORT=2222
-
-# SFTP credentials
-SFTP_USERNAME=sftp
-SFTP_PASSWORD=sftp
-
-# SFTP directory and user/group IDs
-SFTP_UID=1001
-SFTP_GID=1001
-SFTP_DIR=upload
-
-# Host path to mount
-SFTP_HOST_PATH=../upload/sftp
-```
-
-After making changes, restart DDEV:
-
-```bash
+ddev dotenv set .ddev/.env.sftp --sftp-port=2223 --sftp-password=secret
 ddev restart
 ```
 
@@ -74,21 +56,37 @@ ddev restart
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `SFTP_PORT` | `2222` | Host port for SFTP access |
+| `SFTP_PORT` | `2222` | Host port for SFTP access (bound to `127.0.0.1` only) |
 | `SFTP_USERNAME` | `sftp` | SFTP username |
 | `SFTP_PASSWORD` | `sftp` | SFTP password |
-| `SFTP_UID` | `1001` | User ID for SFTP user |
-| `SFTP_GID` | `1001` | Group ID for SFTP user |
+| `SFTP_UID` | your host UID (`DDEV_UID`) | User ID for SFTP user, so uploaded files are owned by you on the host |
+| `SFTP_GID` | your host GID (`DDEV_GID`) | Group ID for SFTP user |
 | `SFTP_DIR` | `upload` | Directory name inside SFTP home |
-| `SFTP_HOST_PATH` | `../upload/sftp` | Host path to mount as SFTP directory |
+| `SFTP_HOST_PATH` | `../upload/sftp` | Host path to mount as SFTP directory (relative to `.ddev`) |
+
+If several DDEV projects use this add-on at the same time, give each one its own `SFTP_PORT`, otherwise only the first project will start.
 
 ## Connecting to SFTP
 
-Once configured, you can connect to the SFTP service using:
-- **Host**: `localhost` (or your DDEV hostname)
+From your host machine (FileZilla, `sftp`, etc.):
+- **Host**: `127.0.0.1` (or your DDEV hostname, e.g. `myproject.ddev.site`)
 - **Port**: Value of `SFTP_PORT` (default: 2222)
 - **Username**: Value of `SFTP_USERNAME` (default: sftp)
 - **Password**: Value of `SFTP_PASSWORD` (default: sftp)
+
+From inside the DDEV containers, use host `sftp` on port `22`.
+
+```bash
+sftp -P 2222 sftp@127.0.0.1
+```
+
+The user is chrooted to its home directory, so files go into `/upload` (or whatever `SFTP_DIR` is set to); the home directory itself is not writable.
+
+> [!NOTE]
+> The SSH host key is regenerated every time the container is recreated (e.g. on `ddev restart`), so clients that remember host keys will warn about a changed key. That is expected for this local-only service.
+
+> [!NOTE]
+> The [atmoz/sftp](https://github.com/atmoz/sftp) image is only published for `linux/amd64`. On Apple Silicon it runs under emulation (Rosetta/QEMU), which works fine for local development.
 
 ## PHP Usage Example
 
