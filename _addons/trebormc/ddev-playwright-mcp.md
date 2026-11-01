@@ -6,12 +6,12 @@ user: "trebormc"
 repo: "ddev-playwright-mcp"
 repo_id: 1191701790
 default_branch: "main"
-tag_name: "v1.0.59"
+tag_name: "v1.0.60"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-09-16"
+updated_at: "2026-10-31"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -71,7 +71,9 @@ http://playwright-mcp:8931/mcp
 
 ### Screenshots
 
-Screenshots are saved to the `screenshots/` directory in your project root, accessible from both the container and the host.
+Screenshots are saved to the `screenshots/` directory in your project root, accessible from both the container and the host. The add-on creates that directory at install time as your user, and the container runs with your UID, so everything in it stays yours.
+
+> **Upgrading from a release before v1.0.60?** Earlier versions let Docker create `./screenshots` on first start, which made it `root:root` on Linux and blocked moving or deleting the project directory later. Fix an existing project once with `sudo chown -R "$(id -un):$(id -gn)" screenshots` from the project root.
 
 ### Custom Image Version
 

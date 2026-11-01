@@ -6,7 +6,7 @@ user: "trebormc"
 repo: "ddev-opencode"
 repo_id: 1191702047
 default_branch: "main"
-tag_name: "v1.0.59"
+tag_name: "v1.0.60"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: "contrib"
@@ -87,7 +87,7 @@ OPENCODE_AUTO_UPDATE=true
 TZ=UTC
 ```
 
-> **Note:** the image bakes whatever OpenCode 2 version was latest when it was built (npm package `@opencode/cli`), and Docker layer caching freezes it there. With `OPENCODE_AUTO_UPDATE=true` (the default) the entrypoint checks npm on every start and reinstalls only when a newer version exists; offline starts keep the current version. This is the only update path — OpenCode's built-in updater is disabled in the container. Plugins listed in `opencode.json` are downloaded by OpenCode 2 itself on first start (cached in the container under `~/.cache/opencode/npm/`).
+> **Note:** the image bakes whatever OpenCode 2 version was latest when it was built (npm package `@opencode/cli`), and Docker layer caching freezes it there. With `OPENCODE_AUTO_UPDATE=true` (the default) the entrypoint checks npm on every start and reinstalls only when a newer version exists; offline starts keep the current version. This is the only update path — OpenCode's built-in updater is disabled in the container. Plugins listed in `opencode.json` are downloaded by OpenCode 2 itself the first time a project boots (cached in the per-project `opencode-cache` volume). Until that download finishes OpenCode answers every request with "plugins did not finish activating" and the TUI shows no models, so the entrypoint warms the cache in the background right after start; `ddev logs -s opencode` prints `plugins installed and active` when it is done. If you open `ddev opencode` before that line appears and see no models, close it and open it again.
 
 ### Agent Configuration
 
