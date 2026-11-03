@@ -6,13 +6,13 @@ user: "Lullabot"
 repo: "ddev-playwright"
 repo_id: 635031324
 default_branch: "main"
-tag_name: "v0.5.11"
+tag_name: "v0.6.0"
 ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2023-05-01"
-updated_at: "2026-10-30"
-workflow_status: "success"
+updated_at: "2026-11-02"
+workflow_status: "failure"
 stars: 41
 ---
 
@@ -52,6 +52,10 @@ The full setup workflow is:
 1. **Install the addon** and commit the generated configuration.
 2. **Initialize Playwright** inside the container (creates `package.json`, config, etc.).
 4. **Run `ddev install-playwright`** to rebuild the web service with browser dependencies.
+
+> **Note:** Playwright 1.64.1 or later is required. Earlier WebKit builds
+> crash during navigation on the Debian trixie base image, so the web image
+> build fails if `@playwright/test` resolves to an older version.
 
 > **Tip:** Re-run `ddev restart` any time you update the Playwright
 > version in `test/playwright/package.json` so the matching browser binaries are

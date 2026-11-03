@@ -6,12 +6,12 @@ user: "atj4me"
 repo: "ddev-tailscale-router"
 repo_id: 950788832
 default_branch: "main"
-tag_name: "v3.0.0"
-ddev_version_constraint: ">= v1.24.3"
+tag_name: "v3.0.1"
+ddev_version_constraint: ">= v1.25.4"
 dependencies: []
 type: "contrib"
 created_at: "2025-03-18"
-updated_at: "2025-09-20"
+updated_at: "2026-11-03"
 workflow_status: "disabled"
 stars: 8
 ---
@@ -59,13 +59,13 @@ Before installing the add-on:
 2. [Enable HTTPS](https://tailscale.com/kb/1153/enabling-https) in your [DNS settings](https://login.tailscale.com/admin/dns) by clicking "Enable HTTPS..." (required for TLS certificate generation).
 3. [Generate an auth key](https://tailscale.com/kb/1085/auth-keys) in your [Keys settings](https://login.tailscale.com/admin/settings/keys) (ephemeral, reusable keys are recommended).
 
-    Get the auth key and add it to your environment by updating `~/.bashrc`, `~/.zshrc`, or another relevant shell configuration file with this command:
+    Store the auth key in this project only, in `.ddev/.env.web.local` (loaded into the web container only, and not committed to git by default), instead of exporting it into every shell session:
 
     ```bash
-    echo 'export TS_AUTHKEY=tskey-auth-your-key-here' >> ~/.bashrc
+    ddev dotenv set .ddev/.env.web.local --ts-authkey=tskey-auth-your-key-here
     ```
 
-    Alternatively, you can also set up authentication using `ddev tailscale login` after your project starts. This provides secure, interactive access for your DDEV project.
+    Alternatively, skip the auth key altogether and authenticate interactively with `ddev tailscale login` after your project starts — it prints a login URL to open in your browser.
 
 
 4. **For public access**: To enable Funnel (public sharing), configure your [Access Control List (ACL)](https://tailscale.com/kb/1223/funnel#funnel-node-attribute) in the [Tailscale admin console](https://login.tailscale.com/admin/acls) by adding the `funnel` node attribute:
@@ -82,7 +82,7 @@ Before installing the add-on:
     ```
 
 5. **For SSL certificate generation** (Optional): To run the command `tailscale cert` from the container, the machine needs corresponsing access by adding a `certs` capability inside node attributes: 
-    
+
     ```json
     "nodeAttrs": [
       {
