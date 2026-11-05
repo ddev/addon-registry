@@ -6,13 +6,13 @@ user: "BODYA7979"
 repo: "ddev-worktree-kit"
 repo_id: 1444581799
 default_branch: "main"
-tag_name: "v0.5.0"
+tag_name: "v0.5.1"
 ddev_version_constraint: ">= v1.25.4"
 dependencies: []
 type: "contrib"
 created_at: "2026-11-03"
-updated_at: "2026-11-03"
-workflow_status: "unknown"
+updated_at: "2026-11-04"
+workflow_status: "success"
 stars: 0
 ---
 

@@ -6,12 +6,12 @@ user: "FluffyDiscord"
 repo: "ddev-rapira"
 repo_id: 1359003196
 default_branch: "master"
-tag_name: "v0.2.0"
+tag_name: "v0.2.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-09-06"
-updated_at: "2026-10-08"
+updated_at: "2026-11-04"
 workflow_status: "success"
 stars: 0
 ---
@@ -85,7 +85,7 @@ A proxy cannot supply everything `fastcgi_params` did. What changes, measured:
 |---|---|---|
 | Rapira config file | `rapira.toml` in the project root, else classic mode on `<docroot>/index.php` | `ddev dotenv set .ddev/.env.web --rapira-config-file=rapira.dev.toml && ddev restart` |
 | Docroot (the override's nginx `root`) | your `ddev config --docroot`, set at install | Edit `root` in `.ddev/nginx_full/nginx-site.conf` and `ddev restart` |
-| Rapira version | `v0.9.1` | `ARG RAPIRA_VERSION` in `.ddev/web-build/Dockerfile.rapira` (a release tag from `v0.9.1` on, or `nightly`), then `ddev restart` |
+| Rapira version | `v0.9.2` | `ARG RAPIRA_VERSION` in `.ddev/web-build/Dockerfile.rapira` (a release tag from `v0.9.1` on, or `nightly`), then `ddev restart` |
 
 The add-on does **not** write or manage `rapira.toml` — it is yours, DDEV bind-mounts it, and it stays live. Copy [`example.rapira.toml`](https://github.com/FluffyDiscord/ddev-rapira/blob/master/./example.rapira.toml) to your project root to start from something.
 
