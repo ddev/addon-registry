@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-17"
-updated_at: "2026-10-09"
+updated_at: "2026-11-06"
 workflow_status: "success"
 stars: 1
 ---
@@ -95,7 +95,7 @@ otherwise, additional arguments are passed to the underlying tool.
 
 | Command | Description |
 | --- | --- |
-| `ddev phpunit [args]` | Runs the project’s `vendor/bin/phpunit` with an unlimited PHP memory limit and the default DDEV/Silverstripe test database credentials (`root`/`root`). |
+| `ddev phpunit [args]` | Runs the project’s `vendor/bin/phpunit` with an unlimited PHP memory limit and the default DDEV/Silverstripe test database credentials (`root`/`root`). Without arguments, it scans for `phpunit.xml`/`phpunit.xml.dist` (project root first, then subdirectories) and passes the first match via `--configuration`. If no configuration file is found, it prints a notice and exits with code `125` (shown as SKIP by `ddev ci`). |
 | `ddev stan [args]` | Runs the project’s `vendor/bin/phpstan`. |
 | `ddev rector [args]` | Runs the project’s `vendor/bin/rector`. Use `ddev rector --dry-run` to inspect proposed changes. |
 | `ddev jack [args]` | Runs `vendor/bin/jack` (Deprecated: Use `ddev check-outdated-dependencies` instead) or falls back to `vendor/bin/swiss-knife`. |
@@ -106,9 +106,10 @@ otherwise, additional arguments are passed to the underlying tool.
 | Command | Description |
 | --- | --- |
 | `ddev lint [phpcs-args]` | Runs PHP_CodeSniffer. If `DDEV_SILVERSTRIPE_THEME_PATH` is configured, it also checks the theme with Prettier. |
+| `ddev yaml-lint [yamllint-args]` | Lints `_config` and `lang` YAML files in the project and its modules. Duplicate keys are errors. |
 | `ddev fix` | Fixes PHP formatting with `vendor/bin/phpcbf` and formats the configured theme with Prettier. This changes files. |
 | `ddev prettier [check\|write]` | Checks or formats `src/**/*.{js,css,scss}` below `DDEV_SILVERSTRIPE_THEME_PATH` using the theme’s Yarn/Prettier installation. The default is `check`. |
-| `ddev ci` | Runs the standard project checks in sequence: PHPUnit, PHP/frontend linting, PHPStan, Rector (dry-run), and check-outdated-dependencies. |
+| `ddev ci` | Runs the standard project checks in sequence: PHPUnit, PHP/frontend linting, YAML linting, PHPStan, Rector (dry-run), and check-outdated-dependencies. |
 
 ### Deployment and packaging
 
@@ -122,4 +123,5 @@ otherwise, additional arguments are passed to the underlying tool.
 - `ddev fix` always invokes Prettier, so it requires `DDEV_SILVERSTRIPE_THEME_PATH` even when only PHP formatting is needed.
 - Commands fail early with a clear error and installation hint when their required project-local binary is missing (exit code 127). The exception is `ddev sspak`,
   which installs its global binary automatically.
-- `ddev ci` is a convenience wrapper around the other checks; it runs all checks, treats uninstalled tools (exit code 127) as skipped, collects their statuses, and outputs a summary at the end.
+- `ddev phpunit` without arguments exits with code 125 (skipped, after printing a notice) when no `phpunit.xml`/`phpunit.xml.dist` exists in the project.
+- `ddev ci` is a convenience wrapper around the other checks, including Silverstripe YAML linting; it runs all checks, treats uninstalled tools (exit code 127) and skipped checks (exit code 125) as skipped, collects their statuses, and outputs a summary at the end.

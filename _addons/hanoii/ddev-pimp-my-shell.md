@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2024-03-25"
-updated_at: "2026-10-31"
+updated_at: "2026-11-06"
 workflow_status: "success"
 stars: 6
 ---
@@ -21,9 +21,9 @@ stars: 6
 
 # ddev-pimp-my-shell <!-- omit in toc -->
 
-This a an addon that adds several nice command line utitlites I use across all
-projects, making it easier/nicer to work inside the container with some initial
-defaults.
+This is an add-on that adds several nice command line utilities I use across
+all projects, making it easier/nicer to work inside the container with some
+initial defaults.
 
 <!-- toc -->
 
@@ -34,6 +34,8 @@ defaults.
   * [terminal window title](#terminal-window-title)
   * [ls replacement](#ls-replacement)
   * [ahoy](#ahoy)
+  * [task](#task)
+  * [devopsy](#devopsy)
   * [starship](#starship)
   * [fish](#fish)
   * [lazygit](#lazygit)
@@ -47,16 +49,8 @@ defaults.
 
 You can always install the latest code:
 
-For DDEV v1.23.5 or above run
-
 ```sh
 ddev add-on get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
-```
-
-For earlier versions of DDEV run
-
-```sh
-ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 ```
 
 **Contributed and maintained by [@hanoii](https://github.com/hanoii)**
@@ -86,10 +80,11 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - https://dandavison.github.io/delta/
 - https://github.com/sharkdp/bat
 - https://github.com/sharkdp/fd
-- Some useful [scripts](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/pimp-my-shell/scripts)
+- Some useful [scripts](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/homeadditions/.local/bin)
 - https://github.com/cli/cli
 - https://github.com/go-task/task
 - https://upterm.dev/
+- https://github.com/hanoii/devopsy-cli
 
 ## Tweaks
 
@@ -113,7 +108,7 @@ default if working inside the container:
 
 - Adds the DDEV project name
 - shows that is a DDEV project
-- includes the current $PWD shortenning it.
+- includes the current $PWD shortening it.
 - shows the currently running command
 
 i.e. for this add-on `sleep 10 - ddev-pimp-my-shell/ddev: /v/w/html`
@@ -131,9 +126,19 @@ completion engine (`ahoy __complete`).
 
 ### task
 
-Inside the container, bash and fish completions come from the task package.
-On the host, `ddev task <TAB>` completes task names, aliases, flags and flag
-values through task's own completion engine (`task __complete`).
+Inside the container, bash and fish completions come from the task package. On
+the host, `ddev task <TAB>` completes task names, aliases, flags and flag values
+through task's own completion engine (`task __complete`).
+
+### devopsy
+
+Bash and fish completions come from `devopsy --completion`. On the host,
+`ddev devopsy` runs it in the container, for what goes over SSH like `ddev
+devopsy @prod --release` (the container has no Docker for `devopsy up`), and
+`ddev devopsy <TAB>` completes through devopsy's own completion engine
+(`devopsy --complete`). Its daily update check stays on, but `devopsy --upgrade`
+inside the container is lost on the next restart: the add-on's own updates bump
+the version instead.
 
 ### starship
 
@@ -165,12 +170,12 @@ function mytide --on-event fish_prompt
     tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Light --show_time=No --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=Yes
     touch ~/.config/fish/conf.d/.mytide
   end
-endkkk
+end
 ```
 
 ### lazygit
 
-It adds a [config.yml](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/homeadditions/.config/lazygit/config.yml) diabling the
+It adds a [config.yml](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/homeadditions/.config/lazygit/config.yml) disabling the
 startup popups.
 
 ### go
