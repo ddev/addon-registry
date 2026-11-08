@@ -11,8 +11,8 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-08-17"
-updated_at: "2026-11-06"
-workflow_status: "success"
+updated_at: "2026-11-07"
+workflow_status: "failure"
 stars: 1
 ---
 
@@ -125,3 +125,45 @@ otherwise, additional arguments are passed to the underlying tool.
   which installs its global binary automatically.
 - `ddev phpunit` without arguments exits with code 125 (skipped, after printing a notice) when no `phpunit.xml`/`phpunit.xml.dist` exists in the project.
 - `ddev ci` is a convenience wrapper around the other checks, including Silverstripe YAML linting; it runs all checks, treats uninstalled tools (exit code 127) and skipped checks (exit code 125) as skipped, collects their statuses, and outputs a summary at the end.
+
+## Development
+
+### Running the tests
+
+The add-on ships bats test suites in `tests/`. The unit tests (`tests/phpunit-command.bats`, `tests/web-commands.bats`)
+stub `php`, `composer`, `jq`, `yarn`, and the project-local binaries, so they run without DDEV — only bats-core is
+required:
+
+```bash
+brew install bats-core   # Linux: apt install bats
+bats tests/phpunit-command.bats tests/web-commands.bats
+```
+
+`tests/test.bats` validates the add-on installation inside a real DDEV project, so it additionally needs Docker and
+DDEV locally plus the bats libraries:
+
+```bash
+brew install ddev bats-core bats-assert bats-file bats-support
+bats ./tests/test.bats --filter-tags '!release'
+```
+
+CI runs `bats tests --filter-tags '!release'` on every push and pull request (see `.github/workflows/tests.yml`).
+
+### Linting locally
+
+Run the same checks as the `lint` workflow (see `.github/workflows/lint.yml`) before pushing:
+
+```bash
+# ShellCheck on commands/ (CI scans ./commands)
+shellcheck commands/web/*
+
+# yamllint on the whole repository with the project config
+yamllint -c .yamllint.yaml .
+
+# markdownlint on the root *.md files with the project config
+npx --yes markdownlint-cli --config .markdownlint.yaml '*.md'
+```
+
+Install the tools with `brew install shellcheck yamllint markdownlint-cli` on macOS, or with
+`sudo apt install shellcheck yamllint` and `npm install -g markdownlint-cli` (or just `npx`) on Ubuntu/WSL;
+yamllint is also available via `pipx install yamllint`.

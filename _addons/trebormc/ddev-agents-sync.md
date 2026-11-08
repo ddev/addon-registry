@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-09-16"
+updated_at: "2026-11-07"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -136,6 +136,8 @@ Files are copied from each repo in order. The merge is a simple file-level overr
 - `.claude/rules/*.md`: merged (later repos can add or override rules)
 - `.env.agents`: overridden by the last repo that provides it
 - `CLAUDE.md`, `opencode.json.example`: overridden by the last repo
+
+The generated agents, rules and skills mirror the merge: anything no repo provides any more is removed from the volumes. If a repo cannot be read (failed clone, no network), the sync removes nothing, because an incomplete merge says nothing about what was deleted.
 
 ## Model Token System
 
@@ -331,7 +333,7 @@ This add-on is part of [DDEV AI Workspace](https://github.com/trebormc/ddev-ai-w
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | [Beads](https://github.com/steveyegge/beads) git-backed task tracker shared by all AI containers. | Sibling dependency |
 | [ddev-ai-ssh](https://github.com/trebormc/ddev-ai-ssh) | SSH access to the web container for AI agents. | Sibling dependency |
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser for browser automation and visual testing. | Sibling dependency |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 11 agents, 15 rules, 39 skills for Drupal development. Default repo synced by this add-on. | Content synced by this add-on |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 11 agents, 15 rules, 38 skills for Drupal development. Default repo synced by this add-on. | Content synced by this add-on |
 
 ## Disclaimer
 

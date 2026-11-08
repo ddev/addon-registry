@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2024-03-25"
-updated_at: "2026-11-06"
+updated_at: "2026-11-07"
 workflow_status: "success"
 stars: 6
 ---
@@ -21,9 +21,9 @@ stars: 6
 
 # ddev-pimp-my-shell <!-- omit in toc -->
 
-This is an add-on that adds several nice command line utilities I use across
-all projects, making it easier/nicer to work inside the container with some
-initial defaults.
+This is an add-on that adds several nice command line utilities I use across all
+projects, making it easier/nicer to work inside the container with some initial
+defaults.
 
 <!-- toc -->
 
@@ -38,6 +38,7 @@ initial defaults.
   * [devopsy](#devopsy)
   * [starship](#starship)
   * [fish](#fish)
+  * [ssh host completion](#ssh-host-completion)
   * [lazygit](#lazygit)
   * [go](#go)
   * [delta](#delta)
@@ -133,9 +134,9 @@ through task's own completion engine (`task __complete`).
 ### devopsy
 
 Bash and fish completions come from `devopsy --completion`. On the host,
-`ddev devopsy` runs it in the container, for what goes over SSH like `ddev
-devopsy @prod --release` (the container has no Docker for `devopsy up`), and
-`ddev devopsy <TAB>` completes through devopsy's own completion engine
+`ddev devopsy` runs it in the container, for what goes over SSH like
+`ddev devopsy @prod --release` (the container has no Docker for `devopsy up`),
+and `ddev devopsy <TAB>` completes through devopsy's own completion engine
 (`devopsy --complete`). Its daily update check stays on, but `devopsy --upgrade`
 inside the container is lost on the next restart: the add-on's own updates bump
 the version instead.
@@ -172,6 +173,23 @@ function mytide --on-event fish_prompt
   end
 end
 ```
+
+### ssh host completion
+
+Both bash and fish complete ssh hosts from files your ssh config pulls in with a
+quoted `Include` (for example `Include "config.d/*"`), which neither does on its
+own, and fish also from an `Include` listing several paths:
+
+- fish's `__fish_print_hostnames` is overridden with
+  [fish-shell/fish-shell#12743](https://github.com/fish-shell/fish-shell/pull/12743)
+  applied.
+- bash-completion's `_comp__included_ssh_config_files` is overridden with
+  [scop/bash-completion#1766](https://github.com/scop/bash-completion/pull/1766)
+  applied, and fzf's `ssh **<TAB>` lists the same hosts as `ssh <TAB>`
+  ([`pimp-my-shell.bash-completion`](https://github.com/hanoii/ddev-pimp-my-shell/blob/main/web-build/pimp-my-shell.bash-completion)).
+
+To complete your host's ssh hosts in every DDEV project, symlink your ssh config
+and its included directories into `~/.ddev/homeadditions/.ssh/` on the host.
 
 ### lazygit
 

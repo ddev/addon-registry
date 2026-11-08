@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-04-18"
-updated_at: "2026-09-16"
+updated_at: "2026-11-07"
 workflow_status: "disabled"
 stars: 1
 ---
@@ -101,7 +101,7 @@ SSH keys in `.ddev/.agent-ssh-keys/` are NOT deleted automatically.
 | [ddev-ai-arena](https://github.com/trebormc/ddev-ai-arena) | Host package (skill + scripts, not a DDEV add-on) that runs N AI candidates in isolated worktree environments, gates them mechanically and judges them blind. | Each candidate environment gets its own keys |
 | [ddev-beads](https://github.com/trebormc/ddev-beads) | Git-backed task tracker. | Sibling dependency |
 | [ddev-playwright-mcp](https://github.com/trebormc/ddev-playwright-mcp) | Headless Playwright browser. | Sibling dependency |
-| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 11 agents, 15 rules, 39 skills for Drupal development. | Agent configuration |
+| [drupal-ai-agents](https://github.com/trebormc/drupal-ai-agents) | 11 agents, 15 rules, 38 skills for Drupal development. | Agent configuration |
 
 ## Disclaimer
 
