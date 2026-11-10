@@ -6,12 +6,12 @@ user: "e0ipso"
 repo: "ddev-atlassian-cli"
 repo_id: 1436923670
 default_branch: "main"
-tag_name: "v2.0.1"
+tag_name: "v2.1.0"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-10-28"
-updated_at: "2026-10-28"
+updated_at: "2026-11-09"
 workflow_status: "success"
 stars: 0
 ---
@@ -56,7 +56,9 @@ ddev twg doctor
 2. Answer yes to `Open in browser?`. There is no browser in the container, so `twg` just repeats the URL.
 3. Open the URL on your host, check that the code matches the one in the terminal, and approve.
 
-The login is stored in `~/.config/twg` inside the web container, and `ddev restart` recreates the container. Run `ddev twg login` again after a restart, or use environment variables.
+The login survives `ddev restart` and `ddev debug rebuild`. The add-on sets `TWG_CONFIG_DIR` to `.ddev/twg`, so `twg` keeps its config in your project instead of in the container. `twg` stores the token there as a plain-text file by default. No other DDEV project can read it, but anything with access to your project directory can.
+
+`.ddev/twg/.gitignore` ignores everything in that directory except itself. Commit it with the rest of `.ddev`, so teammates who clone the project get the same rule. `ddev add-on remove atlassian-cli` deletes the directory and the login with it.
 
 ### Environment variables
 
@@ -75,6 +77,8 @@ Add `TWG_TOKEN` to that file with an editor rather than on the command line, so 
 | ---- | ------- |
 | `.ddev/web-build/Dockerfile.atlassian-cli` | Runs Atlassian's [installer](https://teamwork-graph.atlassian.com/cli/install) unattended to install the latest stable `twg` as `/usr/local/bin/twg` |
 | `.ddev/commands/web/twg` | The `ddev twg` command |
+| `.ddev/docker-compose.atlassian-cli.yaml` | Sets `TWG_CONFIG_DIR` so the login persists |
+| `.ddev/twg/.gitignore` | Keeps the stored login out of version control |
 
 The build skips the installer's login and agent skills, and the image has no upkeep helper. Agent skills belong where your agent runs, and the helper needs a user service manager that the container lacks.
 
