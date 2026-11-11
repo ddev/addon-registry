@@ -13,7 +13,7 @@ type: "contrib"
 created_at: "2023-08-02"
 updated_at: "2026-05-11"
 workflow_status: "disabled"
-stars: 4
+stars: 5
 ---
 
 [![tests](https://github.com/hanoii/ddev-sshd/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/hanoii/ddev-sshd/actions/workflows/tests.yml)

@@ -6,12 +6,12 @@ user: "Lullabot"
 repo: "ddev-playwright"
 repo_id: 635031324
 default_branch: "main"
-tag_name: "v0.6.0"
+tag_name: "v0.6.1"
 ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2023-05-01"
-updated_at: "2026-11-08"
+updated_at: "2026-11-10"
 workflow_status: "success"
 stars: 42
 ---
@@ -196,6 +196,12 @@ part of that layer's cache key — staging a snapshot baseline would rebuild the
 web image, and every layer after it, each time you updated a screenshot. None
 of those files survive into the image anyway; the layer deletes its copy once
 the browsers are cached.
+
+The staged directory stays in place between starts, so `ddev utility rebuild`
+works too: it builds from the copy made at the last start without running the
+pre-start hook. It's already listed in `.ddev/web-build/.gitignore`. If your
+dependencies changed since the last start, `ddev restart` stages the new
+manifests and rebuilds the browser layer.
 
 The practical consequence: a dependency in your `package.json` must be
 resolvable from the Playwright directory alone. A `file:` dependency pointing
