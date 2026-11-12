@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-11-09"
+updated_at: "2026-11-11"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -64,9 +64,9 @@ This automatically installs the required dependencies:
 
 ## Authentication
 
-API keys are shared across all your DDEV projects through `~/.ddev/opencode/auth.json` on the host (the OpenCode 1 credentials file, also written by `opencode auth login` on a host OpenCode 1 install). OpenCode 2 keeps its credentials in a SQLite database and does not read that file in a fresh container, so the container's entrypoint injects every API key it contains into the container-global config on each start. You authenticate **once** for API-key providers.
+API keys are shared across all your DDEV projects through `~/.ddev/opencode/auth.json` on the host (the OpenCode 1 credentials file, also written by `opencode auth login` on a host OpenCode 1 install). OpenCode 2 keeps its credentials in a SQLite database and imports that file only once, when it creates a project's database (OpenCode 2.2.7 and later), so the container's entrypoint also injects every API key it contains into the container-global config on each start — keys you add or rotate later reach every project. You authenticate **once** for API-key providers.
 
-OAuth providers (for example an Anthropic subscription login) cannot be injected this way: run `ddev opencode`, then `/connect` in the TUI, once per project. The database lives in a per-project Docker volume (`ddev-<project>-opencode-data`), so it survives `ddev restart`.
+OAuth providers (for example an Anthropic subscription login) cannot be injected this way. An OAuth entry already in `auth.json` when a project's database is first created is imported with it; in any other case run `ddev opencode`, then `/connect` in the TUI, once per project. The database lives in a per-project Docker volume (`ddev-<project>-opencode-data`), so it survives `ddev restart`.
 
 ## Configuration
 

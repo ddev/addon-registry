@@ -1,12 +1,12 @@
 ---
 title: "mxr576/ddev-pi-docconv"
 github_url: "https://github.com/mxr576/ddev-pi-docconv"
-description: "Adds deterministic document conversion to PI Coding Agent via Pandoc and headless LibreOffice,."
+description: "Adds deterministic document conversion to PI Coding Agent via Pandoc and headless LibreOffice."
 user: "mxr576"
 repo: "ddev-pi-docconv"
 repo_id: 1451243578
 default_branch: "main"
-tag_name: ""
+tag_name: "1.0.0-alpha1"
 ddev_version_constraint: ">= v1.25.5"
 dependencies: ["mxr576/ddev-pi"]
 type: "contrib"

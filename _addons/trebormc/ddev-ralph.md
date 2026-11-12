@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-playwright-mcp", "trebormc/ddev-beads"]
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-11-07"
+updated_at: "2026-11-11"
 workflow_status: "disabled"
 stars: 0
 ---

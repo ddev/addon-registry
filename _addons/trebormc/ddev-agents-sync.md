@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-11-07"
+updated_at: "2026-11-11"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -147,11 +147,11 @@ Agent `.md` files use **model tokens** instead of hardcoded model names. This al
 
 | Token | Default (OpenCode) | Default (Claude Code) | Use for |
 |-------|--------------------|-----------------------|---------|
-| `${MODEL_MAIN}` | `opencode/deepseek-v4-flash` | `sonnet` | The orchestrator: default model of the tool's main conversation loop |
+| `${MODEL_MAIN}` | `opencode/deepseek-v4.1-flash` | `sonnet` | The orchestrator: default model of the tool's main conversation loop |
 | `${MODEL_GENIUS}` | `opencode/glm-5.2` | `opus` | Hardest tasks: important code reviews, architecture |
 | `${MODEL_SMART}` | `opencode/glm-5.2` | `opus` | Quality gates, planning, research, delegation advice |
 | `${MODEL_NORMAL}` | `opencode/deepseek-v4-pro` | `sonnet` | General-purpose tasks |
-| `${MODEL_CHEAP}` | `opencode/deepseek-v4-flash` | `haiku` | Fast, cost-effective agents |
+| `${MODEL_CHEAP}` | `opencode/deepseek-v4.1-flash` | `haiku` | Fast, cost-effective agents |
 | `${MODEL_APPLIER}` | `opencode/gpt-5-nano` | `haiku` | Mechanical code application |
 | `${MODEL_VISION}` | `opencode/minimax-m3` | `sonnet` | Image/screenshot interpretation — MUST accept image input |
 
@@ -173,11 +173,11 @@ The repo default defines the full mapping:
 
 ```bash
 # OpenCode models (provider/model-id format)
-OC_MODEL_MAIN=opencode/deepseek-v4-flash
+OC_MODEL_MAIN=opencode/deepseek-v4.1-flash
 OC_MODEL_GENIUS=opencode/glm-5.2
 OC_MODEL_SMART=opencode/glm-5.2
 OC_MODEL_NORMAL=opencode/deepseek-v4-pro
-OC_MODEL_CHEAP=opencode/deepseek-v4-flash
+OC_MODEL_CHEAP=opencode/deepseek-v4.1-flash
 OC_MODEL_APPLIER=opencode/gpt-5-nano
 OC_MODEL_VISION=opencode/minimax-m3
 
