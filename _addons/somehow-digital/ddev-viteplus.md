@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-03-13"
-updated_at: "2026-10-31"
+updated_at: "2026-11-13"
 workflow_status: "success"
 stars: 3
 ---
@@ -84,3 +84,7 @@ export default {
   },
 }
 ```
+
+---
+
+[`somehow.digital`](https://somehow.digital/)
