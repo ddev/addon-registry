@@ -6,12 +6,12 @@ user: "e0ipso"
 repo: "ddev-assistant-claude"
 repo_id: 1132377741
 default_branch: "main"
-tag_name: "v1.5.0"
+tag_name: "v1.5.1"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["Lullabot/ddev-gitleaks"]
 type: "contrib"
 created_at: "2026-01-11"
-updated_at: "2026-10-07"
+updated_at: "2026-11-14"
 workflow_status: "success"
 stars: 17
 ---
