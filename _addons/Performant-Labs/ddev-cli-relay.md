@@ -6,12 +6,12 @@ user: "Performant-Labs"
 repo: "ddev-cli-relay"
 repo_id: 1208079295
 default_branch: "main"
-tag_name: "v1.1.0"
+tag_name: "v1.2.0"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-04-11"
-updated_at: "2026-11-14"
+updated_at: "2026-11-15"
 workflow_status: "unknown"
 stars: 0
 ---
@@ -107,19 +107,21 @@ Returns `200` when the relay is running. Needs no token.
 ```json
 {
   "status": "ok",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "port": 8765,
   "auth": "token",
   "token_id": "3f2a9c41d0be",
-  "features": ["files"],
+  "features": ["files", "isolated_cwd"],
   "binaries": ["claude", "codex", "llm"]
 }
 ```
 
 `token_id` is the first 12 hex characters of the token's SHA-256, so a client
 can check it reached its own project's relay without the token being revealed.
-`features` lists optional request fields the relay understands, and `binaries`
-the allowed tools it found on the host.
+`features` lists what the relay supports beyond the basic request: `files` for
+attachments, and `isolated_cwd` when every tool runs in its own empty
+directory (v1.2.0 and newer). `binaries` lists the allowed tools it found on
+the host.
 
 ### `POST /execute`
 
@@ -206,6 +208,12 @@ two outside threats that matter for a development laptop:
 - **Allowlisted binaries only.** The relay only runs the allowed CLI tools, at
   the paths it found when it started. It never runs a path the caller supplies,
   and it ignores relative `PATH` entries.
+- **An empty working directory.** Each tool runs in a new temporary directory
+  that only you can open (mode 700), holding nothing but that request's
+  attachments, and removed when the tool exits. Agentic CLIs treat their
+  working directory as their workspace, so their file tools do not start out
+  pointed at your home directory. Releases before v1.2.0 ran tools in your home
+  directory.
 
 **What it does not protect against: anything that holds the token.** Treat
 the token as equivalent to a shell on your machine. The caller chooses the
