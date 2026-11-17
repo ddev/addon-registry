@@ -6,7 +6,7 @@ user: "augustash"
 repo: "ddev-pantheon-db"
 repo_id: 1193784869
 default_branch: "master"
-tag_name: "1.0.5"
+tag_name: "1.0.6"
 ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
