@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-10-30"
-updated_at: "2026-11-13"
+updated_at: "2026-11-17"
 workflow_status: "success"
 stars: 0
 ---
@@ -85,7 +85,7 @@ Plugins write to the database all the time (caches, counters, notices, update ch
 
 - in a non-GET request of a logged-in user (saving posts, settings, menus, media, page builders, REST/AJAX saves),
 - in an admin URL with a nonce opened by a logged-in user (activating a plugin, trashing a post and other GET actions; any parameter whose name contains "nonce", or the `X-WP-Nonce` header),
-- in a WP-CLI command (`ddev wp ...`), except read-only commands (`list`, `get`, `status`, ... also nested like `wp post meta get`) and `cron`, `transient`, `cache`, `rewrite flush`.
+- in a WP-CLI command (`ddev wp ...`), except read-only commands (`list`, `get`, `status`, ... also nested like `wp post meta get`) and `cron`, `transient`, `cache`, `rewrite flush`. Only writes by the command itself count, not writes of plugins while WordPress loads: `wp eval` / `eval-file` that only read are not edits.
 
 Anonymous visitors, page views, list filters and searches, logins, the heartbeat, screen options, transients and statistics hits never count, whichever plugin writes. Each edit is one line in `.ddev/.wpdev/dirty` (`ddev wpdev edits show`, `ddev dbsync status`). Add project-specific noise with `WPDEV_DIRTY_IGNORE_EXTRA`, a regex matched against the signature shown there, e.g. `^POST /wp-admin/admin-ajax\.php action=my_plugin_ping$`.
 
@@ -154,6 +154,7 @@ if ( getenv( 'IS_DDEV_PROJECT' ) === 'true' ) { require '/var/www/html/.ddev/wp-
 - Subdomain multisite also needs `additional_hostnames` in the DDEV config.
 - Databases cannot be merged. `ddev dbsync` only makes parallel changes visible (merge conflict); resolving means picking one side and redoing the other side's changes by hand.
 - Edit detection is a heuristic. A plugin that writes on every logged-in POST (e.g. a tracking ping) creates a snapshot on the next commit: `ddev wpdev edits show` names the request, exclude it with `WPDEV_DIRTY_IGNORE_EXTRA`. GET actions are only detected in wp-admin: front-end links that change the database via a nonce (confirmations, unsubscribe) are missed, record them with `ddev dbsync mark-dirty`. Because any parameter whose name contains "nonce" counts, a plugin that adds such a parameter to all of its admin links makes every admin visit an edit, exclude it with `WPDEV_DIRTY_IGNORE_EXTRA`. Settings changed outside WordPress (direct SQL, `wp db query`, database GUIs) are not detected: use `ddev dbsync mark-dirty`.
+- Writes while WordPress loads are not edits, in page views as in WP-CLI. A plugin that migrates its data on the first load after an update is caught only if that load happens before the commit that follows the (recorded) update; otherwise use `ddev dbsync mark-dirty`. Conversely, a plugin that writes in a shutdown function on every request makes a read-only `wp eval` an edit.
 - With `WPDEV_DB_CHANGE_DETECTION=hash`, if a plugin writes to the database on every request, every commit creates a new snapshot. Compare `ddev wpdev hash --verbose` before/after a page request and exclude the option via `WPDEV_DB_HASH_SKIP_OPTIONS` / `_META` / `_TABLES`.
 - The content hash aggregates the hashed tables in SQL and runs on every `git commit` (pre-commit hook). On small and medium databases this takes seconds; on very large databases it can take considerably longer. `ddev wpdev hash --verbose` shows which tables dominate the run time.
 - rclone's shared Google Drive client ID is being retired in 2026. Create your own OAuth client: https://rclone.org/drive/#making-your-own-client-id
