@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: ["trebormc/ddev-ai-ssh", "trebormc/ddev-playwright-mcp", "trebormc/ddev-beads", "trebormc/ddev-agents-sync"]
 type: "contrib"
 created_at: "2026-03-25"
-updated_at: "2026-11-11"
+updated_at: "2026-11-18"
 workflow_status: "disabled"
 stars: 0
 ---
@@ -157,7 +157,8 @@ OpenCode communicates with the web container via SSH (`ssh web`), giving it full
 | `ddev opencode tui` | Launch TUI (same as above) |
 | `ddev opencode tui Fix login bug` | Launch TUI with a custom tab title |
 | `ddev opencode shell` | Open a bash shell in the container |
-| `ddev opencode <command>` | Run any command in the container |
+| `ddev opencode --continue` | Arguments starting with `-` are passed to `opencode` |
+| `ddev opencode <command>` | Run any command in the container (`ddev opencode opencode <subcommand>` for the CLI's own subcommands) |
 
 ### Tab title for multi-project workflows
 

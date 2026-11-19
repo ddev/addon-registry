@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2023-04-29"
-updated_at: "2026-10-16"
+updated_at: "2026-11-18"
 workflow_status: "failure"
 stars: 144
 ---
@@ -48,7 +48,9 @@ ddev config --update
 If you want to work with a specific Drupal CMS site template, add it to your dev dependencies, along with Drush:
 ```shell
 # replace drupal/byte with your desired package.
-composer require --dev --no-update drupal/byte drush/drush
+ddev composer require --dev --no-update drupal/byte drush/drush
+ddev poser
+ddev symlink-project
 ```
 Then, when your codebase is set up, use Drush to set up Drupal with Byte:
 ```shell
