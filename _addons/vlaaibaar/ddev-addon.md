@@ -6,12 +6,12 @@ user: "vlaaibaar"
 repo: "ddev-addon"
 repo_id: 1462461683
 default_branch: "main"
-tag_name: "v1.0.0"
+tag_name: "v1.1.1"
 ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-11-18"
-updated_at: "2026-11-18"
+updated_at: "2026-11-19"
 workflow_status: "unknown"
 stars: 0
 ---
@@ -31,8 +31,9 @@ Updating overwrites only the add-on's own files (marked `#ddev-generated`). Proj
 
 Adds the DDEV providers `production` and `staging` for Craft CMS sites.
 
-1. Fill in `.ddev/vlaaibaar/sync/production.env` and `staging.env` (created on install, commit them to the project).
-2. Use it:
+1. Fill in the shared settings in `.ddev/vlaaibaar/sync/production.env` and `staging.env` (created on install). Commit them.
+2. Each developer creates their own `production.local.env` / `staging.local.env` next to them, with only their SSH user (see `example.local.env`). These files are gitignored.
+3. Use it:
 
 ```
 ddev auth ssh                       # once per session
@@ -48,7 +49,8 @@ Add `-y` to skip the confirmation prompt.
 
 | Setting | Meaning |
 | --- | --- |
-| `SSH_HOST` | `user@host` of the server (SSH keys handle authentication) |
+| `SSH_HOST` | Host or IP of the server, without a user. An older `user@host` value still works |
+| `SSH_USER` | Your own SSH user. Set it in `<env>.local.env`, not in the shared file. SSH keys handle authentication |
 | `REMOTE_PATH` | Folder with the `craft` executable. Relative paths start from the SSH user's home folder |
 | `REMOTE_UPLOADS` | Uploads folder on the server |
 | `ALLOW_PUSH` | `true` allows `ddev push`. Created as `false` for production, `true` for staging |

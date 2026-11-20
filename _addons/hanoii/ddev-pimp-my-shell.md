@@ -11,7 +11,7 @@ ddev_version_constraint: ""
 dependencies: []
 type: "contrib"
 created_at: "2024-03-25"
-updated_at: "2026-11-16"
+updated_at: "2026-11-19"
 workflow_status: "success"
 stars: 6
 ---
@@ -203,6 +203,11 @@ Other than adding itself to the path and installing some packages I am unsetting
 `GOARCH` and `GOOS` for both `ddev ssh` and `ddev fish` so that are not in
 conflict with the container OS as
 [they are added by DDEV from the host](https://github.com/ddev/ddev/issues/6748).
+
+`GOPATH` and `GOCACHE` point to `/mnt/ddev-global-cache/go/${HOSTNAME}`, so the
+module cache, the build cache and anything installed with `go install` survive
+restarts. Values a project already sets, for example through `web_environment`,
+are kept.
 
 ### delta
 
