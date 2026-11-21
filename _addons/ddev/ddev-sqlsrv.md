@@ -6,13 +6,13 @@ user: "ddev"
 repo: "ddev-sqlsrv"
 repo_id: 618290272
 default_branch: "main"
-tag_name: "v1.2.1"
+tag_name: "v1.2.2"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "official"
 created_at: "2023-03-24"
-updated_at: "2026-10-22"
-workflow_status: "success"
+updated_at: "2026-11-20"
+workflow_status: "failure"
 stars: 8
 ---
 
@@ -42,7 +42,7 @@ ddev restart
 
 After installation, make sure to commit the `.ddev` directory to version control.
 
-The `sqlsrv` and `pdo_sqlsrv` PHP extensions are installed for PHP 7.0 and higher. PHP 7.0-8.2 get the last [release](https://github.com/microsoft/msphpsql/releases) that supports that PHP version (via PECL), and PHP 8.3+ gets the latest release (via [PIE](https://github.com/php/pie)).
+The `sqlsrv` and `pdo_sqlsrv` PHP extensions are installed for PHP 7.0 and higher. PHP 7.0-8.3 get the last [release](https://github.com/microsoft/msphpsql/releases) that supports that PHP version (via PECL for PHP 7.0-8.2, and via [PIE](https://github.com/php/pie) for PHP 8.3), and PHP 8.4+ gets the latest release (via PIE).
 
 ## Usage
 

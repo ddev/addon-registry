@@ -6,12 +6,12 @@ user: "bricebou"
 repo: "ddev-manticoresearch"
 repo_id: 768156076
 default_branch: "main"
-tag_name: "v1.0.0"
+tag_name: "v1.1.0"
 ddev_version_constraint: ">= v1.23.5"
 dependencies: []
 type: "contrib"
 created_at: "2024-03-06"
-updated_at: "2026-09-16"
+updated_at: "2026-11-20"
 workflow_status: "success"
 stars: 2
 ---
@@ -36,7 +36,7 @@ This add-on for DDEV installs the following files:
 
 ## Choosing the Manticore Search version
 
-The add-on ships with a pinned version — `manticoresearch/manticore:29.9.0` — rather than
+The add-on ships with a pinned version — `manticoresearch/manticore:32.1.3` — rather than
 `latest`, so that a given add-on release always gives every member of your team the same
 engine. To run another version, typically the one your production server uses:
 
@@ -99,7 +99,7 @@ RUN apt update && apt -y install php
 In `.ddev/docker-compose.manticoresearch.yaml`, replace
 
 ```yaml
-    image: ${MANTICORESEARCH_DOCKER_IMAGE:-manticoresearch/manticore:29.9.0}
+    image: ${MANTICORESEARCH_DOCKER_IMAGE:-manticoresearch/manticore:32.1.3}
 ```
 
 with
@@ -107,7 +107,7 @@ with
 ```yaml
     build:
       args:
-        BASE_IMAGE: ${MANTICORESEARCH_DOCKER_IMAGE:-manticoresearch/manticore:29.9.0}
+        BASE_IMAGE: ${MANTICORESEARCH_DOCKER_IMAGE:-manticoresearch/manticore:32.1.3}
       context: .
       dockerfile: ./manticoresearch/Dockerfile
 ```
