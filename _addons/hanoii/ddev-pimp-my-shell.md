@@ -7,11 +7,11 @@ repo: "ddev-pimp-my-shell"
 repo_id: 777249734
 default_branch: "main"
 tag_name: "v3.1.0"
-ddev_version_constraint: ""
+ddev_version_constraint: ">= v1.25.6"
 dependencies: []
 type: "contrib"
 created_at: "2024-03-25"
-updated_at: "2026-11-19"
+updated_at: "2026-11-21"
 workflow_status: "success"
 stars: 6
 ---
@@ -204,8 +204,8 @@ Other than adding itself to the path and installing some packages I am unsetting
 conflict with the container OS as
 [they are added by DDEV from the host](https://github.com/ddev/ddev/issues/6748).
 
-`GOPATH` and `GOCACHE` point to `/mnt/ddev-global-cache/go/${HOSTNAME}`, so the
-module cache, the build cache and anything installed with `go install` survive
+`GOPATH` and `GOCACHE` point to `/mnt/ddev-project-cache/go`, so the module
+cache, the build cache and anything installed with `go install` survive
 restarts. Values a project already sets, for example through `web_environment`,
 are kept.
 
