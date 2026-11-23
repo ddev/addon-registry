@@ -12,7 +12,7 @@ dependencies: []
 type: "contrib"
 created_at: "2026-11-21"
 updated_at: "2026-11-22"
-workflow_status: "unknown"
+workflow_status: "success"
 stars: 0
 ---
 
@@ -144,10 +144,11 @@ every project, so DDEV split it by writer
 - DDEV's tests now fail when a named volume has more than one writer
   ([ddev/ddev#9046](https://github.com/ddev/ddev/pull/9046)).
 
-This add-on brings back exactly what Apple `container` can't do: the `web`
-container of every project writes to `ddev-global-cache`. With it, a second
-project's `web` can't start while another project is running. Don't install it
-in projects you run on Apple `container`.
+> [!WARNING]
+> This add-on brings back exactly what Apple `container` can't do: the `web`
+> container of every project writes to `ddev-global-cache`. With it, a second
+> project's `web` can't start while another project is running. Don't install it
+> in projects you run on Apple `container`.
 
 ## Installation
 
