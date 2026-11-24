@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-11-12"
-updated_at: "2026-11-22"
+updated_at: "2026-11-23"
 workflow_status: "success"
 stars: 0
 ---

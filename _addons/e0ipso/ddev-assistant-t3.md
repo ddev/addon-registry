@@ -6,12 +6,12 @@ user: "e0ipso"
 repo: "ddev-assistant-t3"
 repo_id: 1282758294
 default_branch: "main"
-tag_name: "v1.1.2"
+tag_name: "v1.1.3"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-06-28"
-updated_at: "2026-10-26"
+updated_at: "2026-11-23"
 workflow_status: "success"
 stars: 1
 ---
@@ -182,6 +182,15 @@ https_port="$(( http_port + 1 ))"
 ```
 
 Hash collisions are possible. Override the ports if two projects calculate the same pair.
+
+## Removal
+
+```bash
+ddev add-on remove assistant-t3
+ddev restart
+```
+
+Removal deletes the generated DDEV files but keeps `.ddev/.env.assistant-t3` and `.ddev/t3/settings.json`, so a later reinstall picks your settings up again. Delete them by hand if you don't need them.
 
 ## Credits
 

@@ -6,13 +6,13 @@ user: "fourkitchens"
 repo: "ddev-fire-worktrees"
 repo_id: 1407733226
 default_branch: "main"
-tag_name: "v0.5.0"
+tag_name: "v0.6.0"
 ddev_version_constraint: ">= v1.25.4"
 dependencies: []
 type: "contrib"
 created_at: "2026-10-06"
-updated_at: "2026-10-18"
-workflow_status: "disabled"
+updated_at: "2026-11-23"
+workflow_status: "failure"
 stars: 2
 ---
 
@@ -71,7 +71,7 @@ which this add-on provides as an alias.
 | `ddev fire-worktree-start` | `worktree-start` | Gives the worktree you're in its own DDEV project, copies the database into it, and builds it. Safe to rerun. |
 | `ddev fire-worktree-refresh [--yes]` | | Replaces the worktree's database with a new copy, as its first start did, and builds it again. Keeps its DDEV project and other volumes, such as search indexes. |
 | `ddev fire-worktree-list` | | Lists every worktree with its branch, DDEV project, status, uncommitted changes and URL. |
-| `ddev fire-worktree-info [--json]` | | Shows the worktree's DDEV project, status, URLs, and where and when its database was copied, and for a running Drupal site, a one-time login link. `--json` is for scripts and agents. |
+| `ddev fire-worktree-info [--json] [--domain=<machine name\|hostname>]` | | Shows the worktree's DDEV project, status, URLs, and where and when its database was copied, and for a running Drupal site, a one-time login link. With the Drupal Domain module, it lists the domains, and `--domain` makes the login link for one of them. `--json` is for scripts and agents. |
 | `ddev fire-worktree-remove [--yes] [--keep-checkout] [path]` | `worktree-remove` | Deletes the worktree's DDEV project and database, then removes the checkout. Keeps the branch. |
 | `ddev fire-worktree-prune [--yes]` | | Finds DDEV projects whose checkout is gone, for example after a tool deletes a worktree. Deletes them with `--yes`. |
 
