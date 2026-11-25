@@ -6,13 +6,13 @@ user: "NoiXdev"
 repo: "ddev-sync"
 repo_id: 1397686712
 default_branch: "main"
-tag_name: "v0.1.0-rc.7"
+tag_name: "v0.1.0-rc.8"
 ddev_version_constraint: ">= v1.25.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-09-30"
-updated_at: "2026-11-11"
-workflow_status: "success"
+updated_at: "2026-11-24"
+workflow_status: "failure"
 stars: 0
 ---
 
@@ -36,7 +36,7 @@ afterwards, all with one command.
 
 ```bash
 cd /your/project
-ddev add-on get NoiXdev/ddev-sync --version v0.1.0-rc.7
+ddev add-on get NoiXdev/ddev-sync --version v0.1.0-rc.8
 ddev auth ssh && ddev restart
 ddev sync init
 ```

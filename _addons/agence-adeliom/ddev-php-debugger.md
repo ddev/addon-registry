@@ -12,8 +12,8 @@ dependencies: []
 type: "contrib"
 created_at: "2026-03-14"
 updated_at: "2026-11-16"
-workflow_status: "success"
-stars: 3
+workflow_status: "failure"
+stars: 4
 ---
 
 ![Adeliom](https://raw.githubusercontent.com/agence-adeliom/ddev-php-debugger/main/./adeliom.jpg)
