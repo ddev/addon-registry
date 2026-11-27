@@ -6,14 +6,14 @@ user: "e0ipso"
 repo: "ddev-assistant-t3"
 repo_id: 1282758294
 default_branch: "main"
-tag_name: "v1.1.3"
+tag_name: "v1.1.5"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: []
 type: "contrib"
 created_at: "2026-06-28"
-updated_at: "2026-11-23"
+updated_at: "2026-11-26"
 workflow_status: "success"
-stars: 1
+stars: 2
 ---
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
@@ -42,6 +42,8 @@ ddev restart
 ```
 
 After installation, make sure to commit the `.ddev` directory to version control.
+
+T3 runs on the project's Node.js version, and `ddev t3 start` refuses versions that the installed T3 doesn't support, according to the `engines` field of its npm package. The npm package `t3` is a launcher: the first `ddev t3 start` of each T3 version downloads T3's prebuilt runtime, several hundred MB, into the project's T3 state volume, so it needs network access.
 
 ## Usage
 
@@ -98,7 +100,7 @@ Installation fails with an explanation if the list repeats an address, or if it 
 container unable to bind its ports and take `ddev start` down with it.
 
 To turn remote access off again, clear the value and re-run the add-on; the generated
-`.ddev/docker-compose.assistant-t3.yaml` is removed.
+`.ddev/docker-compose.assistant-t3.yaml` then publishes no ports.
 
 ### Choosing bind addresses
 
@@ -142,17 +144,17 @@ Configuration lives in these files:
 | ---- | ------- |
 | `.ddev/.env.assistant-t3` | T3 version and port overrides |
 | `.ddev/config.assistant-t3.yaml` | Generated DDEV web port exposure |
-| `.ddev/docker-compose.assistant-t3.yaml` | Generated direct host port publishing, only when remote access is enabled |
+| `.ddev/docker-compose.assistant-t3.yaml` | Generated T3 state volume mount, and direct host port publishing when remote access is enabled |
 | `.ddev/t3/settings.json` | T3 server settings, using T3's settings schema |
 
-T3 runtime state is stored outside the project `.ddev` directory in DDEV's global cache. The add-on links T3's runtime `settings.json` back to `.ddev/t3/settings.json` so the user-editable server settings remain safe to commit.
+T3 keeps its runtime state outside the project `.ddev` directory, in the Docker volume `ddev-<project>-assistant`, which the `web` container mounts at `/mnt/ddev-global-cache/assistant-t3`. The state includes device pairings, the server identity, T3's database and the downloaded runtime, so it survives `ddev restart`, `ddev poweroff` and web image rebuilds. Each project has its own volume, so no other project's containers can read its T3 credentials. The add-on links T3's runtime `settings.json` back to `.ddev/t3/settings.json` so the user-editable server settings remain safe to commit.
 
 To override the exposed ports or installed T3 version:
 
 ```bash
 ddev dotenv set .ddev/.env.assistant-t3 --assistant-t3-http-port=21000
 ddev dotenv set .ddev/.env.assistant-t3 --assistant-t3-https-port=21001
-ddev dotenv set .ddev/.env.assistant-t3 --assistant-t3-version=0.0.27
+ddev dotenv set .ddev/.env.assistant-t3 --assistant-t3-version=0.1.11
 ddev add-on get e0ipso/ddev-assistant-t3
 ddev restart
 ```
@@ -183,6 +185,16 @@ https_port="$(( http_port + 1 ))"
 
 Hash collisions are possible. Override the ports if two projects calculate the same pair.
 
+## Upgrading from versions without the state volume
+
+Earlier versions of this add-on kept T3's state in DDEV's shared `ddev-global-cache` volume. DDEV v1.25.6 and later no longer mount that volume in the `web` container, so T3 lost its state, and paired devices their access, each time DDEV recreated the container.
+
+The add-on does not migrate the old state. After you upgrade the add-on and run `ddev restart`, pair your devices with T3 again one time. State written by earlier versions stays in the `ddev-global-cache` volume, where nothing uses it any more. To free that space, remove it through a throwaway container that mounts the volume:
+
+```bash
+docker run --rm -v ddev-global-cache:/mnt/ddev-global-cache ddev/ddev-utilities rm -rf /mnt/ddev-global-cache/assistant-t3/<project>
+```
+
 ## Removal
 
 ```bash
@@ -191,6 +203,13 @@ ddev restart
 ```
 
 Removal deletes the generated DDEV files but keeps `.ddev/.env.assistant-t3` and `.ddev/t3/settings.json`, so a later reinstall picks your settings up again. Delete them by hand if you don't need them.
+
+Removal also keeps the `ddev-<project>-assistant` volume, because it holds your T3 pairings and data. `ddev delete` removes it with the project. To remove it without deleting the project, stop the project and remove the volume:
+
+```bash
+ddev stop
+docker volume rm ddev-<project>-assistant
+```
 
 ## Credits
 

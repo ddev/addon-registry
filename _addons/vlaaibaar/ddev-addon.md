@@ -11,7 +11,7 @@ ddev_version_constraint: ">= v1.24.0"
 dependencies: []
 type: "contrib"
 created_at: "2026-11-18"
-updated_at: "2026-11-25"
+updated_at: "2026-11-26"
 workflow_status: "unknown"
 stars: 0
 ---
@@ -61,5 +61,5 @@ Add `-y` to skip the confirmation prompt.
 How it works:
 - The database is exported and restored with Craft's `craft db/backup` / `db/restore` on the server, so no database passwords are needed locally. After a push, `craft up` runs.
 - Commands on the server run with `umask 002`, and pushed uploads get fixed modes (directories `775`, files `664`), so they stay readable for the web server and writable for the site, whoever owns them.
-- Pulling uploads mirrors the server (local-only files are removed). Pushing uploads never deletes files on the server.
+- Pulling uploads mirrors the server (local-only files are removed), except a `.gitignore` or `.gitkeep` at the top of the local upload dir, which is kept. Pushing uploads never deletes files on the server.
 - Local uploads go to the project's `upload_dirs` (set in `.ddev/config.yaml`).
