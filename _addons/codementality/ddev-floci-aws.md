@@ -6,12 +6,12 @@ user: "codementality"
 repo: "ddev-floci-aws"
 repo_id: 1347075975
 default_branch: "main"
-tag_name: "0.5.2"
+tag_name: "0.5.3"
 ddev_version_constraint: ">= v1.24.10"
 dependencies: ["codementality/ddev-floci-ui"]
 type: "contrib"
 created_at: "2026-08-26"
-updated_at: "2026-08-26"
+updated_at: "2026-11-27"
 workflow_status: "disabled"
 stars: 1
 ---
@@ -50,57 +50,14 @@ no auth token, and no feature gates.
 
 ## Why this add-on
 
-LocalStack's community edition
-[sunset in March 2026](https://blog.localstack.cloud/the-road-ahead-for-localstack/):
-it now requires an auth token and its security updates are frozen. Floci is a
-drop-in replacement under the MIT license — same port, same credentials model,
-same SDK configuration — and it is meaningfully lighter, starting in
+Floci is a drop-in replacement for LocalStack's community edition which sunset in March 2026, under the MIT license — same port, same credentials model, same SDK configuration — and it is meaningfully lighter, starting in
 milliseconds rather than seconds.
 
-Running it as a DDEV add-on rather than as a separate `docker compose` stack
-buys you three things that are fiddly to arrange by hand:
+## Configuration items
 
 - **The web container is configured for you.** `AWS_ENDPOINT_URL`,
   credentials, region and path-style addressing are set in the web container's
   environment, so any AWS SDK finds the emulator without an application change.
-- **Returned URLs resolve.** SQS queue URLs, S3 locations and Lambda function
-  URLs name the `floci-aws` container rather than `localhost`, which is what makes
-  them usable from your PHP/Node/Python code. Getting this wrong is the single
-  most common way a local AWS emulator appears to work and then doesn't.
-- **Docker-backed services land on DDEV's network.** Lambda, RDS and
-  ElastiCache containers that Floci starts join the project's own network, so your web
-  container can reach them and they can reach Floci back.
-
-## Running alongside the Azure and GCP emulators
-
-Everything this add-on installs is named for the cloud it emulates rather than
-for Floci: the service and its hostname are `floci-aws`, the container is
-`ddev-<project>-floci-aws`, the state volume is `floci-aws`, and the command is
-`ddev floci-aws`. Nothing here claims the bare `floci` name, so the equivalent
-Azure and GCP add-ons can be installed in the same project without overwriting
-this one's files or shadowing its command.
-
-Your application can then tell them apart by endpoint:
-`http://floci-aws:4566`, `http://floci-az:4577`, `http://floci-gcp:4588`.
-
-### Installing it in several projects at once
-
-State is per project, not shared. The `floci-aws` volume is a Compose named
-volume, so Docker namespaces it by Compose project — DDEV gives each project
-`ddev-<project>_floci-aws`. Two projects each get their own buckets, tables and
-queues, `ddev floci-aws reset` in one leaves the other untouched, and deleting
-one project's volume cannot corrupt another's. Both projects can serve on
-router port 4567 at once, because the router routes by hostname.
-
-The exception is **Docker-backed services**, which are not namespaced upstream.
-Floci names some of the containers it starts globally — the ECR registry is
-`floci-ecr-registry`, with no project in the name — so the first project to ask
-for one gets it, and a second project asking for the same service silently
-reuses that container even though it is attached to the first project's network
-and therefore unreachable. If two projects both need ECR, RDS or another
-Docker-backed service, run them one at a time, or keep the Docker-backed work in
-a single project. Everything in-process (S3, DynamoDB, SQS, SNS, IAM, Secrets
-Manager, …) is unaffected.
 
 ## Installation
 
@@ -116,10 +73,7 @@ ddev floci-aws aws s3 mb s3://uploads
 ddev floci-aws aws s3 ls
 ```
 
-## Using it
-
-Nothing in your application needs to know it is talking to an emulator. The
-web container already has the environment set:
+## Environment variables
 
 | Variable | Value |
 |---|---|
@@ -144,14 +98,10 @@ $s3 = new Aws\S3\S3Client([
 $s3->putObject(['Bucket' => 'uploads', 'Key' => 'a.txt', 'Body' => 'hi']);
 ```
 
-For Drupal with `s3fs` or `flysystem` modules, point the bucket at `uploads` and the
-custom host at `floci-aws:4566` with path-style addressing on.
+For web applications running in the DDEV web container, point the bucket at `uploads` and the custom host at `floci-aws:4566` with path-style addressing on.
 
 **Node / Python / Go**: the v3 JS clients, botocore ≥ 1.31 and the Go v2 SDK all
 honour `AWS_ENDPOINT_URL` with no configuration at all.
-
-**Terraform / OpenTofu / CDK** work too — point the provider's `endpoints` block
-at the same URL.
 
 ## Reaching Floci from the host
 
@@ -163,26 +113,7 @@ ddev floci-aws url
 # From the host (aws CLI, Terraform, your IDE):   https://<project>.ddev.site:4567
 ```
 
-The in-project URL is the one baked into service URLs Floci returns, because
-that is what your application code has to be able to reach. A host-side AWS CLI
-pointed at `https://<project>.ddev.site:4567` will therefore get back queue URLs
-naming `floci-aws:4566`, which the host cannot resolve. That is a real limitation,
-not an oversight — you cannot have both without a hostname that resolves in
-both places.
-
-If your workflow is host-first (running Terraform from your terminal rather than
-from `ddev ssh`), flip it:
-
-```bash
-ddev dotenv set .ddev/.env.floci-aws \
-  --floci-aws-base-url=https://myproject.ddev.site:4567
-ddev restart
-```
-
-The simplest way to avoid the question entirely is `ddev floci-aws aws ...`, which
-runs the CLI inside the container where both halves agree.
-
-## The two default S3 buckets
+## The two default Floci S3 buckets
 
 Out of the box the add-on creates two buckets on every start, with genuinely
 different permissions:
@@ -198,11 +129,8 @@ granting `s3:GetObject` to `*`, so an object is readable the moment it is
 written and your application never has to remember to set `public-read` on each
 upload. Writing still requires credentials.
 
-Listing is deliberately *not* public by default. A publicly listable bucket is
-a misconfiguration rather than a feature, and nothing needs it to serve an
-`<img src>`.
+Listing is deliberately *not* public by default.
 
-**This does not affect application code.** Only *anonymous* listing is blocked.
 A signed `ListObjectsV2` — what the AWS SDK inside Drupal issues, including the
 prefix/delimiter form that drives folder-style browsing in Media Library and
 s3fs — works on both buckets, because the web container already holds
@@ -223,8 +151,7 @@ The **private** bucket has no ACL and no policy — S3's owner-only default.
 Nothing gets in without credentials or a presigned URL, which is what makes it
 useful for testing Flysystem's presigned links and private uploads.
 
-> *Measured against `floci/floci:1.7.0` on 2026-08-26. Floci is under active development, so this may already be out of date.*
-
+> *Measured against `floci/floci:2.5.0` on 2026-11-27. Floci is under active development, so this may already be out of date.*
 
 The web container gets all of this in its environment:
 
@@ -252,6 +179,32 @@ ddev dotenv set .ddev/.env.floci-aws --floci-aws-public-bucket=assets
 ddev dotenv set .ddev/.env.floci-aws --floci-aws-private-bucket=""
 ddev restart
 ```
+
+### The public bucket carries no Block Public Access configuration
+
+The policy above makes the bucket public on purpose, so the init hook removes
+the bucket's S3 Block Public Access configuration before it applies the policy.
+On AWS, Block Public Access is configured per bucket, so a bucket that is meant
+to be public does not carry one — and that is what lets a public policy be
+applied to it at all.
+
+Starting with Floci 2.5.0, a bucket nobody configured now enforces AWS's
+default Block Public Access — all four settings on — and its `BlockPublicPolicy`
+setting rejects a policy that grants public access, so `put-bucket-policy`
+answers `AccessDenied` and the bucket stays private. Older Floci versions reported the
+same default but did not enforce it, which is why this only surfaces on
+upgrade. The check sits outside the auth-enforcement switch, so it applies even
+with `FLOCI_AWS_S3_ENFORCE_AUTH` off.
+
+Please note:
+
+- **Object ACLs on buckets your application creates itself are ignored.** The
+  default also turns on `IgnorePublicAcls`, so a `public-read` ACL on an object
+  in such a bucket has no effect. The public bucket is exempt, because the hook
+  clears its Block Public Access configuration — and it does not need an ACL
+  anyway, since the bucket policy is what makes an object readable. The private
+  bucket keeps the default, which is what you want of a private bucket: nothing
+  public can be attached to it.
 
 ### This depends on auth enforcement being on
 
@@ -320,7 +273,7 @@ below.
 
 ## Creating resources on every start
 
-Drop scripts in `.ddev/floci-aws/init/ready.d/`. They run once the AWS API is
+Drop scripts in `.ddev/floci-aws/init/ready.d/`, and make them executable. They run once the AWS API is
 accepting requests, on every container start, and the `aws` CLI inside the
 container already points at the emulator:
 
@@ -331,18 +284,7 @@ aws s3api create-bucket --bucket uploads 2>/dev/null || true
 aws sqs create-queue --queue-name jobs 2>/dev/null || true
 ```
 
-`chmod +x` it and `ddev restart`. Make them idempotent — with the default
-storage mode the resources they create survive restarts, so a script that fails
-on "already exists" will break your next start. The shipped
-`10-default-buckets.sh` shows the pattern: `head-bucket` first, create only if
-that misses, so a genuine failure is still reported instead of swallowed by
-`|| true`.
-
-There are four phases (`boot.d`, `start.d`, `ready.d`, `stop.d`); see
-[`floci-aws/init/README.md`](https://github.com/codementality/ddev-floci-aws/blob/main/floci-aws/init/README.md). `.py` scripts work as
-well as `.sh`.
-
-## Persistence
+After adding scripts, you'll have to run `ddev restart`.
 
 The default storage mode is `hybrid`: in-memory speed with an asynchronous flush
 every few seconds, so your buckets and tables survive `ddev restart`. State
@@ -380,39 +322,14 @@ rm .ddev/docker-compose.floci-aws-docker.yaml
 ddev restart
 ```
 
-Everything in-process keeps working; the Docker-backed services do not start.
-
 One wrinkle worth knowing: containers Floci starts are its own, not DDEV's, so
 `ddev stop` leaves them running. `ddev floci-aws reset` removes the ones belonging
 to this project along with the state.
 
-## Migrating from LocalStack
-
-LocalStack parity is on by default, so an existing setup mostly moves across
-unchanged:
-
-- `LOCALSTACK_HOST`, `PERSISTENCE=1`, `LAMBDA_DOCKER_NETWORK`,
-  `LAMBDA_REMOVE_CONTAINERS=1` and `DEBUG=1` are translated automatically.
-- `/_localstack/health` and `/_localstack/init` are still served.
-- Init scripts under `/etc/localstack/init/` still run — though this add-on
-  mounts the native path, so put yours in `.ddev/floci-aws/init/ready.d/`.
-- The startup log still ends with LocalStack's `Ready.` line, so Testcontainers'
-  `LocalStackContainer` wait strategy works.
-
-Turn the translation off with
-`ddev dotenv set .ddev/.env.floci-aws --floci-aws-localstack-parity=false`.
-
-## Configuration
-
-Every setting is a `ddev dotenv set` away, followed by `ddev restart`:
-
-```bash
-ddev dotenv set .ddev/.env.floci-aws --floci-aws-region=eu-west-1
-```
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `FLOCI_AWS_IMAGE` | `floci/floci:latest-compat` | Image tag. `floci/floci:latest` is the lean ~90 MB native build **without** the AWS CLI or boto3 |
+| `FLOCI_AWS_IMAGE` | `floci/floci:2.5.0-compat` | Image tag. `floci/floci:2.5.0` is the lean ~90 MB native build **without** the AWS CLI or boto3 |
 | `FLOCI_AWS_HOSTNAME` | `floci-aws` | Hostname on DDEV's network, and the host in returned service URLs |
 | `FLOCI_AWS_BASE_URL` | `http://floci-aws:4566` | Base URL Floci uses when it builds service URLs |
 | `FLOCI_AWS_HTTP_PORT` | `4566` | Router port (http) |
@@ -453,7 +370,7 @@ one account are invisible to another.
 | `ddev floci-aws reset` | Deletes all emulated AWS state, and any containers Floci started for this project |
 
 `ddev floci-aws aws` needs the AWS CLI, which only the `-compat` image ships. If you
-switch `FLOCI_AWS_IMAGE` to `floci/floci:latest` for the smaller image, use your
+switch `FLOCI_AWS_IMAGE` to `floci/floci:2.5.0` for the smaller image, use your
 own AWS CLI against `ddev floci-aws url --host` instead.
 
 ## Removing the add-on
@@ -500,29 +417,14 @@ docker rm -f $(docker ps -aq \
   --filter network=ddev-<project>_default)
 ```
 
-## Licensing
-
-Two different licences are in play here, and it is worth being explicit about
-which covers what:
-
-- **This add-on** — the compose files, the `ddev floci-aws` command, the init
-  scripts and the documentation — is licensed **Apache 2.0**, matching the DDEV
-  add-on template and DDEV's own add-ons. See [LICENSE](https://github.com/codementality/ddev-floci-aws/blob/main/LICENSE).
-- **Floci itself** is licensed **MIT** by the
-  [floci-io](https://github.com/floci-io/floci) project, and is entirely separate work.
-
-**No Floci source is vendored in this repository.** The add-on only references
-the published `floci/floci` image, which Docker pulls at runtime; nothing
-here redistributes Floci code or binaries. If you redistribute this add-on you
-are redistributing Apache-2.0 material only.
-
 ## Credits
 
 Floci is by the [floci-io](https://github.com/floci-io/floci) project, MIT licensed. This add-on packages
 it under Apache 2.0; see [Licensing](#licensing) above.
 
-Behavioural notes in this README were verified against `floci/floci:1.7.0` on 2026-08-26.
-Upstream ships frequently; the nightly workflow in `.github/workflows/tests.yml`
-re-runs the suite against `latest` every day, which is what catches drift.
+Behavioural notes in this README were verified against `floci/floci:2.5.0` on 2026-11-27.
+The add-on pins that release, so every user gets the same emulator until the pin
+moves; upstream ships frequently, so a newer Floci is picked up here only when
+the pin is moved to it.
 
 **Contributed and maintained by [@codementality](https://github.com/codementality)**
